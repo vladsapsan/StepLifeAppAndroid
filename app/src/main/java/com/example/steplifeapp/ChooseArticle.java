@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,6 +40,7 @@ public class ChooseArticle extends AppCompatActivity {
     StorageReference storageRef ;
     ProgressBar progressBar;
     Bitmap bitmap1 = null;
+
     Drawable drawable;
     SwipeRefreshLayout SwipeRefreshArticle;
 
@@ -48,11 +50,14 @@ public class ChooseArticle extends AppCompatActivity {
 
 
     private class ImageGetter implements Html.ImageGetter {
-
+        int countimage = 0;
+        int loadedcount = 0;
         public Drawable getDrawable(String source) {
             int id;
             DownloadphotoUri = Uri.parse(source);
             bitmap1 = null;
+
+
             drawable = null;
             id = R.drawable.buttonimage;
 
@@ -75,13 +80,16 @@ public class ChooseArticle extends AppCompatActivity {
           //      }
         //    });
 
+
             mTarget = new Target() {
+
                @Override
                 public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                     bitmap1 = bitmap;
                     drawable = new BitmapDrawable(getResources(),bitmap);
-                   progressBar.setVisibility(View.GONE);
+                    loadedcount++;
                    MainTextDownloadArticle.setVisibility(View.VISIBLE);
+                        Recreatetool();
                 }
 
                 @Override
@@ -106,10 +114,17 @@ public class ChooseArticle extends AppCompatActivity {
             }
             else
             {
+                countimage = countimage + 1;
                 drawable = getResources().getDrawable(id);
                 drawable.setBounds(0,0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
             }
             return drawable;
+        }
+
+        public void Recreatetool(){
+            if(loadedcount == countimage) {
+                recreate();
+            }
         }
     };
 
@@ -175,6 +190,8 @@ public class ChooseArticle extends AppCompatActivity {
 
 
 
+
+
     Thread myThread = new Thread( // создаём новый поток
             new Runnable() { // описываем объект Runnable в конструкторе
                 public void run() {
@@ -186,6 +203,8 @@ public class ChooseArticle extends AppCompatActivity {
                 }
             }
     );
+
+
 
     @Override
     public void onStart() {

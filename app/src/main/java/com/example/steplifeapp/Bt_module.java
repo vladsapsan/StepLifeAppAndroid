@@ -1,29 +1,38 @@
 package com.example.steplifeapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class Bt_module extends AppCompatActivity {
 
 
     TextView CheckOutText;
     Button buttonConnectBt;
+    int REQUEST_ENABLE_BT = 1;
     private int BTCheck = 0;
     BluetoothAdapter mBluetoothAdapter;
     BluetoothManager bluetoothManager;
+    RecyclerView BtRecycle;
+    CardView CardDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +55,12 @@ public class Bt_module extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             bluetoothManager = getSystemService(BluetoothManager.class);
         }
-        mBluetoothAdapter = bluetoothManager.getAdapter();
+
+
+
+
+
+        BtRecycle = findViewById(R.id.BtRecycle);
 
 
 
@@ -55,27 +69,36 @@ public class Bt_module extends AppCompatActivity {
         buttonConnectBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
+                if (!mBluetoothAdapter.isEnabled()) {
+                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+
+                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
                 }
-                int REQUEST_ENABLE_BT = 1;
-                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-                BtCheck(BTCheck);
-                CheckoutBt();
             }
         });
 
         BtCheck(BTCheck);
         CheckoutBt();
 
+    }
+
+
+    //Проверка ответа пользователя на соглашение включения блютуз
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_ENABLE_BT){
+            //Включен
+            if(resultCode== RESULT_OK)
+            {
+                buttonConnectBt.setVisibility(View.GONE);
+                BTCheck = 3;
+                CheckOutText.setText("Поиск модуля");
+            }
+            else {
+                BTCheck = 2;
+            }
+        }
     }
 
     @SuppressLint("MissingPermission")
@@ -103,7 +126,20 @@ public class Bt_module extends AppCompatActivity {
             CheckOutText.setText("Bluetooth выключен");
             buttonConnectBt.setVisibility(View.VISIBLE);
         } else {
-            CheckOutText.setText("Поиск модуля");
+            CheckOutText.setText("Поиск модуля...");
+            BtRecycle.setVisibility(View.VISIBLE);
+
         }
     }
+
+    private BroadcastReceiver myReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Message msg = Message.obtain();
+            String action = intent.getAction();
+            if(BluetoothDevice.ACTION_FOUND.equals(action)){
+                //Found, add to a device list
+            }
+        }
+    };
 }
