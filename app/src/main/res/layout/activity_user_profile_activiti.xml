@@ -161,7 +161,7 @@
                             android:fontFamily="@font/montserratsemibold"
                             android:gravity="left"
 
-                            android:text="Редактировать статьи в учебнике"
+                            android:text="Редактировать статьи"
                             android:textColor="@color/BlackSviut"
                             android:textSize="14sp" />
 

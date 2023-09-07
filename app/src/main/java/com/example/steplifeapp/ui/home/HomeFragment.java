@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
@@ -32,11 +34,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.steplifeapp.AllArticle;
+import com.example.steplifeapp.Bt_module;
 import com.example.steplifeapp.ChooseArticle;
 import com.example.steplifeapp.DownloadProcessActiviti;
 import com.example.steplifeapp.MainActivity;
 import com.example.steplifeapp.R;
 import com.example.steplifeapp.TelephoneSignUp;
+import com.example.steplifeapp.UserAgreement;
 import com.example.steplifeapp.User_ProfileActiviti;
 import com.example.steplifeapp.databinding.FragmentHomeBinding;
 import com.example.steplifeapp.ui.Article;
@@ -65,17 +70,19 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class HomeFragment extends Fragment {
     FrameLayout FrameVideo;
-    TextView TextBtnHide;
+    TextView TextBtnHide,AllAcricleButton;
     CardView ImageProfile,HowToGetProtCard;
     final private static String DBase_Code = "AllArticle";
     final private static String DB_Article_HowToGet = "-NJgrzWOZOFxEejjLr5J";
     private DatabaseReference mDatabase;
 
+    Button buttonConnect;
     CardView  ArticleTeach;
     ScrollView HomescrollView;
 
+    private ImageView ArticleState1,ArticleState2,ArticleState3;
     private FirebaseAuth mAuth;
-    HorizontalScrollView horizontalScrollViewArticle;
+    HorizontalScrollView horizontalScrollViewArticle,horizontalScrollView2;
     private Animation HideAnimation;
     private HomeViewModel homeViewModel;
 
@@ -87,6 +94,12 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+    void DownloadArticlePictures()
+    {
+        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F15870364150766PreviewImage?alt=media&token=7386348c-18be-4373-8d9f-66a284f53bb0").into(ArticleState1);
+        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F15955776419587PreviewImage?alt=media&token=f6aef4eb-312a-46d8-a45e-7e55505acd86").into(ArticleState2);
+        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F212919968329690PreviewImage?alt=media&token=05c460be-54e6-450a-ab55-e847ad64334f").into(ArticleState3);
+    }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -102,6 +115,33 @@ public class HomeFragment extends Fragment {
         horizontalScrollViewArticle = view.findViewById(R.id.horizontalScrollViewArticle);
         OverScrollDecoratorHelper.setUpOverScroll(horizontalScrollViewArticle);
 
+        horizontalScrollView2 = view.findViewById(R.id.horizontalScrollView2);
+        OverScrollDecoratorHelper.setUpOverScroll(horizontalScrollView2);
+
+        //Переход ко всем статьям
+        AllAcricleButton = (TextView) view.findViewById(R.id.AllAcricleButton);
+        AllAcricleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new AllArticle();
+                FragmentTransaction ft = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.slide_left, R.anim.slide_right,R.anim.slide_left, R.anim.slide_right);
+                ft.addToBackStack("AllArticle");
+                ft.add(R.id.HomeFragment,fragment,"AllArticle").commit();
+            }
+        });
+
+
+        //Кнопка перехода к подключению модуля
+        buttonConnect = view.findViewById(R.id.buttonConnect);
+        buttonConnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Bt_module.class);
+                startActivity(intent);
+            }
+        });
+
         //кнопка закрытия видео на главном экране
         FrameVideo = (FrameLayout) view.findViewById(R.id.FrameVideoInstruction);
         TextBtnHide = (TextView) view.findViewById(R.id.textHideVideoButton);
@@ -113,6 +153,13 @@ public class HomeFragment extends Fragment {
             }
 
         });
+
+        //Картинки статей на главном экране
+        ArticleState1 =  view.findViewById(R.id.ArticleState1);
+        ArticleState2 =  view.findViewById(R.id.ArticleState2);
+        ArticleState3 =  view.findViewById(R.id.ArticleState3);
+
+        DownloadArticlePictures();
 
 
         //Открытие статьи

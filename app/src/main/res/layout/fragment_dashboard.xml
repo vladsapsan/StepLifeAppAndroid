@@ -44,7 +44,7 @@
                 android:layout_marginBottom="80dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/montserratsemibold"
-                android:text="Функция подключения модуля на данный момент не доступна \n ожидайте"
+                android:text="Начните подключение модуля уже сейчас!"
                 android:textColor="@color/BlackSviut"
                 android:textSize="15sp" />
 
@@ -58,6 +58,24 @@
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"/>
 
+
+            <Button
+                android:id="@+id/buttonConnect"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="100dp"
+                android:textSize="13dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:background="@drawable/buttonstyle2"
+                android:text="Подключить коленный модуль"
+                android:textColor="@color/black"
+                android:theme="@style/Theme.ButtonWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
         </FrameLayout>
     </LinearLayout>
 
