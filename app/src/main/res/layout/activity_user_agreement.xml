@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MainGray"
+    tools:context=".UserAgreement">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            app:cardCornerRadius="10dp"
+            android:layout_height="50dp">
+            <ImageView
+                android:rotationY="180"
+                android:id="@+id/Backto"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/font_angle_small_right" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserratsemibold"
+                android:gravity="left"
+                android:text="Пользовательское соглашение"
+                android:textColor="@color/BlackSviut"
+                android:textSize="18sp" />
+        </androidx.cardview.widget.CardView>
+        <WebView
+            android:id="@+id/UserAgreementWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </WebView>
+    </LinearLayout>
+
+</FrameLayout>

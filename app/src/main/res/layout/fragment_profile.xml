@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/AuthorizationFrame"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:background="@color/MainGray"
+    android:layout_height="match_parent"
+    tools:context=".ui.ProfileFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="150dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+              android:fontFamily="@font/montserratregular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Авторизация"
+            android:textColor="@color/black"
+            android:textSize="19dp"/>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:textSize="15dp"
+            android:fontFamily="@font/montserratregular"
+            android:textColor="@color/MainGrayText"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Войдите в свой профиль,чтобы подключить коленный модуль или получить доступ к урокам." />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:layout_gravity="center"
+
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_height="50dp"
+            app:errorEnabled="true">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:hint="Почта"
+                android:inputType="textEmailAddress"
+                android:id="@+id/editTextEmail"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginRight="30dp"
+            android:layout_height="50dp"
+            app:errorEnabled="true">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:hint="Пароль"
+                android:inputType="textPassword"
+                android:id="@+id/editTextTextPassword"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp">
+        <Button
+            android:id="@+id/buttonAuth"
+            android:backgroundTint="@color/MainYellow"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserratregular"
+            android:layout_marginBottom="35dp"
+            android:textSize="11dp"
+            android:theme="@style/Theme.ButtonWhite"
+            android:background="@drawable/buttonstyle2"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Авторизоваться" />
+
+        <TextView
+            android:id="@+id/RegistrationTextView"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserratregular"
+            android:clickable="true"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/MainBlue"
+            android:layout_height="wrap_content"
+            android:text="Нет аккаунта? Зарегистрироваться✓" />
+
+        <TextView
+            android:id="@+id/ReturnPasswordTextView"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserratregular"
+            android:clickable="true"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_marginTop="60dp"
+            android:textColor="@color/MainBlue"
+            android:layout_height="wrap_content"
+            android:text="Забыли пароль?" />
+
+
+    </FrameLayout>
+
+</FrameLayout>

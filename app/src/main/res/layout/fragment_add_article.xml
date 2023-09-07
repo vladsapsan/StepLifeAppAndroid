@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/AddNewArticleFrame"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".ui.AddArticleFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Новый урок"
+                android:textColor="@color/BlackSviut"
+                android:textSize="17sp" />
+
+            <ImageView
+
+                android:clickable="true"
+                android:id="@+id/imagebackAddArticle"
+                android:layout_width="40dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="12dp"
+
+                android:layout_marginBottom="10dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_close_foreground"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="30dp"
+                android:backgroundTint="@color/MainBlue"
+                android:layout_marginTop="18dp"
+                android:layout_gravity="right"
+                app:cardCornerRadius="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="30dp">
+                <ImageView
+                    android:id="@+id/GoToFinalViewButton"
+                    android:layout_width="25dp"
+                    android:layout_gravity="center"
+                    android:layout_height="25dp"
+                    android:src="@drawable/font_angle_small_right"
+                    />
+
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/progressBaraddArticle"
+                    style="?android:attr/progressBarStyle"
+
+                   android:layout_gravity="center"
+
+                    android:indeterminateTint="@color/white"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp" />
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/TextViewHeader"
+                android:clickable="false"
+                android:singleLine="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Заголовок"
+                android:fontFamily="@font/montserratsemibold"
+                android:textColor="@color/blackEditortext"
+                android:background="@null"
+                android:textSize="26dp" />
+            <ScrollView
+
+                android:id="@+id/addArticleScrollView"
+                android:layout_width="match_parent"
+                android:overScrollMode="never"
+
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:focusable="true"
+
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/TextEditHeader"
+                        android:maxLength="85"
+                        android:textCursorDrawable = "@drawable/color_cursor"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:fontFamily="@font/montserratsemibold"
+                        android:textColor="@color/black"
+                        android:background="@null"
+                        android:textSize="26dp"
+                        />
+
+                    <FrameLayout
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:contextClickable="false"
+                            android:id="@+id/TextViewMainTextEditor"
+                            android:paddingLeft="10dp"
+                            android:clickable="false"
+                            android:paddingRight="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Здесь можно написать свои мысли..."
+                            android:fontFamily="@font/montserratregular"
+                            android:textColor="@color/blackEditortext"
+                            android:background="@null"
+                            android:textSize="15dp" />
+                        <EditText
+                            android:clickable="true"
+
+                            android:lineHeight="24dp"
+
+                            android:textCursorDrawable = "@drawable/color_cursor"
+                            android:id="@+id/TextEditMainText"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text=""
+
+                            android:textColor="@color/black"
+                            android:background="@null"
+                            android:textSize="15dp"
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+
+                        android:paddingLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <HorizontalScrollView
+                            android:id="@+id/ImageAddArticleScrolView"
+                            android:overScrollMode="never"
+                            android:scrollbars="none"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <LinearLayout
+                                android:id="@+id/PictureLayout"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </LinearLayout>
+                        </HorizontalScrollView>
+                    </FrameLayout>
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"/>
+                </LinearLayout>
+
+
+            </ScrollView>
+
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:background="@drawable/graylogoframe"
+        android:id="@+id/EditTextButtonsFrame"
+        android:layout_gravity="bottom"
+        android:fitsSystemWindows="true"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:clickable="false"
+                android:id="@+id/addPicturetoArticle"
+                android:paddingLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:paddingRight="5dp"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:src="@drawable/icon_font_picture"
+                />
+
+
+
+
+            <RadioGroup
+                android:id="@+id/RadioGroupTextEdit"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RadioButton
+android:visibility="gone"
+                    android:id="@+id/UsualText"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:button="@null"
+                    android:layout_marginRight="5dp"
+                    android:text="T"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:textSize="24dp"
+                    android:gravity="center"
+                    android:checked="true"
+
+                    />
+                <RadioButton
+                    android:visibility="gone"
+                    android:id="@+id/HeaderText"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:button="@null"
+                    android:text="H"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:textSize="24dp"
+                    android:gravity="center"
+                    android:checked="true"
+
+                    />
+
+
+
+            </RadioGroup>
+
+            <TextView
+                android:clickable="false"
+                android:id="@+id/CleanFocus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Готово"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="@color/MainGrayText"/>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</FrameLayout>

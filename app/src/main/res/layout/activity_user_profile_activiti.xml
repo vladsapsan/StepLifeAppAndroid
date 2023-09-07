@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MainGray"
+    android:id="@+id/UserProfileActivitiFrame"
+    tools:context=".User_ProfileActiviti">
+
+    <ScrollView
+        android:id="@+id/UserprofileScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:background="@color/TranspanetColor"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:rotationY="180"
+                    android:id="@+id/CLosetoProfile"
+                    android:layout_gravity="left"
+                    android:clickable="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/ic_close_foreground" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:gravity="left"
+                    android:text="Профиль"
+                    android:textColor="@color/BlackSviut"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textViewEmailProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:gravity="left"
+                    android:text="Имя,"
+                    android:textColor="@color/BlackSviut"
+                    android:textSize="19sp" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="95dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:gravity="left"
+                    android:text="Добро пожаловать!"
+                    android:textColor="@color/MainGrayText"
+                    android:textSize="14sp" />
+
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:gravity="left"
+                android:text="Основные действия"
+                android:textColor="@color/MainGrayText"
+                android:textSize="16sp" />
+
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="8dp"
+                android:layout_width="match_parent"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/AddArticleFrameButton"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="15dp"
+                        android:layout_height="30dp">
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="55dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:gravity="left"
+
+                            android:text="Добавить статью в учебник"
+                            android:textColor="@color/BlackSviut"
+                            android:textSize="14sp" />
+
+                        <ImageView
+
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_gravity="left"
+
+                            android:src="@drawable/plus_insert_add_rectangle_icon" />
+
+                        <ImageView
+                            android:layout_marginRight="26dp"
+                            android:layout_width="16dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_gravity="right"
+                            android:layout_height="16dp"
+                            android:src="@drawable/font_angle_small_right" />
+                    </FrameLayout>
+
+                    <FrameLayout
+
+                        android:id="@+id/RedactArticleFrameButton"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="30dp">
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="55dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:gravity="left"
+
+                            android:text="Редактировать статьи в учебнике"
+                            android:textColor="@color/BlackSviut"
+                            android:textSize="14sp" />
+
+                        <ImageView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_gravity="left"
+
+                            android:src="@drawable/free_icon_font_edit" />
+
+                        <ImageView
+                            android:layout_marginRight="26dp"
+                            android:layout_width="16dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_gravity="right"
+                            android:layout_height="16dp"
+                            android:src="@drawable/font_angle_small_right" />
+                    </FrameLayout>
+
+
+                    <FrameLayout
+
+                        android:id="@+id/SettingsFrameButton"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="30dp">
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="55dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:gravity="left"
+
+                            android:text="Настройки"
+                            android:textColor="@color/BlackSviut"
+                            android:textSize="14sp" />
+
+                        <ImageView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_gravity="left"
+
+                            android:src="@drawable/free_icon_font_settings" />
+
+                        <ImageView
+                            android:layout_marginRight="26dp"
+                            android:layout_width="16dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_gravity="right"
+                            android:layout_height="16dp"
+                            android:src="@drawable/font_angle_small_right" />
+                    </FrameLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/BlackSviut"
+                        android:textSize="19sp"
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="40dp"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:layout_height="wrap_content"
+                        android:text="Поддержка"/>
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/montserratregular"
+                        android:textColor="@color/MainGrayText"
+                        android:layout_gravity="left"
+                        android:paddingLeft="40dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="290dp"
+                        android:layout_height="wrap_content"
+                        android:text="Дайте нам знать если у вас возникли проблемы или вопросы" />
+
+                    <Button
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginLeft="40dp"
+                        android:textSize="9dp"
+                        android:textColor="@color/white"
+                        android:layout_marginBottom="20dp"
+                        android:backgroundTint="@color/logoGray"
+                        android:layout_gravity="bottom"
+                        android:fontFamily="@font/montserratsemibold"
+
+                        android:text="Получить помощь"/>
+                </LinearLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView"
+                android:layout_gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:lottie_rawRes="@raw/paperplaneanimation"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"/>
+
+
+            <Button
+                android:id="@+id/ExitProfileButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="9dp"
+                android:textColor="@color/BlackSviut"
+                android:backgroundTint="@color/white"
+                android:layout_gravity="bottom"
+                android:fontFamily="@font/montserratsemibold"
+
+                android:text="Выйти"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

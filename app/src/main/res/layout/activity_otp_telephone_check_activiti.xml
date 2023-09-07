@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/RegistrationFrameOTP"
+    android:layout_height="match_parent"
+    android:background="@color/MainGray"
+    tools:context=".OtpTelephoneCheckActiviti">
+    <ImageView
+        android:rotationY="180"
+        android:id="@+id/BacktoProfileAuthorization"
+        android:layout_gravity="left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/ic_close_foreground" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/montserratregular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Верификационный код"
+            android:textColor="@color/black"
+            android:textSize="19dp"/>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:textSize="12dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:fontFamily="@font/montserratregular"
+            android:textColor="@color/MainGrayText"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Введите код отправленный на ваш телефон" />
+    </FrameLayout>
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        tools:ignore="MissingConstraints">
+
+
+        <com.chaos.view.PinView
+            android:layout_marginTop="113dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/OTPPinView"
+
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:inputType="phone"
+            android:fontFamily="@font/montserratsemibold"
+            android:padding="5dp"
+            android:textColor="@color/MainBlue"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:cursorColor="@color/MainBlue"
+            app:cursorWidth="2dp"
+            app:hideLineWhenFilled="false"
+            app:itemCount="6"
+            app:itemHeight="48dp"
+            app:itemRadius="5dp"
+            app:itemSpacing="3dp"
+            app:itemWidth="48dp"
+            app:lineColor="@color/black"
+            app:lineWidth="2dp"
+            app:viewType="rectangle" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="120dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="120dp"
+            app:lottie_rawRes="@raw/handholdingphone"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+        <Button
+            android:id="@+id/OTPPINbuttonRegistration"
+            android:backgroundTint="@color/MainYellow"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserratsemibold"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textSize="11dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Войти" />
+
+
+    </FrameLayout>
+
+
+</FrameLayout>

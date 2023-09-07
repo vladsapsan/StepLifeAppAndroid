@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+
+
+    <item
+        android:id="@+id/navigation_dashboard"
+
+        android:icon="@drawable/assembly_control_fix_setting_108715"
+        android:title="Модуль" />
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/building_home_house_main_menu_start_113416"
+        android:title="Главная" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/icon_font_book_bookmark"
+        android:title="Учебник" />
+
+
+
+
+
+
+
+
+</menu>

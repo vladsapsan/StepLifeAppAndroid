@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DeveloperAcsessActiviti">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/MainBlue"
+            android:textSize="25dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:text="Внимание!"/>
+
+
+        <TextView
+
+            android:textSize="14dp"
+            android:fontFamily="@font/montserratregular"
+            android:textColor="@color/MainGrayText"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:textAlignment="center"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Данная сборка программы не является официальной, и предназначена только для разработчика! \n \n Введите код разработчика чтобы продолжить:" />
+
+
+
+        <com.chaos.view.PinView
+            android:layout_marginTop="113dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/DeveloperPinView"
+
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:inputType="phone"
+            android:fontFamily="@font/montserratsemibold"
+            android:padding="5dp"
+            android:textColor="@color/MainBlue"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:cursorColor="@color/MainBlue"
+            app:cursorWidth="2dp"
+            app:hideLineWhenFilled="false"
+            app:itemCount="6"
+            app:itemHeight="48dp"
+            app:itemRadius="5dp"
+            app:itemSpacing="3dp"
+            app:itemWidth="48dp"
+            app:lineColor="@color/black"
+            app:lineWidth="2dp"
+            app:viewType="rectangle" />
+
+        <Button
+            android:id="@+id/DeveloperPinButton"
+            android:backgroundTint="@color/MainYellow"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textSize="11dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Подтвердить" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:textSize="13dp"
+            android:fontFamily="@font/montserratregular"
+            android:textColor="@color/BlackSviut"
+
+            android:text="Версия:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:textSize="15dp"
+            android:fontFamily="@font/montserratregular"
+            android:textColor="@color/BlackSviut"
+
+            android:text="@string/VersionApp"/>
+
+    </LinearLayout>
+</FrameLayout>

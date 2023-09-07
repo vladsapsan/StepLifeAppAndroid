@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MainGray"
+    android:id="@+id/UserProfileFrame"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.userProfileFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:background="@drawable/profileframestyle"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:gravity="left"
+                android:text="Профиль"
+                android:textColor="@color/BlackSviut"
+                android:textSize="16sp" />
+
+
+
+
+            <TextView
+                android:id="@+id/textViewNameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:gravity="left"
+                android:text="Добрый день!"
+                android:textColor="@color/BlackSviut"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/textViewEmailProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="75dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:gravity="left"
+                android:text="Telephone"
+                android:textColor="@color/MainGrayText"
+                android:textSize="14sp" />
+
+
+
+            <ImageView
+                android:id="@+id/ButtonSettingProfile"
+                android:layout_gravity="right"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:paddingRight="2dp"
+                android:src="@drawable/icon_font_menu_dots_vertical" />
+
+
+
+
+
+
+
+        </FrameLayout>
+
+
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:lottie_rawRes="@raw/paperplaneanimation"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+    </LinearLayout>
+
+    </ScrollView>
+
+
+
+</FrameLayout>

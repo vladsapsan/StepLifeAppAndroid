@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:id="@+id/SheetDialogPhotoContainer"
+    android:background="@drawable/bottomsheetprofilesettingbackground"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="55dp">
+
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/montserratregular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Загрузить обложку статьи"
+            android:textColor="@color/black"
+            android:textSize="13dp"/>
+
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/cornerdefault"
+            android:layout_height="5dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            app:cardCornerRadius="9dp"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center"
+            android:layout_height="120dp">
+
+
+            <ImageView
+                android:id="@+id/Downloadpreviewimage"
+                android:layout_width="match_parent"
+
+                android:background="@color/MainGray"
+                android:layout_height="match_parent">
+
+            </ImageView>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/buttonDowloandphoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="200dp"
+            android:textSize="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:background="@drawable/buttonstyle2"
+            android:text="Загрузить фото"
+            android:textColor="@color/black"
+            android:theme="@style/Theme.ButtonWhite" />
+
+        <Button
+            android:id="@+id/buttonNotDowloandphoto"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="200dp"
+            android:textSize="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:backgroundTint="@color/MainBlue"
+            android:text="Продолжить"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
+</FrameLayout>

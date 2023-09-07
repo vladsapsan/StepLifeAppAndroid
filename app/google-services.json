@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "262958102702",
+    "firebase_url": "https://steplife1-default-rtdb.firebaseio.com",
+    "project_id": "steplife1",
+    "storage_bucket": "steplife1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262958102702:android:093dae849b78885eccd53f",
+        "android_client_info": {
+          "package_name": "com.example.steplifeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262958102702-a08e7neqm6t0t88njqaao9b557e1urfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxgkKqg0I50F1vZPGAPrVzxDNOQLIL4YA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262958102702-a08e7neqm6t0t88njqaao9b557e1urfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

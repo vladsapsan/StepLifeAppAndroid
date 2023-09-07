@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/MainGray"
+    tools:context=".ui.EmailVerificationFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Подтверждение почты"
+                android:textColor="@color/BlackSviut"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:clickable="true"
+                android:id="@+id/imagebackEmailVerif"
+                android:layout_width="40dp"
+                android:layout_gravity="right"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_close_foreground"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                app:lottie_rawRes="@raw/paperplaneanimation"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_marginTop="100dp"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text=" Чтобы войти в профиль подтвердите что это вы с помощью письма,которое мы отправили на указанный электронный почтовый ящик при регистрации."
+                    android:textColor="@color/BlackSviut"
+                    android:textSize="15sp" />
+
+
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

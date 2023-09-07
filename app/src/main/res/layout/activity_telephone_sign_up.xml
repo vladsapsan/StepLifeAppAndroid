@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/RegistrationFrame"
+    android:background="@color/MainGray"
+    android:layout_height="match_parent"
+    tools:context=".ui.RegistrationFragment">
+
+
+
+    <ImageView
+        android:rotationY="180"
+        android:id="@+id/BacktoProfileAuthorization"
+        android:layout_gravity="left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/ic_close_foreground" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/montserratregular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Auth"
+            android:textColor="@color/black"
+            android:textSize="19dp"/>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:fontFamily="@font/montserratregular"
+            android:textColor="@color/MainGrayText"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Введите свой номер телефона, чтобы войти в аккаунт и получить доступ к функционалу" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="250dp"
+        android:orientation="vertical"
+        android:layout_gravity="top">
+
+
+
+
+        <br.com.sapereaude.maskedEditText.MaskedEditText
+            android:id="@+id/phone_input"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:typeface="monospace"
+
+            android:background="@drawable/telephoneedittext"
+            mask:allowed_chars="1234567890"
+            mask:mask="+7(###)###-##-##"
+            android:hint="1234567890"
+            app:keep_hint="true"
+            />
+
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="65dp"
+                android:layout_marginRight="65dp"
+                android:gravity="center"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Нажимая на кнопку 'Продолжить' вы принимаете:"
+                android:textColor="@color/MainGrayText"
+                android:textSize="11dp"
+                android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/UserAgreementButton"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:text="Пользовательское соглашение"
+            android:textColor="@color/MainBlue"
+            android:textSize="12dp"
+            android:textStyle="italic" />
+
+
+
+
+
+
+
+
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/buttonRegistration"
+                android:backgroundTint="@color/MainYellow"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserratsemibold"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textSize="11dp"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Продолжить" />
+
+            <TextView
+                android:id="@+id/TimerText"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="65dp"
+                android:layout_marginRight="65dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Запросить код заново через:"
+                android:textColor="@color/MainGrayText"
+                android:textSize="11dp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+
+</FrameLayout>

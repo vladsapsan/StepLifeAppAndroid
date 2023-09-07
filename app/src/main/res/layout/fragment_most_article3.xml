@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="370dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.MostArticle3Fragment">
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="15dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+
+                android:scaleType="fitXY"
+                android:src="@drawable/training1"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/BlackSviut"
+                        android:textSize="17dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="20dp"
+                        android:gravity="left"
+                        android:layout_gravity="top"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:text="Салют Орто представили Steplife на Восточном экономическом форуме - 2022"/>
+
+                    <TextView
+                        android:contextClickable="false"
+                        android:layout_marginTop="2dp"
+                        android:id="@+id/TextViewDate"
+                        android:paddingLeft="20dp"
+                        android:layout_gravity="right"
+                        android:clickable="false"
+                        android:paddingRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="21 ноябр. 2022"
+                        android:fontFamily="@font/montserratregular"
+                        android:textColor="@color/MainGrayText"
+                        android:background="@null"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Читать далее"
+                        android:textStyle="italic"
+                        android:fontFamily="@font/normalidadcompactbold"
+                        android:textSize="14dp"
+                        android:textColor="@color/BlackSviut"
+                        android:gravity="left"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="20dp"
+                        android:layout_gravity="bottom"/>
+                </LinearLayout>
+
+
+            </FrameLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

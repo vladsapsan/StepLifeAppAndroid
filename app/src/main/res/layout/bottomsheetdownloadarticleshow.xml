@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:animateLayoutChanges="true"
+    android:id="@+id/SheetDialogArticleContainer"
+    android:background="@drawable/bottomsheetprofilesettingbackground"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="110dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/cornerdefault"
+            android:layout_height="5dp"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyle"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:indeterminateTint="@color/MainBlue"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+        </FrameLayout>
+        <ScrollView
+            android:id="@+id/DownloadArticleScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    app:cardCornerRadius="5dp"
+                    tools:layout_editor_absoluteX="1dp"
+                    tools:layout_editor_absoluteY="444dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/DownloadHeadText"
+                            android:clickable="false"
+                            android:paddingTop="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:fontFamily="@font/montserratsemibold"
+                            android:textColor="@color/BlackSviut"
+                            android:background="@null"
+                            android:textSize="25dp"/>
+
+                        <TextView
+                            android:contextClickable="false"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/TextDateDownloadArticle"
+                            android:paddingLeft="10dp"
+                            android:clickable="false"
+                            android:paddingRight="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:fontFamily="@font/montserratregular"
+                            android:textColor="@color/MainGrayText"
+                            android:background="@null"
+                            android:textSize="12dp" />
+
+
+                        <TextView
+                            android:contextClickable="false"
+                            android:layout_marginTop="10dp"
+                            android:lineHeight="24dp"
+                            android:id="@+id/MainTextDownloadArticle"
+                            android:paddingLeft="0dp"
+                            android:clickable="false"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:fontFamily="@font/montserratregular"
+                            android:textColor="@color/BlackSviut"
+                            android:background="@null"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+                <FrameLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+
+
+                    >
+                    <Button
+
+                        android:id="@+id/buttonLogo1"
+                        android:layout_width="51dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@drawable/graylogoframe"
+                        android:theme="@style/Theme.ButtonGrayLogo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                    <Button
+
+                        android:id="@+id/buttonLogo2"
+                        android:layout_width="51dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="25dp"
+                        android:background="@drawable/graylogoframe"
+                        android:theme="@style/Theme.ButtonGrayLogo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </FrameLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</FrameLayout>
