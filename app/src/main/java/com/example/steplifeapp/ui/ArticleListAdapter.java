@@ -51,7 +51,7 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
         ProgressBar progressBar = convertView.findViewById(R.id.progressBarDownloadpreviewPhotoArticle);
 
         if(getItem(position).PreviewPhotoUri!=null) {
-            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
             Picasso.get()
                     .load(getItem(position).PreviewPhotoUri)
                     .into(PreviewImage, new Callback() {

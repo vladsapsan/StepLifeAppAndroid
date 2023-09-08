@@ -1,5 +1,6 @@
 package com.example.steplifeapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -8,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -15,11 +17,20 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.steplifeapp.ui.AddArticleFragment;
 import com.example.steplifeapp.ui.SettingsFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
@@ -27,9 +38,14 @@ public class User_ProfileActiviti extends AppCompatActivity {
 
     ImageView BackBtn;
     Button LogOutButton;
+    List<String> EditorsPhoneList;
+    final String EDITORS = "AllEditors";
     Fragment Addarticleragment ;
+    private DatabaseReference mDataBase;
+    ImageView ImageProfile;
+    int USER_ROLE = 0;
     Fragment SettingsFragment;
-    FrameLayout AddArticleFrameButton,RedactArticleFrameButton,SettingsFrameButton;
+    FrameLayout AddArticleFrameButton,RedactArticleFrameButton,SettingsFrameButton,ArticleChooseFrameButton;
     ScrollView UserProfilescrollView;
     private FirebaseAuth mAuth;
     TextView Phone;
@@ -59,10 +75,14 @@ public class User_ProfileActiviti extends AppCompatActivity {
         Addarticleragment = new AddArticleFragment();
         SettingsFragment = new SettingsFragment();
 
+        ImageProfile = findViewById(R.id.ImageProfile);
 
 
         //Кнопка добавления статьи
         AddArticleFrameButton = findViewById(R.id.AddArticleFrameButton);
+        if(USER_ROLE == 0){
+            AddArticleFrameButton.setVisibility(View.GONE);
+        }
         AddArticleFrameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,18 +94,20 @@ public class User_ProfileActiviti extends AppCompatActivity {
         });
         //Кнопка перехода в настройки
         SettingsFrameButton = findViewById(R.id.SettingsFrameButton);
+
         SettingsFrameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction ft = (getSupportFragmentManager().beginTransaction());
-                ft.setCustomAnimations(R.anim.slide_left, R.anim.slide_right,R.anim.slide_left, R.anim.slide_right);
-                ft.addToBackStack(null);
-                ft.add(R.id.UserProfileActivitiFrame,SettingsFragment,"SettingsFragment").commit();
+                Intent intentSetting = new Intent(User_ProfileActiviti.this,MainSettingsActivity.class);
+                startActivity(intentSetting);
             }
         });
 
         //Редактирование статей
         RedactArticleFrameButton = findViewById(R.id.RedactArticleFrameButton);
+        if(USER_ROLE == 0){
+            RedactArticleFrameButton.setVisibility(View.GONE);
+        }
         RedactArticleFrameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +129,21 @@ public class User_ProfileActiviti extends AppCompatActivity {
             }
         });
 
+
+
+
+        //Настройка первой полосы статей
+        ArticleChooseFrameButton = findViewById(R.id.ArticleChooseFrameButton);
+        if(USER_ROLE == 0){
+            ArticleChooseFrameButton.setVisibility(View.GONE);
+        }
+        ArticleChooseFrameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(User_ProfileActiviti.this,ArticleOnTopSettingsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //Scrollview
         UserProfilescrollView = findViewById(R.id.UserprofileScrollView);
@@ -130,10 +167,15 @@ public class User_ProfileActiviti extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser cUser = mAuth.getCurrentUser();
+        //Данные аутентификации
         if(cUser!=null)
         {
             String name = cUser.getDisplayName();
             String phoneNumber = cUser.getPhoneNumber();
+
+            if(cUser.getPhotoUrl()!=null) {
+                Picasso.get().load(cUser.getPhotoUrl()).into(ImageProfile);
+            }
             if(name!=null)
             {
                 Phone.setText(name);
@@ -143,5 +185,38 @@ public class User_ProfileActiviti extends AppCompatActivity {
             }
 
         }
+
+        //Сверка данных сотрудников из базы с текущим пользователем для предоставления доступа к созданию статей
+        mDataBase = FirebaseDatabase.getInstance().getReference(EDITORS);
+        mDataBase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        EditorsPhoneList = (List<String>) task.getResult().getValue();
+                        String phoneNumber = cUser.getPhoneNumber();
+                        Log.e("Profile",phoneNumber);
+                        for (String phone : EditorsPhoneList) {
+                            if (phoneNumber.equals(phone)) {
+                                USER_ROLE = 1;
+                                ArticleChooseFrameButton.setVisibility(View.VISIBLE);
+                                AddArticleFrameButton.setVisibility(View.VISIBLE);
+                                RedactArticleFrameButton.setVisibility(View.VISIBLE);
+                                break;
+                            }
+                        }
+                    }
+                    catch (Exception e){
+                        Log.e("Profile",e.toString());
+                    }
+
+                }
+            }
+        });
+
     }
 }

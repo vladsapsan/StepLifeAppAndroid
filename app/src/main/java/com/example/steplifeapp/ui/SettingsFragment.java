@@ -66,8 +66,7 @@ public class SettingsFragment extends Fragment {
         BackBtn = view.findViewById(R.id.BacktoProfile);
         Email = (TextView) view.findViewById(R.id.textViewEmailProfile);
 
-        AboutProgrammFragment = new AboutProgrammFragment();
-        ProfileSettingsFragment = new ProfileSettingsFragment();
+                ProfileSettingsFragment = new ProfileSettingsFragment();
         //Кнопка возвращения в профиль
         BackBtn.setOnClickListener(new View.OnClickListener() {
             @Override

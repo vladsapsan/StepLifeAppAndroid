@@ -35,7 +35,7 @@
                 android:gravity="left"
                 android:text="Пользовательское соглашение"
                 android:textColor="@color/BlackSviut"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </androidx.cardview.widget.CardView>
         <WebView
             android:id="@+id/UserAgreementWebView"

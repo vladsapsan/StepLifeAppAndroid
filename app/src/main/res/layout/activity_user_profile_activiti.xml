@@ -49,31 +49,63 @@
                     android:textColor="@color/BlackSviut"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/textViewEmailProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="70dp"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/montserratsemibold"
-                    android:gravity="left"
-                    android:text="Имя,"
-                    android:textColor="@color/BlackSviut"
-                    android:textSize="19sp" />
 
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="95dp"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/montserratsemibold"
+                <LinearLayout
+                    android:layout_marginTop="50dp"
+                    android:layout_gravity="bottom"
                     android:gravity="left"
-                    android:text="Добро пожаловать!"
-                    android:textColor="@color/MainGrayText"
-                    android:textSize="14sp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ImageProfile"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="60dp"
+                        android:layout_gravity="left"
+                        android:layout_height="60dp"
+                        android:clickable="true"
+
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/user__1_"
+                        app:civ_border_width="1dp"
+                        app:civ_border_color="@color/logoGray"/>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textViewEmailProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:gravity="left"
+                            android:text="Имя,"
+                            android:textColor="@color/BlackSviut"
+                            android:textSize="19sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:gravity="left"
+                            android:text="Добро пожаловать!"
+                            android:textColor="@color/MainGrayText"
+                            android:textSize="14sp" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+
+
 
 
 
@@ -107,6 +139,7 @@
                     android:orientation="vertical">
 
                     <FrameLayout
+                        android:visibility="gone"
                         android:id="@+id/AddArticleFrameButton"
                         android:layout_width="match_parent"
                         android:layout_gravity="left"
@@ -145,7 +178,7 @@
                     </FrameLayout>
 
                     <FrameLayout
-
+                        android:visibility="gone"
                         android:id="@+id/RedactArticleFrameButton"
                         android:layout_width="match_parent"
                         android:layout_gravity="left"
@@ -162,6 +195,43 @@
                             android:gravity="left"
 
                             android:text="Редактировать статьи"
+                            android:textColor="@color/BlackSviut"
+                            android:textSize="14sp" />
+
+                        <ImageView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_gravity="left"
+
+                            android:src="@drawable/free_icon_font_edit" />
+
+                        <ImageView
+                            android:layout_marginRight="26dp"
+                            android:layout_width="16dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_gravity="right"
+                            android:layout_height="16dp"
+                            android:src="@drawable/font_angle_small_right" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                         android:visibility="gone"
+                        android:id="@+id/ArticleChooseFrameButton"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="30dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="55dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:gravity="left"
+                            android:text="Настройка первой полосы"
                             android:textColor="@color/BlackSviut"
                             android:textSize="14sp" />
 

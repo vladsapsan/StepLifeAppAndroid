@@ -6,6 +6,7 @@ import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.chaos.view.PinView;
 import com.example.steplifeapp.R;
+import com.example.steplifeapp.ui.Article;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -21,6 +23,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.rpc.Code;
 
 import java.util.concurrent.TimeUnit;
@@ -29,6 +34,8 @@ public class OtpTelephoneCheckActiviti extends AppCompatActivity {
 
     final String OTPPIN_KEY = "OTPPIN";
     String VerificationID;
+    String Phone;
+    private DatabaseReference mDataBase;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private FirebaseAuth mAuth;
     @Override
@@ -53,7 +60,7 @@ public class OtpTelephoneCheckActiviti extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         Bundle arguments = getIntent().getExtras();
-        String Phone = arguments.get(OTPPIN_KEY).toString();
+        Phone = arguments.get(OTPPIN_KEY).toString();
 
 
         final PinView pinView = findViewById(R.id.OTPPinView);
@@ -125,13 +132,14 @@ public class OtpTelephoneCheckActiviti extends AppCompatActivity {
 
     private void SingUpbyCredential(PhoneAuthCredential credential) {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
                         if (task.isSuccessful())
                         {
+
                             Intent intent = new Intent(OtpTelephoneCheckActiviti.this, User_ProfileActiviti.class);
                             startActivity(intent);
                             finish();

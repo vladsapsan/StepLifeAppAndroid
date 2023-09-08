@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-feature android:name="android.hardware.bluetooth" />
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30"/>
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
@@ -17,7 +22,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.StepLifeApp" >
+        android:theme="@style/Theme.StepLifeApp">
+        <activity
+            android:name=".ArticleOnTopSettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileRedactActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InformationAboutAppActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainSettingsActivity"
+            android:exported="false" />
         <activity
             android:name=".Bt_module"
             android:exported="false" />
@@ -26,7 +43,7 @@
             android:exported="false" />
         <activity
             android:name=".DeveloperAcsessActiviti"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,7 +74,7 @@
         <activity
             android:name=".BasedScreen"
             android:exported="true"
-            android:theme="@style/Theme.StepLifeApp.NoActionBar" >
+            android:theme="@style/Theme.StepLifeApp.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -65,7 +82,7 @@
         <activity
             android:name=".StartScreen"
             android:exported="true"
-            android:theme="@style/Theme.StepLifeApp.NoActionBar" >
+            android:theme="@style/Theme.StepLifeApp.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
