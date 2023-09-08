@@ -24,24 +24,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StepLifeApp">
         <activity
+            android:screenOrientation="portrait"
             android:name=".ArticleOnTopSettingsActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".ProfileRedactActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".InformationAboutAppActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".MainSettingsActivity"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Bt_module"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".UserAgreement"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".DeveloperAcsessActiviti"
             android:exported="true">
             <intent-filter>
@@ -51,27 +58,35 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".EditArticlesActiviti"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".DownloadProcessActiviti"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".ChooseArticle"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".User_ProfileActiviti"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".OtpPinTelephone"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".TelephoneSignUp"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".OtpTelephoneCheckActiviti"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".BasedScreen"
             android:exported="true"
             android:theme="@style/Theme.StepLifeApp.NoActionBar">
@@ -80,6 +95,7 @@
                 android:value="" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".StartScreen"
             android:exported="true"
             android:theme="@style/Theme.StepLifeApp.NoActionBar">
@@ -88,6 +104,7 @@
                 android:value="" />
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustUnspecified" />

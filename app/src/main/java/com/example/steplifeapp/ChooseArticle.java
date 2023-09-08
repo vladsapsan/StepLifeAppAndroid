@@ -158,20 +158,15 @@ public class ChooseArticle extends AppCompatActivity {
         TextDateDownloadArticle=findViewById(R.id.TextDateDownloadArticle);
         MainTextDownloadArticle=findViewById(R.id.MainTextDownloadArticle);
         progressBar=findViewById(R.id.progressBarArticle);
-        SwipeRefreshArticle = findViewById(R.id.SwipeRefreshArticle);
-        SwipeRefreshArticle.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                recreate();
-                SwipeRefreshArticle.setRefreshing(false);
-            }
-        });
+
 
         MainTextDownloadArticle.setVisibility(View.GONE);
 
         //Установка OverScroll
         DownloadArticleScrollView = findViewById(R.id.DownloadArticleScrollView);
-     //   OverScrollDecoratorHelper.setUpOverScroll(DownloadArticleScrollView);
+
+        
+        OverScrollDecoratorHelper.setUpOverScroll(DownloadArticleScrollView);
 
         //Закрытие окна
         CloseArticleButton = findViewById(R.id.CloseArticleButton);

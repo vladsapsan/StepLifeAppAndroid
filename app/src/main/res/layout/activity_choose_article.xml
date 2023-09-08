@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:animateLayoutChanges="true"
-    android:id="@+id/SwipeRefreshArticle"
+
+
     android:background="@color/MainGray"
     android:layout_height="match_parent">
 
@@ -64,8 +64,8 @@
                             android:id="@+id/DownloadHeadText"
                             android:clickable="false"
                             android:paddingTop="10dp"
-                            android:paddingLeft="15dp"
-                            android:paddingRight="15dp"
+                            android:paddingLeft="18dp"
+                            android:paddingRight="18dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
@@ -76,11 +76,11 @@
 
                         <TextView
                             android:contextClickable="false"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:id="@+id/TextDateDownloadArticle"
-                            android:paddingLeft="15dp"
+                            android:paddingLeft="18dp"
                             android:clickable="false"
-                            android:paddingRight="15dp"
+                            android:paddingRight="18dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
@@ -96,8 +96,8 @@
                             android:lineHeight="24dp"
                             android:id="@+id/MainTextDownloadArticle"
 
-                            android:paddingLeft="15dp"
-                            android:paddingRight="15dp"
+                            android:paddingLeft="18dp"
+                            android:paddingRight="18dp"
                             android:paddingBottom="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -155,4 +155,4 @@
     </LinearLayout>
 
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</FrameLayout>

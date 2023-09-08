@@ -77,6 +77,7 @@ public class Bt_module extends AppCompatActivity {
             }
         });
 
+
         BtCheck(BTCheck);
         CheckoutBt();
 
