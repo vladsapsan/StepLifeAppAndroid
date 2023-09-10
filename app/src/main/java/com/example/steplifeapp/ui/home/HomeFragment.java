@@ -33,6 +33,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.steplifeapp.AllArticle;
 import com.example.steplifeapp.Bt_module;
@@ -45,6 +46,7 @@ import com.example.steplifeapp.UserAgreement;
 import com.example.steplifeapp.User_ProfileActiviti;
 import com.example.steplifeapp.databinding.FragmentHomeBinding;
 import com.example.steplifeapp.ui.Article;
+import com.example.steplifeapp.ui.ArticleListAdapter;
 import com.example.steplifeapp.ui.userProfileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -61,6 +63,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
@@ -71,15 +75,20 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 public class HomeFragment extends Fragment {
     FrameLayout FrameVideo;
     TextView TextBtnHide,AllAcricleButton;
+
+    List<String> HomeTopArticleList;
     CardView ImageProfile,HowToGetProtCard;
     final private static String DBase_Code = "AllArticle";
+    final private static String DBase_HomeTopArticleCode = "HomeTopArticle";
     final private static String DB_Article_HowToGet = "-NJgrzWOZOFxEejjLr5J";
     private DatabaseReference mDatabase;
+    private ArrayList<Article> listTemp = new ArrayList<Article>();
 
     Button buttonConnect;
+    private ArticleListAdapter ArticleListAdapter;
     CardView  ArticleTeach;
     ScrollView HomescrollView;
-
+    RecyclerView HomeArticleListView;
     private ImageView ArticleState1,ArticleState2,ArticleState3;
     private FirebaseAuth mAuth;
     HorizontalScrollView horizontalScrollViewArticle,horizontalScrollView2;
@@ -96,9 +105,9 @@ public class HomeFragment extends Fragment {
 
     void DownloadArticlePictures()
     {
-        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F15870364150766PreviewImage?alt=media&token=7386348c-18be-4373-8d9f-66a284f53bb0").into(ArticleState1);
-        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F15955776419587PreviewImage?alt=media&token=f6aef4eb-312a-46d8-a45e-7e55505acd86").into(ArticleState2);
-        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F212919968329690PreviewImage?alt=media&token=05c460be-54e6-450a-ab55-e847ad64334f").into(ArticleState3);
+    //    Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F15870364150766PreviewImage?alt=media&token=7386348c-18be-4373-8d9f-66a284f53bb0").into(ArticleState1);
+    //    Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F15955776419587PreviewImage?alt=media&token=f6aef4eb-312a-46d8-a45e-7e55505acd86").into(ArticleState2);
+     //   Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F212919968329690PreviewImage?alt=media&token=05c460be-54e6-450a-ab55-e847ad64334f").into(ArticleState3);
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -109,14 +118,6 @@ public class HomeFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
 
-        HomescrollView = view.findViewById(R.id.HomeScrollView);
-        OverScrollDecoratorHelper.setUpOverScroll(HomescrollView);
-
-        horizontalScrollViewArticle = view.findViewById(R.id.horizontalScrollViewArticle);
-        OverScrollDecoratorHelper.setUpOverScroll(horizontalScrollViewArticle);
-
-        horizontalScrollView2 = view.findViewById(R.id.horizontalScrollView2);
-        OverScrollDecoratorHelper.setUpOverScroll(horizontalScrollView2);
 
         //Переход ко всем статьям
         AllAcricleButton = (TextView) view.findViewById(R.id.AllAcricleButton);
@@ -155,43 +156,48 @@ public class HomeFragment extends Fragment {
         });
 
         //Картинки статей на главном экране
-        ArticleState1 =  view.findViewById(R.id.ArticleState1);
-        ArticleState2 =  view.findViewById(R.id.ArticleState2);
-        ArticleState3 =  view.findViewById(R.id.ArticleState3);
+    //    ArticleState1 =  view.findViewById(R.id.ArticleState1);
+    //    ArticleState2 =  view.findViewById(R.id.ArticleState2);
+     //   ArticleState3 =  view.findViewById(R.id.ArticleState3);
 
         DownloadArticlePictures();
 
+        //Под
+        HomeArticleListView = view.findViewById(R.id.HomeArticleListView);
 
-        //Открытие статьи
-        HowToGetProtCard = view.findViewById(R.id.HowToGetProtCard);
-        HowToGetProtCard.setOnClickListener(new View.OnClickListener() {
+
+
+        //Получение статей на загрузку в главном окне
+        FirebaseDatabase.getInstance().getReference().child(DBase_HomeTopArticleCode).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onClick(View view) {
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
 
-                mDatabase = FirebaseDatabase.getInstance().getReference();
-                //Вызов данных из базы по ключу
-                mDatabase.child(DBase_Code).child(DB_Article_HowToGet).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if (!task.isSuccessful()) {
+                }
+                else {
+                    try {
+                        //Получение ID топ статей главного экрана
+                        HomeTopArticleList = (List<String>) task.getResult().getValue();
 
-                        }
-                        else {
-                            //Загрузка окна со статьей
-                            Article NewArticle =  task.getResult().getValue(Article.class);
-                            // создание объекта Intent для запуска ChooseArticle
-                            Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                            // передача объекта с ключом "MainText" и значением
-                            intent.putExtra("MainText",NewArticle.MainText);
-                            intent.putExtra("Date",NewArticle.Date);
-                            intent.putExtra("HeaderText", Html.fromHtml(NewArticle.HeadText).toString().trim());
-                            // запуск ChooseArticle
-                            startActivity(intent);
+
+                        //Цикл с каждым ID на загрузку контента
+                        for (String phone : HomeTopArticleList) {
+
                         }
                     }
-                });
+                    catch (Exception e){
+
+                    }
+
+                }
             }
         });
+
+
+
+        //Открытие статьи
+
+
 
         //Кнопка перехода в профиль
         ImageProfile =  view.findViewById(R.id.ProfileButton);

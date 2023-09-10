@@ -19,6 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.steplifeapp.ui.AddArticleFragment;
 import com.example.steplifeapp.ui.SettingsFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -80,9 +81,6 @@ public class User_ProfileActiviti extends AppCompatActivity {
 
         //Кнопка добавления статьи
         AddArticleFrameButton = findViewById(R.id.AddArticleFrameButton);
-        if(USER_ROLE == 0){
-            AddArticleFrameButton.setVisibility(View.GONE);
-        }
         AddArticleFrameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,9 +103,6 @@ public class User_ProfileActiviti extends AppCompatActivity {
 
         //Редактирование статей
         RedactArticleFrameButton = findViewById(R.id.RedactArticleFrameButton);
-        if(USER_ROLE == 0){
-            RedactArticleFrameButton.setVisibility(View.GONE);
-        }
         RedactArticleFrameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,9 +129,6 @@ public class User_ProfileActiviti extends AppCompatActivity {
 
         //Настройка первой полосы статей
         ArticleChooseFrameButton = findViewById(R.id.ArticleChooseFrameButton);
-        if(USER_ROLE == 0){
-            ArticleChooseFrameButton.setVisibility(View.GONE);
-        }
         ArticleChooseFrameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,9 +137,6 @@ public class User_ProfileActiviti extends AppCompatActivity {
             }
         });
 
-        //Scrollview
-        UserProfilescrollView = findViewById(R.id.UserprofileScrollView);
-        OverScrollDecoratorHelper.setUpOverScroll(UserProfilescrollView);
 
         //Кнопка возвращения
         BackBtn = (ImageView) findViewById(R.id.CLosetoProfile);
@@ -174,7 +163,12 @@ public class User_ProfileActiviti extends AppCompatActivity {
             String phoneNumber = cUser.getPhoneNumber();
 
             if(cUser.getPhotoUrl()!=null) {
-                Picasso.get().load(cUser.getPhotoUrl()).into(ImageProfile);
+                //   Загрузка фото
+                //Picasso.get().load(cUser.getPhotoUrl()).into(ImageProfile);
+                Glide
+                        .with(this)
+                        .load(cUser.getPhotoUrl())
+                        .into(ImageProfile);
             }
             if(name!=null)
             {

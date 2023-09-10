@@ -51,11 +51,13 @@
         <FrameLayout
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="500dp">
+
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -79,9 +81,9 @@
                     android:id="@+id/ImageProfile"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-                    android:layout_width="70dp"
+                    android:layout_width="120dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_height="70dp"
+                    android:layout_height="120dp"
                     android:clickable="true"
 
                     android:layout_marginTop="12dp"
@@ -89,17 +91,31 @@
                     app:civ_border_width="1dp"
                     app:civ_border_color="@color/logoGray"/>
 
-                <TextView
-                    android:id="@+id/ChoosePhotoText"
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/montserratsemibold"
-                    android:gravity="left"
-                    android:text="Загрузить фото"
-                    android:textColor="@color/MainBlue"
-                    android:textSize="13sp" />
+                    app:cardCornerRadius="6dp"
+                    android:backgroundTintMode="src_in"
+                    android:backgroundTint="@color/secondBlue"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:layout_height="30dp">
+                    <TextView
+                        android:id="@+id/ChoosePhotoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:gravity="center"
+                        android:text="Загрузить фото"
+                        android:textColor="@color/MainBlue"
+                        android:textSize="13sp" />
+                </androidx.cardview.widget.CardView>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -114,7 +130,7 @@
                         android:textSize="12dp"
                         android:fontFamily="@font/montserratsemibold"
                         android:hint="Имя"
-                        android:maxLength="120"
+                        android:maxLength="35"
                         android:inputType="textEmailAddress"
                         android:id="@+id/editTextUserName"
                         />
@@ -125,9 +141,11 @@
                     android:id="@+id/TextViewSaveUserinformation"
                     android:layout_width="wrap_content"
                     app:cardCornerRadius="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/secondBlue"
                     android:layout_marginTop="100dp"
                     android:layout_gravity="center"
-                    android:layout_height="55dp">
+                    android:layout_height="45dp">
 
                     <TextView
                         android:layout_marginLeft="20dp"

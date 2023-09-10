@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.steplifeapp.ui.UserProfileViewModel;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -93,7 +94,15 @@ public class ProfileRedactActivity extends AppCompatActivity {
         storageRef = storage.getReference("ImageProfiles");
 
         EditTextUserName = findViewById(R.id.editTextUserName);
+
+        //Нажатие на фото и выбор фото
         ImageProfile = findViewById(R.id.ImageProfile);
+        ImageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GetImage();
+            }
+        });
 
         progressBar = findViewById(R.id.progressBar);
 
@@ -106,7 +115,7 @@ public class ProfileRedactActivity extends AppCompatActivity {
             }
         });
 
-        //Выбор фотографии
+        //Выбор фотографии по кнопке
         ChoosePhotoText  = findViewById(R.id.ChoosePhotoText);
         ChoosePhotoText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,9 +151,11 @@ public class ProfileRedactActivity extends AppCompatActivity {
             {
                 EditTextUserName.setText(name);
             }
-            Log.d("Photo", String.valueOf(cUser.getPhotoUrl()));
-            Picasso.get().load(cUser.getPhotoUrl()).into(ImageProfile);
-
+            // Picasso.get().load(cUser.getPhotoUrl()).into(ImageProfile);
+            Glide
+                    .with(this)
+                    .load(cUser.getPhotoUrl())
+                    .into(ImageProfile);
         }
         else {
             Toast.makeText(getApplicationContext(), "Ошибка аутентификации пользователя",Toast.LENGTH_SHORT).show();

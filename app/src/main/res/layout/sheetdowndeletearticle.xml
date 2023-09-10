@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:id="@+id/SheetDialogDeleteArticleContainer"
+    android:background="@drawable/bottomsheetprofilesettingbackground"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="55dp">
+
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/montserrat1black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Удалить данную статью?"
+            android:textColor="@color/black"
+            android:textSize="13dp"/>
+
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/cornerdefault"
+            android:layout_height="5dp"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/ExitDeleteArticleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp"
+                android:textSize="9dp"
+                android:textColor="@color/MainBlue"
+                android:backgroundTint="@color/secondBlue"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Отмена"/>
+
+            <Button
+                android:id="@+id/DeleteArticleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp"
+                android:textSize="9dp"
+                android:textColor="@color/RedExit"
+                android:backgroundTint="@color/secondBlue"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Удалить"/>
+        </LinearLayout>
+
+
+
+    </FrameLayout>
+
+</FrameLayout>

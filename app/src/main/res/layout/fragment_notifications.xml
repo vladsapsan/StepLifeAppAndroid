@@ -21,20 +21,7 @@
 
 
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
 
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="100dp"
-        android:textSize="9dp"
-        android:textColor="@color/BlackSviut"
-        android:backgroundTint="@color/white"
-        android:layout_gravity="bottom"
-        android:fontFamily="@font/montserratsemibold"
-
-        android:text="Получать уведомления о новых уроках"/>
 
 
     <ImageButton
@@ -65,7 +52,7 @@
                 android:id="@+id/TeachBookScroll"
                 android:scrollbars="none"
                 android:layout_width="match_parent"
-                android:overScrollMode="never"
+
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,32 +61,261 @@
 
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:layout_marginTop="20dp"
-                        android:text="Популярно сейчас"
-                        android:textSize="20dp"
-                        android:layout_marginLeft="15dp"
-                        android:paddingBottom="5dp"
-                        android:textColor="@color/BlackSviut"
-                        android:fontFamily="@font/montserratregular"/>
-
-                    <androidx.viewpager.widget.ViewPager
-                        android:overScrollMode="never"
-                        android:id="@+id/viewpagerArticle"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="370dp">
+                        android:background="@color/MainGrayText"
+                        android:layout_height="350dp">
 
-                    </androidx.viewpager.widget.ViewPager>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="left"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:layout_marginTop="20dp"
+                                android:text="Вы просили - \nмы добавили"
+                                android:textSize="21dp"
+                                android:layout_marginLeft="15dp"
+                                android:paddingBottom="5dp"
+                                android:textColor="@color/white"
+                                android:fontFamily="@font/montserrat1black"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:layout_marginTop="0dp"
+                                android:text="Новые уроки уже на главной странице"
+                                android:textSize="14dp"
+                                android:layout_marginLeft="15dp"
+                                android:paddingBottom="5dp"
+                                android:textColor="@color/white"
+                                android:fontFamily="@font/montserratlight"/>
+                        </LinearLayout>
 
-                    <me.relex.circleindicator.CircleIndicator
-                        android:id="@+id/indicator"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        app:ci_drawable = "@drawable/selectedindicator"
-                        android:layout_gravity="bottom"/>
+                        <HorizontalScrollView
+                            android:id="@+id/ScrollMainViewArticles"
+                            android:layout_width="match_parent"
+                            android:layout_height="240dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="bottom"
+
+                            android:scrollbars="none"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:paddingTop="5dp"
+
+                                android:paddingRight="20dp">
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:clickable="true"
+                                    android:layout_height="220dp"
+                                    android:layout_marginLeft="20dp"
+                                    app:cardCornerRadius="8dp"
+                                    tools:layout_editor_absoluteX="1dp"
+                                    tools:layout_editor_absoluteY="444dp">
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:orientation="vertical"
+                                        android:layout_height="match_parent">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="115dp"
+                                            app:cardCornerRadius="7dp"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_height="115dp">
+
+                                            <ImageButton
+                                                android:clickable="false"
+
+                                                android:layout_width="match_parent"
+
+                                                android:layout_height="124dp"
+                                                app:srcCompat="@drawable/protez1"
+                                                tools:layout_editor_absoluteX="59dp"
+                                                tools:layout_editor_absoluteY="448dp" />
+                                        </androidx.cardview.widget.CardView>
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="bottom"
+                                            android:layout_marginLeft="17dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginRight="15dp"
+                                            android:fontFamily="@font/montserratsemibold"
+                                            android:gravity="left"
+                                            android:text="Как получить протез бесплатно?"
+                                            android:textColor="@color/BlackSviut"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:clickable="true"
+                                    android:layout_height="220dp"
+                                    android:layout_marginLeft="20dp"
+                                    app:cardCornerRadius="8dp"
+                                    tools:layout_editor_absoluteX="1dp"
+                                    tools:layout_editor_absoluteY="444dp">
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:orientation="vertical"
+                                        android:layout_height="match_parent">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="115dp"
+                                            app:cardCornerRadius="8dp"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_height="115dp">
+
+                                            <ImageButton
+                                                android:clickable="false"
+
+                                                android:layout_width="match_parent"
+
+                                                android:layout_height="124dp"
+                                                app:srcCompat="@drawable/protez1"
+                                                tools:layout_editor_absoluteX="59dp"
+                                                tools:layout_editor_absoluteY="448dp" />
+                                        </androidx.cardview.widget.CardView>
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="bottom"
+                                            android:layout_marginLeft="17dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginRight="15dp"
+                                            android:fontFamily="@font/montserratsemibold"
+                                            android:gravity="left"
+                                            android:text="Как получить протез бесплатно?"
+                                            android:textColor="@color/BlackSviut"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:clickable="true"
+                                    android:layout_height="220dp"
+                                    android:layout_marginLeft="20dp"
+                                    app:cardCornerRadius="8dp"
+                                    tools:layout_editor_absoluteX="1dp"
+                                    tools:layout_editor_absoluteY="444dp">
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:orientation="vertical"
+                                        android:layout_height="match_parent">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="115dp"
+                                            app:cardCornerRadius="8dp"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_height="115dp">
+
+                                            <ImageButton
+                                                android:clickable="false"
+
+                                                android:layout_width="match_parent"
+
+                                                android:layout_height="124dp"
+                                                app:srcCompat="@drawable/protez1"
+                                                tools:layout_editor_absoluteX="59dp"
+                                                tools:layout_editor_absoluteY="448dp" />
+                                        </androidx.cardview.widget.CardView>
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="bottom"
+                                            android:layout_marginLeft="17dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginRight="15dp"
+                                            android:fontFamily="@font/montserratsemibold"
+                                            android:gravity="left"
+                                            android:text="Как получить протез бесплатно?"
+                                            android:textColor="@color/BlackSviut"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:clickable="true"
+                                    android:layout_height="220dp"
+                                    android:layout_marginLeft="20dp"
+                                    app:cardCornerRadius="8dp"
+                                    tools:layout_editor_absoluteX="1dp"
+                                    tools:layout_editor_absoluteY="444dp">
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:orientation="vertical"
+                                        android:layout_height="match_parent">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="115dp"
+                                            app:cardCornerRadius="8dp"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_height="115dp">
+
+                                            <ImageButton
+                                                android:clickable="false"
+
+                                                android:layout_width="match_parent"
+
+                                                android:layout_height="124dp"
+                                                app:srcCompat="@drawable/protez1"
+                                                tools:layout_editor_absoluteX="59dp"
+                                                tools:layout_editor_absoluteY="448dp" />
+                                        </androidx.cardview.widget.CardView>
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="bottom"
+                                            android:layout_marginLeft="17dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginRight="15dp"
+                                            android:fontFamily="@font/montserratsemibold"
+                                            android:gravity="left"
+                                            android:text="Как получить протез бесплатно?"
+                                            android:textColor="@color/BlackSviut"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+
+
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+
+                    </FrameLayout>
+
+
+                   
+
+                    
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -114,20 +330,35 @@
                             android:layout_marginLeft="15dp"
                             android:paddingBottom="5dp"
                             android:textColor="@color/BlackSviut"
-                            android:fontFamily="@font/montserratregular"/>
+                            android:fontFamily="@font/montserrat1black"/>
 
-                        <TextView
+                        
+                        <androidx.cardview.widget.CardView
                             android:clickable="true"
-                            android:id="@+id/seeallArticleText"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:textColor="@color/MainBlue"
-                            android:fontFamily="@font/montserratsemibold"
-                            android:textSize="13dp"
                             android:layout_marginRight="10dp"
-                            android:text="Смотреть все"
-                            android:layout_gravity="right"/>
+                            android:layout_marginTop="10dp"
+                            app:cardCornerRadius="6dp"
+                            android:backgroundTint="@color/black"
+
+                            android:layout_gravity="right"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/seeallArticleText"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@color/MainBlue"
+                                android:fontFamily="@font/montserratsemibold"
+                                android:textSize="13dp"
+                                android:text="Смотреть все"
+                                />
+                        </androidx.cardview.widget.CardView>
+
                     </FrameLayout>
 
 
@@ -138,7 +369,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_marginTop="5dp"
-                        android:overScrollMode="never"
+
                         android:scrollbars="none"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -267,20 +498,33 @@
                             android:layout_marginLeft="15dp"
                             android:paddingBottom="5dp"
                             android:textColor="@color/BlackSviut"
-                            android:fontFamily="@font/montserratregular"/>
+                            android:fontFamily="@font/montserrat1black"/>
 
-                        <TextView
-                            android:id="@+id/seeallArticleText1"
+                        <androidx.cardview.widget.CardView
                             android:clickable="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:textColor="@color/MainBlue"
-                            android:fontFamily="@font/montserratsemibold"
-                            android:textSize="13dp"
                             android:layout_marginRight="10dp"
-                            android:text="Смотреть все"
-                            android:layout_gravity="right"/>
+                            android:layout_marginTop="10dp"
+                            app:cardCornerRadius="6dp"
+                            android:backgroundTint="@color/secondBlue"
+
+                            android:layout_gravity="right"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/seeallArticleText1"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@color/MainBlue"
+                                android:fontFamily="@font/montserratsemibold"
+                                android:textSize="13dp"
+                                android:text="Смотреть все"
+                                tools:ignore="DuplicateIds" />
+                        </androidx.cardview.widget.CardView>
                     </FrameLayout>
 
 
@@ -289,7 +533,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_marginTop="5dp"
-                        android:overScrollMode="never"
+
                         android:scrollbars="none"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -410,8 +654,8 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="20dp"
                         android:textSize="9dp"
-                        android:textColor="@color/BlackSviut"
-                        android:backgroundTint="@color/white"
+                        android:textColor="@color/MainBlue"
+                        android:backgroundTint="@color/secondBlue"
                         android:layout_gravity="bottom"
                         android:fontFamily="@font/montserratsemibold"
 

@@ -230,7 +230,7 @@ public class AddArticleFragment extends Fragment {
 
                     Bitmap PhotoPreviewBitMap = ((BitmapDrawable)photo).getBitmap();
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    PhotoPreviewBitMap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
+                    PhotoPreviewBitMap.compress(Bitmap.CompressFormat.JPEG, 40, baos);
                     byte[] PhotoPreviewByteArray = baos.toByteArray();
                     StorageReference MainPhotoRef = storageRef.child(System.nanoTime()+"PreviewImage");
 

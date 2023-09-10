@@ -17,6 +17,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.steplifeapp.R;
 import com.example.steplifeapp.ui.Article;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -50,21 +52,26 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
         ImageView PreviewImage = convertView.findViewById(R.id.PreviewPhoto);
         ProgressBar progressBar = convertView.findViewById(R.id.progressBarDownloadpreviewPhotoArticle);
 
-        if(getItem(position).PreviewPhotoUri!=null) {
-            progressBar.setVisibility(View.GONE);
-            Picasso.get()
-                    .load(getItem(position).PreviewPhotoUri)
-                    .into(PreviewImage, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            progressBar.setVisibility(View.GONE);
-                        }
-                        @Override
-                        public void onError(Exception e) {
-                        }
-                    });
 
+        //Загрузка картинок с помощью библиотеки пикассо
+        if(getItem(position).PreviewPhotoUri!=null) {
+            if(PreviewImage.getDrawable()==null) {
+                Picasso.get().load(getItem(position).PreviewPhotoUri).into(PreviewImage);
+            }
         }
+
+
+        //Загрузка картинки с помощью Glide
+     //   if(getItem(position).PreviewPhotoUri!=null) {
+      //      if(PreviewImage.getDrawable()==null) {
+      //          Glide
+      //                  .with(this.getContext())
+      //                  .load(getItem(position).PreviewPhotoUri)
+       //                 .centerCrop()
+       //                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+       //                 .into(PreviewImage);
+      //      }
+     //   }
 
 
         HeadText.setText(Html.fromHtml(getItem(position).HeadText).toString().trim());

@@ -12,7 +12,7 @@ android {
         minSdk 21
         targetSdk 31
         versionCode 1
-        versionName "0.3.0"
+        versionName "0.3.1"
 
 
     }
@@ -35,6 +35,10 @@ android {
 
 
 dependencies {
+
+    //Библиотека Glide
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
     implementation 'io.github.chaosleung:pinview:1.4.4'

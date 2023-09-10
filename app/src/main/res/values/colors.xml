@@ -14,6 +14,7 @@
     <color name="BlackSviut">#363A43</color>
     <color name="mainGrayOpacity">#00f3f7f9</color>
     <color name="logoGray">#8E97A6</color>
+    <color name="secondBlue">#eef6fd</color>
     <color name="MiddleWhite">#FCFCFC</color>
     <color name="SameYallow">#FFFD7B</color>
     <color name="blackEditortext">#363A434D</color>
@@ -25,4 +26,5 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+    <color name="RedExit">#FF2400</color>
 </resources>

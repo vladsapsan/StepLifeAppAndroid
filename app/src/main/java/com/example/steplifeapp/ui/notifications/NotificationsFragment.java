@@ -41,6 +41,7 @@ public class NotificationsFragment extends Fragment {
     ViewPagerArticleAdapter viewPagerArticleAdapter;
     ViewPager viewpager;
     TextView SeeAllText;
+
     Button SeeAllButton;
     ScrollView TeachBookScroll;
 
@@ -80,28 +81,17 @@ public class NotificationsFragment extends Fragment {
 
         attachFragment("AllArticle");
 
-        viewPagerArticleAdapter = new ViewPagerArticleAdapter(((FragmentActivity)getContext()).getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPagerArticleAdapter.addFragment(new MostArticle1Fragment());
-        viewPagerArticleAdapter.addFragment(new MostArticle2Fragment());
-        viewPagerArticleAdapter.addFragment(new MostArticle2Fragment());
-        viewPagerArticleAdapter.addFragment(new MostArticle3Fragment());
-        viewPagerArticleAdapter.addFragment(new MostArticle1Fragment());
+
 
 
         //Adapter adapter = new Adapter(getSupportFragmentManager());
 
-        viewpager = (ViewPager) view.findViewById(R.id.viewpagerArticle);
-        viewpager.setAdapter(viewPagerArticleAdapter);
 
-
-        TeachBookScroll = view.findViewById(R.id.TeachBookScroll);
-        OverScrollDecoratorHelper.setUpOverScroll(TeachBookScroll);
 
         SeeAllButton = view.findViewById(R.id.seeallArticleButton);
         SeeAllText = view.findViewById(R.id.seeallArticleText);
 
-        CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
-        indicator.setViewPager(viewpager);
+
 
         //Переход ко всем статьям
         SeeAllText.setOnClickListener(new View.OnClickListener() {

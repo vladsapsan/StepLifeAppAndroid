@@ -14,7 +14,6 @@
 
 
     <ScrollView
-        android:id="@+id/HomeScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -184,129 +183,21 @@ android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent" />
 
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollViewArticle"
-                android:layout_width="match_parent"
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:footerDividersEnabled="false"
+                android:divider="@null"
+                android:paddingTop="10dp"
                 android:layout_height="200dp"
+                android:orientation="horizontal"
+                android:listSelector="@color/white"
                 android:layout_marginTop="5dp"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                tools:listitem="@layout/listviewhomearticle"
+                android:animateLayoutChanges="false"
+                android:id="@+id/HomeArticleListView"
+                android:layout_width="match_parent">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingTop="5dp"
-
-                    android:paddingRight="20dp">
-
-                    <androidx.cardview.widget.CardView
-
-                        android:id="@+id/HowToGetProtCard"
-                        android:layout_width="192dp"
-                        android:clickable="true"
-                        android:layout_height="180dp"
-                        android:layout_marginLeft="20dp"
-                        app:cardCornerRadius="8dp"
-                        tools:layout_editor_absoluteX="1dp"
-                        tools:layout_editor_absoluteY="444dp">
-
-
-                        <ImageView
-                            android:clickable="false"
-                            android:id="@+id/ArticleState1"
-                            android:layout_width="match_parent"
-android:scaleType="fitXY"
-                            android:layout_height="124dp"
-
-                            tools:layout_editor_absoluteX="59dp"
-                            tools:layout_editor_absoluteY="448dp" />
-
-                        <TextView
-
-                            android:layout_width="160dp"
-                            android:layout_height="37dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserratsemibold"
-                            android:gravity="left"
-                            android:text="Как получить протез бесплатно?"
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="14sp" />
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="192dp"
-                        android:layout_height="180dp"
-                        android:layout_marginLeft="20dp"
-                        app:cardCornerRadius="8dp"
-                        tools:layout_editor_absoluteX="1dp"
-                        tools:layout_editor_absoluteY="444dp">
-
-                        <ImageView
-
-                            android:id="@+id/ArticleState2"
-                            android:layout_width="match_parent"
-                            android:scaleType="fitXY"
-                            android:layout_height="124dp"
-
-                            tools:layout_editor_absoluteX="59dp"
-                            tools:layout_editor_absoluteY="448dp" />
-
-
-                        <TextView
-
-                            android:layout_width="160dp"
-                            android:layout_height="37dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserratsemibold"
-                            android:gravity="left"
-                            android:text="Подготовка к ампутации"
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="14sp" />
-                    </androidx.cardview.widget.CardView>
-
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="192dp"
-                        android:layout_height="180dp"
-                        android:layout_marginLeft="20dp"
-                        app:cardCornerRadius="8dp"
-                        tools:layout_editor_absoluteX="1dp"
-                        tools:layout_editor_absoluteY="444dp">
-
-                        <ImageView
-
-                            android:id="@+id/ArticleState3"
-                            android:layout_width="match_parent"
-
-                            android:scaleType="fitXY"
-                            android:layout_height="124dp"
-
-                            tools:layout_editor_absoluteX="59dp"
-                            tools:layout_editor_absoluteY="448dp" />
-
-                        <TextView
-
-                            android:layout_width="160dp"
-                            android:layout_height="37dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserratsemibold"
-                            android:gravity="left"
-                            android:text="Как получить протез бесплатно?"
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="14sp" />
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-            </HorizontalScrollView>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
 
@@ -342,7 +233,7 @@ android:scaleType="fitXY"
                 android:layout_width="413dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="10dp"
-                android:overScrollMode="never"
+
                 android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -57,10 +60,8 @@ public class ChooseArticle extends AppCompatActivity {
             DownloadphotoUri = Uri.parse(source);
             bitmap1 = null;
 
-
             drawable = null;
             id = R.drawable.buttonimage;
-
 
             //Download file in Memory
          //   StorageReference islandRef = storageRef.child(source);
@@ -89,7 +90,8 @@ public class ChooseArticle extends AppCompatActivity {
                     drawable = new BitmapDrawable(getResources(),bitmap);
                     loadedcount++;
                    MainTextDownloadArticle.setVisibility(View.VISIBLE);
-                        Recreatetool();
+                    Recreatetool();
+                   progressBar.setVisibility(View.GONE);
                 }
 
                 @Override
@@ -122,9 +124,29 @@ public class ChooseArticle extends AppCompatActivity {
         }
 
         public void Recreatetool(){
+            Log.d("Количество картинок", String.valueOf(countimage));
+            Log.d("Количество загруженных", String.valueOf(loadedcount));
+
             if(loadedcount == countimage) {
                 recreate();
+                progressBar.setVisibility(View.GONE);
             }
+            if(loadedcount+1 == countimage) {
+
+                recreate();
+                progressBar.setVisibility(View.GONE);
+            }
+            if(loadedcount+2 == countimage) {
+
+                recreate();
+                progressBar.setVisibility(View.GONE);
+            }
+            if(loadedcount+3 == countimage) {
+
+                recreate();
+                progressBar.setVisibility(View.GONE);
+            }
+
         }
     };
 
@@ -146,7 +168,7 @@ public class ChooseArticle extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        getWindow().setStatusBarColor(getResources().getColor(R.color.MainGray));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
         getSupportActionBar().hide(); //Скрытие actionBar
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -160,13 +182,12 @@ public class ChooseArticle extends AppCompatActivity {
         progressBar=findViewById(R.id.progressBarArticle);
 
 
-        MainTextDownloadArticle.setVisibility(View.GONE);
+
 
         //Установка OverScroll
         DownloadArticleScrollView = findViewById(R.id.DownloadArticleScrollView);
 
-        
-        OverScrollDecoratorHelper.setUpOverScroll(DownloadArticleScrollView);
+
 
         //Закрытие окна
         CloseArticleButton = findViewById(R.id.CloseArticleButton);
@@ -192,9 +213,9 @@ public class ChooseArticle extends AppCompatActivity {
                 public void run() {
                     //Получение значений через ключ
                     Bundle arguments = getIntent().getExtras();
-                    DownloadHeadText.setText(Html.fromHtml((String) arguments.get("HeaderText"),new ImageGetter(),null));
+                    DownloadHeadText.setText(Html.fromHtml((String) arguments.get("HeaderText"),new GlideImageGetter(DownloadHeadText),null));
                     TextDateDownloadArticle.setText((CharSequence) arguments.get("Date"));
-                    MainTextDownloadArticle.setText(Html.fromHtml((String) arguments.get("MainText"),new ImageGetter(),null));
+                    MainTextDownloadArticle.setText(Html.fromHtml((String) arguments.get("MainText"),new GlideImageGetter(MainTextDownloadArticle),null));
                 }
             }
     );
@@ -207,9 +228,9 @@ public class ChooseArticle extends AppCompatActivity {
 
         //Получение значений через ключ
         Bundle arguments = getIntent().getExtras();
-        DownloadHeadText.setText(Html.fromHtml((String) arguments.get("HeaderText"),new ImageGetter(),null));
+        DownloadHeadText.setText(Html.fromHtml((String) arguments.get("HeaderText"),new GlideImageGetter(DownloadHeadText),null));
         TextDateDownloadArticle.setText((CharSequence) arguments.get("Date"));
-        MainTextDownloadArticle.setText(Html.fromHtml((String) arguments.get("MainText"),new ImageGetter(),null));
+        MainTextDownloadArticle.setText(Html.fromHtml((String) arguments.get("MainText"),new GlideImageGetter(MainTextDownloadArticle),null));
 
 
 

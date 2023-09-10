@@ -83,7 +83,7 @@
                             android:layout_gravity="left"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="20dp"
-                            android:fontFamily="@font/montserratsemibold"
+                            android:fontFamily="@font/montserrat1black"
                             android:text="Все статьи и уроки"
                             android:textColor="@color/BlackSviut"
                             android:textSize="20sp" />
@@ -105,23 +105,20 @@
 
                     <FrameLayout
                         android:layout_width="match_parent"
+                        android:layout_marginBottom="50dp"
                         android:layout_height="wrap_content">
                         <ListView
-                            android:overScrollMode="never"
+
                             android:footerDividersEnabled="false"
                             android:divider="@null"
                             android:paddingTop="10dp"
-                            android:animateLayoutChanges="true"
+                            android:animateLayoutChanges="false"
                             android:id="@+id/AllArticleListview"
+
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                     </FrameLayout>
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp">
-
-                    </FrameLayout>
                 </LinearLayout>
 
 

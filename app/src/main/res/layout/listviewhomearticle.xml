@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/HowToGetProtCard"
+        android:layout_width="192dp"
+        android:clickable="true"
+        android:layout_height="180dp"
+        android:layout_marginLeft="20dp"
+        app:cardCornerRadius="8dp"
+        >
+        <ImageView
+            android:clickable="false"
+            android:id="@+id/HomeArticlePreview"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:layout_height="124dp" />
+        <TextView
+            android:id="@+id/HomeArticleNameText"
+            android:layout_width="160dp"
+            android:layout_height="37dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@color/BlackSviut"
+            android:textSize="14sp" />
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

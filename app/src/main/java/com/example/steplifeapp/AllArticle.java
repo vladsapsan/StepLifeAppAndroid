@@ -60,7 +60,6 @@ public class AllArticle extends Fragment {
     private ListView allArticlelist;
     private ArrayAdapter<String> adapter;
 
-
     private List<String> listData;
     private ArrayList <Article> listTemp = new ArrayList<Article>();
     ProgressBar progressBar;
@@ -108,60 +107,11 @@ public class AllArticle extends Fragment {
         mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
         ArticleListAdapter = new ArticleListAdapter(getActivity(),R.layout.listviewarticleitem, listTemp);
         allArticlelist.setAdapter(ArticleListAdapter);
+
+
+
+        allArticlelist.setDrawingCacheEnabled(true);
     }
-
-
-
-
-    private class ImageGetter implements Html.ImageGetter {
-
-        public Drawable getDrawable(String source) {
-            int id;
-            DownloadphotoUri = Uri.parse(source);
-            final Bitmap[] bitmap1 = {null};
-            final Drawable[] d = {null};
-                id = R.drawable.buttonimage;
-
-
-            mTarget = new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    bitmap1[0] = bitmap;
-                    d[0] = new BitmapDrawable(getResources(),bitmap);
-
-                    progressBar.setVisibility(View.GONE);
-                }
-
-                @Override
-                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                }
-
-                @Override
-                public void onPrepareLoad(final Drawable placeHolderDrawable) {
-                    progressBar.setVisibility(View.VISIBLE);
-                }
-            };
-            Picasso.get().load(DownloadphotoUri).into(mTarget);
-
-           if(bitmap1[0] != null)
-           {
-               d[0] = new BitmapDrawable(getResources(), bitmap1[0]);
-               double OptimizationHeight = ((double) d[0].getIntrinsicWidth()/(double) d[0].getIntrinsicHeight());
-               double DownloadPhotoHeight = ((getDeviceWidth(getContext())) / OptimizationHeight);
-               d[0].setBounds(0,0,getDeviceWidth(getContext()), (int) DownloadPhotoHeight);
-
-
-           }
-           else
-           {
-                d[0] = getResources().getDrawable(id);
-               d[0].setBounds(0,0, d[0].getIntrinsicWidth(), d[0].getIntrinsicHeight());
-           }
-            return d[0];
-        }
-    };
-
-
 
 
 
@@ -169,7 +119,6 @@ public class AllArticle extends Fragment {
     //Загрузка уроков из базы
     private void DownloadArticleFirebaseData()
     {
-
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -209,7 +158,6 @@ public class AllArticle extends Fragment {
         };
         mDataBase.addValueEventListener(valueEventListener);
 
-
     }
 
 
@@ -241,12 +189,9 @@ public class AllArticle extends Fragment {
 
         initilization();
         DownloadArticleFirebaseData();
-        OverScrollDecoratorHelper.setUpOverScroll(allArticlelist);
 
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-
-
 
 
         EditText SearchText = view.findViewById(R.id.editTextSearch);
@@ -345,7 +290,6 @@ public class AllArticle extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().popBackStackImmediate("AllArticle",POP_BACK_STACK_INCLUSIVE);
-
             }
         });
 
