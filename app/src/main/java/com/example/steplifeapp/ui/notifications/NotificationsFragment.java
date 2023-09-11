@@ -1,7 +1,9 @@
 package com.example.steplifeapp.ui.notifications;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -30,6 +33,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.steplifeapp.AllArticle;
+import com.example.steplifeapp.ChooseArticle;
 import com.example.steplifeapp.R;
 import com.example.steplifeapp.ViewPagerArticleAdapter;
 import com.example.steplifeapp.databinding.FragmentNotificationsBinding;
@@ -71,8 +75,10 @@ public class NotificationsFragment extends Fragment {
 
     private DatabaseReference mDataBase,bDataBase;
 
+    CardView TopPostCard1;
     ProgressBar progressBarTopPost;
-    ImageButton imagetoppost1;
+    Article DowArticle;
+    ImageView imagetoppost1;
     TextView EditTextTopPost1;
     FrameLayout TopPostFrame;
 
@@ -122,13 +128,34 @@ public class NotificationsFragment extends Fragment {
                     try {
                         //Данные получены
                         SecNameTopPost.setText((String)task.getResult().getValue());
-                        progressBarTopPost.setVisibility(View.GONE);
-                        TopPostFrame.setVisibility(View.VISIBLE);
                     }
                     catch (Exception e){
                         Log.e("Profile",e.toString());
                     }
 
+                }
+            }
+        });
+        //Загрузка данных о 1 карточке
+        mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle =  task.getResult().getValue(Article.class);
+                        if(DowArticle!= null){
+                            EditTextTopPost1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                            Glide.with(getActivity()).load(DowArticle.PreviewPhotoUri).into(imagetoppost1);
+                            progressBarTopPost.setVisibility(View.GONE);
+                            TopPostFrame.setVisibility(View.VISIBLE);
+                        }
+                    }
+                    catch (Exception e){
+                    }
                 }
             }
         });
@@ -169,9 +196,25 @@ public class NotificationsFragment extends Fragment {
         progressBarTopPost = view.findViewById(R.id.progressBarTopPost);
 
 
+
+        TopPostCard1 = view.findViewById(R.id.TopPostCard1);
+        TopPostCard1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(DowArticle!=null) {
+                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
+                    // передача объекта с ключом "MainText" и значением
+                    intent.putExtra("MainText", DowArticle.MainText);
+                    intent.putExtra("Date", DowArticle.Date);
+                    intent.putExtra("HeaderText", Html.fromHtml(DowArticle.HeadText).toString().trim());
+                    // запуск ChooseArticle
+                    startActivity(intent);
+                }
+            }
+        });
+
         SeeAllButton = view.findViewById(R.id.seeallArticleButton);
         SeeAllText = view.findViewById(R.id.seeallArticleText);
-
         SearchButton = view.findViewById(R.id.SearchButton);
         SearchButton.setOnClickListener(new View.OnClickListener() {
             @Override

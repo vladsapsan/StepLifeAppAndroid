@@ -107,9 +107,6 @@ public class AllArticle extends Fragment {
         mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
         ArticleListAdapter = new ArticleListAdapter(getActivity(),R.layout.listviewarticleitem, listTemp);
         allArticlelist.setAdapter(ArticleListAdapter);
-
-
-
         allArticlelist.setDrawingCacheEnabled(true);
     }
 
@@ -157,7 +154,6 @@ public class AllArticle extends Fragment {
 
         };
         mDataBase.addValueEventListener(valueEventListener);
-
     }
 
 

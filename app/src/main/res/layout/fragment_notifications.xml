@@ -131,6 +131,7 @@
                                 android:paddingRight="20dp">
 
                                 <androidx.cardview.widget.CardView
+                                    android:id="@+id/TopPostCard1"
                                     android:layout_width="150dp"
                                     android:clickable="true"
                                     android:layout_height="260dp"
@@ -152,16 +153,13 @@
                                             android:layout_gravity="center_horizontal"
                                             android:layout_height="115dp">
 
-                                            <ImageButton
+                                            <ImageView
                                                 android:id="@+id/imagetoppost1"
-                                                android:clickable="false"
-
                                                 android:layout_width="match_parent"
 
-                                                android:layout_height="124dp"
-                                                app:srcCompat="@drawable/protez1"
-                                                tools:layout_editor_absoluteX="59dp"
-                                                tools:layout_editor_absoluteY="448dp" />
+                                                android:scaleType="fitXY"
+                                                android:layout_height="match_parent"
+                                                app:srcCompat="@drawable/protez1" />
                                         </androidx.cardview.widget.CardView>
 
                                         <FrameLayout
@@ -171,16 +169,18 @@
                                                 android:id="@+id/EditTextTopPost1"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:layout_gravity="center"
-                                                android:layout_marginLeft="17dp"
-                                                android:layout_marginBottom="10dp"
-                                                android:layout_marginTop="10dp"
+                                                android:layout_gravity="left|center"
+                                                android:layout_marginLeft="15dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:layout_marginTop="5dp"
+                                                android:breakStrategy="high_quality"
+
                                                 android:layout_marginRight="15dp"
                                                 android:fontFamily="@font/montserratsemibold"
                                                 android:gravity="left"
                                                 android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="15sp" />
+                                                android:textColor="@color/MainBlue"
+                                                android:textSize="12sp" />
                                         </FrameLayout>
 
                                     </LinearLayout>

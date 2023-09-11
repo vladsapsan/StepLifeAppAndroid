@@ -26,9 +26,7 @@
         android:theme="@style/Theme.StepLifeApp">
         <activity
             android:name=".TopPostRedactActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TopPostArticleRedactionActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ArticleOnTopSettingsActivity"

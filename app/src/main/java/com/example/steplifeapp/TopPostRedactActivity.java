@@ -2,42 +2,120 @@ package com.example.steplifeapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.steplifeapp.ui.Article;
+import com.example.steplifeapp.ui.ArticleListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class TopPostRedactActivity extends AppCompatActivity {
 
     Button SaveTopPostRedactButton;
     ImageView imagebackEditTopPost;
-
     private String TopPost_Key ="TopPostArticle";
     private String Library_Key ="Lib";
-
     private DatabaseReference mDataBase;
+    CardView TopPostCard1,TopPostCard2,TopPostCard3,TopPostCard4,TopPostCard5;
     ProgressBar progressBar;
-
     TextView LastEditText;
+
+    private AllArticleViewModel mViewModel;
+    private ImageView backbutton;
+    private CardView articlecard;
+    private com.example.steplifeapp.ui.ArticleListAdapter ArticleListAdapter;
+    private ListView allArticlelist;
+    private ArrayAdapter<String> adapter;
+
+    private List<String> listData;
+    int ChooseCard;
+    private ArrayList<Article> listTemp = new ArrayList<Article>();
+    Article DowArticle;
+    TextView TopPostText1;
+    ImageView TopPostImage1,ImageAddTop1;
+    ProgressBar progressBarTopPostEdit;
+    Uri DownloadphotoUri;
+    BottomSheetDialog bottomSheetDialog;
+
+    private Target mTarget;
+    private String Article_Key ="AllArticle";
+
     EditText NameTopPost,SecNameTopPost;
+
+    //Иницилизация компонентов
+    private void initilization()
+    {
+        listData = new ArrayList<>();
+        mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
+        ArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listTemp);
+        allArticlelist.setAdapter(ArticleListAdapter);
+    }
+
+    //Загрузка уроков из базы
+    private void DownloadArticleFirebaseData()
+    {
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(listData.size()>0) listData.clear();
+                if(listTemp.size()>0) listTemp.clear();
+                for (DataSnapshot ds : snapshot.getChildren())
+                {
+                    Article article = ds.getValue(Article.class);
+                    //Проверка
+                    assert article != null;
+                    listTemp.add(article);
+                }
+                ArticleListAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+        mDataBase.addValueEventListener(valueEventListener);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +132,98 @@ public class TopPostRedactActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
+        //Аунтефикация
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser cUser = mAuth.getCurrentUser();
+
+
         NameTopPost = findViewById(R.id.NameTopPost);
         SecNameTopPost = findViewById(R.id.SecNameTopPost);
         LastEditText = findViewById(R.id.LastEditText);
         progressBar = findViewById(R.id.progressBar);
+
+        //инициализация карточек
+        TopPostCard1 = findViewById(R.id.TopPostCard1);
+        TopPostCard2 = findViewById(R.id.TopPostCard2);
+        TopPostCard3 = findViewById(R.id.TopPostCard3);
+        TopPostCard4 = findViewById(R.id.TopPostCard4);
+        TopPostCard5 = findViewById(R.id.TopPostCard5);
+
+
+        //инициализация элементов внутри карточек
+        TopPostText1 = findViewById(R.id.TopPostText1);
+        TopPostImage1 = findViewById(R.id.TopPostImage1);
+        ImageAddTop1 = findViewById(R.id.ImageAddTop1);
+
+
+        //Плашка выбора статьи для загрузки
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialog);
+        View bottomSheetView = LayoutInflater.from(this.getApplicationContext())
+                .inflate(
+                        R.layout.sheetchoosearticles,
+                        (FrameLayout) findViewById(R.id.SheetDialogChooseArticleContainer)
+                );
+        allArticlelist = bottomSheetView.findViewById(R.id.AllArticleListview);
+        //Выбор статьи
+        allArticlelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                DowArticle = listTemp.get(position);
+                switch (ChooseCard) {
+                    case  (1):
+                        progressBar.setVisibility(View.VISIBLE);
+                        imagebackEditTopPost.setVisibility(View.GONE);
+                        ImageAddTop1.setVisibility(View.GONE);
+                        bottomSheetDialog.dismiss();
+                        //отображение в карточке
+                        TopPostText1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                        Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage1);
+                        //Загрузка статьи в базууу
+                        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
+                        mDataBase.child("1").setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                //Загрузка новой даты изменения
+                                DateFormat df = new SimpleDateFormat("d MMM yyyy");
+                                String Simpledate = df.format(Calendar.getInstance().getTime());
+                                mDataBase.child("LastEdit").setValue(Simpledate+" "+cUser.getPhoneNumber().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progressBar.setVisibility(View.GONE);
+                                        imagebackEditTopPost.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                            }
+                        });
+                        break;
+                    case (2):
+
+                        break;
+                    case (3):
+
+                        break;
+                    case (4):
+
+                        break;
+                    case (5):
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        bottomSheetDialog.setContentView(bottomSheetView);
+
+        //Выбор первой карточки для загрузки туда статьи
+        TopPostCard1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.show();
+                ChooseCard = 1;
+            }
+        });
 
 
         //закрытие окна
@@ -74,11 +240,10 @@ public class TopPostRedactActivity extends AppCompatActivity {
         SaveTopPostRedactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
                 progressBar.setVisibility(View.VISIBLE);
                 imagebackEditTopPost.setVisibility(View.GONE);
-                //Аунтефикация
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                FirebaseUser cUser = mAuth.getCurrentUser();
+
                 DateFormat df = new SimpleDateFormat("d MMM yyyy");
                 String Simpledate = df.format(Calendar.getInstance().getTime());
                 mDataBase.child("Name").setValue(NameTopPost.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -105,9 +270,6 @@ public class TopPostRedactActivity extends AppCompatActivity {
     }
 
 
-
-
-
     @Override
     public void onStart() {
         super.onStart();
@@ -125,7 +287,7 @@ public class TopPostRedactActivity extends AppCompatActivity {
                         NameTopPost.setText((String)task.getResult().getValue());
                     }
                     catch (Exception e){
-                        Log.e("Profile",e.toString());
+
                     }
 
                 }
@@ -145,9 +307,8 @@ public class TopPostRedactActivity extends AppCompatActivity {
                         SecNameTopPost.setText((String)task.getResult().getValue());
                     }
                     catch (Exception e){
-                        Log.e("Profile",e.toString());
-                    }
 
+                    }
                 }
             }
         });
@@ -161,13 +322,40 @@ public class TopPostRedactActivity extends AppCompatActivity {
                     try {
                         //Данные получены
                         LastEditText.setText((String)task.getResult().getValue());
+                        initilization();
+                        DownloadArticleFirebaseData();
                     }
                     catch (Exception e){
-                        Log.e("Profile",e.toString());
+
                     }
 
                 }
             }
         });
+
+        //Загрузка данных о 1 карточке
+        mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle =  task.getResult().getValue(Article.class);
+                        if(DowArticle!= null){
+                            ImageAddTop1.setVisibility(View.GONE);
+                            TopPostText1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                            Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage1);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+
+
     }
 }
