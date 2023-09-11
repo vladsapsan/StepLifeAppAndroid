@@ -15,12 +15,12 @@
         >
         <ImageView
             android:clickable="false"
-            android:id="@+id/HomeArticlePreview"
+            android:id="@+id/PreviewPhoto"
             android:layout_width="match_parent"
             android:scaleType="fitXY"
             android:layout_height="124dp" />
         <TextView
-            android:id="@+id/HomeArticleNameText"
+            android:id="@+id/ArticleHeadTextItems"
             android:layout_width="160dp"
             android:layout_height="37dp"
             android:layout_gravity="bottom"

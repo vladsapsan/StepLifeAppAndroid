@@ -45,7 +45,7 @@ public class ProfileRedactActivity extends AppCompatActivity {
 
     private static final int SELECT_PICTURE = 1;
     ImageView BackBtn,ImageProfile;
-    TextView ChoosePhotoText;
+    TextView ChoosePhotoText,CurrentPhoneNumber;
     StorageReference storageRef;
     ProgressBar progressBar;
 
@@ -104,6 +104,7 @@ public class ProfileRedactActivity extends AppCompatActivity {
             }
         });
 
+        CurrentPhoneNumber = findViewById(R.id.CurrentPhoneNumber);
         progressBar = findViewById(R.id.progressBar);
 
         //Сохранение изменений кнопка
@@ -150,6 +151,9 @@ public class ProfileRedactActivity extends AppCompatActivity {
             if(name!=null)
             {
                 EditTextUserName.setText(name);
+            }
+            if(cUser.getPhoneNumber()!=null){
+                CurrentPhoneNumber.setText(cUser.getPhoneNumber());
             }
             // Picasso.get().load(cUser.getPhotoUrl()).into(ImageProfile);
             Glide

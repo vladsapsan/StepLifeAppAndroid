@@ -12,10 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -89,11 +91,21 @@ public class HomeFragment extends Fragment {
     CardView  ArticleTeach;
     ScrollView HomescrollView;
     RecyclerView HomeArticleListView;
+
     private ImageView ArticleState1,ArticleState2,ArticleState3;
     private FirebaseAuth mAuth;
     HorizontalScrollView horizontalScrollViewArticle,horizontalScrollView2;
     private Animation HideAnimation;
     private HomeViewModel homeViewModel;
+
+    private ListView allArticlelist;
+    private ArrayAdapter<String> adapter;
+    private DatabaseReference mDataBase;
+    int CurrnetPositionList ;
+
+
+    private List<String> listData;
+    private String Article_Key ="AllArticle";
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -103,12 +115,46 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    void DownloadArticlePictures()
+    //Иницилизация компонентов
+    private void initilization()
     {
-    //    Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F15870364150766PreviewImage?alt=media&token=7386348c-18be-4373-8d9f-66a284f53bb0").into(ArticleState1);
-    //    Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F15955776419587PreviewImage?alt=media&token=f6aef4eb-312a-46d8-a45e-7e55505acd86").into(ArticleState2);
-     //   Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/AllArticleBase%2F212919968329690PreviewImage?alt=media&token=05c460be-54e6-450a-ab55-e847ad64334f").into(ArticleState3);
+
+        listData = new ArrayList<>();
+        mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
+        ArticleListAdapter = new ArticleListAdapter(getContext(),R.layout.listviewhomearticle, listTemp);
+      //  HomeArticleListView.setAdapter(ArticleListAdapter);
     }
+
+
+    //Загрузка уроков из базы
+    private void DownloadArticleFirebaseData()
+    {
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(listData.size()>0) listData.clear();
+                if(listTemp.size()>0) listTemp.clear();
+                for (DataSnapshot ds : snapshot.getChildren())
+                {
+                    Article article = ds.getValue(Article.class);
+                    //Проверка
+                    assert article != null;
+                    listTemp.add(article);
+                }
+                ArticleListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        };
+        mDataBase.addValueEventListener(valueEventListener);
+
+    }
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -116,7 +162,6 @@ public class HomeFragment extends Fragment {
 
         //Аунтефикация
         mAuth = FirebaseAuth.getInstance();
-
 
 
         //Переход ко всем статьям
@@ -160,7 +205,7 @@ public class HomeFragment extends Fragment {
     //    ArticleState2 =  view.findViewById(R.id.ArticleState2);
      //   ArticleState3 =  view.findViewById(R.id.ArticleState3);
 
-        DownloadArticlePictures();
+
 
         //Под
         HomeArticleListView = view.findViewById(R.id.HomeArticleListView);

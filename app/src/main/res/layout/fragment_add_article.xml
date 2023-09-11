@@ -61,7 +61,6 @@
                     android:visibility="gone"
                     android:id="@+id/progressBaraddArticle"
                     style="?android:attr/progressBarStyle"
-
                    android:layout_gravity="center"
 
                     android:indeterminateTint="@color/white"

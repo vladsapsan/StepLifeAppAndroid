@@ -29,6 +29,7 @@
         android:backgroundTint="@color/MainGray"
         android:layout_height="40dp"
         android:layout_gravity="right"
+        android:id="@+id/SearchButton"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:scaleType="fitCenter"
@@ -38,7 +39,18 @@
 
 
 
-
+            <ProgressBar
+                android:id="@+id/progressBarTopPost"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="40dp"
+                android:indeterminateBehavior="repeat"
+                android:indeterminateDuration="100"
+                android:layout_gravity="bottom"
+                android:indeterminateOnly="true"
+                android:mirrorForRtl="false"
+                android:indeterminateTint="@color/black"
+                android:layout_height="match_parent" />
 
         </FrameLayout>
 
@@ -62,9 +74,11 @@
 
 
                     <FrameLayout
+
+                        android:id="@+id/TopPostFrame"
                         android:layout_width="match_parent"
                         android:background="@color/MainGrayText"
-                        android:layout_height="350dp">
+                        android:layout_height="400dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -72,22 +86,24 @@
                             android:layout_gravity="left"
                             android:layout_height="wrap_content">
                             <TextView
+                                android:id="@+id/NameTopPost"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
                                 android:layout_marginTop="20dp"
-                                android:text="Вы просили - \nмы добавили"
+                                android:text=""
                                 android:textSize="21dp"
                                 android:layout_marginLeft="15dp"
                                 android:paddingBottom="5dp"
                                 android:textColor="@color/white"
                                 android:fontFamily="@font/montserrat1black"/>
                             <TextView
+                                android:id="@+id/SecNameTopPost"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
                                 android:layout_marginTop="0dp"
-                                android:text="Новые уроки уже на главной странице"
+                                android:text=""
                                 android:textSize="14dp"
                                 android:layout_marginLeft="15dp"
                                 android:paddingBottom="5dp"
@@ -98,7 +114,7 @@
                         <HorizontalScrollView
                             android:id="@+id/ScrollMainViewArticles"
                             android:layout_width="match_parent"
-                            android:layout_height="240dp"
+                            android:layout_height="290dp"
                             android:layout_marginTop="5dp"
                             android:layout_gravity="bottom"
 
@@ -117,7 +133,65 @@
                                 <androidx.cardview.widget.CardView
                                     android:layout_width="150dp"
                                     android:clickable="true"
-                                    android:layout_height="220dp"
+                                    android:layout_height="260dp"
+                                    android:layout_marginLeft="20dp"
+                                    app:cardCornerRadius="8dp"
+                                    tools:layout_editor_absoluteX="1dp"
+                                    tools:layout_editor_absoluteY="444dp">
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:orientation="vertical"
+                                        android:layout_height="match_parent">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="115dp"
+                                            app:cardCornerRadius="7dp"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_height="115dp">
+
+                                            <ImageButton
+                                                android:id="@+id/imagetoppost1"
+                                                android:clickable="false"
+
+                                                android:layout_width="match_parent"
+
+                                                android:layout_height="124dp"
+                                                app:srcCompat="@drawable/protez1"
+                                                tools:layout_editor_absoluteX="59dp"
+                                                tools:layout_editor_absoluteY="448dp" />
+                                        </androidx.cardview.widget.CardView>
+
+                                        <FrameLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <TextView
+                                                android:id="@+id/EditTextTopPost1"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginLeft="17dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginRight="15dp"
+                                                android:fontFamily="@font/montserratsemibold"
+                                                android:gravity="left"
+                                                android:text="Как получить протез бесплатно?"
+                                                android:textColor="@color/black"
+                                                android:textSize="15sp" />
+                                        </FrameLayout>
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:clickable="true"
+                                    android:layout_height="260dp"
                                     android:layout_marginLeft="20dp"
                                     app:cardCornerRadius="8dp"
                                     tools:layout_editor_absoluteX="1dp"
@@ -146,18 +220,25 @@
                                                 tools:layout_editor_absoluteX="59dp"
                                                 tools:layout_editor_absoluteY="448dp" />
                                         </androidx.cardview.widget.CardView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="bottom"
-                                            android:layout_marginLeft="17dp"
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginRight="15dp"
-                                            android:fontFamily="@font/montserratsemibold"
-                                            android:gravity="left"
-                                            android:text="Как получить протез бесплатно?"
-                                            android:textColor="@color/BlackSviut"
-                                            android:textSize="14sp" />
+
+                                        <FrameLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginLeft="17dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginRight="15dp"
+                                                android:fontFamily="@font/montserratsemibold"
+                                                android:gravity="left"
+                                                android:text="Как получить протез бесплатно?"
+                                                android:textColor="@color/black"
+                                                android:textSize="15sp" />
+                                        </FrameLayout>
+
                                     </LinearLayout>
 
                                 </androidx.cardview.widget.CardView>
@@ -165,7 +246,7 @@
                                 <androidx.cardview.widget.CardView
                                     android:layout_width="150dp"
                                     android:clickable="true"
-                                    android:layout_height="220dp"
+                                    android:layout_height="260dp"
                                     android:layout_marginLeft="20dp"
                                     app:cardCornerRadius="8dp"
                                     tools:layout_editor_absoluteX="1dp"
@@ -179,7 +260,7 @@
 
                                         <androidx.cardview.widget.CardView
                                             android:layout_width="115dp"
-                                            app:cardCornerRadius="8dp"
+                                            app:cardCornerRadius="7dp"
                                             android:layout_marginTop="15dp"
                                             android:layout_gravity="center_horizontal"
                                             android:layout_height="115dp">
@@ -194,25 +275,32 @@
                                                 tools:layout_editor_absoluteX="59dp"
                                                 tools:layout_editor_absoluteY="448dp" />
                                         </androidx.cardview.widget.CardView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="bottom"
-                                            android:layout_marginLeft="17dp"
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginRight="15dp"
-                                            android:fontFamily="@font/montserratsemibold"
-                                            android:gravity="left"
-                                            android:text="Как получить протез бесплатно?"
-                                            android:textColor="@color/BlackSviut"
-                                            android:textSize="14sp" />
+
+                                        <FrameLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginLeft="17dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginRight="15dp"
+                                                android:fontFamily="@font/montserratsemibold"
+                                                android:gravity="left"
+                                                android:text="Как получить протез бесплатно?"
+                                                android:textColor="@color/black"
+                                                android:textSize="15sp" />
+                                        </FrameLayout>
+
                                     </LinearLayout>
 
                                 </androidx.cardview.widget.CardView>
                                 <androidx.cardview.widget.CardView
                                     android:layout_width="150dp"
                                     android:clickable="true"
-                                    android:layout_height="220dp"
+                                    android:layout_height="260dp"
                                     android:layout_marginLeft="20dp"
                                     app:cardCornerRadius="8dp"
                                     tools:layout_editor_absoluteX="1dp"
@@ -226,7 +314,7 @@
 
                                         <androidx.cardview.widget.CardView
                                             android:layout_width="115dp"
-                                            app:cardCornerRadius="8dp"
+                                            app:cardCornerRadius="7dp"
                                             android:layout_marginTop="15dp"
                                             android:layout_gravity="center_horizontal"
                                             android:layout_height="115dp">
@@ -241,25 +329,32 @@
                                                 tools:layout_editor_absoluteX="59dp"
                                                 tools:layout_editor_absoluteY="448dp" />
                                         </androidx.cardview.widget.CardView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="bottom"
-                                            android:layout_marginLeft="17dp"
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginRight="15dp"
-                                            android:fontFamily="@font/montserratsemibold"
-                                            android:gravity="left"
-                                            android:text="Как получить протез бесплатно?"
-                                            android:textColor="@color/BlackSviut"
-                                            android:textSize="14sp" />
+
+                                        <FrameLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginLeft="17dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginRight="15dp"
+                                                android:fontFamily="@font/montserratsemibold"
+                                                android:gravity="left"
+                                                android:text="Как получить протез бесплатно?"
+                                                android:textColor="@color/black"
+                                                android:textSize="15sp" />
+                                        </FrameLayout>
+
                                     </LinearLayout>
 
                                 </androidx.cardview.widget.CardView>
                                 <androidx.cardview.widget.CardView
                                     android:layout_width="150dp"
                                     android:clickable="true"
-                                    android:layout_height="220dp"
+                                    android:layout_height="260dp"
                                     android:layout_marginLeft="20dp"
                                     app:cardCornerRadius="8dp"
                                     tools:layout_editor_absoluteX="1dp"
@@ -273,7 +368,7 @@
 
                                         <androidx.cardview.widget.CardView
                                             android:layout_width="115dp"
-                                            app:cardCornerRadius="8dp"
+                                            app:cardCornerRadius="7dp"
                                             android:layout_marginTop="15dp"
                                             android:layout_gravity="center_horizontal"
                                             android:layout_height="115dp">
@@ -288,18 +383,25 @@
                                                 tools:layout_editor_absoluteX="59dp"
                                                 tools:layout_editor_absoluteY="448dp" />
                                         </androidx.cardview.widget.CardView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="bottom"
-                                            android:layout_marginLeft="17dp"
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginRight="15dp"
-                                            android:fontFamily="@font/montserratsemibold"
-                                            android:gravity="left"
-                                            android:text="Как получить протез бесплатно?"
-                                            android:textColor="@color/BlackSviut"
-                                            android:textSize="14sp" />
+
+                                        <FrameLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginLeft="17dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginRight="15dp"
+                                                android:fontFamily="@font/montserratsemibold"
+                                                android:gravity="left"
+                                                android:text="Как получить протез бесплатно?"
+                                                android:textColor="@color/black"
+                                                android:textSize="15sp" />
+                                        </FrameLayout>
+
                                     </LinearLayout>
 
                                 </androidx.cardview.widget.CardView>
@@ -339,7 +441,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
                             app:cardCornerRadius="6dp"
-                            android:backgroundTint="@color/black"
+                            android:backgroundTint="@color/secondBlue"
 
                             android:layout_gravity="right"
                             android:layout_height="wrap_content">

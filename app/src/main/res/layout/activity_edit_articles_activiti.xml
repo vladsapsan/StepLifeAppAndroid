@@ -16,6 +16,18 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:gravity="left"
+                    android:text="Удаление материала"
+                    android:textColor="@color/black"
+                    android:textSize="19sp" />
                 <ImageView
 
                     android:clickable="true"
@@ -27,17 +39,6 @@
             </FrameLayout>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="@font/montserratsemibold"
-            android:gravity="left"
-            android:text="Удаление материала"
-            android:textColor="@color/black"
-            android:textSize="19sp" />
 
 
         <FrameLayout
