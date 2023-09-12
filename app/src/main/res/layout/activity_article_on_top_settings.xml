@@ -52,6 +52,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/HomeArticleRedactButton"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:gravity="center"

@@ -2,25 +2,22 @@ package com.example.steplifeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 
-public class ArticleOnTopSettingsActivity extends AppCompatActivity {
+public class HomeArticleRedactActivity extends AppCompatActivity {
 
 
     ImageView imagebackEditArticles;
-    Button TopPostRedactButton,HomeArticleRedactButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_article_on_top_settings);
+        setContentView(R.layout.activity_home_article_redact);
 
 
-        //Дефолт стиль
+        // Установка стиля безрамочного
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
@@ -31,27 +28,7 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-
-        //переход к окну редактирования верхней предложки учебника
-        TopPostRedactButton = findViewById(R.id.TopPostRedactButton);
-        TopPostRedactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TopPostRedactActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        HomeArticleRedactButton = findViewById(R.id.HomeArticleRedactButton);
-        HomeArticleRedactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeArticleRedactActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        imagebackEditArticles = findViewById(R.id.imagebackEditArticles);
+        imagebackEditArticles = findViewById(R.id.imagebackEditTopPost);
         imagebackEditArticles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
