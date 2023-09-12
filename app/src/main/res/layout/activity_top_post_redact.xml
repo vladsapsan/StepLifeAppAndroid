@@ -135,15 +135,11 @@
                             android:layout_width="match_parent"
                             android:orientation="vertical"
                             android:layout_height="match_parent">
-
-
                                 <ImageView
                                     android:id="@+id/TopPostImage1"
                                     android:layout_width="match_parent"
                                     android:scaleType="fitXY"
                                     android:layout_height="130dp"/>
-
-
                             <FrameLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
@@ -178,34 +174,45 @@
                         tools:layout_editor_absoluteX="1dp"
                         tools:layout_editor_absoluteY="444dp">
                         <ImageView
+                            android:id="@+id/ImageAddTop2"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:src="@drawable/plus_insert_add_rectangle_icon" />
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:orientation="vertical"
                             android:layout_height="match_parent">
-
-                            <androidx.cardview.widget.CardView
-                                android:visibility="invisible"
-                                android:layout_width="115dp"
-                                app:cardCornerRadius="7dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_height="115dp"/>
-
+                            <ImageView
+                                android:id="@+id/TopPostImage2"
+                                android:layout_width="match_parent"
+                                android:scaleType="fitXY"
+                                android:layout_height="130dp"/>
                             <FrameLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
-
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:id="@+id/TopPostText2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="bottom"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/montserratsemibold"
+                                    android:gravity="left"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+                            </FrameLayout>
                         </LinearLayout>
-
                     </androidx.cardview.widget.CardView>
+
+
                     <androidx.cardview.widget.CardView
-                        android:layout_width="150dp"
                         android:id="@+id/TopPostCard3"
+                        android:layout_width="150dp"
                         android:clickable="true"
                         android:layout_height="260dp"
                         android:layout_marginLeft="20dp"
@@ -213,102 +220,132 @@
                         tools:layout_editor_absoluteX="1dp"
                         tools:layout_editor_absoluteY="444dp">
                         <ImageView
+                            android:id="@+id/ImageAddTop3"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:src="@drawable/plus_insert_add_rectangle_icon" />
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:orientation="vertical"
                             android:layout_height="match_parent">
-
-                            <androidx.cardview.widget.CardView
-                                android:visibility="invisible"
-                                android:layout_width="115dp"
-                                app:cardCornerRadius="7dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_height="115dp"/>
-
+                            <ImageView
+                                android:id="@+id/TopPostImage3"
+                                android:layout_width="match_parent"
+                                android:scaleType="fitXY"
+                                android:layout_height="130dp"/>
                             <FrameLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
-
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:id="@+id/TopPostText3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="bottom"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/montserratsemibold"
+                                    android:gravity="left"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+                            </FrameLayout>
                         </LinearLayout>
-
                     </androidx.cardview.widget.CardView>
+
+
                     <androidx.cardview.widget.CardView
-                        android:layout_width="150dp"
                         android:id="@+id/TopPostCard4"
-                        android:clickable="true"
-                        android:layout_height="260dp"
-                        android:layout_marginLeft="20dp"
-                        app:cardCornerRadius="8dp"
-                        tools:layout_editor_absoluteX="1dp"
-                        tools:layout_editor_absoluteY="444dp">
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/plus_insert_add_rectangle_icon" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:orientation="vertical"
-                            android:layout_height="match_parent">
-
-                            <androidx.cardview.widget.CardView
-                                android:visibility="invisible"
-                                android:layout_width="115dp"
-                                app:cardCornerRadius="7dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_height="115dp"/>
-
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
                         android:layout_width="150dp"
                         android:clickable="true"
-                        android:id="@+id/TopPostCard5"
                         android:layout_height="260dp"
                         android:layout_marginLeft="20dp"
                         app:cardCornerRadius="8dp"
                         tools:layout_editor_absoluteX="1dp"
                         tools:layout_editor_absoluteY="444dp">
                         <ImageView
+                            android:id="@+id/ImageAddTop4"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:src="@drawable/plus_insert_add_rectangle_icon" />
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:orientation="vertical"
                             android:layout_height="match_parent">
-
-                            <androidx.cardview.widget.CardView
-                                android:visibility="invisible"
-                                android:layout_width="115dp"
-                                app:cardCornerRadius="7dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_height="115dp"/>
-
+                            <ImageView
+                                android:id="@+id/TopPostImage4"
+                                android:layout_width="match_parent"
+                                android:scaleType="fitXY"
+                                android:layout_height="130dp"/>
                             <FrameLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
-
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:id="@+id/TopPostText4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="bottom"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/montserratsemibold"
+                                    android:gravity="left"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+                            </FrameLayout>
                         </LinearLayout>
-
                     </androidx.cardview.widget.CardView>
 
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/TopPostCard5"
+                        android:layout_width="150dp"
+                        android:clickable="true"
+                        android:layout_height="260dp"
+                        android:layout_marginLeft="20dp"
+                        app:cardCornerRadius="8dp"
+                        tools:layout_editor_absoluteX="1dp"
+                        tools:layout_editor_absoluteY="444dp">
+                        <ImageView
+                            android:id="@+id/ImageAddTop5"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/plus_insert_add_rectangle_icon" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/TopPostImage5"
+                                android:layout_width="match_parent"
+                                android:scaleType="fitXY"
+                                android:layout_height="130dp"/>
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:id="@+id/TopPostText5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="bottom"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/montserratsemibold"
+                                    android:gravity="left"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </HorizontalScrollView>
 

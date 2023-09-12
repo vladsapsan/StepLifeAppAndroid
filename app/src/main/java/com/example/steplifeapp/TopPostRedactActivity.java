@@ -72,8 +72,9 @@ public class TopPostRedactActivity extends AppCompatActivity {
     int ChooseCard;
     private ArrayList<Article> listTemp = new ArrayList<Article>();
     Article DowArticle;
-    TextView TopPostText1;
-    ImageView TopPostImage1,ImageAddTop1;
+    TextView TopPostText1,TopPostText2,TopPostText3,TopPostText4,TopPostText5;
+    ImageView TopPostImage1,TopPostImage2,TopPostImage3,TopPostImage4,TopPostImage5;
+    ImageView ImageAddTop1,ImageAddTop2,ImageAddTop3,ImageAddTop4,ImageAddTop5;
     ProgressBar progressBarTopPostEdit;
     Uri DownloadphotoUri;
     BottomSheetDialog bottomSheetDialog;
@@ -150,10 +151,30 @@ public class TopPostRedactActivity extends AppCompatActivity {
         TopPostCard5 = findViewById(R.id.TopPostCard5);
 
 
-        //инициализация элементов внутри карточек
+        //инициализация элементов внутри карточек 1
         TopPostText1 = findViewById(R.id.TopPostText1);
         TopPostImage1 = findViewById(R.id.TopPostImage1);
         ImageAddTop1 = findViewById(R.id.ImageAddTop1);
+
+        //инициализация элементов внутри карточек 2
+        TopPostText2 = findViewById(R.id.TopPostText2);
+        TopPostImage2 = findViewById(R.id.TopPostImage2);
+        ImageAddTop2 = findViewById(R.id.ImageAddTop2);
+
+        //инициализация элементов внутри карточек 3
+        TopPostText3 = findViewById(R.id.TopPostText3);
+        TopPostImage3 = findViewById(R.id.TopPostImage3);
+        ImageAddTop3 = findViewById(R.id.ImageAddTop3);
+
+        //инициализация элементов внутри карточек 4
+        TopPostText4 = findViewById(R.id.TopPostText4);
+        TopPostImage4 = findViewById(R.id.TopPostImage4);
+        ImageAddTop4 = findViewById(R.id.ImageAddTop4);
+
+        //инициализация элементов внутри карточек 5
+        TopPostText5 = findViewById(R.id.TopPostText5);
+        TopPostImage5 = findViewById(R.id.TopPostImage5);
+        ImageAddTop5 = findViewById(R.id.ImageAddTop5);
 
 
         //Плашка выбора статьи для загрузки
@@ -197,16 +218,108 @@ public class TopPostRedactActivity extends AppCompatActivity {
                         });
                         break;
                     case (2):
-
+                        progressBar.setVisibility(View.VISIBLE);
+                        imagebackEditTopPost.setVisibility(View.GONE);
+                        ImageAddTop2.setVisibility(View.GONE);
+                        bottomSheetDialog.dismiss();
+                        //отображение в карточке
+                        TopPostText2.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                        Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage2);
+                        //Загрузка статьи в базууу
+                        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
+                        mDataBase.child("2").setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                //Загрузка новой даты изменения
+                                DateFormat df = new SimpleDateFormat("d MMM yyyy");
+                                String Simpledate = df.format(Calendar.getInstance().getTime());
+                                mDataBase.child("LastEdit").setValue(Simpledate+" "+cUser.getPhoneNumber().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progressBar.setVisibility(View.GONE);
+                                        imagebackEditTopPost.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                            }
+                        });
                         break;
                     case (3):
-
+                        progressBar.setVisibility(View.VISIBLE);
+                        imagebackEditTopPost.setVisibility(View.GONE);
+                        ImageAddTop3.setVisibility(View.GONE);
+                        bottomSheetDialog.dismiss();
+                        //отображение в карточке
+                        TopPostText3.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                        Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage3);
+                        //Загрузка статьи в базууу
+                        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
+                        mDataBase.child("3").setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                //Загрузка новой даты изменения
+                                DateFormat df = new SimpleDateFormat("d MMM yyyy");
+                                String Simpledate = df.format(Calendar.getInstance().getTime());
+                                mDataBase.child("LastEdit").setValue(Simpledate+" "+cUser.getPhoneNumber().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progressBar.setVisibility(View.GONE);
+                                        imagebackEditTopPost.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                            }
+                        });
                         break;
                     case (4):
-
+                        progressBar.setVisibility(View.VISIBLE);
+                        imagebackEditTopPost.setVisibility(View.GONE);
+                        ImageAddTop4.setVisibility(View.GONE);
+                        bottomSheetDialog.dismiss();
+                        //отображение в карточке
+                        TopPostText4.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                        Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage4);
+                        //Загрузка статьи в базууу
+                        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
+                        mDataBase.child("4").setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                //Загрузка новой даты изменения
+                                DateFormat df = new SimpleDateFormat("d MMM yyyy");
+                                String Simpledate = df.format(Calendar.getInstance().getTime());
+                                mDataBase.child("LastEdit").setValue(Simpledate+" "+cUser.getPhoneNumber().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progressBar.setVisibility(View.GONE);
+                                        imagebackEditTopPost.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                            }
+                        });
                         break;
                     case (5):
-
+                        progressBar.setVisibility(View.VISIBLE);
+                        imagebackEditTopPost.setVisibility(View.GONE);
+                        ImageAddTop5.setVisibility(View.GONE);
+                        bottomSheetDialog.dismiss();
+                        //отображение в карточке
+                        TopPostText5.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                        Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage5);
+                        //Загрузка статьи в базууу
+                        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
+                        mDataBase.child("5").setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                //Загрузка новой даты изменения
+                                DateFormat df = new SimpleDateFormat("d MMM yyyy");
+                                String Simpledate = df.format(Calendar.getInstance().getTime());
+                                mDataBase.child("LastEdit").setValue(Simpledate+" "+cUser.getPhoneNumber().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progressBar.setVisibility(View.GONE);
+                                        imagebackEditTopPost.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                            }
+                        });
                         break;
                     default:
                         break;
@@ -225,6 +338,37 @@ public class TopPostRedactActivity extends AppCompatActivity {
             }
         });
 
+        TopPostCard2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.show();
+                ChooseCard = 2;
+            }
+        });
+
+        TopPostCard3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.show();
+                ChooseCard = 3;
+            }
+        });
+
+        TopPostCard4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.show();
+                ChooseCard = 4;
+            }
+        });
+
+        TopPostCard5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.show();
+                ChooseCard = 5;
+            }
+        });
 
         //закрытие окна
         imagebackEditTopPost = findViewById(R.id.imagebackEditTopPost);
@@ -348,6 +492,98 @@ public class TopPostRedactActivity extends AppCompatActivity {
                             ImageAddTop1.setVisibility(View.GONE);
                             TopPostText1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
                             Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage1);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+
+        //Загрузка данных о 2 карточке
+        mDataBase.child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle =  task.getResult().getValue(Article.class);
+                        if(DowArticle!= null){
+                            ImageAddTop2.setVisibility(View.GONE);
+                            TopPostText2.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                            Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage2);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+
+        //Загрузка данных о 3 карточке
+        mDataBase.child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle =  task.getResult().getValue(Article.class);
+                        if(DowArticle!= null){
+                            ImageAddTop3.setVisibility(View.GONE);
+                            TopPostText3.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                            Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage3);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+
+        //Загрузка данных о 4 карточке
+        mDataBase.child("4").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle =  task.getResult().getValue(Article.class);
+                        if(DowArticle!= null){
+                            ImageAddTop4.setVisibility(View.GONE);
+                            TopPostText4.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                            Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage4);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+
+        //Загрузка данных о 5 карточке
+        mDataBase.child("5").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle =  task.getResult().getValue(Article.class);
+                        if(DowArticle!= null){
+                            ImageAddTop5.setVisibility(View.GONE);
+                            TopPostText5.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                            Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(TopPostImage5);
                         }
                     }
                     catch (Exception e){
