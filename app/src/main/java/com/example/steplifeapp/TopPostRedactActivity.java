@@ -54,6 +54,7 @@ public class TopPostRedactActivity extends AppCompatActivity {
 
     Button SaveTopPostRedactButton;
     ImageView imagebackEditTopPost;
+
     private String TopPost_Key ="TopPostArticle";
     private String Library_Key ="Lib";
     private DatabaseReference mDataBase;
@@ -185,7 +186,7 @@ public class TopPostRedactActivity extends AppCompatActivity {
                         (FrameLayout) findViewById(R.id.SheetDialogChooseArticleContainer)
                 );
         allArticlelist = bottomSheetView.findViewById(R.id.AllArticleListview);
-        //Выбор статьи
+        //Выбор статьи в списке листа и загрузка в карточку
         allArticlelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -412,8 +413,6 @@ public class TopPostRedactActivity extends AppCompatActivity {
             }
         });
     }
-
-
     @Override
     public void onStart() {
         super.onStart();

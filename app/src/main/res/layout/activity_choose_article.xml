@@ -91,6 +91,7 @@
                             android:lineHeight="24dp"
                             android:id="@+id/MainTextDownloadArticle"
 
+                            android:gravity="left"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="10dp"

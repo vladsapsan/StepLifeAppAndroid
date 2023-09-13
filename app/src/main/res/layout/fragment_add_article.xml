@@ -17,6 +17,7 @@
         android:layout_height="match_parent">
 
         <FrameLayout
+            android:background="@color/MainGray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -51,12 +52,12 @@
                 android:layout_height="30dp">
                 <ImageView
                     android:id="@+id/GoToFinalViewButton"
-                    android:layout_width="25dp"
+                    android:layout_width="20dp"
                     android:layout_gravity="center"
-                    android:layout_height="25dp"
-                    android:src="@drawable/font_angle_small_right"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="2dp"
+                    android:src="@drawable/rightarrow"
                     />
-
                 <ProgressBar
                     android:visibility="gone"
                     android:id="@+id/progressBaraddArticle"
@@ -70,7 +71,7 @@
         </FrameLayout>
 
         <FrameLayout
-
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -88,28 +89,26 @@
                 android:background="@null"
                 android:textSize="26dp" />
             <ScrollView
-
                 android:id="@+id/addArticleScrollView"
                 android:layout_width="match_parent"
-                android:overScrollMode="never"
-
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:focusable="true"
-
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
-
                     <EditText
                         android:id="@+id/TextEditHeader"
-                        android:maxLength="85"
+                        android:maxLength="60"
                         android:textCursorDrawable = "@drawable/color_cursor"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
+                        android:maxLines="1"
+                        android:singleLine="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
+                        android:overScrollMode="always"
                         android:fontFamily="@font/montserratsemibold"
                         android:textColor="@color/black"
                         android:background="@null"
@@ -162,7 +161,7 @@
                         android:layout_height="wrap_content">
                         <HorizontalScrollView
                             android:id="@+id/ImageAddArticleScrolView"
-                            android:overScrollMode="never"
+
                             android:scrollbars="none"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">

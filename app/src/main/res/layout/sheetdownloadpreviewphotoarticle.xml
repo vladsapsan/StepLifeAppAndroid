@@ -45,7 +45,7 @@
             <ImageView
                 android:id="@+id/Downloadpreviewimage"
                 android:layout_width="match_parent"
-
+                android:scaleType="centerCrop"
                 android:background="@color/MainGray"
                 android:layout_height="match_parent">
 

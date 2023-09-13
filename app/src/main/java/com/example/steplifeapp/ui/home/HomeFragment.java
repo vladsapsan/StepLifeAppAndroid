@@ -37,6 +37,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.steplifeapp.AllArticle;
 import com.example.steplifeapp.Bt_module;
 import com.example.steplifeapp.ChooseArticle;
@@ -77,6 +78,13 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 public class HomeFragment extends Fragment {
     FrameLayout FrameVideo;
     TextView TextBtnHide,AllAcricleButton;
+
+    private String HomeArticle_Key ="HomeArticle";
+    private String Library_Key ="Lib";
+    Article DowArticle1,DowArticle2,DowArticle3,DowArticle4,DowArticle5;
+    CardView CardHomeArticle1,CardHomeArticle2,CardHomeArticle3,CardHomeArticle4,CardHomeArticle5;
+    TextView TextHomeArticle1,TextHomeArticle2,TextHomeArticle3,TextHomeArticle4,TextHomeArticle5;
+    ImageView ImageHomeArticle1,ImageHomeArticle2,ImageHomeArticle3,ImageHomeArticle4,ImageHomeArticle5;
 
     List<String> HomeTopArticleList;
     CardView ImageProfile,HowToGetProtCard;
@@ -162,6 +170,33 @@ public class HomeFragment extends Fragment {
 
         //Аунтефикация
         mAuth = FirebaseAuth.getInstance();
+        Fragment fragment = new AllArticle();
+
+
+        //инициализация карточек
+        CardHomeArticle1 = view.findViewById(R.id.CardHomeArticle1);
+        CardHomeArticle1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(DowArticle1!=null) {
+                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
+                    // передача объекта с ключом "MainText" и значением
+                    intent.putExtra("MainText", DowArticle1.MainText);
+                    intent.putExtra("Date", DowArticle1.Date);
+                    intent.putExtra("HeaderText", Html.fromHtml(DowArticle1.HeadText).toString().trim());
+                    // запуск ChooseArticle
+                    startActivity(intent);
+                }
+            }
+        });
+        CardHomeArticle2 = view.findViewById(R.id.CardHomeArticle2);
+        CardHomeArticle3 = view.findViewById(R.id.CardHomeArticle3);
+        CardHomeArticle4 = view.findViewById(R.id.CardHomeArticle4);
+        CardHomeArticle5 = view.findViewById(R.id.CardHomeArticle5);
+
+        //инициализация элементов внутри карточек 1
+        TextHomeArticle1 = view.findViewById(R.id.TextHomeArticle1);
+        ImageHomeArticle1 = view.findViewById(R.id.ImageHomeArticle1);
 
 
         //Переход ко всем статьям
@@ -169,7 +204,7 @@ public class HomeFragment extends Fragment {
         AllAcricleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new AllArticle();
+
                 FragmentTransaction ft = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.anim.slide_left, R.anim.slide_right,R.anim.slide_left, R.anim.slide_right);
                 ft.addToBackStack("AllArticle");
@@ -204,12 +239,6 @@ public class HomeFragment extends Fragment {
     //    ArticleState1 =  view.findViewById(R.id.ArticleState1);
     //    ArticleState2 =  view.findViewById(R.id.ArticleState2);
      //   ArticleState3 =  view.findViewById(R.id.ArticleState3);
-
-
-
-        //Под
-        HomeArticleListView = view.findViewById(R.id.HomeArticleListView);
-
 
 
         //Получение статей на загрузку в главном окне
@@ -278,7 +307,28 @@ public class HomeFragment extends Fragment {
        // FirebaseUser cUser = mAuth.getCurrentUser();
        // if(cUser!=null)
        // {
-
+        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
+        //Загрузка данных о 1 карточке
+        mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle1 =  task.getResult().getValue(Article.class);
+                        if(DowArticle1!= null){
+                            TextHomeArticle1.setText(Html.fromHtml(DowArticle1.HeadText).toString().trim());
+                            Glide.with(getActivity()).load(DowArticle1.PreviewPhotoUri).into(ImageHomeArticle1);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
        //    String phoneNumber = cUser.getPhoneNumber();
        //     Uri UriPhoto = cUser.getPhotoUrl();
 

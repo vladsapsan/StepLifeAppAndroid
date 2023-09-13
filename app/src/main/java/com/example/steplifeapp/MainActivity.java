@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity  {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
         // clear FLAG_TRANSLUCENT_STATUS flag:
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 

@@ -77,7 +77,7 @@ public class NotificationsFragment extends Fragment {
     private String PRIMARY_CHANNEL_ID = "primary_notification_channel";
     private String NewHeadTextArticle = "Новый протез за 10 тысяч?";
     ViewPager viewpager;
-    ImageButton SearchButton,NotificationButton;
+    ImageView SearchButton,NotificationButton;
 
     TextView SeeAllText,NameTopPost,SecNameTopPost;
     TextView EditDataTextTopPost1,EditDataTextTopPost2,EditDataTextTopPost3,EditDataTextTopPost4,EditDataTextTopPost5;

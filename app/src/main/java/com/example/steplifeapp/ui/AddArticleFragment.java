@@ -113,6 +113,7 @@ public class AddArticleFragment extends Fragment {
 
     private static final int SELECT_PICTURE = 1;
     private AddArticleViewModel mViewModel;
+    BottomSheetDialog bottomSheetWaitDialog;
     private WebView WebRedactor;
     private ScrollView addArticleScrollView;
     private HorizontalScrollView ImageAddArticleScrolView;
@@ -128,6 +129,7 @@ public class AddArticleFragment extends Fragment {
     private RadioButton HeaderButton,TextButton,CircleButton,NumericButton;
     private ImageView Downloadpreviewimage;
     private Uri uploadArticleMainTextUri = null;
+    DisplayMetrics displayMetrics;
     private Uri uploadArticlePhotoUri = null;
     StorageReference storageRef;
     ProgressBar progresscheck;
@@ -196,12 +198,13 @@ public class AddArticleFragment extends Fragment {
 
                     progresscheck.setVisibility(View.VISIBLE);
                     NextBtn.setVisibility(View.GONE);
+                    bottomSheetWaitDialog.show();
 
                     ImageView Image = new ImageView(getContext());
                     Image.setImageURI(selectedImageUri);
 
 
-                        DisplayMetrics displayMetrics = new DisplayMetrics();
+                       displayMetrics = new DisplayMetrics();
                         Main.append("\n");
                         Main.append("|");
                         SpannableString MainSpannabletext = new SpannableString(Main.getText());
@@ -230,7 +233,7 @@ public class AddArticleFragment extends Fragment {
 
                     Bitmap PhotoPreviewBitMap = ((BitmapDrawable)photo).getBitmap();
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    PhotoPreviewBitMap.compress(Bitmap.CompressFormat.JPEG, 40, baos);
+                    PhotoPreviewBitMap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
                     byte[] PhotoPreviewByteArray = baos.toByteArray();
                     StorageReference MainPhotoRef = storageRef.child(System.nanoTime()+"PreviewImage");
 
@@ -269,6 +272,8 @@ public class AddArticleFragment extends Fragment {
                                 //MainSpannabletext.setSpan(span, MainSpannabletext.length() - 2, MainSpannabletext.length() - 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                                 Main.setText(MainSpannabletext);
                                 Main.append("\n");
+
+                                bottomSheetWaitDialog.dismiss();
 
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -376,6 +381,17 @@ public class AddArticleFragment extends Fragment {
         progresscheck = view.findViewById(R.id.progressBaraddArticle);
         linearLayout = view.findViewById(R.id.PictureLayout);
 
+        //Диалог ожидания загрузки
+        bottomSheetWaitDialog = new BottomSheetDialog(getActivity(), R.style.BottomSheetDialog);
+        bottomSheetWaitDialog.setDismissWithAnimation(true);
+        View bottomSheetWaitView = LayoutInflater.from(getActivity().getApplicationContext())
+                .inflate(
+                        R.layout.sheetdownloadimagearticleprogress,
+                        (FrameLayout) view.findViewById(R.id.SheetDialogWaitArticleContainer)
+                );
+        bottomSheetWaitDialog.setContentView(bottomSheetWaitView);
+
+        //Диалог Загрузки обложки
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getActivity(), R.style.BottomSheetDialog);
         bottomSheetDialog.setDismissWithAnimation(true);
         View bottomSheetView = LayoutInflater.from(getActivity().getApplicationContext())
@@ -415,10 +431,10 @@ public class AddArticleFragment extends Fragment {
         TextButton = (RadioButton)  view.findViewById(R.id.UsualText);
 
         ImageAddArticleScrolView = view.findViewById(R.id.ImageAddArticleScrolView);
-        OverScrollDecoratorHelper.setUpOverScroll(ImageAddArticleScrolView);
+
 
         addArticleScrollView   = view.findViewById(R.id.addArticleScrollView);
-        OverScrollDecoratorHelper.setUpOverScroll( addArticleScrollView);
+
 
 
         Header = view.findViewById(R.id.TextEditHeader);

@@ -78,6 +78,7 @@ public class GlideImageGetter implements Html.ImageGetter {
 
         private void setDrawable(Drawable drawable) {
             this.drawable = drawable;
+
             int drawableWidth = (int) (drawable.getIntrinsicWidth() * density);
             int drawableHeight = (int) (drawable.getIntrinsicHeight() * density);
             int maxWidth = container.get().getMeasuredWidth();

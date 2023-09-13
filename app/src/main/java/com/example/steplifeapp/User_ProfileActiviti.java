@@ -72,6 +72,8 @@ public class User_ProfileActiviti extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
+
+        Intent EditArticlesActivitiintent = new Intent(User_ProfileActiviti.this,EditArticlesActiviti.class);
         //Инициализация фрагментов
         Addarticleragment = new AddArticleFragment();
         SettingsFragment = new SettingsFragment();
@@ -106,8 +108,7 @@ public class User_ProfileActiviti extends AppCompatActivity {
         RedactArticleFrameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(User_ProfileActiviti.this,EditArticlesActiviti.class);
-                startActivity(intent);
+                startActivity(EditArticlesActivitiintent);
             }
         });
 

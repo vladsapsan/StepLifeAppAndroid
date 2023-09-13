@@ -31,14 +31,16 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
+        Intent TopPostRedactintent = new Intent(getApplicationContext(), TopPostRedactActivity.class);
+        Intent HomeArticleRedactintent = new Intent(getApplicationContext(), HomeArticleRedactActivity.class);
+
 
         //переход к окну редактирования верхней предложки учебника
         TopPostRedactButton = findViewById(R.id.TopPostRedactButton);
         TopPostRedactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TopPostRedactActivity.class);
-                startActivity(intent);
+                startActivity(TopPostRedactintent);
             }
         });
 
@@ -46,8 +48,7 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
         HomeArticleRedactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeArticleRedactActivity.class);
-                startActivity(intent);
+                startActivity(HomeArticleRedactintent);
             }
         });
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:id="@+id/SheetDialogWaitArticleContainer"
+    android:background="@drawable/bottomsheetprofilesettingbackground"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="55dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/cornerdefault"
+                android:layout_height="5dp"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/montserratregular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Отдохните!"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
+
+            <ProgressBar
+                android:id="@+id/progressBarTopPost"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="0dp"
+                android:indeterminateBehavior="repeat"
+                android:indeterminateDuration="100"
+                android:indeterminateOnly="true"
+                android:indeterminateTint="@color/black"
+                android:mirrorForRtl="false" />
+            <TextView
+                android:id="@+id/textView11"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="@color/MainGrayText"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Мы загружаем выбранное изображение \n ожидайте" />
+        </LinearLayout>
+
+
+
+
+    </FrameLayout>
+
+</FrameLayout>
