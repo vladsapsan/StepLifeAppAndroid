@@ -799,12 +799,13 @@ public class AddArticleFragment extends Fragment {
         ExitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().popBackStackImmediate("AddArticle",POP_BACK_STACK_INCLUSIVE);
-
+                getActivity().getSupportFragmentManager().popBackStack();
             }
         });
 
 
+
         // указываем страницу загрузки
     }
+
 }

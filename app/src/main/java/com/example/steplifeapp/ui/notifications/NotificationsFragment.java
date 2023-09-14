@@ -39,6 +39,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.steplifeapp.AllArticle;
+import com.example.steplifeapp.AllArticleActivity;
 import com.example.steplifeapp.ChooseArticle;
 import com.example.steplifeapp.R;
 import com.example.steplifeapp.ViewPagerArticleAdapter;
@@ -79,7 +80,7 @@ public class NotificationsFragment extends Fragment {
     ViewPager viewpager;
     ImageView SearchButton,NotificationButton;
 
-    TextView SeeAllText,NameTopPost,SecNameTopPost;
+    TextView NameTopPost,SecNameTopPost;
     TextView EditDataTextTopPost1,EditDataTextTopPost2,EditDataTextTopPost3,EditDataTextTopPost4,EditDataTextTopPost5;
     TextView EditTextTopPost1,EditTextTopPost2,EditTextTopPost3,EditTextTopPost4,EditTextTopPost5;
 
@@ -88,7 +89,7 @@ public class NotificationsFragment extends Fragment {
 
     private DatabaseReference mDataBase,bDataBase;
 
-    CardView TopPostCard1,TopPostCard2,TopPostCard3,TopPostCard4,TopPostCard5;
+    CardView TopPostCard1,TopPostCard2,TopPostCard3,TopPostCard4,TopPostCard5,SeeAllText,SeeAllText2;
     ProgressBar progressBarTopPost;
     Article DowArticle,DowArticle1,DowArticle2,DowArticle3,DowArticle4;
     ImageView imagetoppost1,imagetoppost2,imagetoppost3,imagetoppost4,imagetoppost5;
@@ -321,6 +322,8 @@ public class NotificationsFragment extends Fragment {
         TopPostFrame.setVisibility(View.GONE);
         progressBarTopPost = view.findViewById(R.id.progressBarTopPost);
 
+        Intent intentAllArticle = new Intent(getActivity(), AllArticleActivity.class);
+
 
         //Уведомление
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), Notification.EXTRA_CHANNEL_ID)
@@ -436,15 +439,12 @@ public class NotificationsFragment extends Fragment {
         });
         SeeAllButton = view.findViewById(R.id.seeallArticleButton);
         SeeAllText = view.findViewById(R.id.seeallArticleText);
+        SeeAllText2 = view.findViewById(R.id.seeallArticleText2);
         SearchButton = view.findViewById(R.id.SearchButton);
         SearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new AllArticle();
-                FragmentTransaction ft = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.slide_left, R.anim.slide_right,R.anim.slide_left, R.anim.slide_right);
-                ft.addToBackStack("AllArticle");
-                ft.add(R.id.TeachArticleFrame,fragment,"AllArticle").commit();
+                startActivity(intentAllArticle);
             }
         });
 
@@ -452,24 +452,20 @@ public class NotificationsFragment extends Fragment {
         SeeAllText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new AllArticle();
-                FragmentTransaction ft = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.slide_left, R.anim.slide_right,R.anim.slide_left, R.anim.slide_right);
-                ft.addToBackStack("AllArticle");
-                ft.add(R.id.TeachArticleFrame,fragment,"AllArticle").commit();
-
+                startActivity(intentAllArticle);
+            }
+        });
+        SeeAllText2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intentAllArticle);
             }
         });
         //Переход ко всем статьям
         SeeAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new AllArticle();
-                FragmentTransaction ft = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.slide_left, R.anim.slide_right,R.anim.slide_left, R.anim.slide_right);
-                ft.addToBackStack("AllArticle");
-                ft.add(R.id.TeachArticleFrame,fragment,"AllArticle").commit();
-
+                startActivity(intentAllArticle);
             }
         });
     }

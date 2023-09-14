@@ -8,6 +8,11 @@
     tools:context=".Bt_module">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -62,19 +67,17 @@
                     app:lottie_loop="true"/>
                 <androidx.cardview.widget.CardView
                     android:id="@+id/CardDevice"
-                    android:minHeight="300dp"
+
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_width="match_parent"
                     app:cardCornerRadius="12dp"
-                    android:layout_height="match_parent">
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="visible"
-                        android:id="@+id/BtRecycle"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    android:layout_height="293dp">
 
-                    </androidx.recyclerview.widget.RecyclerView>
+                    <ListView
+                        android:id="@+id/ListViewBtMOdule"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"></ListView>
                 </androidx.cardview.widget.CardView>
 
 
@@ -111,5 +114,5 @@
 
         </FrameLayout>
     </LinearLayout>
-
+    </ScrollView>
 </FrameLayout>

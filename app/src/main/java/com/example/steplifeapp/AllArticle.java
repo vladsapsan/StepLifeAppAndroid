@@ -55,19 +55,14 @@ public class AllArticle extends Fragment {
 
     private AllArticleViewModel mViewModel;
     private ImageView backbutton;
-    private CardView articlecard;
+
     private ArticleListAdapter ArticleListAdapter;
     private ListView allArticlelist;
-    private ArrayAdapter<String> adapter;
 
     private List<String> listData;
     private ArrayList <Article> listTemp = new ArrayList<Article>();
     ProgressBar progressBar;
     Article DowArticle;
-    Uri DownloadphotoUri;
-    BottomSheetDialog bottomSheetDialog;
-
-    private Target mTarget;
     private String Article_Key ="AllArticle";
     private DatabaseReference mDataBase;
 
@@ -142,16 +137,11 @@ public class AllArticle extends Fragment {
 
                     }
                 }
-
                 ArticleListAdapter.notifyDataSetChanged();
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
-
         };
         mDataBase.addValueEventListener(valueEventListener);
     }

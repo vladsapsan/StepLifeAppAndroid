@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AllArticle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MainGray"
+    tools:context=".AllArticleActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="right"
+                app:boxBackgroundColor="@color/MainYellow"
+                android:baselineAligned="false"
+                android:outlineProvider="bounds"
+                app:boxCornerRadiusBottomStart="0dp"
+                app:boxCornerRadiusTopEnd="0dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxCornerRadiusBottomEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                android:layout_marginLeft="45dp"
+                android:layout_height="50dp"
+                app:errorEnabled="true">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:hint="Поиск"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:id="@+id/editTextSearchActivity"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/BacktoNotifActivity"
+                android:rotationY="180"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/font_angle_small_right" />
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ProgressBar
+                        android:id="@+id/progressBarAllArticleActivity"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:progressTint="@color/MainBlue"
+                        android:progressBackgroundTint="@color/MainBlue"
+                        android:layout_height="1.8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:fontFamily="@font/montserrat1black"
+                        android:text="Все статьи и уроки"
+                        android:textColor="@color/BlackSviut"
+                        android:textSize="20sp" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ListView
+
+                        android:footerDividersEnabled="false"
+                        android:divider="@null"
+                        android:paddingTop="5dp"
+                        android:animateLayoutChanges="false"
+                        android:id="@+id/AllArticleListviewActivity"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

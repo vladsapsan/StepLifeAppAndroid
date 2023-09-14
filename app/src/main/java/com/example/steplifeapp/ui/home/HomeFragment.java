@@ -39,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.steplifeapp.AllArticle;
+import com.example.steplifeapp.AllArticleActivity;
 import com.example.steplifeapp.Bt_module;
 import com.example.steplifeapp.ChooseArticle;
 import com.example.steplifeapp.DownloadProcessActiviti;
@@ -72,8 +73,6 @@ import java.util.Objects;
 
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-
-//+79151408060
 
 public class HomeFragment extends Fragment {
     FrameLayout FrameVideo;
@@ -171,7 +170,8 @@ public class HomeFragment extends Fragment {
         //Аунтефикация
         mAuth = FirebaseAuth.getInstance();
         Fragment fragment = new AllArticle();
-
+        Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
+        Intent intentAllArticle = new Intent(getActivity(), AllArticleActivity.class);
 
         //инициализация карточек
         CardHomeArticle1 = view.findViewById(R.id.CardHomeArticle1);
@@ -179,24 +179,89 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(DowArticle1!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
                     // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowArticle1.MainText);
-                    intent.putExtra("Date", DowArticle1.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowArticle1.HeadText).toString().trim());
+                    intentChooseArticle.putExtra("MainText", DowArticle1.MainText);
+                    intentChooseArticle.putExtra("Date", DowArticle1.Date);
+                    intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle1.HeadText).toString().trim());
                     // запуск ChooseArticle
-                    startActivity(intent);
+                    startActivity(intentChooseArticle);
                 }
             }
         });
         CardHomeArticle2 = view.findViewById(R.id.CardHomeArticle2);
+        CardHomeArticle2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(DowArticle2!=null) {
+                    // передача объекта с ключом "MainText" и значением
+                    intentChooseArticle.putExtra("MainText", DowArticle2.MainText);
+                    intentChooseArticle.putExtra("Date", DowArticle2.Date);
+                    intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle2.HeadText).toString().trim());
+                    // запуск ChooseArticle
+                    startActivity(intentChooseArticle);
+                }
+            }
+        });
         CardHomeArticle3 = view.findViewById(R.id.CardHomeArticle3);
+        CardHomeArticle3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(DowArticle3!=null) {
+                    // передача объекта с ключом "MainText" и значением
+                    intentChooseArticle.putExtra("MainText", DowArticle3.MainText);
+                    intentChooseArticle.putExtra("Date", DowArticle3.Date);
+                    intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle3.HeadText).toString().trim());
+                    // запуск ChooseArticle
+                    startActivity(intentChooseArticle);
+                }
+            }
+        });
         CardHomeArticle4 = view.findViewById(R.id.CardHomeArticle4);
+        CardHomeArticle4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(DowArticle4!=null) {
+                    // передача объекта с ключом "MainText" и значением
+                    intentChooseArticle.putExtra("MainText", DowArticle4.MainText);
+                    intentChooseArticle.putExtra("Date", DowArticle4.Date);
+                    intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle4.HeadText).toString().trim());
+                    // запуск ChooseArticle
+                    startActivity(intentChooseArticle);
+                }
+            }
+        });
         CardHomeArticle5 = view.findViewById(R.id.CardHomeArticle5);
+        CardHomeArticle5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(DowArticle5!=null) {
+                    // передача объекта с ключом "MainText" и значением
+                    intentChooseArticle.putExtra("MainText", DowArticle5.MainText);
+                    intentChooseArticle.putExtra("Date", DowArticle5.Date);
+                    intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle5.HeadText).toString().trim());
+                    // запуск ChooseArticle
+                    startActivity(intentChooseArticle);
+                }
+            }
+        });
 
         //инициализация элементов внутри карточек 1
         TextHomeArticle1 = view.findViewById(R.id.TextHomeArticle1);
         ImageHomeArticle1 = view.findViewById(R.id.ImageHomeArticle1);
+
+        //инициализация элементов внутри карточек 2
+        TextHomeArticle2 = view.findViewById(R.id.TextHomeArticle2);
+        ImageHomeArticle2 = view.findViewById(R.id.ImageHomeArticle2);
+
+        //инициализация элементов внутри карточек 3
+        TextHomeArticle3 = view.findViewById(R.id.TextHomeArticle3);
+        ImageHomeArticle3 = view.findViewById(R.id.ImageHomeArticle3);
+        //инициализация элементов внутри карточек 4
+        TextHomeArticle4 = view.findViewById(R.id.TextHomeArticle4);
+        ImageHomeArticle4 = view.findViewById(R.id.ImageHomeArticle4);
+        //инициализация элементов внутри карточек 5
+        TextHomeArticle5 = view.findViewById(R.id.TextHomeArticle5);
+        ImageHomeArticle5 = view.findViewById(R.id.ImageHomeArticle5);
 
 
         //Переход ко всем статьям
@@ -204,11 +269,7 @@ public class HomeFragment extends Fragment {
         AllAcricleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                FragmentTransaction ft = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.slide_left, R.anim.slide_right,R.anim.slide_left, R.anim.slide_right);
-                ft.addToBackStack("AllArticle");
-                ft.add(R.id.HomeFragment,fragment,"AllArticle").commit();
+                startActivity(intentAllArticle);
             }
         });
 
@@ -240,32 +301,6 @@ public class HomeFragment extends Fragment {
     //    ArticleState2 =  view.findViewById(R.id.ArticleState2);
      //   ArticleState3 =  view.findViewById(R.id.ArticleState3);
 
-
-        //Получение статей на загрузку в главном окне
-        FirebaseDatabase.getInstance().getReference().child(DBase_HomeTopArticleCode).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-
-                }
-                else {
-                    try {
-                        //Получение ID топ статей главного экрана
-                        HomeTopArticleList = (List<String>) task.getResult().getValue();
-
-
-                        //Цикл с каждым ID на загрузку контента
-                        for (String phone : HomeTopArticleList) {
-
-                        }
-                    }
-                    catch (Exception e){
-
-                    }
-
-                }
-            }
-        });
 
 
 
@@ -322,6 +357,90 @@ public class HomeFragment extends Fragment {
                         if(DowArticle1!= null){
                             TextHomeArticle1.setText(Html.fromHtml(DowArticle1.HeadText).toString().trim());
                             Glide.with(getActivity()).load(DowArticle1.PreviewPhotoUri).into(ImageHomeArticle1);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+
+        mDataBase.child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle2 =  task.getResult().getValue(Article.class);
+                        if(DowArticle2!= null){
+                            TextHomeArticle2.setText(Html.fromHtml(DowArticle2.HeadText).toString().trim());
+                            Glide.with(getActivity()).load(DowArticle2.PreviewPhotoUri).into(ImageHomeArticle2);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+
+        mDataBase.child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle3 =  task.getResult().getValue(Article.class);
+                        if(DowArticle3!= null){
+                            TextHomeArticle3.setText(Html.fromHtml(DowArticle3.HeadText).toString().trim());
+                            Glide.with(getActivity()).load(DowArticle3.PreviewPhotoUri).into(ImageHomeArticle3);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+
+        mDataBase.child("4").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle4 =  task.getResult().getValue(Article.class);
+                        if(DowArticle4!= null){
+                            TextHomeArticle4.setText(Html.fromHtml(DowArticle4.HeadText).toString().trim());
+                            Glide.with(getActivity()).load(DowArticle4.PreviewPhotoUri).into(ImageHomeArticle4);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+
+        mDataBase.child("5").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle5 =  task.getResult().getValue(Article.class);
+                        if(DowArticle5!= null){
+                            TextHomeArticle5.setText(Html.fromHtml(DowArticle5.HeadText).toString().trim());
+                            Glide.with(getActivity()).load(DowArticle5.PreviewPhotoUri).into(ImageHomeArticle5);
                         }
                     }
                     catch (Exception e){
