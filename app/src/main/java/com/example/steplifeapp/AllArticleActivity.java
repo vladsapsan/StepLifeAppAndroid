@@ -15,7 +15,9 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -47,6 +49,7 @@ public class AllArticleActivity extends AppCompatActivity {
     private ListView allArticlelist;
 
     private List<String> listData;
+    ValueEventListener valueEventListener;
     private ArrayList <Article> listTemp = new ArrayList<Article>();
     ProgressBar progressBar;
     Article DowArticle;
@@ -61,13 +64,12 @@ public class AllArticleActivity extends AppCompatActivity {
         mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
         ArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listTemp);
         allArticlelist.setAdapter(ArticleListAdapter);
-        allArticlelist.setDrawingCacheEnabled(true);
     }
 
     //Загрузка уроков из базы
     private void DownloadArticleFirebaseData()
     {
-        ValueEventListener valueEventListener = new ValueEventListener() {
+         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -124,15 +126,23 @@ public class AllArticleActivity extends AppCompatActivity {
 
         //Поиск
         EditText SearchText = findViewById(R.id.editTextSearchActivity);
+        SearchText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                mDataBase.removeEventListener(valueEventListener);
+                return false;
+            }
+        });
         SearchText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                Log.d("TextAdapter", "Удален");
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                ArticleListAdapter.getFilter().filter(s);
+                ArticleListAdapter.getFilter().filter(s.toString());
+                Log.d("TextAdapter", String.valueOf(ArticleListAdapter.getCount()));
             }
 
             @Override

@@ -102,7 +102,6 @@ public class AllArticle extends Fragment {
         mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
         ArticleListAdapter = new ArticleListAdapter(getActivity(),R.layout.listviewarticleitem, listTemp);
         allArticlelist.setAdapter(ArticleListAdapter);
-        allArticlelist.setDrawingCacheEnabled(true);
     }
 
 
@@ -189,7 +188,8 @@ public class AllArticle extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                  ArticleListAdapter.getFilter().filter(s);
+                  ArticleListAdapter.getFilter().filter(s.toString());
+                 ArticleListAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -204,16 +204,6 @@ public class AllArticle extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             //    Bundle Bundle = new Bundle();
-                DowArticle = listTemp.get(position);
-
-                // создание объекта Intent для запуска ChooseArticle
-                Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                intent.putExtra("MainText",DowArticle.MainText);
-                intent.putExtra("Date",DowArticle.Date);
-                intent.putExtra("HeaderText",Html.fromHtml(DowArticle.HeadText).toString().trim());
-                    // запуск ChooseArticle
-                startActivity(intent);
 
              //   progressBarsheet.setVisibility(View.VISIBLE);
              //   MainText.setText(Html.fromHtml(DowArticle.MainText,new ImageGetter(),null));

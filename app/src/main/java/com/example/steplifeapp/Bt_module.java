@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -35,7 +36,10 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Bt_module extends AppCompatActivity {
 
@@ -44,25 +48,37 @@ public class Bt_module extends AppCompatActivity {
     Button buttonConnectBt;
     int REQUEST_ENABLE_BT = 1;
     private int BTCheck = 0;
+    boolean PermissionCheck;
 
     BluetoothAdapter mBluetoothAdapter;
     ArrayAdapter<String> adapter;
 
     BluetoothManager bluetoothManager;
-    int REQUEST_CODE_PERMISSION_COARSE_LOCATION;
+    int REQUEST_CODE_PERMISSION_BLUETOOTH_CONNECT;
+    int REQUEST_CODE_PERMISSION_BLUETOOTH_SCAN;
+    int REQUEST_CODE_PERMISSION_FINE_LOCATION;
     BluetoothAdapter bluetoothAdapter;
     ListView ListViewBtMOdule;
 
-    ArrayList <String> mItems = new ArrayList<>();
+    List<BluetoothDevice> ListSetDevice =  new ArrayList<>();
+    ArrayList <String> mEditItems = new ArrayList<>();
+    Set<String> mItemsSet = new HashSet<String>();
+    ArrayList <String> mItems = new ArrayList<>(mItemsSet);
+
+
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @SuppressLint("MissingPermission")
         @Override
         public void onReceive(Context context, Intent intent) {
             //Получение устройств найденных поблизости
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                try {
-                   mItems.add(device.getAddress());
-                   adapter.notifyDataSetChanged();
+                   if(device.getName()!=null && !mEditItems.equals(device.getName())) {
+                       mItems.add(device.getName());
+                       adapter.notifyDataSetChanged();
+                       ListSetDevice.add(device);
+                   }
                }
                catch (Exception e){
                    Log.d("Device", String.valueOf(e));
@@ -133,14 +149,19 @@ public class Bt_module extends AppCompatActivity {
         }
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-
-
-        try {
-            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mItems);
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,mItems);
             ListViewBtMOdule = findViewById(R.id.ListViewBtMOdule);
             ListViewBtMOdule.setAdapter(adapter);
-        }catch (Exception e){}
+        //Нажатие на устройство из списка
 
+
+        ListViewBtMOdule.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @SuppressLint("MissingPermission")
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ListSetDevice.get(i).createBond();
+            }
+        });
 
 
         //Кнопка включения bluetooth
@@ -151,6 +172,7 @@ public class Bt_module extends AppCompatActivity {
                 if (!mBluetoothAdapter.isEnabled()) {
                     Intent enableBtIntent = new Intent(bluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+
                 }
             }
         });
@@ -158,16 +180,10 @@ public class Bt_module extends AppCompatActivity {
 
 
 
-        int permissionStatus2 = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN);
-        if (permissionStatus2 == PackageManager.PERMISSION_GRANTED) {
-            //Доступ есть к устройства поблизости
-        } else {
-            //Запрос доступа
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.BLUETOOTH_SCAN}, REQUEST_CODE_PERMISSION_COARSE_LOCATION );
-        }
 
 
 
+        PermissionCheck(PermissionCheck);
         BtCheck(BTCheck);
         CheckoutBt();
 
@@ -200,6 +216,35 @@ public class Bt_module extends AppCompatActivity {
         }
     }
 
+    private boolean PermissionCheck(boolean Check){
+
+        boolean BLUETOOTH_CONNECT= false,BLUETOOTH_SCAN= false,ACCESS_FINE_LOCATION = false;
+        int permissionStatus1 = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT);
+        int permissionStatus2 = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN);
+        int permissionStatus3 = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionStatus1 == PackageManager.PERMISSION_GRANTED) {
+            //Доступ есть к устройства поблизости
+            BLUETOOTH_CONNECT = true;
+            if (permissionStatus2 == PackageManager.PERMISSION_GRANTED){
+                if(permissionStatus3 == PackageManager.PERMISSION_GRANTED){
+
+                }else {
+                    ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.BLUETOOTH_CONNECT,Manifest.permission.BLUETOOTH_SCAN,Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_PERMISSION_BLUETOOTH_CONNECT );
+                }
+            }
+            else {
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.BLUETOOTH_CONNECT,Manifest.permission.BLUETOOTH_SCAN,Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_PERMISSION_BLUETOOTH_CONNECT );
+            }
+        }else {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.BLUETOOTH_CONNECT,Manifest.permission.BLUETOOTH_SCAN,Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_PERMISSION_BLUETOOTH_CONNECT );
+        }
+
+
+        if(ACCESS_FINE_LOCATION == true&&BLUETOOTH_SCAN==true&&BLUETOOTH_CONNECT==true){
+            Check = true;
+        }
+        return Check;
+    }
 
     @Override
     public void finish() {
@@ -232,7 +277,7 @@ public class Bt_module extends AppCompatActivity {
             CheckOutText.setText("Bluetooth выключен");
             buttonConnectBt.setVisibility(View.VISIBLE);
         } else {
-            CheckOutText.setText("Поиск модуля...");
+            CheckOutText.setText("Выберите модуль из списка...");
 
             try {
                 bluetoothAdapter.startDiscovery();

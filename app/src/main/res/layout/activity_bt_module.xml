@@ -6,18 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/MainGray"
     tools:context=".Bt_module">
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <TextView
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -30,19 +25,15 @@
             android:text="Давайте начнем"
             android:textColor="@color/black"
             android:textSize="19sp" />
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <TextView
                     android:id="@+id/CheckOutText"
-
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_width="wrap_content"
@@ -52,10 +43,9 @@
                     android:layout_marginTop="30dp"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/montserratsemibold"
-                    android:text="Выберите модуль..."
+                    android:text="Выберите модуль из списка..."
                     android:textColor="@color/MainBlue"
                     android:textSize="14sp" />
-
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/animationView"
                     android:layout_gravity="center_horizontal"

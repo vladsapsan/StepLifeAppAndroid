@@ -1,8 +1,14 @@
 package com.example.steplifeapp.ui;
 
+import static android.app.PendingIntent.getActivity;
+
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +25,7 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.steplifeapp.ChooseArticle;
 import com.example.steplifeapp.R;
 import com.example.steplifeapp.ui.Article;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,22 +36,30 @@ import com.squareup.picasso.Picasso;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArticleListAdapter extends ArrayAdapter <Article> {
     private Context mContext;
     private int mResource;
+    private ArrayList<Article> mDisplayedValues;
+    private List<Article> mOriginalValues;
 
 
     public ArticleListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Article> objects) {
         super(context, resource, objects);
         this.mContext = context;
         this.mResource = resource;
+        mDisplayedValues = objects;
+        mOriginalValues = objects;
     }
 
     @SuppressLint("SuspiciousIndentation")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+        Article article = getItem(position);
+
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         convertView = layoutInflater.inflate(mResource, parent,false);
         TextView HeadText = convertView.findViewById(R.id.ArticleHeadTextItems);
@@ -52,11 +67,11 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
         ImageView PreviewImage = convertView.findViewById(R.id.PreviewPhoto);
         ProgressBar progressBar = convertView.findViewById(R.id.progressBarDownloadpreviewPhotoArticle);
 
-
         //Загрузка картинок с помощью библиотеки пикассо
-        if(getItem(position).PreviewPhotoUri!=null) {
+        if(article.PreviewPhotoUri!=null) {
             if(PreviewImage.getDrawable()==null) {
-                Picasso.get().load(getItem(position).PreviewPhotoUri).into(PreviewImage);
+              //  Glide.with(mContext).load(article.PreviewPhotoUri).into(PreviewImage);
+                Picasso.get().load(article.PreviewPhotoUri).into(PreviewImage);
             }
         }
 
@@ -74,13 +89,48 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
      //   }
 
 
-        HeadText.setText(Html.fromHtml(getItem(position).HeadText).toString().trim());
+        HeadText.setText(Html.fromHtml(article.HeadText).toString().trim());
+        Date.setText(article.Date);
 
-        //HeadText.setText(Html.fromHtml(getItem(position).HeadText));
-        Date.setText(getItem(position).Date);
         return convertView;
     }
 
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults filterResults = new FilterResults();
+                if(constraint == null || constraint.length() == 0){
+                    filterResults.count = mOriginalValues.size();
+                    filterResults.values = mOriginalValues;
+
+                }else{
+                    List<Article> resultsModel = new ArrayList<>();
+                    String searchStr = constraint.toString().toLowerCase();
+
+                    for(Article article:mOriginalValues){
+                        String HeadText = Html.fromHtml(article.HeadText).toString();
+                        String Date = Html.fromHtml(article.Date).toString();
+                        if(HeadText.contains(searchStr) || Date.contains(searchStr)){
+                            resultsModel.add(article);
+                        }
+                        filterResults.count = resultsModel.size();
+                        filterResults.values = resultsModel;
+                    }
+                }
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mDisplayedValues = (ArrayList<Article>) results.values;
+                notifyDataSetChanged();
+                Log.d("Text", String.valueOf(results.count));
+            }
+        };
+        return filter;
+    }
 
 
 
