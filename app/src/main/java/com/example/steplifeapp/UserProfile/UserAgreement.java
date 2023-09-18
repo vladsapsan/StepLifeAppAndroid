@@ -1,12 +1,14 @@
-package com.example.steplifeapp;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.steplifeapp.UserProfile;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.steplifeapp.R;
 
 public class UserAgreement extends AppCompatActivity {
 

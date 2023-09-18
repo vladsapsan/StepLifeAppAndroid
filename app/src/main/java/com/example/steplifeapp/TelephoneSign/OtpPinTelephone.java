@@ -1,8 +1,10 @@
-package com.example.steplifeapp;
+package com.example.steplifeapp.TelephoneSign;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.steplifeapp.R;
 
 public class OtpPinTelephone extends AppCompatActivity {
 

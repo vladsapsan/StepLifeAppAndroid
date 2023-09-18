@@ -1,10 +1,12 @@
-package com.example.steplifeapp;
+package com.example.steplifeapp.StafFunction;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +22,9 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.steplifeapp.AllArticleViewModel;
+import com.example.steplifeapp.R;
+import com.example.steplifeapp.other.NetworkChangeListner;
 import com.example.steplifeapp.ui.Article;
 import com.example.steplifeapp.ui.ArticleListAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -51,6 +56,7 @@ public class EditArticlesActiviti extends AppCompatActivity {
 
 
     private List<String> listData;
+    NetworkChangeListner networkChangeListner;
     private ArrayList <Article> listTemp = new ArrayList<Article>();
     ProgressBar progressBar;
     Article DowArticle;
@@ -200,4 +206,15 @@ public class EditArticlesActiviti extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+    }
 }

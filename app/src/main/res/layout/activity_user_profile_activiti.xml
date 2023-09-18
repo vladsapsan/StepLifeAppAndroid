@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/MainGray"
     android:id="@+id/UserProfileActivitiFrame"
-    tools:context=".User_ProfileActiviti">
+    tools:context=".UserProfile.User_ProfileActiviti">
 
     <ScrollView
 

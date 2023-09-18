@@ -1,31 +1,27 @@
 package com.example.steplifeapp;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.steplifeapp.databinding.ActivityMainBinding;
+import com.example.steplifeapp.other.NetworkChangeListner;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity  {
 
 
     private ActivityMainBinding binding;
     boolean CheckApp;
+    NetworkChangeListner networkChangeListner = new NetworkChangeListner();
 
 
     @Override
@@ -75,8 +71,16 @@ public class MainActivity extends AppCompatActivity  {
       //  }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListner,intentFilter);
+    }
 
-
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(networkChangeListner);
+    }
 }

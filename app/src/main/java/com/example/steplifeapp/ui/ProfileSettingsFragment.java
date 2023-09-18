@@ -2,7 +2,6 @@ package com.example.steplifeapp.ui;
 
 import static android.app.Activity.RESULT_OK;
 import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
-import static androidx.fragment.app.FragmentManager.findFragment;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,8 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.text.style.ImageSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,9 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.steplifeapp.MainActivity;
-import com.example.steplifeapp.OtpTelephoneCheckActiviti;
 import com.example.steplifeapp.R;
-import com.example.steplifeapp.User_ProfileActiviti;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

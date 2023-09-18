@@ -6,7 +6,7 @@
     android:id="@+id/RegistrationFrameOTP"
     android:layout_height="match_parent"
     android:background="@color/MainGray"
-    tools:context=".OtpTelephoneCheckActiviti">
+    tools:context=".TelephoneSign.OtpTelephoneCheckActiviti">
     <ImageView
         android:rotationY="180"
         android:id="@+id/BacktoProfileAuthorization"

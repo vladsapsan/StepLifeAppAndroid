@@ -1,9 +1,4 @@
-package com.example.steplifeapp;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+package com.example.steplifeapp.UserProfile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+
+import com.example.steplifeapp.R;
 import com.example.steplifeapp.ui.ProfileSettingsFragment;
 import com.example.steplifeapp.ui.SettingsViewModel;
 import com.google.firebase.auth.FirebaseAuth;

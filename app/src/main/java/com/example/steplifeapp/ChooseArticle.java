@@ -2,12 +2,7 @@ package com.example.steplifeapp;
 
 import static com.example.steplifeapp.AllArticle.getDeviceWidth;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -20,20 +15,15 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.firebase.auth.FirebaseUser;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.example.steplifeapp.other.NetworkChangeListner;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class ChooseArticle extends AppCompatActivity {
     ImageView CloseArticleButton;
@@ -46,6 +36,7 @@ public class ChooseArticle extends AppCompatActivity {
 
     Drawable drawable;
     SwipeRefreshLayout SwipeRefreshArticle;
+    NetworkChangeListner networkChangeListner;
 
     private Target mTarget;
 
@@ -233,6 +224,13 @@ public class ChooseArticle extends AppCompatActivity {
         MainTextDownloadArticle.setText(Html.fromHtml((String) arguments.get("MainText"),new GlideImageGetter(MainTextDownloadArticle),null));
 
 
+
+    }
+
+
+    @Override
+    public void finish() {
+        super.finish();
 
     }
 }

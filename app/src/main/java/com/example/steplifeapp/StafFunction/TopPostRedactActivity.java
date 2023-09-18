@@ -1,14 +1,10 @@
-package com.example.steplifeapp;
+package com.example.steplifeapp.StafFunction;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -21,14 +17,18 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
+import com.example.steplifeapp.AllArticleViewModel;
+import com.example.steplifeapp.R;
+import com.example.steplifeapp.other.NetworkChangeListner;
 import com.example.steplifeapp.ui.Article;
 import com.example.steplifeapp.ui.ArticleListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,11 +37,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import java.text.DateFormat;
@@ -53,6 +49,7 @@ import java.util.List;
 public class TopPostRedactActivity extends AppCompatActivity {
 
     Button SaveTopPostRedactButton;
+    NetworkChangeListner networkChangeListner;
     ImageView imagebackEditTopPost;
 
     private String TopPost_Key ="TopPostArticle";
@@ -90,7 +87,7 @@ public class TopPostRedactActivity extends AppCompatActivity {
     {
         listData = new ArrayList<>();
         mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
-        ArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listTemp);
+        ArticleListAdapter = new ArticleListAdapter(getApplicationContext(), R.layout.listviewarticleitem, listTemp);
         allArticlelist.setAdapter(ArticleListAdapter);
     }
 
@@ -122,6 +119,9 @@ public class TopPostRedactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_post_redact);
+
+
+
 
         //Дефолт стиль
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -416,6 +416,9 @@ public class TopPostRedactActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+
+
+
         mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
         //Получение данных из базы
         mDataBase.child("Name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -591,6 +594,14 @@ public class TopPostRedactActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
 
     }
 }

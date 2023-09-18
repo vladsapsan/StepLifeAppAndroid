@@ -1,12 +1,5 @@
-package com.example.steplifeapp;
+package com.example.steplifeapp.UserProfile;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +10,17 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
+import com.example.steplifeapp.R;
+import com.example.steplifeapp.StafFunction.ArticleOnTopSettingsActivity;
+import com.example.steplifeapp.StafFunction.EditArticlesActiviti;
+import com.example.steplifeapp.other.NetworkChangeListner;
 import com.example.steplifeapp.ui.AddArticleFragment;
 import com.example.steplifeapp.ui.SettingsFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,11 +30,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class User_ProfileActiviti extends AppCompatActivity {
 
@@ -44,6 +42,7 @@ public class User_ProfileActiviti extends AppCompatActivity {
     Fragment Addarticleragment ;
     private DatabaseReference mDataBase;
     ImageView ImageProfile;
+    NetworkChangeListner networkChangeListner;
     int USER_ROLE = 0;
     Fragment SettingsFragment;
     FrameLayout AddArticleFrameButton,RedactArticleFrameButton,SettingsFrameButton,ArticleChooseFrameButton;
@@ -73,7 +72,7 @@ public class User_ProfileActiviti extends AppCompatActivity {
 
 
 
-        Intent EditArticlesActivitiintent = new Intent(User_ProfileActiviti.this,EditArticlesActiviti.class);
+        Intent EditArticlesActivitiintent = new Intent(User_ProfileActiviti.this, EditArticlesActiviti.class);
         //Инициализация фрагментов
         Addarticleragment = new AddArticleFragment();
         SettingsFragment = new SettingsFragment();
@@ -98,7 +97,7 @@ public class User_ProfileActiviti extends AppCompatActivity {
         SettingsFrameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentSetting = new Intent(User_ProfileActiviti.this,MainSettingsActivity.class);
+                Intent intentSetting = new Intent(User_ProfileActiviti.this, MainSettingsActivity.class);
                 startActivity(intentSetting);
             }
         });
@@ -133,7 +132,7 @@ public class User_ProfileActiviti extends AppCompatActivity {
         ArticleChooseFrameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(User_ProfileActiviti.this,ArticleOnTopSettingsActivity.class);
+                Intent intent = new Intent(User_ProfileActiviti.this, ArticleOnTopSettingsActivity.class);
                 startActivity(intent);
             }
         });
@@ -156,6 +155,10 @@ public class User_ProfileActiviti extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+
+
+
+
         FirebaseUser cUser = mAuth.getCurrentUser();
         //Данные аутентификации
         if(cUser!=null)
@@ -212,6 +215,14 @@ public class User_ProfileActiviti extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
 
     }
 }

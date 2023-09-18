@@ -1,17 +1,12 @@
 package com.example.steplifeapp.ui.home;
 
 import android.content.Intent;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -20,43 +15,24 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.steplifeapp.AllArticle;
 import com.example.steplifeapp.AllArticleActivity;
-import com.example.steplifeapp.Bt_module;
+import com.example.steplifeapp.Bluetooth.Bt_module;
 import com.example.steplifeapp.ChooseArticle;
-import com.example.steplifeapp.DownloadProcessActiviti;
-import com.example.steplifeapp.MainActivity;
 import com.example.steplifeapp.R;
-import com.example.steplifeapp.TelephoneSignUp;
-import com.example.steplifeapp.UserAgreement;
-import com.example.steplifeapp.User_ProfileActiviti;
-import com.example.steplifeapp.databinding.FragmentHomeBinding;
+import com.example.steplifeapp.TelephoneSign.TelephoneSignUp;
+import com.example.steplifeapp.UserProfile.User_ProfileActiviti;
 import com.example.steplifeapp.ui.Article;
 import com.example.steplifeapp.ui.ArticleListAdapter;
-import com.example.steplifeapp.ui.userProfileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -64,14 +40,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 
 public class HomeFragment extends Fragment {

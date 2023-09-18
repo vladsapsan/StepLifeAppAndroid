@@ -1,20 +1,19 @@
-package com.example.steplifeapp;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
+package com.example.steplifeapp.TelephoneSign;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.chaos.view.PinView;
 import com.example.steplifeapp.R;
-import com.example.steplifeapp.ui.Article;
+import com.example.steplifeapp.UserProfile.User_ProfileActiviti;
+import com.example.steplifeapp.other.NetworkChangeListner;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -23,10 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.rpc.Code;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,6 +32,7 @@ public class OtpTelephoneCheckActiviti extends AppCompatActivity {
     String VerificationID;
     String Phone;
     private DatabaseReference mDataBase;
+    NetworkChangeListner networkChangeListner;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private FirebaseAuth mAuth;
     @Override
@@ -149,5 +146,16 @@ public class OtpTelephoneCheckActiviti extends AppCompatActivity {
                 });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+    }
 
 }

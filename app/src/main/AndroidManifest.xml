@@ -35,35 +35,35 @@
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".HomeArticleRedactActivity"
+            android:name=".StafFunction.HomeArticleRedactActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TopPostRedactActivity"
+            android:name=".StafFunction.TopPostRedactActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ArticleOnTopSettingsActivity"
+            android:name=".StafFunction.ArticleOnTopSettingsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProfileRedactActivity"
+            android:name=".UserProfile.ProfileRedactActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".InformationAboutAppActivity"
+            android:name=".UserProfile.InformationAboutAppActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainSettingsActivity"
+            android:name=".UserProfile.MainSettingsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Bt_module"
+            android:name=".Bluetooth.Bt_module"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".UserAgreement"
+            android:name=".UserProfile.UserAgreement"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -77,7 +77,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EditArticlesActiviti"
+            android:name=".StafFunction.EditArticlesActiviti"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -89,19 +89,19 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".User_ProfileActiviti"
+            android:name=".UserProfile.User_ProfileActiviti"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OtpPinTelephone"
+            android:name=".TelephoneSign.OtpPinTelephone"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TelephoneSignUp"
+            android:name=".TelephoneSign.TelephoneSignUp"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OtpTelephoneCheckActiviti"
+            android:name=".TelephoneSign.OtpTelephoneCheckActiviti"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

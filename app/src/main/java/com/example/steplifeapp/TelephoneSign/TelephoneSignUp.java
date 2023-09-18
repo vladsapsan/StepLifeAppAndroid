@@ -1,6 +1,4 @@
-package com.example.steplifeapp;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.steplifeapp.TelephoneSign;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.steplifeapp.R;
+import com.example.steplifeapp.UserProfile.UserAgreement;
+import com.example.steplifeapp.other.NetworkChangeListner;
 import com.example.steplifeapp.ui.RegistrationViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +33,7 @@ public class TelephoneSignUp extends AppCompatActivity {
     private String User_Key = "Users";
     final String OTPPIN_KEY = "OTPPIN";
     TextView UserAgreementButton;
+    NetworkChangeListner networkChangeListner;
     Button RegistrationBtn;
     ImageView BackBtn;
     EditText Phone;
@@ -146,6 +150,18 @@ public class TelephoneSignUp extends AppCompatActivity {
 
 
         });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
 
     }
 }

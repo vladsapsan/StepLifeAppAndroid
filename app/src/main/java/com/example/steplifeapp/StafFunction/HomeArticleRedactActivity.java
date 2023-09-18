@@ -1,9 +1,11 @@
-package com.example.steplifeapp;
+package com.example.steplifeapp.StafFunction;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
@@ -22,6 +24,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.steplifeapp.AllArticleViewModel;
+import com.example.steplifeapp.R;
+import com.example.steplifeapp.other.NetworkChangeListner;
 import com.example.steplifeapp.ui.Article;
 import com.example.steplifeapp.ui.ArticleListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -65,6 +70,7 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
     int ChooseCard;
     private ArrayList<Article> listTemp = new ArrayList<Article>();
     Article DowArticle;
+    NetworkChangeListner networkChangeListner;
     TextView TextHomeArticle1,TextHomeArticle2,TextHomeArticle3,TextHomeArticle4,TextHomeArticle5;
     ImageView ImageHomeArticle1,ImageHomeArticle2,ImageHomeArticle3,ImageHomeArticle4,ImageHomeArticle5;
     ImageView ImageAddTop1,ImageAddTop2,ImageAddTop3,ImageAddTop4,ImageAddTop5;
@@ -80,7 +86,7 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
     {
         listData = new ArrayList<>();
         mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
-        ArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listTemp);
+        ArticleListAdapter = new ArticleListAdapter(getApplicationContext(), R.layout.listviewarticleitem, listTemp);
         allArticlelist.setAdapter(ArticleListAdapter);
     }
     //Загрузка уроков из базы
@@ -382,6 +388,9 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+
+
+
         mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
         //Получение данных из базы
         mDataBase.child("LastEdit").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -519,6 +528,14 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
 
     }
 }

@@ -1,6 +1,4 @@
-package com.example.steplifeapp;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.steplifeapp.StafFunction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +7,16 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.steplifeapp.R;
+import com.example.steplifeapp.other.NetworkChangeListner;
+
 public class ArticleOnTopSettingsActivity extends AppCompatActivity {
 
 
     ImageView imagebackEditArticles;
+    NetworkChangeListner networkChangeListner;
     Button TopPostRedactButton,HomeArticleRedactButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,5 +63,16 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
     }
 }
