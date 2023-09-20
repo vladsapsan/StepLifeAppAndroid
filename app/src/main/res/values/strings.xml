@@ -9,7 +9,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="VersionApp">0.4.0</string>
+    <string name="VersionApp">0.4.2</string>
     <string name="Developer">Разработка ‹ООО Группа Компаний ‹Салют Орто›</string>
     <string name="title_location_permission">Устройства поблизости</string>
     <string name="text_location_permission">Предоставьте доступ для подключения коленного модуля Steplife</string>

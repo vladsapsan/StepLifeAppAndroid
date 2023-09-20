@@ -1,8 +1,6 @@
 package com.example.steplifeapp;
 
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -172,16 +170,5 @@ public class AllArticleActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(networkChangeListner,intentFilter);
-    }
 
-    @Override
-    public void finish() {
-        super.finish();
-        unregisterReceiver(networkChangeListner);
-    }
 }

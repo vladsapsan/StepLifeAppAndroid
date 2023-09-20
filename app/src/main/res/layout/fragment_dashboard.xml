@@ -8,6 +8,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -15,69 +18,203 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp"
+            android:layout_marginTop="0dp">
 
-            <TextView
-                android:visibility="gone"
+            <ImageView
+                android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/montserratsemibold"
-                android:text="Модуль"
-                android:textColor="@color/BlackSviut"
-                android:textSize="17sp" />
+                android:layout_height="wrap_content"
+                android:src="@drawable/logosteplifebase" />
 
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="left|center_vertical"
+                android:id="@+id/SettingModuleButton"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="@color/MainGray"
+                app:cardCornerRadius="100dp">
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/MainGray"
+
+                    android:padding="10dp"
+
+                    android:src="@drawable/free_icon_gear_1160356" />
+            </androidx.cardview.widget.CardView>
         </FrameLayout>
+
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/ProgressBarBatteryCharge"
+                app:indicatorSize="300dp"
+                android:progress="0"
+                android:layout_gravity="center"
+                app:trackCornerRadius="15dp"
+                app:trackThickness="22dp"
+                android:rotation="360"
+                app:trackColor="@color/white"
+                app:indicatorColor="@color/MainBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="top">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:cardCornerRadius="15dp"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center">
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/normalidadcompactbold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/MainBlue"
+                            android:textSize="17dp"/>
+
+                        <ImageView
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/footstep"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/TextViewBatteryCharge"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/normalidadcompactbold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0%"
+                    android:textColor="@color/BlackSviut"
+                    android:textSize="50dp"/>
+                <TextView
+                    android:textSize="15dp"
+                    android:fontFamily="@font/normalidadcompactbold"
+                    android:textColor="@color/MainGrayText"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Заряд аккумулятора" />
+            </LinearLayout>
+        </FrameLayout>
 
 
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="12dp">
             <TextView
-                android:id="@+id/DeviceText"
+                android:textStyle="bold"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_gravity="left|center_vertical"
+                android:fontFamily="@font/montserratregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginBottom="80dp"
-                android:layout_gravity="center"
-                android:fontFamily="@font/montserratsemibold"
-                android:text="Начните подключение модуля уже сейчас!"
-                android:textColor="@color/BlackSviut"
-                android:textSize="15sp" />
+                android:text="Режим"
+                android:textColor="@color/MainGrayText"
+                android:textSize="14dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="100dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@drawable/free_icon_gear_1160356" />
+            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="12dp">
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="left|center_vertical"
+                android:fontFamily="@font/montserratregular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Темп ходьбы"
+                android:textColor="@color/MainGrayText"
+                android:textSize="14dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="@color/MainGray"
+                app:cardCornerRadius="100dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/MainGray"
+                    android:padding="10dp"
+                    android:src="@drawable/free_icon_gear_1160356" />
+            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="10dp"
+            android:textColor="@color/MainBlue"
+            android:backgroundTint="@color/secondBlue"
+            android:layout_gravity="bottom"
+            android:fontFamily="@font/montserratsemibold"
+            android:text="Калибровать коленный модуль"/>
 
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animationView"
-                android:layout_gravity="center"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:lottie_rawRes="@raw/wavedownloadanimation"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"/>
-
-
-            <Button
-                android:id="@+id/buttonConnect"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="100dp"
-                android:textSize="13dp"
-                android:fontFamily="@font/montserratsemibold"
-                android:background="@drawable/buttonstyle2"
-                android:text="Подключить коленный модуль"
-                android:textColor="@color/black"
-                android:theme="@style/Theme.ButtonWhite"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </FrameLayout>
     </LinearLayout>
 
 </FrameLayout>

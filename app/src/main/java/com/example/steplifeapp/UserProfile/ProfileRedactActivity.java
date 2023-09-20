@@ -42,8 +42,6 @@ public class ProfileRedactActivity extends AppCompatActivity {
     TextView ChoosePhotoText,CurrentPhoneNumber;
     StorageReference storageRef;
     ProgressBar progressBar;
-
-
     CardView TextViewSaveUserinformation;
     FirebaseStorage storage;
     EditText EditTextUserName;
@@ -67,6 +65,7 @@ public class ProfileRedactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_redact);
 
+        
         // Установка стиля безрамочного
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);

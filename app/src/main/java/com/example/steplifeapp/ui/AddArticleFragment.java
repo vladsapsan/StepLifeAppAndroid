@@ -3,33 +3,19 @@ package com.example.steplifeapp.ui;
 import static android.app.Activity.RESULT_OK;
 import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
-
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Point;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.inputmethodservice.Keyboard;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
-import android.os.Environment;
 import android.text.Editable;
 import android.text.Html;
 import android.text.Spannable;
@@ -38,22 +24,16 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.AbsoluteSizeSpan;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
-import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -67,47 +47,30 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.steplifeapp.R;
-import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.common.util.IOUtils;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.common.primitives.Chars;
-
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.input.CharSequenceReader;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.stream.IntStream;
-
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class AddArticleFragment extends Fragment {
 
@@ -132,6 +95,7 @@ public class AddArticleFragment extends Fragment {
     DisplayMetrics displayMetrics;
     private Uri uploadArticlePhotoUri = null;
     StorageReference storageRef;
+    AlertDialog alertDialog;
     ProgressBar progresscheck;
     FirebaseStorage storage;
     private RadioGroup EditTextRG;
@@ -198,7 +162,7 @@ public class AddArticleFragment extends Fragment {
 
                     progresscheck.setVisibility(View.VISIBLE);
                     NextBtn.setVisibility(View.GONE);
-                    bottomSheetWaitDialog.show();
+                    alertDialog.show();
 
                     ImageView Image = new ImageView(getContext());
                     Image.setImageURI(selectedImageUri);
@@ -273,7 +237,7 @@ public class AddArticleFragment extends Fragment {
                                 Main.setText(MainSpannabletext);
                                 Main.append("\n");
 
-                                bottomSheetWaitDialog.dismiss();
+                                alertDialog.dismiss();
 
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -461,6 +425,17 @@ public class AddArticleFragment extends Fragment {
 
             }
         });
+
+
+        //Окно загрузки фото
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View layout_dialog = LayoutInflater.from(getContext()).inflate(R.layout.download_image_dialog,null);
+        builder.setView(layout_dialog);
+        alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(true);
+
 
         LoadPicture = view.findViewById(R.id.addPicturetoArticle);
         LoadPicture.setOnClickListener(new View.OnClickListener() {

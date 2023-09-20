@@ -1,7 +1,6 @@
 package com.example.steplifeapp.ui.home;
 
 import android.net.Uri;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.steplifeapp.R;
 import com.example.steplifeapp.ui.Article;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -36,7 +33,6 @@ public class HomeTopArticleAdapter  extends  RecyclerView.Adapter<HomeTopAdapter
     }
     @Override
     public void onBindViewHolder(@NonNull HomeTopAdapter holder, int position) {
-
     }
     @Override
     public int getItemCount() {

@@ -3,7 +3,6 @@ package com.example.steplifeapp.ui.notifications;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,16 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,42 +28,23 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
-import com.example.steplifeapp.AllArticle;
 import com.example.steplifeapp.AllArticleActivity;
 import com.example.steplifeapp.ChooseArticle;
 import com.example.steplifeapp.R;
 import com.example.steplifeapp.ViewPagerArticleAdapter;
 import com.example.steplifeapp.databinding.FragmentNotificationsBinding;
 import com.example.steplifeapp.ui.Article;
-import com.example.steplifeapp.ui.MostArticle1Fragment;
-import com.example.steplifeapp.ui.MostArticle2Fragment;
-import com.example.steplifeapp.ui.MostArticle3Fragment;
-import com.example.steplifeapp.ui.SettingsFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
-
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
-import me.relex.circleindicator.CircleIndicator;
 
 public class NotificationsFragment extends Fragment {
 
@@ -75,6 +53,7 @@ public class NotificationsFragment extends Fragment {
     ViewPagerArticleAdapter viewPagerArticleAdapter;
 
     private int NOTIFICATION_ID = 112;
+    Animation animationIN;
     private String PRIMARY_CHANNEL_ID = "primary_notification_channel";
     private String NewHeadTextArticle = "Новый протез за 10 тысяч?";
     ViewPager viewpager;
@@ -167,7 +146,7 @@ public class NotificationsFragment extends Fragment {
                             Glide.with(getActivity()).load(DowArticle.PreviewPhotoUri).into(imagetoppost1);
                             EditDataTextTopPost1.setText(Html.fromHtml(DowArticle.Date).toString().trim());
                             progressBarTopPost.setVisibility(View.GONE);
-                            TopPostFrame.setVisibility(View.VISIBLE);
+
                         }
                     }
                     catch (Exception e){
@@ -192,7 +171,7 @@ public class NotificationsFragment extends Fragment {
                             Glide.with(getActivity()).load(DowArticle1.PreviewPhotoUri).into(imagetoppost2);
                             EditDataTextTopPost2.setText(Html.fromHtml(DowArticle1.Date).toString().trim());
                             progressBarTopPost.setVisibility(View.GONE);
-                            TopPostFrame.setVisibility(View.VISIBLE);
+
                         }
                     }
                     catch (Exception e){
@@ -217,7 +196,7 @@ public class NotificationsFragment extends Fragment {
                             Glide.with(getActivity()).load(DowArticle2.PreviewPhotoUri).into(imagetoppost3);
                             EditDataTextTopPost3.setText(Html.fromHtml(DowArticle2.Date).toString().trim());
                             progressBarTopPost.setVisibility(View.GONE);
-                            TopPostFrame.setVisibility(View.VISIBLE);
+
                         }
                     }
                     catch (Exception e){
@@ -242,7 +221,7 @@ public class NotificationsFragment extends Fragment {
                             Glide.with(getActivity()).load(DowArticle3.PreviewPhotoUri).into(imagetoppost4);
                             EditDataTextTopPost4.setText(Html.fromHtml(DowArticle3.Date).toString().trim());
                             progressBarTopPost.setVisibility(View.GONE);
-                            TopPostFrame.setVisibility(View.VISIBLE);
+
                         }
                     }
                     catch (Exception e){
@@ -267,7 +246,11 @@ public class NotificationsFragment extends Fragment {
                             Glide.with(getActivity()).load(DowArticle4.PreviewPhotoUri).into(imagetoppost5);
                             EditDataTextTopPost5.setText(Html.fromHtml(DowArticle4.Date).toString().trim());
                             progressBarTopPost.setVisibility(View.GONE);
-                            TopPostFrame.setVisibility(View.VISIBLE);
+                            if(TopPostFrame.getVisibility()==View.GONE) {
+                                TopPostFrame.setVisibility(View.VISIBLE);
+                                TopPostFrame.setAnimation(animationIN);
+                            }
+
                         }
                     }
                     catch (Exception e){
@@ -303,6 +286,8 @@ public class NotificationsFragment extends Fragment {
         NameTopPost = view.findViewById(R.id.NameTopPost);
         SecNameTopPost = view.findViewById(R.id.SecNameTopPost);
 
+
+        animationIN = AnimationUtils.loadAnimation(getContext(),R.anim.expectedanim);
 
         //Элементы главной обложки учебника
         imagetoppost1 = view.findViewById(R.id.imagetoppost1);

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="12dp"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:textStyle="bold"
+
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserratregular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Отдохните!"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"/>
+                    <ProgressBar
+                        android:id="@+id/progressBarTopPost"
+
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="0dp"
+                        android:indeterminateBehavior="repeat"
+                        android:indeterminateDuration="100"
+                        android:indeterminateOnly="true"
+                        android:indeterminateTint="@color/black"
+                        android:mirrorForRtl="false" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="@color/MainGrayText"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Мы загружаем выбранное изображение \n ожидайте" />
+        </LinearLayout>
+
+
+
+
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>

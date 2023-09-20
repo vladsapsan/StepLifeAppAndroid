@@ -5,7 +5,7 @@
     android:background="@color/MainGray"
     android:gravity="center"
 
-    app:cardCornerRadius="15dp"
+    app:cardCornerRadius="12dp"
     android:orientation="vertical"
     android:layout_height="match_parent">
 

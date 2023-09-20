@@ -190,38 +190,79 @@
                                         <FrameLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent">
-                                            <TextView
-                                                android:id="@+id/EditTextTopPost1"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|bottom"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="40dp"
-                                                android:layout_marginTop="15dp"
-                                                android:breakStrategy="high_quality"
 
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratsemibold"
-                                                android:gravity="left"
-                                                android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="12sp" />
+                                            <LinearLayout
+                                                android:gravity="center"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:orientation="vertical">
+                                                <TextView
+                                                    android:id="@+id/EditTextTopPost1"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|bottom"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="0dp"
+                                                    android:layout_marginTop="15dp"
+                                                    android:breakStrategy="high_quality"
 
-                                            <TextView
-                                                android:id="@+id/EditDataTextTopPost1"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|top"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_marginTop="95dp"
-                                                android:breakStrategy="high_quality"
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratregular"
-                                                android:gravity="left"
-                                                android:text="27 апр 2023"
-                                                android:textColor="@color/MainGrayText"
-                                                android:textSize="11sp" />
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratsemibold"
+                                                    android:gravity="left"
+                                                    android:text="Как получить протез бесплатно?"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="12sp" />
+
+                                                <TextView
+                                                    android:id="@+id/EditDataTextTopPost1"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|top"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:breakStrategy="high_quality"
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratregular"
+                                                    android:gravity="left"
+                                                    android:text="27 апр 2023"
+                                                    android:textColor="@color/MainGrayText"
+                                                    android:textSize="11sp" />
+                                            </LinearLayout>
+
+                                            <FrameLayout
+                                                android:layout_gravity="bottom"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|center"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="0dp"
+
+                                                    android:breakStrategy="high_quality"
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratregular"
+                                                    android:gravity="left"
+                                                    android:text="Читать далее"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="10sp" />
+
+
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_marginRight="40dp"
+                                                    android:layout_gravity="right|center"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/font_angle_small_right" />
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_marginRight="45dp"
+                                                    android:layout_gravity="right|center"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/font_angle_small_right" />
+                                            </FrameLayout>
                                         </FrameLayout>
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
@@ -257,40 +298,85 @@
                                                 app:srcCompat="@drawable/protez1" />
                                         </androidx.cardview.widget.CardView>
 
+
                                         <FrameLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent">
-                                            <TextView
-                                                android:id="@+id/EditTextTopPost2"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|bottom"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="40dp"
-                                                android:layout_marginTop="15dp"
-                                                android:breakStrategy="high_quality"
 
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratsemibold"
-                                                android:gravity="left"
-                                                android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="12sp" />
-                                            <TextView
-                                                android:id="@+id/EditDataTextTopPost2"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|top"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_marginTop="95dp"
-                                                android:breakStrategy="high_quality"
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratregular"
-                                                android:gravity="left"
-                                                android:text="27 апр 2023"
-                                                android:textColor="@color/MainGrayText"
-                                                android:textSize="11sp" />
+                                            <LinearLayout
+                                                android:gravity="center"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:orientation="vertical">
+                                                <TextView
+                                                    android:id="@+id/EditTextTopPost2"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|bottom"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="0dp"
+                                                    android:layout_marginTop="15dp"
+                                                    android:breakStrategy="high_quality"
+
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratsemibold"
+                                                    android:gravity="left"
+                                                    android:text="Как получить протез бесплатно?"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="12sp" />
+
+                                                <TextView
+                                                    android:id="@+id/EditDataTextTopPost2"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|top"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:breakStrategy="high_quality"
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratregular"
+                                                    android:gravity="left"
+                                                    android:text="27 апр 2023"
+                                                    android:textColor="@color/MainGrayText"
+                                                    android:textSize="11sp" />
+
+
+                                            </LinearLayout>
+
+                                            <FrameLayout
+                                                android:layout_gravity="bottom"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|center"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="0dp"
+
+                                                    android:breakStrategy="high_quality"
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratregular"
+                                                    android:gravity="left"
+                                                    android:text="Читать далее"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="10sp" />
+
+
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_marginRight="40dp"
+                                                    android:layout_gravity="right|center"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/font_angle_small_right" />
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_marginRight="45dp"
+                                                    android:layout_gravity="right|center"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/font_angle_small_right" />
+                                            </FrameLayout>
                                         </FrameLayout>
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
@@ -329,37 +415,82 @@
                                         <FrameLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent">
-                                            <TextView
-                                                android:id="@+id/EditTextTopPost3"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|bottom"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="40dp"
-                                                android:layout_marginTop="15dp"
-                                                android:breakStrategy="high_quality"
 
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratsemibold"
-                                                android:gravity="left"
-                                                android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="12sp" />
-                                            <TextView
-                                                android:id="@+id/EditDataTextTopPost3"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|top"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_marginTop="95dp"
-                                                android:breakStrategy="high_quality"
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratregular"
-                                                android:gravity="left"
-                                                android:text="27 апр 2023"
-                                                android:textColor="@color/MainGrayText"
-                                                android:textSize="11sp" />
+                                            <LinearLayout
+                                                android:gravity="center"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:orientation="vertical">
+                                                <TextView
+                                                    android:id="@+id/EditTextTopPost3"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|bottom"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="0dp"
+                                                    android:layout_marginTop="15dp"
+                                                    android:breakStrategy="high_quality"
+
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratsemibold"
+                                                    android:gravity="left"
+                                                    android:text="Как получить протез бесплатно?"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="12sp" />
+
+                                                <TextView
+                                                    android:id="@+id/EditDataTextTopPost3"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|top"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:breakStrategy="high_quality"
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratregular"
+                                                    android:gravity="left"
+                                                    android:text="27 апр 2023"
+                                                    android:textColor="@color/MainGrayText"
+                                                    android:textSize="11sp" />
+
+
+
+                                            </LinearLayout>
+
+                                            <FrameLayout
+                                                android:layout_gravity="bottom"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|center"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="0dp"
+
+                                                    android:breakStrategy="high_quality"
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratregular"
+                                                    android:gravity="left"
+                                                    android:text="Читать далее"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="10sp" />
+
+
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_marginRight="40dp"
+                                                    android:layout_gravity="right|center"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/font_angle_small_right" />
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_marginRight="45dp"
+                                                    android:layout_gravity="right|center"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/font_angle_small_right" />
+                                            </FrameLayout>
                                         </FrameLayout>
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
@@ -397,37 +528,81 @@
                                         <FrameLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent">
-                                            <TextView
-                                                android:id="@+id/EditTextTopPost4"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|bottom"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="40dp"
-                                                android:layout_marginTop="15dp"
-                                                android:breakStrategy="high_quality"
 
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratsemibold"
-                                                android:gravity="left"
-                                                android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="12sp" />
-                                            <TextView
-                                                android:id="@+id/EditDataTextTopPost4"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|top"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_marginTop="95dp"
-                                                android:breakStrategy="high_quality"
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratregular"
-                                                android:gravity="left"
-                                                android:text="27 апр 2023"
-                                                android:textColor="@color/MainGrayText"
-                                                android:textSize="11sp" />
+                                            <LinearLayout
+                                                android:gravity="center"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:orientation="vertical">
+                                                <TextView
+                                                    android:id="@+id/EditTextTopPost4"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|bottom"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="0dp"
+                                                    android:layout_marginTop="15dp"
+                                                    android:breakStrategy="high_quality"
+
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratsemibold"
+                                                    android:gravity="left"
+                                                    android:text="Как получить протез бесплатно?"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="12sp" />
+
+                                                <TextView
+                                                    android:id="@+id/EditDataTextTopPost4"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|top"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:breakStrategy="high_quality"
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratregular"
+                                                    android:gravity="left"
+                                                    android:text="27 апр 2023"
+                                                    android:textColor="@color/MainGrayText"
+                                                    android:textSize="11sp" />
+
+
+                                            </LinearLayout>
+
+                                            <FrameLayout
+                                                android:layout_gravity="bottom"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|center"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="0dp"
+
+                                                    android:breakStrategy="high_quality"
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratregular"
+                                                    android:gravity="left"
+                                                    android:text="Читать далее"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="10sp" />
+
+
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_marginRight="40dp"
+                                                    android:layout_gravity="right|center"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/font_angle_small_right" />
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_marginRight="45dp"
+                                                    android:layout_gravity="right|center"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/font_angle_small_right" />
+                                            </FrameLayout>
                                         </FrameLayout>
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
@@ -466,50 +641,88 @@
                                         <FrameLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent">
-                                            <TextView
-                                                android:id="@+id/EditTextTopPost5"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|bottom"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="40dp"
-                                                android:layout_marginTop="15dp"
-                                                android:breakStrategy="high_quality"
 
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratsemibold"
-                                                android:gravity="left"
-                                                android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="12sp" />
-                                            <TextView
-                                                android:id="@+id/EditDataTextTopPost5"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|top"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:layout_marginTop="95dp"
-                                                android:breakStrategy="high_quality"
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratregular"
-                                                android:gravity="left"
-                                                android:text="27 апр 2023"
-                                                android:textColor="@color/MainGrayText"
-                                                android:textSize="11sp" />
+                                            <LinearLayout
+                                                android:gravity="center"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:orientation="vertical">
+                                                <TextView
+                                                    android:id="@+id/EditTextTopPost5"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|bottom"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="0dp"
+                                                    android:layout_marginTop="15dp"
+                                                    android:breakStrategy="high_quality"
+
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratsemibold"
+                                                    android:gravity="left"
+                                                    android:text="Как получить протез бесплатно?"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="12sp" />
+
+                                                <TextView
+                                                    android:id="@+id/EditDataTextTopPost5"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|top"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="5dp"
+                                                    android:breakStrategy="high_quality"
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratregular"
+                                                    android:gravity="left"
+                                                    android:text="27 апр 2023"
+                                                    android:textColor="@color/MainGrayText"
+                                                    android:textSize="11sp" />
+
+
+
+                                            </LinearLayout>
+
+                                            <FrameLayout
+                                                android:layout_gravity="bottom"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="left|center"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginBottom="0dp"
+
+                                                    android:breakStrategy="high_quality"
+                                                    android:layout_marginRight="20dp"
+                                                    android:fontFamily="@font/montserratregular"
+                                                    android:gravity="left"
+                                                    android:text="Читать далее"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="10sp" />
+
+
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_marginRight="40dp"
+                                                    android:layout_gravity="right|center"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/font_angle_small_right" />
+                                                <ImageView
+                                                    android:layout_width="15dp"
+                                                    android:layout_marginRight="45dp"
+                                                    android:layout_gravity="right|center"
+                                                    android:layout_height="15dp"
+                                                    android:src="@drawable/font_angle_small_right" />
+                                            </FrameLayout>
                                         </FrameLayout>
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
                             </LinearLayout>
                         </HorizontalScrollView>
-
-
                     </FrameLayout>
-
-
-                   
-
-                    
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -559,120 +772,111 @@
 
 
                     <HorizontalScrollView
-
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="5dp"
-
-                        android:scrollbars="none"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
+                        android:layout_height="match_parent"
+                        android:scrollbars="none">
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
                             android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
 
+
+                            android:orientation="horizontal"
                             android:paddingRight="20dp">
 
                             <androidx.cardview.widget.CardView
 
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
-                                android:clickable="true"
                                 android:layout_height="180dp"
                                 android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp"
-                                tools:layout_editor_absoluteX="1dp"
-                                tools:layout_editor_absoluteY="444dp">
-
-                                <ImageButton
+                                app:cardCornerRadius="8dp">
+                                <ImageView
+                                    android:scaleType="centerCrop"
                                     android:clickable="false"
 
                                     android:layout_width="match_parent"
-
-                                    android:layout_height="124dp"
-                                    app:srcCompat="@drawable/protez1"
-                                    tools:layout_editor_absoluteX="59dp"
-                                    tools:layout_editor_absoluteY="448dp" />
-
+                                    android:layout_height="124dp" />
                                 <TextView
 
-                                    android:layout_width="160dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="37dp"
                                     android:layout_gravity="bottom"
                                     android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="@font/montserratsemibold"
                                     android:gravity="left"
-                                    android:text="Как получить протез бесплатно?"
+                                    android:text=""
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
                                     android:textColor="@color/BlackSviut"
-                                    android:textSize="14sp" />
+                                    android:textSize="13sp" />
+
+
                             </androidx.cardview.widget.CardView>
 
                             <androidx.cardview.widget.CardView
+
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
                                 android:layout_height="180dp"
                                 android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp"
-                                tools:layout_editor_absoluteX="1dp"
-                                tools:layout_editor_absoluteY="444dp">
-
+                                app:cardCornerRadius="8dp">
                                 <ImageView
 
+                                    android:scaleType="centerCrop"
                                     android:layout_width="match_parent"
-
-                                    android:layout_height="124dp"
-                                    android:scaleType="fitXY"
-                                    app:srcCompat="@drawable/protez2"
-                                    tools:layout_editor_absoluteX="59dp"
-                                    tools:layout_editor_absoluteY="448dp"/>
-
-
+                                    android:layout_height="124dp" />
                                 <TextView
 
-                                    android:layout_width="160dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="37dp"
                                     android:layout_gravity="bottom"
                                     android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="@font/montserratsemibold"
                                     android:gravity="left"
-                                    android:text="Подготовка к ампутации"
+                                    android:text=""
                                     android:textColor="@color/BlackSviut"
                                     android:textSize="14sp" />
+
+
                             </androidx.cardview.widget.CardView>
 
 
                             <androidx.cardview.widget.CardView
+
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
                                 android:layout_height="180dp"
                                 android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp"
-                                tools:layout_editor_absoluteX="1dp"
-                                tools:layout_editor_absoluteY="444dp">
+                                app:cardCornerRadius="8dp">
+                                <ImageView
 
-                                <ImageButton
-
+                                    android:scaleType="centerCrop"
                                     android:layout_width="match_parent"
-
-                                    android:layout_height="124dp"
-                                    app:srcCompat="@drawable/buttonimage"
-                                    tools:layout_editor_absoluteX="59dp"
-                                    tools:layout_editor_absoluteY="448dp" />
-
+                                    android:layout_height="124dp" />
                                 <TextView
 
-                                    android:layout_width="160dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="37dp"
                                     android:layout_gravity="bottom"
                                     android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="@font/montserratsemibold"
                                     android:gravity="left"
-                                    android:text="Как получить протез бесплатно?"
+                                    android:text=""
                                     android:textColor="@color/BlackSviut"
                                     android:textSize="14sp" />
+
+
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
                     </HorizontalScrollView>
@@ -724,119 +928,111 @@
 
 
                     <HorizontalScrollView
-
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="5dp"
-
-                        android:scrollbars="none"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
+                        android:layout_height="match_parent"
+                        android:scrollbars="none">
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
                             android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
 
+
+                            android:orientation="horizontal"
                             android:paddingRight="20dp">
 
                             <androidx.cardview.widget.CardView
 
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
-                                android:clickable="true"
                                 android:layout_height="180dp"
                                 android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp"
-                                tools:layout_editor_absoluteX="1dp"
-                                tools:layout_editor_absoluteY="444dp">
-
-                                <ImageButton
+                                app:cardCornerRadius="8dp">
+                                <ImageView
+                                    android:scaleType="centerCrop"
                                     android:clickable="false"
 
                                     android:layout_width="match_parent"
-
-                                    android:layout_height="124dp"
-                                    app:srcCompat="@drawable/protez1"
-                                    tools:layout_editor_absoluteX="59dp"
-                                    tools:layout_editor_absoluteY="448dp" />
-
+                                    android:layout_height="124dp" />
                                 <TextView
 
-                                    android:layout_width="160dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="37dp"
                                     android:layout_gravity="bottom"
                                     android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="@font/montserratsemibold"
                                     android:gravity="left"
-                                    android:text="Как получить протез бесплатно?"
+                                    android:text=""
+                                    android:ellipsize="end"
+                                    android:maxLines="2"
                                     android:textColor="@color/BlackSviut"
-                                    android:textSize="14sp" />
+                                    android:textSize="13sp" />
+
+
                             </androidx.cardview.widget.CardView>
 
                             <androidx.cardview.widget.CardView
+
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
                                 android:layout_height="180dp"
                                 android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp"
-                                tools:layout_editor_absoluteX="1dp"
-                                tools:layout_editor_absoluteY="444dp">
-
+                                app:cardCornerRadius="8dp">
                                 <ImageView
 
+                                    android:scaleType="centerCrop"
                                     android:layout_width="match_parent"
-
-                                    android:layout_height="124dp"
-                                    android:scaleType="fitXY"
-                                    app:srcCompat="@drawable/protez2"
-                                    tools:layout_editor_absoluteX="59dp"
-                                    tools:layout_editor_absoluteY="448dp"/>
-
-
+                                    android:layout_height="124dp" />
                                 <TextView
 
-                                    android:layout_width="160dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="37dp"
                                     android:layout_gravity="bottom"
                                     android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="@font/montserratsemibold"
                                     android:gravity="left"
-                                    android:text="Подготовка к ампутации"
+                                    android:text=""
                                     android:textColor="@color/BlackSviut"
                                     android:textSize="14sp" />
+
+
                             </androidx.cardview.widget.CardView>
 
 
                             <androidx.cardview.widget.CardView
+
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
                                 android:layout_height="180dp"
                                 android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp"
-                                tools:layout_editor_absoluteX="1dp"
-                                tools:layout_editor_absoluteY="444dp">
+                                app:cardCornerRadius="8dp">
+                                <ImageView
 
-                                <ImageButton
+                                    android:scaleType="centerCrop"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="124dp" />
+                                <TextView
 
                                     android:layout_width="match_parent"
-
-                                    android:layout_height="124dp"
-                                    app:srcCompat="@drawable/buttonimage"
-                                    tools:layout_editor_absoluteX="59dp"
-                                    tools:layout_editor_absoluteY="448dp" />
-
-                                <TextView
-                                    android:layout_width="160dp"
                                     android:layout_height="37dp"
                                     android:layout_gravity="bottom"
                                     android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="@font/montserratsemibold"
                                     android:gravity="left"
-                                    android:text="Как получить протез бесплатно?"
+                                    android:text=""
                                     android:textColor="@color/BlackSviut"
                                     android:textSize="14sp" />
+
+
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
                     </HorizontalScrollView>
