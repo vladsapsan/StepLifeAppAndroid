@@ -82,7 +82,7 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
     List<BluetoothDevice> ListSetDevice = new ArrayList<>();
     ArrayList<String> mEditItems = new ArrayList<>();
     Set<String> mItemsSet = new HashSet<String>();
-    View bottomSheetWaitView;
+    View bottomSheetWaitView,bottomSheetStartView;
     ArrayList<String> mItems = new ArrayList<>(mItemsSet);
     TextView DeviceText,TextViewFoot;
     CircularProgressIndicator ProgressBarBatteryCharge;
@@ -188,8 +188,8 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
 
         bottomSheetWaitDialog = new BottomSheetDialog(getContext(), R.style.BottomSheetDialog);
         bottomSheetWaitDialog.setCanceledOnTouchOutside(false);
-
         bottomSheetWaitDialog.setDismissWithAnimation(true);
+        //Диалог включения блютуз
         bottomSheetWaitView = LayoutInflater.from(getContext())
                 .inflate(
                         R.layout.bottomsheet_bluetooth_off,
@@ -205,6 +205,23 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
                 }
             }
         });
+
+        //диалог старта подключения коленного модуля
+        bottomSheetStartView = LayoutInflater.from(getContext())
+                .inflate(
+                        R.layout.bottomsheet_start_moduleconnection,
+                        view.findViewById(R.id.SheetDialogStartBluetoothContainer)
+                );
+        bottomSheetStartView.findViewById(R.id.StartButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PermissionCheck(PermissionCheck);
+                BtCheck(BTCheck);
+                CheckoutBt();
+            }
+        });
+
+        //диалог выбора модуля из списка блютуз устройств
         bottomSheetDeviceList = LayoutInflater.from(getContext())
                 .inflate(
                         R.layout.bottomsheet_bluetooth_devicelist,
@@ -238,7 +255,8 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         });
 
 
-        bottomSheetWaitDialog.setContentView(bottomSheetWaitView);
+        //Включение начального диалоговое окно
+        bottomSheetWaitDialog.setContentView(bottomSheetStartView);
 
 
         SettingModuleButton = view.findViewById(R.id.SettingModuleButton);
@@ -267,16 +285,28 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser==true){
+
+        }
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         //Если устройство не подключено
-        if (DeviceCheck == false) {
-            PermissionCheck(PermissionCheck);
-            BtCheck(BTCheck);
-            CheckoutBt();
+        if (!DeviceCheck) {
+            bottomSheetWaitDialog.show();
         } else {
             //Устройство подключено
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 
     @Override
@@ -292,8 +322,11 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        bluetoothAdapter.cancelDiscovery();
-       getActivity().unregisterReceiver(broadcastReceiver);
+
+        if(BTCheck == 3) {
+            bluetoothAdapter.cancelDiscovery();
+            getActivity().unregisterReceiver(broadcastReceiver);
+        }
     }
 
     private void GetDevice() {

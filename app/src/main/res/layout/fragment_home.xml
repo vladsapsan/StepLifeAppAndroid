@@ -26,6 +26,7 @@
 
 
             <FrameLayout
+                android:id="@+id/HomeAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
 
@@ -37,8 +38,8 @@
                     android:src="@drawable/logosteplifebase" />
 
                 <androidx.cardview.widget.CardView
-
-
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
 
                     android:id="@+id/ProfileButton"
                     android:visibility="visible"
@@ -49,7 +50,6 @@
                     android:backgroundTint="@color/MainGray"
                     android:layout_marginRight="20dp"
 
-                    android:clickable="true"
                     app:cardCornerRadius="50dp">
                     <ImageView
                         android:clickable="false"
@@ -79,7 +79,7 @@
 
 
                 <androidx.cardview.widget.CardView
-android:visibility="gone"
+                    android:visibility="gone"
                     android:layout_width="29dp"
                     android:layout_height="29dp"
                     android:layout_gravity="right"
@@ -88,21 +88,16 @@ android:visibility="gone"
                     android:backgroundTint="@color/MainGray"
                     android:clickable="true"
                     app:cardCornerRadius="50dp">
-
                     <ImageView
-
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:srcCompat="@drawable/free_icon_gear_1160356" />
                 </androidx.cardview.widget.CardView>
 
-
-
-
             </FrameLayout>
 
-
             <FrameLayout
+
                 android:id="@+id/FrameVideoInstruction"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
@@ -125,13 +120,14 @@ android:visibility="gone"
                     android:textStyle="normal" />
 
                 <TextView
-
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:id="@+id/textHideVideoButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="260dp"
-                    android:clickable="true"
+
                     android:fontFamily="@font/montserratregular"
                     android:text="╳ Больше не показывать"
                     android:textColor="@color/BlackSviut"
@@ -158,16 +154,12 @@ android:visibility="gone"
 
                         app:srcCompat="@drawable/video" />
                 </androidx.cardview.widget.CardView>
-
-
             </FrameLayout>
 
             <TextView
                 android:id="@+id/textTeach"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/normalidadextended1thin"
@@ -180,6 +172,7 @@ android:visibility="gone"
 
 
             <HorizontalScrollView
+                android:id="@+id/HomeArticleScroll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="none">
@@ -194,6 +187,8 @@ android:visibility="gone"
                     android:paddingRight="20dp">
 
                     <androidx.cardview.widget.CardView
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:id="@+id/CardHomeArticle1"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -227,6 +222,8 @@ android:visibility="gone"
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:id="@+id/CardHomeArticle2"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -258,6 +255,8 @@ android:visibility="gone"
 
 
                     <androidx.cardview.widget.CardView
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:id="@+id/CardHomeArticle3"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -288,6 +287,8 @@ android:visibility="gone"
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:id="@+id/CardHomeArticle4"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -318,6 +319,8 @@ android:visibility="gone"
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:id="@+id/CardHomeArticle5"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -351,13 +354,13 @@ android:visibility="gone"
             </HorizontalScrollView>
 
             <TextView
-
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:id="@+id/AllAcricleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:clickable="true"
                 android:fontFamily="@font/montserratsemibold"
                 android:text="☰ Все статьи"
                 android:textColor="@color/MainBlue"
@@ -399,6 +402,8 @@ android:visibility="gone"
                     android:paddingRight="20dp">
 
                     <androidx.cardview.widget.CardView
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:layout_width="192dp"
                         android:layout_height="180dp"
                         android:layout_marginLeft="20dp"
@@ -426,6 +431,8 @@ android:visibility="gone"
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:layout_width="192dp"
                         android:layout_height="180dp"
                         android:layout_marginLeft="20dp"
@@ -464,12 +471,12 @@ android:visibility="gone"
 
 
             <TextView
-                android:id="@+id/textView9"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:clickable="true"
                 android:fontFamily="@font/montserratsemibold"
                 android:text="☰ Все тренировки"
                 android:textColor="@color/MainBlue"
@@ -508,9 +515,9 @@ android:visibility="gone"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/montserratregular"
-                android:text="Подключите коленный модуль Steplife для его настройки и кастомизации"
+                android:text="Подключите коленный модуль STEPLIFE для его настройки"
                 android:textColor="@color/MainGrayText"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:textStyle="bold" />
 
             <FrameLayout

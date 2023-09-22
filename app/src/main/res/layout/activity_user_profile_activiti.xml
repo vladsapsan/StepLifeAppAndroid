@@ -53,6 +53,8 @@
 
 
                 <androidx.cardview.widget.CardView
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_marginTop="50dp"
                     android:layout_marginLeft="10dp"
@@ -148,6 +150,8 @@
                     android:orientation="vertical">
 
                     <FrameLayout
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:visibility="gone"
                         android:id="@+id/AddArticleFrameButton"
                         android:layout_width="match_parent"
@@ -195,6 +199,8 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:visibility="gone"
                         android:id="@+id/RedactArticleFrameButton"
                         android:layout_width="match_parent"
@@ -241,6 +247,8 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                          android:visibility="gone"
                         android:id="@+id/ArticleChooseFrameButton"
                         android:layout_width="match_parent"
@@ -286,7 +294,8 @@
 
 
                     <FrameLayout
-
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
                         android:id="@+id/SettingsFrameButton"
                         android:layout_width="match_parent"
                         android:layout_gravity="left"

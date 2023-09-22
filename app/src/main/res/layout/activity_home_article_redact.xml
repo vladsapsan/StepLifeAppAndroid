@@ -132,6 +132,8 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/CardHomeArticle1"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
                             android:layout_width="192dp"
@@ -168,6 +170,8 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/CardHomeArticle2"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
                             android:layout_width="192dp"
@@ -205,6 +209,8 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/CardHomeArticle3"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
                             android:layout_width="192dp"
@@ -240,6 +246,8 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/CardHomeArticle4"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
                             android:layout_width="192dp"
@@ -275,6 +283,8 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/CardHomeArticle5"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
                             android:layout_width="192dp"

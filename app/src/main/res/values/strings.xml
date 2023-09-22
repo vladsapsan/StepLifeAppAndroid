@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StepLifeApp</string>
+    <string name="app_name">STEPLIFE</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -9,7 +9,9 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="VersionApp">0.4.3</string>
+    <string name="VersionApp">0.5.0</string>
+    <string name="BuildDate">Сборка от 22.09.2023</string>
+    <string name="AllRights">Все права защищены</string>
     <string name="Developer">Разработка ‹ООО Группа Компаний ‹Салют Орто›</string>
     <string name="title_location_permission">Устройства поблизости</string>
     <string name="text_location_permission">Предоставьте доступ для подключения коленного модуля Steplife</string>
@@ -19,7 +21,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="channel_name">Покакал</string>
     <string name="channel_description">Не какал я</string>
-
     <string name="ReadThis">
          <u>Читать далее</u>.
     </string>

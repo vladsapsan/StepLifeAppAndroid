@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+
                 android:rotationY="180"
                 android:id="@+id/BacktoSettings"
                 android:layout_gravity="left"
@@ -84,6 +85,7 @@
                     android:layout_width="120dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_height="120dp"
+                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
 
                     android:layout_marginTop="12dp"
@@ -93,6 +95,8 @@
 
 
                 <androidx.cardview.widget.CardView
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
                     app:cardCornerRadius="6dp"
                     android:backgroundTintMode="src_in"
@@ -118,6 +122,7 @@
 
 
                 <androidx.cardview.widget.CardView
+
                     android:layout_width="match_parent"
                     android:layout_marginTop="30dp"
                     android:layout_marginLeft="30dp"
@@ -182,6 +187,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/TextViewSaveUserinformation"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
                     app:cardCornerRadius="8dp"
                     android:layout_marginBottom="5dp"

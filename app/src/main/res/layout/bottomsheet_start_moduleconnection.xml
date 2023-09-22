@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:animateLayoutChanges="true"
-    android:id="@+id/SheetDialogWaitBluetoothContainer"
+    android:id="@+id/SheetDialogStartBluetoothContainer"
     android:background="@drawable/bottomsheetprofilesettingbackground"
     android:layout_height="match_parent">
 
@@ -33,7 +33,7 @@
                 android:fontFamily="@font/montserratregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bluetooth выключен"
+                android:text="Коленный модуль не обнаружен"
                 android:textColor="@color/black"
                 android:textSize="18dp"/>
 
@@ -48,10 +48,10 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Необходимо соединение по Bluetooth" />
+                android:text="Начать подключение модуля" />
 
             <Button
-                android:id="@+id/BluetoothOnButton"
+                android:id="@+id/StartButton"
                 android:layout_width="match_parent"
                 android:layout_marginTop="55dp"
                 android:layout_height="55dp"
@@ -63,7 +63,7 @@
                 android:backgroundTint="@color/secondBlue"
                 android:layout_gravity="bottom"
                 android:fontFamily="@font/montserratsemibold"
-                android:text="Включить Bluetooth"/>
+                android:text="Начать подключение"/>
 
         </LinearLayout>
 

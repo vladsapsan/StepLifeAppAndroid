@@ -10,6 +10,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@color/MainYellow</item>
+        <!-- для Android 5+ вы можете поменять цвет colorPrimaryDark, чтобы соответствовать цвету windowBackground -->
+        <!-- <item name="colorPrimaryDark">@android:color/white</item> -->
+    </style>
+
+
     <style name="Theme.StepLifeApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

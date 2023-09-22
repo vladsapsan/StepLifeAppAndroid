@@ -15,6 +15,7 @@
         android:layout_height="match_parent">
 
         <FrameLayout
+            android:id="@+id/NotificationAppBar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="0dp">
@@ -26,6 +27,8 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/logosteplifebase" />
             <androidx.cardview.widget.CardView
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:layout_gravity="left"
@@ -34,6 +37,7 @@
                 android:backgroundTint="@color/MainGray"
                 app:cardCornerRadius="100dp">
                 <ImageView
+                    android:clickable="true"
                     android:padding="8dp"
                     android:id="@+id/NotificationButton"
                     android:layout_width="match_parent"
@@ -45,6 +49,8 @@
 
 
             <androidx.cardview.widget.CardView
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:layout_gravity="right"
@@ -53,6 +59,8 @@
                 android:backgroundTint="@color/MainGray"
                 app:cardCornerRadius="100dp">
                 <ImageView
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:id="@+id/SearchButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -64,22 +72,18 @@
                     android:src="@drawable/free_icon_font_search" />
             </androidx.cardview.widget.CardView>
 
-
-            <ProgressBar
-                android:id="@+id/progressBarTopPost"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="50dp"
-                android:indeterminateBehavior="repeat"
-                android:indeterminateDuration="100"
-                android:indeterminateOnly="true"
-                android:indeterminateTint="@color/black"
-                android:mirrorForRtl="false" />
-
         </FrameLayout>
 
+        <ProgressBar
+            android:id="@+id/progressBarTopPost"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDuration="200"
+            android:indeterminateOnly="true"
+            android:indeterminateTint="@color/black"
+            android:mirrorForRtl="false" />
         <FrameLayout
             android:id="@+id/FrameArticles"
             android:layout_marginTop="0dp"
@@ -160,8 +164,9 @@
 
                                 <androidx.cardview.widget.CardView
                                     android:id="@+id/TopPostCard1"
-                                    android:layout_width="150dp"
+                                    android:foreground="?attr/selectableItemBackground"
                                     android:clickable="true"
+                                    android:layout_width="150dp"
                                     android:layout_height="260dp"
                                     android:layout_marginLeft="15dp"
                                     app:cardCornerRadius="8dp"
@@ -271,6 +276,7 @@
 
                                 <androidx.cardview.widget.CardView
                                     android:id="@+id/TopPostCard2"
+                                    android:foreground="?attr/selectableItemBackground"
                                     android:layout_width="150dp"
                                     android:clickable="true"
                                     android:layout_height="260dp"
@@ -385,6 +391,7 @@
 
                                 <androidx.cardview.widget.CardView
                                     android:id="@+id/TopPostCard3"
+                                    android:foreground="?attr/selectableItemBackground"
                                     android:layout_width="150dp"
                                     android:clickable="true"
                                     android:layout_height="260dp"
@@ -498,6 +505,7 @@
 
                                 <androidx.cardview.widget.CardView
                                     android:id="@+id/TopPostCard4"
+                                    android:foreground="?attr/selectableItemBackground"
                                     android:layout_width="150dp"
                                     android:clickable="true"
                                     android:layout_height="260dp"
@@ -611,6 +619,7 @@
 
                                 <androidx.cardview.widget.CardView
                                     android:id="@+id/TopPostCard5"
+                                    android:foreground="?attr/selectableItemBackground"
                                     android:layout_width="150dp"
                                     android:clickable="true"
                                     android:layout_height="260dp"
@@ -742,6 +751,7 @@
 
                         
                         <androidx.cardview.widget.CardView
+                            android:foreground="?attr/selectableItemBackground"
                             android:id="@+id/seeallArticleText"
                             android:clickable="true"
                             android:layout_width="wrap_content"
@@ -787,7 +797,8 @@
                             android:paddingRight="20dp">
 
                             <androidx.cardview.widget.CardView
-
+                                android:foreground="?attr/selectableItemBackground"
+                                android:clickable="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
@@ -820,7 +831,8 @@
                             </androidx.cardview.widget.CardView>
 
                             <androidx.cardview.widget.CardView
-
+                                android:foreground="?attr/selectableItemBackground"
+                                android:clickable="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
@@ -851,7 +863,8 @@
 
 
                             <androidx.cardview.widget.CardView
-
+                                android:foreground="?attr/selectableItemBackground"
+                                android:clickable="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
@@ -900,6 +913,7 @@
                             android:fontFamily="@font/montserrat1black"/>
 
                         <androidx.cardview.widget.CardView
+                            android:foreground="?attr/selectableItemBackground"
                             android:id="@+id/seeallArticleText2"
                             android:clickable="true"
                             android:layout_width="wrap_content"
@@ -943,7 +957,8 @@
                             android:paddingRight="20dp">
 
                             <androidx.cardview.widget.CardView
-
+                                android:foreground="?attr/selectableItemBackground"
+                                android:clickable="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
@@ -976,7 +991,8 @@
                             </androidx.cardview.widget.CardView>
 
                             <androidx.cardview.widget.CardView
-
+                                android:foreground="?attr/selectableItemBackground"
+                                android:clickable="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
@@ -1007,7 +1023,8 @@
 
 
                             <androidx.cardview.widget.CardView
-
+                                android:foreground="?attr/selectableItemBackground"
+                                android:clickable="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"

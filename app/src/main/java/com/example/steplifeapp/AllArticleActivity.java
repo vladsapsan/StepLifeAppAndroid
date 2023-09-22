@@ -109,6 +109,7 @@ public class AllArticleActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
+
         progressBar = findViewById(R.id.progressBarAllArticleActivity);
 
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -46,7 +47,7 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment {
-    FrameLayout FrameVideo;
+    FrameLayout FrameVideo,HomeAppBar;
     TextView TextBtnHide,AllAcricleButton;
 
     private String HomeArticle_Key ="HomeArticle";
@@ -69,6 +70,7 @@ public class HomeFragment extends Fragment {
     CardView  ArticleTeach;
     ScrollView HomescrollView;
     RecyclerView HomeArticleListView;
+    HorizontalScrollView HomeArticleScroll;
 
     private ImageView ArticleState1,ArticleState2,ArticleState3;
     private FirebaseAuth mAuth;
@@ -77,12 +79,16 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
 
     private ListView allArticlelist;
+
+
+    Animation animationClick;
     private ArrayAdapter<String> adapter;
     private DatabaseReference mDataBase;
     int CurrnetPositionList ;
 
 
     private List<String> listData;
+    Animation animationIN,animationUP;
     private String Article_Key ="AllArticle";
 
 
@@ -143,6 +149,17 @@ public class HomeFragment extends Fragment {
         Fragment fragment = new AllArticle();
         Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
         Intent intentAllArticle = new Intent(getActivity(), AllArticleActivity.class);
+
+
+        HomeArticleScroll = view.findViewById(R.id.HomeArticleScroll);
+        HomeAppBar = view.findViewById(R.id.HomeAppBar);
+
+
+        //Инициализация анимации
+        animationIN = AnimationUtils.loadAnimation(getContext(),R.anim.expected_home_fragment);
+        animationUP = AnimationUtils.loadAnimation(getContext(),R.anim.expected_app_bar);
+
+
 
         //инициализация карточек
         CardHomeArticle1 = view.findViewById(R.id.CardHomeArticle1);
@@ -313,6 +330,10 @@ public class HomeFragment extends Fragment {
        // FirebaseUser cUser = mAuth.getCurrentUser();
        // if(cUser!=null)
        // {
+        //Запуск анимации при старте
+        HomeArticleScroll.setAnimation(animationIN);
+        HomeAppBar.setAnimation(animationUP);
+
         mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
         //Загрузка данных о 1 карточке
         mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

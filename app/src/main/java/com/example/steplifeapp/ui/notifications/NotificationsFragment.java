@@ -54,7 +54,7 @@ public class NotificationsFragment extends Fragment {
     FrameLayout FrameArticles;
 
     private int NOTIFICATION_ID = 112;
-    Animation animationIN;
+    Animation animationIN,animationUP;
     private String PRIMARY_CHANNEL_ID = "primary_notification_channel";
     private String NewHeadTextArticle = "Новый протез за 10 тысяч?";
     ViewPager viewpager;
@@ -74,7 +74,7 @@ public class NotificationsFragment extends Fragment {
     Article DowArticle,DowArticle1,DowArticle2,DowArticle3,DowArticle4;
     ImageView imagetoppost1,imagetoppost2,imagetoppost3,imagetoppost4,imagetoppost5;
 
-    FrameLayout TopPostFrame;
+    FrameLayout TopPostFrame,NotificationAppBar;
     List <Article> TopPostArticle;
 
     private String Article_Key ="AllArticle";
@@ -91,6 +91,11 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+
+        //Запуск анимации
+        NotificationAppBar.setAnimation(animationUP);
+
         mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
         //Получение данных из базы
         mDataBase.child("Name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -286,9 +291,11 @@ public class NotificationsFragment extends Fragment {
 
         NameTopPost = view.findViewById(R.id.NameTopPost);
         SecNameTopPost = view.findViewById(R.id.SecNameTopPost);
+        NotificationAppBar = view.findViewById(R.id.NotificationAppBar);
 
-
+        //Инициализация анимации
         animationIN = AnimationUtils.loadAnimation(getContext(),R.anim.expectedanim);
+        animationUP = AnimationUtils.loadAnimation(getContext(),R.anim.expected_app_bar);
 
         //Элементы главной обложки учебника
         imagetoppost1 = view.findViewById(R.id.imagetoppost1);

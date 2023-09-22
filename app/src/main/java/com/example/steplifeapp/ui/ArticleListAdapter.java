@@ -1,21 +1,14 @@
 package com.example.steplifeapp.ui;
 
-import static android.app.PendingIntent.getActivity;
-
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -23,18 +16,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.steplifeapp.ChooseArticle;
 import com.example.steplifeapp.R;
-import com.example.steplifeapp.ui.Article;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +54,7 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
         //Загрузка картинок с помощью библиотеки пикассо
         if(article.PreviewPhotoUri!=null) {
             if(PreviewImage.getDrawable()==null) {
-              //  Glide.with(mContext).load(article.PreviewPhotoUri).into(PreviewImage);
+                // Glide.with(mContext).load(article.PreviewPhotoUri).into(PreviewImage);
                 Picasso.get().load(article.PreviewPhotoUri).into(PreviewImage);
             }
         }
