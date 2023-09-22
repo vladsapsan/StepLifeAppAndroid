@@ -92,6 +92,7 @@
                         android:layout_marginRight="10dp"
                         android:gravity="center">
                         <TextView
+                            android:id="@+id/TextViewFoot"
                             android:textStyle="bold"
                             android:layout_gravity="center"
                             android:fontFamily="@font/normalidadcompactbold"
@@ -120,6 +121,7 @@
                     android:textColor="@color/BlackSviut"
                     android:textSize="50dp"/>
                 <TextView
+                    android:id="@+id/TextBattery"
                     android:textSize="15dp"
                     android:fontFamily="@font/normalidadcompactbold"
                     android:textColor="@color/MainGrayText"
@@ -132,6 +134,7 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/TypeProthesisModuleCardButton"
             android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_marginLeft="15dp"
@@ -201,6 +204,8 @@
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:visibility="gone"
+            android:id="@+id/CalibationModuleButton"
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
             android:layout_height="60dp"

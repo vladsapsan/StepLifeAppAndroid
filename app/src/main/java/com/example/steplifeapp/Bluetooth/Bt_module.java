@@ -31,9 +31,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.example.steplifeapp.ChooseArticle;
 import com.example.steplifeapp.R;
+import com.example.steplifeapp.other.ItemViewModel;
 import com.example.steplifeapp.other.NetworkChangeListner;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -145,7 +146,7 @@ public class Bt_module extends AppCompatActivity {
 
         CheckOutText = findViewById(R.id.CheckOutText);
 
-
+        ItemViewModel viewModel = new ViewModelProvider(this).get(ItemViewModel.class);
         //Диалог ожидания загрузки
         bottomSheetWaitDialog = new BottomSheetDialog(this, R.style.BottomSheetDialog);
         bottomSheetWaitDialog.setDismissWithAnimation(true);
@@ -169,23 +170,24 @@ public class Bt_module extends AppCompatActivity {
         //Нажатие на устройство из списка
 
 
+
+
         ListViewBtMOdule.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @SuppressLint("MissingPermission")
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 bottomSheetWaitDialog.show();
-
-
                 //Пара создана
                 if(ListSetDevice.get(i).createBond()){
-                    //инициализация контролера
-                    bluetoothController = new BluetoothController(mBluetoothAdapter);
+                    //инициализация контролера=
+                     //  bluetoothController = new BluetoothController(mBluetoothAdapter);
                     BluetoothDevice device = ListSetDevice.get(i);
-                    Bundle bundle = new Bundle();
-                    Intent intent = new Intent(getApplicationContext(), ChooseArticle.class);
-                    // передача объекта
-                    intent.putExtra("Device",device);
-                    finish();
+                    Bundle result = new Bundle();
+                    result.putString("Device", device.getAddress());
+                    result.putBoolean("DeviceCheck", true);
+                    getSupportFragmentManager().setFragmentResult("DeviceKey",result);
+
+                    //  bluetoothController.Connect(device.getAddress(),this);
 
                 }else {
                     //Отмена создания?
@@ -206,7 +208,6 @@ public class Bt_module extends AppCompatActivity {
                 if (!mBluetoothAdapter.isEnabled()) {
                     Intent enableBtIntent = new Intent(bluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-
                 }
             }
         });

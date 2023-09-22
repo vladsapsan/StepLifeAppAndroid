@@ -51,6 +51,7 @@ public class NotificationsFragment extends Fragment {
     private NotificationsViewModel notificationsViewModel;
     private FragmentNotificationsBinding binding;
     ViewPagerArticleAdapter viewPagerArticleAdapter;
+    FrameLayout FrameArticles;
 
     private int NOTIFICATION_ID = 112;
     Animation animationIN;
@@ -246,9 +247,9 @@ public class NotificationsFragment extends Fragment {
                             Glide.with(getActivity()).load(DowArticle4.PreviewPhotoUri).into(imagetoppost5);
                             EditDataTextTopPost5.setText(Html.fromHtml(DowArticle4.Date).toString().trim());
                             progressBarTopPost.setVisibility(View.GONE);
-                            if(TopPostFrame.getVisibility()==View.GONE) {
-                                TopPostFrame.setVisibility(View.VISIBLE);
-                                TopPostFrame.setAnimation(animationIN);
+                            if(FrameArticles.getVisibility()==View.GONE) {
+                                FrameArticles.setVisibility(View.VISIBLE);
+                                FrameArticles.setAnimation(animationIN);
                             }
 
                         }
@@ -303,8 +304,9 @@ public class NotificationsFragment extends Fragment {
 
 
 
+        FrameArticles = view.findViewById(R.id.FrameArticles);
+        FrameArticles.setVisibility(View.GONE);
         TopPostFrame = view.findViewById(R.id.TopPostFrame);
-        TopPostFrame.setVisibility(View.GONE);
         progressBarTopPost = view.findViewById(R.id.progressBarTopPost);
 
         Intent intentAllArticle = new Intent(getActivity(), AllArticleActivity.class);

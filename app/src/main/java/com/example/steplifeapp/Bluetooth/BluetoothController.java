@@ -7,14 +7,29 @@ public class BluetoothController {
     BluetoothAdapter adapter;
     BluetoothDevice device;
     ConnectThread connectThread = null;
-    BluetoothController(BluetoothAdapter adapter){
+
+    public BluetoothController(BluetoothAdapter adapter){
         this.adapter = adapter;
     }
-    public void Connect(String MacAdress){
+
+    public static final String BLUETOOTH_CONNECTED = "Блютуз подключен";
+    public static final String BLUETOOTH_NO_CONNECTED = "Блютуз не подключен";
+    public void Connect(String MacAdress,Listner listner){
         if(adapter.isEnabled()&&!MacAdress.isEmpty()) {
             device = adapter.getRemoteDevice(MacAdress);
-            connectThread = new ConnectThread(device);
+            connectThread = new ConnectThread(device,listner);
             connectThread.start();
         }
+    }
+
+    public void SendMessage(String message){
+        connectThread.SendMessage(message);
+    }
+    public void CloseConnection(){
+        connectThread.CloseConnect();
+    }
+
+    public interface Listner{
+        void onReceive(String message);
     }
 }

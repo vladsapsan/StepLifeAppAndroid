@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:id="@+id/SheetDialogWaitBluetoothDeviceContainer"
+    android:background="@drawable/bottomsheetprofilesettingbackground"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="55dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/cornerdefault"
+                android:layout_height="5dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="Идет поиск"
+                    android:textColor="@color/black"
+                    android:textSize="19sp" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/CheckOutText"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:text="Выберите модуль из списка..."
+                            android:textColor="@color/MainBlue"
+                            android:textSize="14sp" />
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/animationView"
+                            android:layout_gravity="center_horizontal"
+
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            app:lottie_rawRes="@raw/wavedownloadanimation"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"/>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/CardDevice"
+
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_width="match_parent"
+                            app:cardCornerRadius="12dp"
+                            android:layout_height="293dp">
+
+                            <ListView
+                                android:id="@+id/ListViewBtMOdule"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"></ListView>
+                        </androidx.cardview.widget.CardView>
+
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+    </FrameLayout>
+
+</FrameLayout>
