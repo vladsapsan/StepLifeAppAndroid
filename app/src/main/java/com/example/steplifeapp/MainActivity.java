@@ -90,9 +90,12 @@ public class MainActivity extends AppCompatActivity  {
         fragmentTransaction.commit();
     }
 
+
     public void setFragment(Fragment fragment, String tag, int position) {
         if (fragment.isAdded()|| fm.findFragmentByTag(tag)!=null) {
-            if(active ==dashboardFragment){
+            if (fragment == active) {
+
+            }else if(active ==dashboardFragment){
                 fm.beginTransaction().detach(active).show(fragment).commit();
             } else if (fragment == dashboardFragment) {
                 fm.beginTransaction().attach(fragment).show(fragment).commit();
@@ -112,12 +115,14 @@ public class MainActivity extends AppCompatActivity  {
         active = fragment;
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkChangeListner,intentFilter);
     }
+
 
     @Override
     protected void onStop() {

@@ -391,10 +391,14 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
+            <EditText
+                android:id="@+id/PostTextRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:lines="1"
+                android:maxLines="1"
+                android:maxLength="25"
                 android:layout_marginTop="10dp"
                 android:text="То, с чего стоит начать"
                 android:textSize="17dp"
@@ -423,130 +427,140 @@
                     android:layout_marginBottom="4dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/RedExit"
+                    android:textColor="@color/MainBlue"
                     android:fontFamily="@font/montserratsemibold"
                     android:textSize="13dp"
-                    android:text="Недоступно"
+                    android:text="Доступно"
                     />
             </androidx.cardview.widget.CardView>
 
         </FrameLayout>
 
+
         <HorizontalScrollView
-
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="5dp"
-
-            android:scrollbars="none"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+            android:layout_height="match_parent"
+            android:scrollbars="none">
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="5dp"
-
                 android:paddingRight="20dp">
 
                 <androidx.cardview.widget.CardView
-
-                    android:layout_width="192dp"
+                    android:id="@+id/CardLibraryRow1Article1"
+                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="192dp"
                     android:layout_height="180dp"
                     android:layout_marginLeft="20dp"
-                    app:cardCornerRadius="8dp"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="444dp">
-
-                    <ImageButton
+                    app:cardCornerRadius="8dp">
+                    <ImageView
+                        android:scaleType="centerCrop"
                         android:clickable="false"
-
+                        android:id="@+id/ImageCardLibraryRow1Article1"
                         android:layout_width="match_parent"
-
-                        android:layout_height="124dp"
-                        app:srcCompat="@drawable/protez1"
-                        tools:layout_editor_absoluteX="59dp"
-                        tools:layout_editor_absoluteY="448dp" />
-
+                        android:layout_height="124dp" />
                     <TextView
-
-                        android:layout_width="160dp"
+                        android:id="@+id/TextCardLibraryRow1Article1"
+                        android:layout_width="match_parent"
                         android:layout_height="37dp"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/montserratsemibold"
                         android:gravity="left"
-                        android:text="Как получить протез бесплатно?"
+                        android:text=""
                         android:textColor="@color/BlackSviut"
                         android:textSize="14sp" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="192dp"
-                    android:layout_height="180dp"
-                    android:layout_marginLeft="20dp"
-                    app:cardCornerRadius="8dp"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="444dp">
 
                     <ImageView
+                        android:id="@+id/ImageAddCardLibraryRow1Article1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/plus_insert_add_rectangle_icon" />
+                </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CardLibraryRow1Article2"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="192dp"
+                    android:layout_height="180dp"
+                    android:layout_marginLeft="20dp"
+                    app:cardCornerRadius="8dp">
+                    <ImageView
+
+                        android:id="@+id/ImageCardLibraryRow1Article2"
                         android:layout_width="match_parent"
-
-                        android:layout_height="124dp"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/protez2"
-                        tools:layout_editor_absoluteX="59dp"
-                        tools:layout_editor_absoluteY="448dp"/>
-
-
+                        android:scaleType="centerCrop"
+                        android:layout_height="124dp" />
                     <TextView
-
-                        android:layout_width="160dp"
+                        android:id="@+id/TextCardLibraryRow1Article2"
+                        android:layout_width="match_parent"
                         android:layout_height="37dp"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/montserratsemibold"
                         android:gravity="left"
-                        android:text="Подготовка к ампутации"
+                        android:text=""
                         android:textColor="@color/BlackSviut"
                         android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/ImageAddCardLibraryRow1Article2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/plus_insert_add_rectangle_icon" />
                 </androidx.cardview.widget.CardView>
 
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/CardLibraryRow1Article3"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="192dp"
                     android:layout_height="180dp"
                     android:layout_marginLeft="20dp"
-                    app:cardCornerRadius="8dp"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="444dp">
-
-                    <ImageButton
-
+                    app:cardCornerRadius="8dp">
+                    <ImageView
+                        android:id="@+id/ImageCardLibraryRow1Article3"
                         android:layout_width="match_parent"
-
-                        android:layout_height="124dp"
-                        app:srcCompat="@drawable/buttonimage"
-                        tools:layout_editor_absoluteX="59dp"
-                        tools:layout_editor_absoluteY="448dp" />
-
+                        android:scaleType="centerCrop"
+                        android:layout_height="124dp" />
                     <TextView
-
-                        android:layout_width="160dp"
+                        android:id="@+id/TextCardLibraryRow1Article3"
+                        android:layout_width="match_parent"
                         android:layout_height="37dp"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/montserratsemibold"
                         android:gravity="left"
-                        android:text="Как получить протез бесплатно?"
+                        android:text=""
                         android:textColor="@color/BlackSviut"
                         android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/ImageAddCardLibraryRow1Article3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/plus_insert_add_rectangle_icon" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </HorizontalScrollView>
@@ -555,13 +569,16 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
+            <EditText
+                android:id="@+id/PostTextRow2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:layout_marginTop="10dp"
                 android:text="Новые статьи"
+                android:maxLines="1"
                 android:textSize="17dp"
+                android:maxLength="25"
                 android:layout_marginLeft="15dp"
                 android:paddingBottom="5dp"
                 android:textColor="@color/BlackSviut"
@@ -586,130 +603,140 @@
                     android:layout_marginBottom="4dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/RedExit"
+                    android:textColor="@color/MainBlue"
                     android:fontFamily="@font/montserratsemibold"
                     android:textSize="13dp"
-                    android:text="Недоступно"
+                    android:text="Доступно"
                     tools:ignore="DuplicateIds" />
             </androidx.cardview.widget.CardView>
         </FrameLayout>
 
 
+
         <HorizontalScrollView
-
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="5dp"
-
-            android:scrollbars="none"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+            android:layout_height="match_parent"
+            android:scrollbars="none">
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="5dp"
-
                 android:paddingRight="20dp">
 
                 <androidx.cardview.widget.CardView
-
-                    android:layout_width="192dp"
+                    android:id="@+id/CardLibraryRow2Article1"
+                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="192dp"
                     android:layout_height="180dp"
                     android:layout_marginLeft="20dp"
-                    app:cardCornerRadius="8dp"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="444dp">
-
-                    <ImageButton
+                    app:cardCornerRadius="8dp">
+                    <ImageView
+                        android:scaleType="centerCrop"
                         android:clickable="false"
-
+                        android:id="@+id/ImageCardLibraryRow2Article1"
                         android:layout_width="match_parent"
-
-                        android:layout_height="124dp"
-                        app:srcCompat="@drawable/protez1"
-                        tools:layout_editor_absoluteX="59dp"
-                        tools:layout_editor_absoluteY="448dp" />
-
+                        android:layout_height="124dp" />
                     <TextView
-
-                        android:layout_width="160dp"
+                        android:id="@+id/TextCardLibraryRow2Article1"
+                        android:layout_width="match_parent"
                         android:layout_height="37dp"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/montserratsemibold"
                         android:gravity="left"
-                        android:text="Как получить протез бесплатно?"
+                        android:text=""
                         android:textColor="@color/BlackSviut"
                         android:textSize="14sp" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="192dp"
-                    android:layout_height="180dp"
-                    android:layout_marginLeft="20dp"
-                    app:cardCornerRadius="8dp"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="444dp">
 
                     <ImageView
+                        android:id="@+id/ImageAddCardLibraryRow2Article1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/plus_insert_add_rectangle_icon" />
+                </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CardLibraryRow2Article2"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="192dp"
+                    android:layout_height="180dp"
+                    android:layout_marginLeft="20dp"
+                    app:cardCornerRadius="8dp">
+                    <ImageView
+
+                        android:id="@+id/ImageCardLibraryRow2Article2"
                         android:layout_width="match_parent"
-
-                        android:layout_height="124dp"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/protez2"
-                        tools:layout_editor_absoluteX="59dp"
-                        tools:layout_editor_absoluteY="448dp"/>
-
-
+                        android:scaleType="centerCrop"
+                        android:layout_height="124dp" />
                     <TextView
-
-                        android:layout_width="160dp"
+                        android:id="@+id/TextCardLibraryRow2Article2"
+                        android:layout_width="match_parent"
                         android:layout_height="37dp"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/montserratsemibold"
                         android:gravity="left"
-                        android:text="Подготовка к ампутации"
+                        android:text=""
                         android:textColor="@color/BlackSviut"
                         android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/ImageAddCardLibraryRow2Article2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/plus_insert_add_rectangle_icon" />
                 </androidx.cardview.widget.CardView>
 
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/CardLibraryRow2Article3"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="192dp"
                     android:layout_height="180dp"
                     android:layout_marginLeft="20dp"
-                    app:cardCornerRadius="8dp"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="444dp">
-
-                    <ImageButton
-
+                    app:cardCornerRadius="8dp">
+                    <ImageView
+                        android:id="@+id/ImageCardLibraryRow2Article3"
                         android:layout_width="match_parent"
-
-                        android:layout_height="124dp"
-                        app:srcCompat="@drawable/buttonimage"
-                        tools:layout_editor_absoluteX="59dp"
-                        tools:layout_editor_absoluteY="448dp" />
-
+                        android:scaleType="centerCrop"
+                        android:layout_height="124dp" />
                     <TextView
-
-                        android:layout_width="160dp"
+                        android:id="@+id/TextCardLibraryRow2Article3"
+                        android:layout_width="match_parent"
                         android:layout_height="37dp"
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/montserratsemibold"
                         android:gravity="left"
-                        android:text="Как получить протез бесплатно?"
+                        android:text=""
                         android:textColor="@color/BlackSviut"
                         android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/ImageAddCardLibraryRow2Article3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/plus_insert_add_rectangle_icon" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </HorizontalScrollView>

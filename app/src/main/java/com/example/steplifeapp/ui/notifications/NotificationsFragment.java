@@ -60,16 +60,26 @@ public class NotificationsFragment extends Fragment {
     ViewPager viewpager;
     ImageView SearchButton,NotificationButton;
 
-    TextView NameTopPost,SecNameTopPost;
+    TextView NameTopPost,SecNameTopPost,LibPostTextRow1,LibPostTextRow2;
     TextView EditDataTextTopPost1,EditDataTextTopPost2,EditDataTextTopPost3,EditDataTextTopPost4,EditDataTextTopPost5;
     TextView EditTextTopPost1,EditTextTopPost2,EditTextTopPost3,EditTextTopPost4,EditTextTopPost5;
 
-    private String TopPost_Key ="TopPostArticle";
-    private String Library_Key ="Lib";
+    private final static String TopPost_Key ="TopPostArticle";
+    private final static String Library_Key ="Lib";
+
+    private static final String Library_Row1_Key ="Row1";
+    private static final String Library_Row2_Key ="Row2";
 
     private DatabaseReference mDataBase,bDataBase;
 
     CardView TopPostCard1,TopPostCard2,TopPostCard3,TopPostCard4,TopPostCard5,SeeAllText,SeeAllText2;
+    CardView CardLibraryRow1Article1,CardLibraryRow1Article2,CardLibraryRow1Article3;
+    CardView CardLibraryRow2Article1,CardLibraryRow2Article2,CardLibraryRow2Article3;
+    TextView TextCardLibraryRow1Article1,TextCardLibraryRow1Article2,TextCardLibraryRow1Article3;
+    TextView TextCardLibraryRow2Article1,TextCardLibraryRow2Article2,TextCardLibraryRow2Article3;
+
+    ImageView ImageCardLibraryRow1Article1,ImageCardLibraryRow1Article2,ImageCardLibraryRow1Article3;
+    ImageView ImageCardLibraryRow2Article1,ImageCardLibraryRow2Article2,ImageCardLibraryRow2Article3;
     ProgressBar progressBarTopPost;
     Article DowArticle,DowArticle1,DowArticle2,DowArticle3,DowArticle4;
     ImageView imagetoppost1,imagetoppost2,imagetoppost3,imagetoppost4,imagetoppost5;
@@ -95,6 +105,92 @@ public class NotificationsFragment extends Fragment {
 
         //Запуск анимации
         NotificationAppBar.setAnimation(animationUP);
+
+
+
+        //Первая строка статей
+        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key).child(Library_Row1_Key);
+        //Получение данных из базы
+        mDataBase.child("Name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        LibPostTextRow1.setText((String)task.getResult().getValue());
+                    }
+                    catch (Exception e){
+                        Log.e("Profile",e.toString());
+                    }
+
+                }
+            }
+        });
+        //Загрузка данных
+        mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle =  task.getResult().getValue(Article.class);
+                        if(DowArticle!= null){
+                            TextCardLibraryRow1Article1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                            Glide.with(getActivity()).load(DowArticle.PreviewPhotoUri).into(ImageCardLibraryRow1Article1);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+        mDataBase.child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle =  task.getResult().getValue(Article.class);
+                        if(DowArticle!= null){
+                            TextCardLibraryRow1Article2.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                            Glide.with(getActivity()).load(DowArticle.PreviewPhotoUri).into(ImageCardLibraryRow1Article2);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+        mDataBase.child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    try {
+                        //Данные получены
+                        DowArticle =  task.getResult().getValue(Article.class);
+                        if(DowArticle!= null){
+                            TextCardLibraryRow1Article3.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                            Glide.with(getActivity()).load(DowArticle.PreviewPhotoUri).into(ImageCardLibraryRow1Article3);
+                        }
+                    }
+                    catch (Exception e){
+                    }
+                }
+            }
+        });
+
 
         mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
         //Получение данных из базы
@@ -151,7 +247,7 @@ public class NotificationsFragment extends Fragment {
                             EditTextTopPost1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
                             Glide.with(getActivity()).load(DowArticle.PreviewPhotoUri).into(imagetoppost1);
                             EditDataTextTopPost1.setText(Html.fromHtml(DowArticle.Date).toString().trim());
-                            progressBarTopPost.setVisibility(View.GONE);
+
 
                         }
                     }
@@ -176,7 +272,7 @@ public class NotificationsFragment extends Fragment {
                             EditTextTopPost2.setText(Html.fromHtml(DowArticle1.HeadText).toString().trim());
                             Glide.with(getActivity()).load(DowArticle1.PreviewPhotoUri).into(imagetoppost2);
                             EditDataTextTopPost2.setText(Html.fromHtml(DowArticle1.Date).toString().trim());
-                            progressBarTopPost.setVisibility(View.GONE);
+
 
                         }
                     }
@@ -201,7 +297,7 @@ public class NotificationsFragment extends Fragment {
                             EditTextTopPost3.setText(Html.fromHtml(DowArticle2.HeadText).toString().trim());
                             Glide.with(getActivity()).load(DowArticle2.PreviewPhotoUri).into(imagetoppost3);
                             EditDataTextTopPost3.setText(Html.fromHtml(DowArticle2.Date).toString().trim());
-                            progressBarTopPost.setVisibility(View.GONE);
+
 
                         }
                     }
@@ -226,7 +322,7 @@ public class NotificationsFragment extends Fragment {
                             EditTextTopPost4.setText(Html.fromHtml(DowArticle3.HeadText).toString().trim());
                             Glide.with(getActivity()).load(DowArticle3.PreviewPhotoUri).into(imagetoppost4);
                             EditDataTextTopPost4.setText(Html.fromHtml(DowArticle3.Date).toString().trim());
-                            progressBarTopPost.setVisibility(View.GONE);
+
 
                         }
                     }
@@ -291,6 +387,9 @@ public class NotificationsFragment extends Fragment {
 
         NameTopPost = view.findViewById(R.id.NameTopPost);
         SecNameTopPost = view.findViewById(R.id.SecNameTopPost);
+        LibPostTextRow1  = view.findViewById(R.id.LibPostTextRow1);
+        LibPostTextRow2  = view.findViewById(R.id.LibPostTextRow2);
+
         NotificationAppBar = view.findViewById(R.id.NotificationAppBar);
 
         //Инициализация анимации
@@ -308,6 +407,21 @@ public class NotificationsFragment extends Fragment {
         EditTextTopPost3 = view.findViewById(R.id.EditTextTopPost3);
         EditTextTopPost4 = view.findViewById(R.id.EditTextTopPost4);
         EditTextTopPost5 = view.findViewById(R.id.EditTextTopPost5);
+
+
+        //Инициализация элементов первой строки статей
+        CardLibraryRow1Article1 = view.findViewById(R.id.CardLibraryRow1Article1);
+        TextCardLibraryRow1Article1 = view.findViewById(R.id.TextCardLibraryRow1Article1);
+        ImageCardLibraryRow1Article1 = view.findViewById(R.id.ImageCardLibraryRow1Article1);
+
+        CardLibraryRow1Article2 = view.findViewById(R.id.CardLibraryRow1Article2);
+        TextCardLibraryRow1Article2 = view.findViewById(R.id.TextCardLibraryRow1Article2);
+        ImageCardLibraryRow1Article2 = view.findViewById(R.id.ImageCardLibraryRow1Article2);
+
+        CardLibraryRow1Article3 = view.findViewById(R.id.CardLibraryRow1Article3);
+        TextCardLibraryRow1Article3 = view.findViewById(R.id.TextCardLibraryRow1Article3);
+        ImageCardLibraryRow1Article3 = view.findViewById(R.id.ImageCardLibraryRow1Article3);
+
 
 
 

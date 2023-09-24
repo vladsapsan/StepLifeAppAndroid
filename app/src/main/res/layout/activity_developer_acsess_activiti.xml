@@ -11,13 +11,26 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="45dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="15dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_logo_steplife"/>
+        </androidx.cardview.widget.CardView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/MainBlue"
+            android:textColor="@color/RedExit"
             android:textSize="25dp"
             android:fontFamily="@font/montserratsemibold"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:text="Внимание!"/>
 
@@ -39,7 +52,7 @@
 
 
         <com.chaos.view.PinView
-            android:layout_marginTop="113dp"
+            android:layout_marginTop="60dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/DeveloperPinView"
 
@@ -101,6 +114,14 @@
             android:textColor="@color/BlackSviut"
 
             android:text="@string/VersionApp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="12dp"
+            android:textColor="@color/MainGrayText"
+            android:fontFamily="@font/montserratsemibold"
+            android:text="@string/BuildDate"/>
 
     </LinearLayout>
 </FrameLayout>

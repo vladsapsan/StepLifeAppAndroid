@@ -54,25 +54,6 @@ public class ChooseArticle extends AppCompatActivity {
             drawable = null;
             id = R.drawable.buttonimage;
 
-            //Download file in Memory
-         //   StorageReference islandRef = storageRef.child(source);
-        //    final long ONE_MEGABYTE = 1024 * 1024;
-        //    islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-         //       @Override
-         //       public void onSuccess(byte[] bytes) {
-          //          bitmap1 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);;
-          //          progressBar.setVisibility(View.GONE);
-                    // Data for "images/island.jpg" is returns, use this as needed
-
-         //       }
-          //  }).addOnFailureListener(new OnFailureListener() {
-          //      @Override
-         //       public void onFailure(@NonNull Exception exception) {
-          //          // Handle any errors
-          //      }
-        //    });
-
-
             mTarget = new Target() {
 
                @Override
@@ -196,20 +177,6 @@ public class ChooseArticle extends AppCompatActivity {
     }
 
 
-
-
-
-    Thread myThread = new Thread( // создаём новый поток
-            new Runnable() { // описываем объект Runnable в конструкторе
-                public void run() {
-                    //Получение значений через ключ
-                    Bundle arguments = getIntent().getExtras();
-                    DownloadHeadText.setText(Html.fromHtml((String) arguments.get("HeaderText"),new GlideImageGetter(DownloadHeadText),null));
-                    TextDateDownloadArticle.setText((CharSequence) arguments.get("Date"));
-                    MainTextDownloadArticle.setText(Html.fromHtml((String) arguments.get("MainText"),new GlideImageGetter(MainTextDownloadArticle),null));
-                }
-            }
-    );
 
 
 
