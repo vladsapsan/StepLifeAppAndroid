@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:262958102702:android:093dae849b78885eccd53f",
+        "mobilesdk_app_id": "1:262958102702:android:de4604d32e043832ccd53f",
         "android_client_info": {
-          "package_name": "com.example.steplifeapp"
+          "package_name": "com.StepLife.steplifeapp"
         }
       },
       "oauth_client": [
@@ -30,6 +30,65 @@
             {
               "client_id": "262958102702-a08e7neqm6t0t88njqaao9b557e1urfj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "262958102702-ta2aplr7mk353frt9nbsdqjdmobg0ilv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ru.StepLife.StepLifeApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262958102702:android:29f808ab237b5d6accd53f",
+        "android_client_info": {
+          "package_name": "com.example.steplifeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262958102702-a42k2tp18es0202qlvss6sh3kgj385n4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.steplifeapp",
+            "certificate_hash": "f2f59c43352b6fce33f5fc13593e4897733cc91c"
+          }
+        },
+        {
+          "client_id": "262958102702-tuqcjqehka4lcjo5vo6f9m2obtradaa3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.steplifeapp",
+            "certificate_hash": "caee57d295ddf74d4865a1d6eb516d4087f06549"
+          }
+        },
+        {
+          "client_id": "262958102702-a08e7neqm6t0t88njqaao9b557e1urfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxgkKqg0I50F1vZPGAPrVzxDNOQLIL4YA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262958102702-a08e7neqm6t0t88njqaao9b557e1urfj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "262958102702-ta2aplr7mk353frt9nbsdqjdmobg0ilv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ru.StepLife.StepLifeApp"
+              }
             }
           ]
         }

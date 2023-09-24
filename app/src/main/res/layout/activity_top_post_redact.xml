@@ -398,7 +398,8 @@
                 android:gravity="left"
                 android:lines="1"
                 android:maxLines="1"
-                android:maxLength="25"
+                android:maxLength="20"
+                android:inputType="text"
                 android:layout_marginTop="10dp"
                 android:text="То, с чего стоит начать"
                 android:textSize="17dp"
@@ -406,7 +407,6 @@
                 android:paddingBottom="5dp"
                 android:textColor="@color/BlackSviut"
                 android:fontFamily="@font/montserrat1black"/>
-
 
             <androidx.cardview.widget.CardView
                 android:clickable="true"
@@ -576,9 +576,11 @@
                 android:gravity="left"
                 android:layout_marginTop="10dp"
                 android:text="Новые статьи"
+                android:lines="1"
+                android:inputType="text"
                 android:maxLines="1"
+                android:maxLength="20"
                 android:textSize="17dp"
-                android:maxLength="25"
                 android:layout_marginLeft="15dp"
                 android:paddingBottom="5dp"
                 android:textColor="@color/BlackSviut"

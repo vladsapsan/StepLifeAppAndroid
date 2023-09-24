@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.steplifeapp.ui.home.HomeFragment"
+        android:name="com.StepLife.steplifeapp.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.steplifeapp.ui.dashboard.DashboardFragment"
+        android:name="com.StepLife.steplifeapp.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.steplifeapp.ui.notifications.NotificationsFragment"
+        android:name="com.StepLife.steplifeapp.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.steplifeapp.ui.ProfileFragment"
+        android:name="com.StepLife.steplifeapp.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -41,17 +41,17 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_registration"
-        android:name="com.example.steplifeapp.ui.RegistrationFragment"
+        android:name="com.StepLife.steplifeapp.ui.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" />
     <fragment
         android:id="@+id/downloadArticle"
-        android:name="com.example.steplifeapp.ui.DownloadArticle"
+        android:name="com.StepLife.steplifeapp.ui.DownloadArticle"
         android:label="fragment_download_article"
         tools:layout="@layout/fragment_download_article" />
     <fragment
         android:id="@+id/userProfileFragment"
-        android:name="com.example.steplifeapp.ui.userProfileFragment"
+        android:name="com.StepLife.steplifeapp.ui.userProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
         <action

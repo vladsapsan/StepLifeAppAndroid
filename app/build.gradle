@@ -1,21 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-
-
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.steplifeapp"
+        applicationId "com.StepLife.steplifeapp"
         minSdk 21
         targetSdk 31
         versionCode 1
-        versionName "0.5.1"
-
-
+        versionName "0.5.2"
     }
 
     buildTypes {
@@ -31,7 +27,7 @@ android {
     buildFeatures {
         viewBinding true
     }
-    namespace 'com.example.steplifeapp'
+    namespace 'com.StepLife.steplifeapp'
 }
 
 

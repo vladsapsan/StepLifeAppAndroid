@@ -954,6 +954,7 @@
                             android:paddingRight="20dp">
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/CardLibraryRow2Article1"
                                 android:foreground="?attr/selectableItemBackground"
                                 android:clickable="true"
                                 android:layout_marginTop="5dp"
@@ -963,13 +964,14 @@
                                 android:layout_marginLeft="20dp"
                                 app:cardCornerRadius="8dp">
                                 <ImageView
+                                    android:id="@+id/ImageCardLibraryRow2Article1"
                                     android:scaleType="centerCrop"
                                     android:clickable="false"
 
                                     android:layout_width="match_parent"
                                     android:layout_height="124dp" />
                                 <TextView
-
+                                    android:id="@+id/TextCardLibraryRow2Article1"
                                     android:layout_width="match_parent"
                                     android:layout_height="37dp"
                                     android:layout_gravity="bottom"
@@ -988,6 +990,7 @@
                             </androidx.cardview.widget.CardView>
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/CardLibraryRow2Article2"
                                 android:foreground="?attr/selectableItemBackground"
                                 android:clickable="true"
                                 android:layout_marginTop="5dp"
@@ -997,12 +1000,12 @@
                                 android:layout_marginLeft="20dp"
                                 app:cardCornerRadius="8dp">
                                 <ImageView
-
+                                    android:id="@+id/ImageCardLibraryRow2Article2"
                                     android:scaleType="centerCrop"
                                     android:layout_width="match_parent"
                                     android:layout_height="124dp" />
                                 <TextView
-
+                                    android:id="@+id/TextCardLibraryRow2Article2"
                                     android:layout_width="match_parent"
                                     android:layout_height="37dp"
                                     android:layout_gravity="bottom"
@@ -1020,6 +1023,7 @@
 
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/CardLibraryRow2Article3"
                                 android:foreground="?attr/selectableItemBackground"
                                 android:clickable="true"
                                 android:layout_marginTop="5dp"
@@ -1029,12 +1033,12 @@
                                 android:layout_marginLeft="20dp"
                                 app:cardCornerRadius="8dp">
                                 <ImageView
-
+                                    android:id="@+id/ImageCardLibraryRow2Article3"
                                     android:scaleType="centerCrop"
                                     android:layout_width="match_parent"
                                     android:layout_height="124dp" />
                                 <TextView
-
+                                    android:id="@+id/TextCardLibraryRow2Article3"
                                     android:layout_width="match_parent"
                                     android:layout_height="37dp"
                                     android:layout_gravity="bottom"

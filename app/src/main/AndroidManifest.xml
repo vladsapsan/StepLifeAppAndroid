@@ -28,6 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StepLifeApp">
         <activity
+
             android:name=".ProthesisModule.ProthesisModuleSettings"
             android:exported="false" />
         <activity
