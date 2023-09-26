@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -45,6 +46,7 @@ public class User_ProfileActiviti extends AppCompatActivity {
     NetworkChangeListner networkChangeListner;
     int USER_ROLE = 0;
     Fragment SettingsFragment;
+    CardView ProfileUserCard;
     FrameLayout AddArticleFrameButton,RedactArticleFrameButton,SettingsFrameButton,ArticleChooseFrameButton;
     ScrollView UserProfilescrollView;
     private FirebaseAuth mAuth;
@@ -79,6 +81,15 @@ public class User_ProfileActiviti extends AppCompatActivity {
 
         ImageProfile = findViewById(R.id.ImageProfile);
 
+        //Карточка профиля
+        ProfileUserCard = findViewById(R.id.ProfileUserCard);
+        ProfileUserCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentSetting = new Intent(User_ProfileActiviti.this, ProfileRedactActivity.class);
+                startActivity(intentSetting);
+            }
+        });
 
         //Кнопка добавления статьи
         AddArticleFrameButton = findViewById(R.id.AddArticleFrameButton);

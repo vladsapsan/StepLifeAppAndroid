@@ -26,7 +26,6 @@
                 android:background="@color/TranspanetColor"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
@@ -53,12 +52,14 @@
 
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/ProfileUserCard"
                     android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
+                    app:cardElevation="8dp"
                     android:layout_width="match_parent"
                     android:layout_marginTop="50dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="15dp"
                     android:layout_marginRight="10dp"
                     app:cardCornerRadius="10dp"
                     android:layout_height="wrap_content">
@@ -136,6 +137,7 @@
                 android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="5dp"
                 app:cardCornerRadius="8dp"
                 android:layout_width="match_parent"
                 android:layout_gravity="left"
@@ -328,6 +330,7 @@
 
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="5dp"
                 android:layout_width="match_parent"
                 app:cardCornerRadius="10dp"
                 android:layout_marginTop="40dp"
@@ -388,8 +391,6 @@
                 app:lottie_rawRes="@raw/paperplaneanimation"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"/>
-
-
             <Button
                 android:id="@+id/ExitProfileButton"
                 android:layout_width="match_parent"
@@ -397,13 +398,13 @@
                 android:gravity="center"
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
-                android:textSize="9dp"
+                android:textSize="10dp"
                 android:textColor="@color/RedExit"
                 android:backgroundTint="@color/white"
                 android:layout_gravity="bottom"
-                android:fontFamily="@font/montserratsemibold"
+                android:fontFamily="@font/montserrat_bold"
 
-                android:text="Выйти"/>
+                android:text="Выйти из профиля"/>
         </LinearLayout>
 
     </ScrollView>

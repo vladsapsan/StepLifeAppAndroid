@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,7 +48,6 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
         TextView HeadText = convertView.findViewById(R.id.ArticleHeadTextItems);
         TextView Date = convertView.findViewById(R.id.ArticleDateTextItems);
         ImageView PreviewImage = convertView.findViewById(R.id.PreviewPhoto);
-        ProgressBar progressBar = convertView.findViewById(R.id.progressBarDownloadpreviewPhotoArticle);
 
         //Загрузка картинок с помощью библиотеки пикассо
         if(article.PreviewPhotoUri!=null) {

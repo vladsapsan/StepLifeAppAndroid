@@ -27,6 +27,7 @@
 
             <FrameLayout
                 android:id="@+id/HomeAppBar"
+                android:elevation="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
 
@@ -117,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/montserrat_semibold"
+                    android:fontFamily="@font/normalidadwidethin"
                     android:text="Видео инструкция"
                     android:textColor="@color/BlackSviut"
                     android:textSize="17dp"
@@ -162,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/normalidadwidethin"
                 android:text="Учебник"
                 android:textColor="@color/MainGrayText"
                 android:textSize="18dp"
@@ -177,22 +178,18 @@
                 android:layout_height="match_parent"
                 android:scrollbars="none">
                 <LinearLayout
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-
+                    android:layout_height="210dp"
                     android:orientation="horizontal"
                     android:paddingRight="20dp">
 
                     <com.google.android.material.card.MaterialCardView
                         app:cardPreventCornerOverlap="false"
                         style="@style/CustomCardViewStyle"
+                        android:id="@+id/CardHomeArticle1"
+                        app:cardElevation="9dp"
                         android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:elevation="14dp"
-                        android:id="@+id/CardHomeArticle1"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:layout_width="192dp"
@@ -228,6 +225,7 @@
                         style="@style/CustomCardViewStyle"
                         android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
+                        app:cardElevation="9dp"
                         android:id="@+id/CardHomeArticle2"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -262,6 +260,7 @@
                         style="@style/CustomCardViewStyle"
                         android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
+                        app:cardElevation="9dp"
                         android:id="@+id/CardHomeArticle3"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -298,6 +297,7 @@
                         android:id="@+id/CardHomeArticle4"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
+                        app:cardElevation="9dp"
                         android:layout_width="192dp"
                         android:layout_height="180dp"
                         android:layout_marginLeft="20dp">
@@ -330,6 +330,7 @@
                         android:clickable="true"
                         android:id="@+id/CardHomeArticle5"
                         android:layout_marginTop="5dp"
+                        app:cardElevation="9dp"
                         android:layout_marginBottom="5dp"
                         android:layout_width="192dp"
                         android:layout_height="180dp"
@@ -379,7 +380,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:fontFamily="@font/normalidadwidethin"
                 android:text="Тренировки"
                 android:textColor="@color/MainGrayText"
                 android:textSize="18dp"
@@ -391,13 +392,11 @@
                 android:layout_width="413dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="10dp"
-
                 android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
-
                 <LinearLayout
                     android:paddingTop="5dp"
                     android:layout_width="wrap_content"
@@ -409,6 +408,7 @@
                         app:cardPreventCornerOverlap="false"
                         style="@style/CustomCardViewStyle"
                         android:foreground="?attr/selectableItemBackground"
+                        app:cardElevation="6dp"
                         android:clickable="true"
                         android:layout_width="192dp"
                         android:layout_height="180dp"
@@ -439,6 +439,7 @@
                     <com.google.android.material.card.MaterialCardView
                         app:cardPreventCornerOverlap="false"
                         style="@style/CustomCardViewStyle"
+                        app:cardElevation="6dp"
                         android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:layout_width="192dp"
@@ -501,8 +502,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
-                android:textSize="12dp"
-                android:fontFamily="@font/montserrat_semibold"
+                android:textSize="13dp"
+                android:fontFamily="@font/montserrat_bold"
                 android:letterSpacing="0.03"
                 android:background="@drawable/buttonstyle2"
                 android:text="Подключить коленный модуль"

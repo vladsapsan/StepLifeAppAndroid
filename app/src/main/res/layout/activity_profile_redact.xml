@@ -122,7 +122,7 @@
 
 
                 <androidx.cardview.widget.CardView
-
+                    app:cardElevation="6dp"
                     android:layout_width="match_parent"
                     android:layout_marginTop="30dp"
                     android:layout_marginLeft="30dp"
@@ -165,26 +165,38 @@
 
                 </androidx.cardview.widget.CardView>
 
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_gravity="center"
+                    app:boxBackgroundColor="@color/MainYellow"
+
+                    android:baselineAligned="false"
+                    android:outlineProvider="bounds"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginRight="30dp"
-                    android:layout_marginTop="20dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_height="50dp"
                     app:errorEnabled="true">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="12dp"
-                        android:fontFamily="@font/montserratsemibold"
+                        android:textSize="14dp"
+                        android:fontFamily="@font/montserrat_semibold"
                         android:hint="Имя"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone"
                         android:maxLength="35"
-                        android:inputType="textEmailAddress"
+                        android:inputType="text"
                         android:id="@+id/editTextUserName"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
-
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/TextViewSaveUserinformation"
                     android:foreground="?attr/selectableItemBackground"
