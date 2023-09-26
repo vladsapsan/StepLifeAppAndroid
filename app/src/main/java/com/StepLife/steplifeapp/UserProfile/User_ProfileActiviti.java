@@ -16,13 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.bumptech.glide.Glide;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.StafFunction.ArticleOnTopSettingsActivity;
 import com.StepLife.steplifeapp.StafFunction.EditArticlesActiviti;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.ui.AddArticleFragment;
 import com.StepLife.steplifeapp.ui.SettingsFragment;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -136,14 +136,12 @@ public class User_ProfileActiviti extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
         //Кнопка возвращения
         BackBtn = (ImageView) findViewById(R.id.CLosetoProfile);
         BackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                    finish();
             }
         });
 
@@ -155,9 +153,6 @@ public class User_ProfileActiviti extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-
-
-
 
         FirebaseUser cUser = mAuth.getCurrentUser();
         //Данные аутентификации

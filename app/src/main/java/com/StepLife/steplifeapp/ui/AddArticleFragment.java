@@ -158,8 +158,6 @@ public class AddArticleFragment extends Fragment {
                     }
                 }
                 else {
-
-
                     progresscheck.setVisibility(View.VISIBLE);
                     NextBtn.setVisibility(View.GONE);
                     alertDialog.show();
@@ -237,6 +235,7 @@ public class AddArticleFragment extends Fragment {
                                 Main.setText(MainSpannabletext);
                                 Main.append("\n");
 
+                                Main.clearFocus();
                                 alertDialog.dismiss();
 
                             } catch (Exception e) {
@@ -420,7 +419,6 @@ public class AddArticleFragment extends Fragment {
                 inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),0);
 
                 CleanFocus.setTextColor(getResources().getColor(R.color.MainGrayText));
-                CleanFocus.setClickable(false);
                 Main.clearFocus();
 
             }

@@ -11,7 +11,7 @@ android {
         minSdk 21
         targetSdk 31
         versionCode 1
-        versionName "0.5.2"
+        versionName "0.5.3"
     }
 
     buildTypes {
@@ -35,12 +35,6 @@ dependencies {
 
     //Библиотека Glide
     implementation 'com.github.bumptech.glide:glide:4.16.0'
-
-    implementation "androidx.core:core-splashscreen:1.0.0"
-
-    //Библиотека Fresco
-    implementation 'com.facebook.fresco:fresco:3.1.0'
-
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.google.android.gms:play-services-safetynet:18.0.1'

@@ -145,6 +145,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -156,37 +157,30 @@
                         android:id="@+id/AddArticleFrameButton"
                         android:layout_width="match_parent"
                         android:layout_gravity="left"
-                        android:layout_marginTop="10dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="45dp">
                         <TextView
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="left"
+                            android:layout_gravity="left|center_vertical"
                             android:layout_marginLeft="55dp"
-                            android:layout_marginTop="4dp"
                             android:fontFamily="@font/montserratsemibold"
                             android:gravity="left"
-
                             android:text="Добавить статью в учебник"
                             android:textColor="@color/BlackSviut"
                             android:textSize="14sp" />
 
 
                         <ImageView
-
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_marginLeft="20dp"
-                            android:layout_gravity="left"
-
+                            android:layout_gravity="left|center_vertical"
                             android:src="@drawable/plus_insert_add_rectangle_icon" />
 
                         <ImageView
                             android:layout_marginRight="26dp"
                             android:layout_width="16dp"
-                            android:layout_marginTop="7dp"
-                            android:layout_gravity="right"
+                            android:layout_gravity="right|center_vertical"
                             android:layout_height="16dp"
                             android:src="@drawable/font_angle_small_right" />
 
@@ -194,7 +188,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_gravity="bottom"
-                            android:layout_marginTop="40dp"
+                            android:layout_marginTop="35dp"
                             android:background="@android:color/darker_gray"/>
                     </FrameLayout>
 
@@ -206,7 +200,7 @@
                         android:layout_width="match_parent"
                         android:layout_gravity="left"
                         android:layout_marginTop="0dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="45dp">
                         <TextView
 
                             android:layout_width="wrap_content"
@@ -254,7 +248,7 @@
                         android:layout_width="match_parent"
                         android:layout_gravity="left"
                         android:layout_marginTop="0dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="45dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -299,16 +293,13 @@
                         android:id="@+id/SettingsFrameButton"
                         android:layout_width="match_parent"
                         android:layout_gravity="left"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_height="30dp">
+                        android:layout_height="45dp">
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="left"
+                            android:layout_gravity="left|center_vertical"
                             android:layout_marginLeft="55dp"
-                            android:layout_marginTop="4dp"
                             android:fontFamily="@font/montserratsemibold"
                             android:gravity="left"
 
@@ -317,19 +308,16 @@
                             android:textSize="14sp" />
 
                         <ImageView
-
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginLeft="23dp"
-                            android:layout_gravity="left"
-
+                            android:layout_gravity="left|center_vertical"
                             android:src="@drawable/free_icon_font_settings" />
 
                         <ImageView
                             android:layout_marginRight="26dp"
                             android:layout_width="16dp"
-                            android:layout_marginTop="7dp"
-                            android:layout_gravity="right"
+                            android:layout_gravity="right|center_vertical"
                             android:layout_height="16dp"
                             android:src="@drawable/font_angle_small_right" />
                     </FrameLayout>

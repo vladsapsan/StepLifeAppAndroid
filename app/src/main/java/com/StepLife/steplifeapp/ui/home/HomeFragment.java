@@ -48,14 +48,12 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     FrameLayout FrameVideo,HomeAppBar;
     TextView TextBtnHide,AllAcricleButton;
-
     private String HomeArticle_Key ="HomeArticle";
     private String Library_Key ="Lib";
     Article DowArticle1,DowArticle2,DowArticle3,DowArticle4,DowArticle5;
     CardView CardHomeArticle1,CardHomeArticle2,CardHomeArticle3,CardHomeArticle4,CardHomeArticle5;
     TextView TextHomeArticle1,TextHomeArticle2,TextHomeArticle3,TextHomeArticle4,TextHomeArticle5;
     ImageView ImageHomeArticle1,ImageHomeArticle2,ImageHomeArticle3,ImageHomeArticle4,ImageHomeArticle5;
-
     List<String> HomeTopArticleList;
     CardView ImageProfile,HowToGetProtCard;
     final private static String DBase_Code = "AllArticle";
@@ -63,38 +61,27 @@ public class HomeFragment extends Fragment {
     final private static String DB_Article_HowToGet = "-NJgrzWOZOFxEejjLr5J";
     private DatabaseReference mDatabase;
     private ArrayList<Article> listTemp = new ArrayList<Article>();
-
     Button buttonConnect;
     private ArticleListAdapter ArticleListAdapter;
     CardView  ArticleTeach;
     ScrollView HomescrollView;
     RecyclerView HomeArticleListView;
     HorizontalScrollView HomeArticleScroll;
-
     private ImageView ArticleState1,ArticleState2,ArticleState3;
     private FirebaseAuth mAuth;
     HorizontalScrollView horizontalScrollViewArticle,horizontalScrollView2;
     private Animation HideAnimation;
     private HomeViewModel homeViewModel;
-
     private ListView allArticlelist;
-
-
     Animation animationClick;
     private ArrayAdapter<String> adapter;
     private DatabaseReference mDataBase;
     int CurrnetPositionList ;
-
-
     private List<String> listData;
     Animation animationIN,animationUP;
     private String Article_Key ="AllArticle";
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -148,6 +135,7 @@ public class HomeFragment extends Fragment {
         Fragment fragment = new AllArticle();
         Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
         Intent intentAllArticle = new Intent(getActivity(), AllArticleActivity.class);
+        Intent User_ProfileActiviti = new Intent(getActivity(), User_ProfileActiviti.class);
 
 
         HomeArticleScroll = view.findViewById(R.id.HomeArticleScroll);
@@ -289,31 +277,21 @@ public class HomeFragment extends Fragment {
 
 
 
-
-        //Открытие статьи
-
-
-
         //Кнопка перехода в профиль
         ImageProfile =  view.findViewById(R.id.ProfileButton);
         ImageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseUser cUser = mAuth.getCurrentUser();
-                Intent intent;
                 if(cUser!=null)
                 {
-                    intent = new Intent(getActivity(), User_ProfileActiviti.class);
+                    startActivity(User_ProfileActiviti);
                 }
                 else
                 {
-                    intent = new Intent(getActivity(), TelephoneSignUp.class);
+                    Intent intent = new Intent(getActivity(), TelephoneSignUp.class);
+                    startActivity(intent);
                 }
-
-                startActivity(intent);
-
-
-
             }
         });
 
@@ -331,7 +309,7 @@ public class HomeFragment extends Fragment {
         //Запуск анимации при старте
         HomeArticleScroll.setAnimation(animationIN);
         HomeAppBar.setAnimation(animationUP);
-        FrameVideo.setAnimation(animationIN);
+        FrameVideo.setAnimation(animationUP);
         mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
         //Загрузка данных о 1 карточке
         mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

@@ -63,7 +63,7 @@
                 android:paddingRight="10dp"
                 android:breakStrategy="high_quality"
                 android:includeFontPadding="false"
-                android:fontFamily="@font/montserratsemibold"
+                android:fontFamily="@font/montserrat_medium"
                 android:gravity="left"
 
                 android:text="Как получить протез бесплатно?"

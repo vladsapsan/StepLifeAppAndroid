@@ -30,7 +30,7 @@ public class ConnectThread extends Thread{
                 //Запуск канал передачи данных
             mSocket.connect();
                 listner.onReceive(BluetoothController.BLUETOOTH_CONNECTED);
-                SendMessage(String.valueOf("Vlad"));
+                SendMessage(String.valueOf("9"));
                 ReadMessage();
 
             }

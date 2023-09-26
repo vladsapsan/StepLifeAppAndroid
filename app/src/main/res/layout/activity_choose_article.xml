@@ -64,8 +64,8 @@
 
                             android:breakStrategy="high_quality"
 
-                            android:fontFamily="@font/montserratsemibold"
-                            android:textColor="@color/BlackSviut"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/black"
                             android:background="@null"
                             android:textSize="25dp"/>
 
@@ -86,11 +86,10 @@
 
 
                         <TextView
-                            android:contextClickable="false"
+                            android:contextClickable="true"
                             android:layout_marginTop="10dp"
                             android:lineHeight="24dp"
                             android:id="@+id/MainTextDownloadArticle"
-
                             android:gravity="left"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
@@ -98,10 +97,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:fontFamily="@font/montserratregular"
+                            android:fontFamily="@font/montserrat_regular"
                             android:textColor="@color/black"
                             android:background="@null"
-                            android:textSize="15dp" />
+                            android:textSize="15.5dp" />
                     </LinearLayout>
 
 

@@ -43,6 +43,7 @@ import com.StepLife.steplifeapp.ProthesisModule.ProthesisModuleSettings;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.databinding.FragmentDashboardBinding;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
+import com.StepLife.steplifeapp.other.ProgressBarAnimation;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
@@ -58,7 +59,6 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
     BluetoothDevice device;
     BluetoothAdapter bluetoothAdapter;
     CardView TypeProthesisModuleCardButton;
-
     TextView CheckOutText;
     BluetoothDevice BondDevice;
     Button buttonConnectBt;
@@ -127,9 +127,6 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
                         // Bonding succeeded
                         bluetoothController.Connect(BondDevice.getAddress(),DashboardFragment.this);
                         TextViewFoot.setText("671");
-                        TextBattery.setText("Заряд аккумулятора");
-                        ProgressBarBatteryCharge.setProgress(66);
-                        TextViewBatteryCharge.setText(ProgressBarBatteryCharge.getProgress()+"%");
                         DeviceCheck = true;
                         bottomSheetWaitDialog.dismiss();
                         break;
@@ -325,7 +322,7 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
 
         if(BTCheck == 3) {
             bluetoothAdapter.cancelDiscovery();
-            getActivity().unregisterReceiver(broadcastReceiver);
+         //   getActivity().unregisterReceiver(broadcastReceiver);
         }
     }
 
@@ -421,9 +418,8 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
             }catch (Exception e){}
             GetDevice();
         }
+
     }
-
-
     @Override
     public void onReceive(String message) {
         getActivity().runOnUiThread(new Runnable() {
@@ -436,8 +432,11 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
                 }
                 //Прием данных из модуля
                     try {
-                        ProgressBarBatteryCharge.setProgress(Integer.parseInt(message));
-                        TextViewBatteryCharge.setText(ProgressBarBatteryCharge.getProgress()+"%");
+                     //   ProgressBarBatteryCharge.setProgress(Integer.parseInt(message));
+                        ProgressBarAnimation anim = new ProgressBarAnimation(ProgressBarBatteryCharge, ProgressBarBatteryCharge.getProgress(),Integer.parseInt(message));
+                        anim.setDuration(500);
+                        ProgressBarBatteryCharge.startAnimation(anim);
+                        TextViewBatteryCharge.setText(Integer.parseInt(message)+"%");
                         Log.d("BTConnect", message);
                     }catch (Exception e){}
 

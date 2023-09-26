@@ -85,7 +85,7 @@
                         android:layout_gravity="left"
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="20dp"
-                        android:fontFamily="@font/montserrat1black"
+                        android:fontFamily="@font/montserrat_extrabold"
                         android:text="Все статьи и уроки"
                         android:textColor="@color/BlackSviut"
                         android:textSize="20sp" />
