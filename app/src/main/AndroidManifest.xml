@@ -19,7 +19,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo_steplife_ground"
@@ -28,9 +27,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StepLifeApp">
         <activity
-
-            android:name=".ProthesisModule.ProthesisModuleSettings"
+            android:name=".StafFunction.AddNewArticle"
+            android:screenOrientation="portrait"
             android:exported="false" />
+        <activity
+            android:name=".StafFunction.AddTagsArticle"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProthesisModule.ProthesisModuleSettings"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AllArticleActivity"
             android:exported="false"

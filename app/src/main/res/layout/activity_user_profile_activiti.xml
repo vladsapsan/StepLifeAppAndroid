@@ -98,18 +98,18 @@
                                 android:fontFamily="@font/montserratsemibold"
                                 android:gravity="left"
                                 android:text="Имя,dsadasdasdasdasdsadsadasdsa"
-                                android:textColor="@color/BlackSviut"
+                                android:textColor="@color/MainGrayText"
                                 android:textSize="18sp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-
+                                android:textStyle="bold"
                                 android:layout_marginLeft="10dp"
                                 android:fontFamily="@font/montserratsemibold"
                                 android:gravity="left"
                                 android:text="Добро пожаловать!"
-                                android:textColor="@color/MainGrayText"
-                                android:textSize="14sp" />
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
                         </FrameLayout>
 
                     </LinearLayout>
@@ -130,11 +130,11 @@
                 android:layout_gravity="left"
                 android:layout_marginTop="40dp"
                 android:layout_marginLeft="15dp"
-                android:fontFamily="@font/montserratsemibold"
+                android:fontFamily="@font/montserrat_semibold"
                 android:gravity="left"
                 android:text="Основные действия"
-                android:textColor="@color/MainGrayText"
-                android:textSize="16sp" />
+                android:textColor="@color/BlackSviut"
+                android:textSize="18sp" />
 
             <androidx.cardview.widget.CardView
                 app:cardElevation="5dp"
@@ -256,10 +256,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="55dp"
-
                             android:fontFamily="@font/montserratsemibold"
                             android:gravity="left"
-                            android:text="Настройка первой полосы"
+                            android:text="Настройка статей"
                             android:textColor="@color/BlackSviut"
                             android:textSize="14sp" />
 

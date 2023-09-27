@@ -51,6 +51,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.R;
 import com.google.android.gms.tasks.Continuation;
@@ -88,6 +89,7 @@ public class AddArticleFragment extends Fragment {
     private FrameLayout EditTextButtonsFrame;
     LinearLayout linearLayout;
     private EditText Header,Main;
+    RecyclerView RecycleviewTags;
     private TextView HeaderView,MainView,CleanFocus;
     private RadioButton HeaderButton,TextButton,CircleButton,NumericButton;
     private ImageView Downloadpreviewimage;
@@ -400,6 +402,7 @@ public class AddArticleFragment extends Fragment {
 
 
 
+
         Header = view.findViewById(R.id.TextEditHeader);
         CleanFocus = view.findViewById(R.id.CleanFocus);
 
@@ -444,7 +447,7 @@ public class AddArticleFragment extends Fragment {
         });
 
 
-        TextButton.setSelected(true);
+        // TextButton.setSelected(true);
 
         EditTextRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

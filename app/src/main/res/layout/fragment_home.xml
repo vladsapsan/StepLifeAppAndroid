@@ -41,7 +41,6 @@
                 <androidx.cardview.widget.CardView
                     android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
-
                     android:id="@+id/ProfileButton"
                     android:visibility="visible"
                     android:layout_width="34dp"
@@ -113,7 +112,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                 <TextView
-                    android:id="@+id/textView7"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -121,8 +120,7 @@
                     android:fontFamily="@font/normalidadwidethin"
                     android:text="Видео инструкция"
                     android:textColor="@color/BlackSviut"
-                    android:textSize="17dp"
-                    android:textStyle="normal" />
+                    android:textSize="17dp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -158,6 +156,7 @@
             </FrameLayout>
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/textTeach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -376,6 +375,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
             <TextView
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

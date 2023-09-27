@@ -33,7 +33,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/montserratsemibold"
                 android:gravity="left"
-                android:text="Выбор статей на первой полосе"
+                android:text="Настройка статей"
                 android:textColor="@color/BlackSviut"
                 android:textSize="16sp" />
         </FrameLayout>
@@ -54,7 +54,7 @@
                 <Button
                     android:id="@+id/HomeArticleRedactButton"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="55dp"
                     android:gravity="center"
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="25dp"
@@ -68,7 +68,7 @@
                 <Button
                     android:id="@+id/TopPostRedactButton"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="55dp"
                     android:gravity="center"
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="25dp"
@@ -78,6 +78,20 @@
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
                     android:text="Верхняя предложка учебника"/>
+
+                <Button
+                    android:id="@+id/AddTagsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:gravity="center"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="12dp"
+                    android:textColor="@color/MainBlue"
+                    android:backgroundTint="@color/secondBlue"
+                    android:layout_gravity="bottom"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="Добавление, изменение тегов"/>
 
 
             </LinearLayout>

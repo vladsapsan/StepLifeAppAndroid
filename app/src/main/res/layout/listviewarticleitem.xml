@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="15dp"
+        android:background="@color/white"
         android:layout_marginTop="10dp"
         app:cardCornerRadius="8dp"
         android:layout_marginBottom="5dp"
@@ -63,12 +64,11 @@
                 android:paddingRight="10dp"
                 android:breakStrategy="high_quality"
                 android:includeFontPadding="false"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/montserrat_semibold"
                 android:gravity="left"
-
                 android:text="Как получить протез бесплатно?"
                 android:textColor="@color/BlackSviut"
-                android:textSize="14sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:contextClickable="false"

@@ -27,7 +27,7 @@
             android:layout_gravity="center_horizontal"
             android:paddingRight="5dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/montserratsemibold"
+            android:fontFamily="@font/montserrat_semibold"
             android:gravity="left"
             android:text="Настройки"
             android:textColor="@color/BlackSviut"

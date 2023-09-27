@@ -97,12 +97,10 @@
                     android:layout_height="match_parent">
 
 
-
                     <FrameLayout
-
                         android:id="@+id/TopPostFrame"
                         android:layout_width="match_parent"
-                        android:background="@color/MainGrayText"
+                        android:background="@color/MainYellow"
                         android:layout_height="400dp">
 
                         <LinearLayout
@@ -120,7 +118,7 @@
                                 android:textSize="21dp"
                                 android:layout_marginLeft="15dp"
                                 android:paddingBottom="5dp"
-                                android:textColor="@color/white"
+                                android:textColor="@color/BlackSviut"
                                 android:fontFamily="@font/montserrat_extrabold"/>
                             <TextView
                                 android:id="@+id/SecNameTopPost"
@@ -133,7 +131,7 @@
                                 android:textSize="14dp"
                                 android:layout_marginLeft="15dp"
                                 android:paddingBottom="5dp"
-                                android:textColor="@color/white"
+                                android:textColor="@color/BlackSviut"
                                 android:fontFamily="@font/montserrat_medium"/>
                         </LinearLayout>
 
@@ -170,23 +168,13 @@
                                         android:layout_width="match_parent"
                                         android:orientation="vertical"
                                         android:layout_height="match_parent">
-
-                                        <com.google.android.material.card.MaterialCardView
-                                            app:cardPreventCornerOverlap="false"
-                                            style="@style/CustomCardViewStyle"
-                                            android:layout_width="115dp"
-                                            app:cardElevation="9dp"
-                                            android:layout_marginTop="15dp"
-                                            android:layout_gravity="center_horizontal"
-                                            android:layout_height="115dp">
                                             <ImageView
+                                                android:layout_gravity="center_horizontal"
+                                                android:layout_height="135dp"
                                                 android:id="@+id/imagetoppost1"
                                                 android:layout_width="match_parent"
                                                 android:scaleType="centerCrop"
-                                                android:layout_height="match_parent"
                                                 app:srcCompat="@drawable/protez1" />
-                                        </com.google.android.material.card.MaterialCardView>
-
                                         <FrameLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent">
@@ -233,14 +221,16 @@
                                 </com.google.android.material.card.MaterialCardView>
 
 
-                                <androidx.cardview.widget.CardView
+                                <com.google.android.material.card.MaterialCardView
                                     android:id="@+id/TopPostCard2"
                                     android:foreground="?attr/selectableItemBackground"
                                     android:layout_width="150dp"
+                                    app:cardPreventCornerOverlap="false"
+                                    style="@style/CustomCardViewStyle"
                                     android:clickable="true"
                                     android:layout_height="260dp"
                                     android:layout_marginLeft="20dp"
-                                    app:cardCornerRadius="8dp"
+                                    app:cardElevation="9dp"
                                     tools:layout_editor_absoluteX="1dp"
                                     tools:layout_editor_absoluteY="444dp">
                                     <LinearLayout
@@ -248,21 +238,13 @@
                                         android:orientation="vertical"
                                         android:layout_height="match_parent">
 
-                                        <androidx.cardview.widget.CardView
-                                            android:layout_width="115dp"
-                                            app:cardCornerRadius="7dp"
-                                            android:layout_marginTop="15dp"
+                                        <ImageView
                                             android:layout_gravity="center_horizontal"
-                                            android:layout_height="115dp">
-
-                                            <ImageView
-                                                android:id="@+id/imagetoppost2"
-                                                android:layout_width="match_parent"
-
-                                                android:scaleType="centerCrop"
-                                                android:layout_height="match_parent"
-                                                app:srcCompat="@drawable/protez1" />
-                                        </androidx.cardview.widget.CardView>
+                                            android:layout_height="135dp"
+                                            android:id="@+id/imagetoppost2"
+                                            android:layout_width="match_parent"
+                                            android:scaleType="centerCrop"
+                                            app:srcCompat="@drawable/protez1"/>
 
 
                                         <FrameLayout
@@ -312,17 +294,19 @@
 
                                         </FrameLayout>
                                     </LinearLayout>
-                                </androidx.cardview.widget.CardView>
+                                </com.google.android.material.card.MaterialCardView>
 
 
-                                <androidx.cardview.widget.CardView
+                                <com.google.android.material.card.MaterialCardView
                                     android:id="@+id/TopPostCard3"
                                     android:foreground="?attr/selectableItemBackground"
                                     android:layout_width="150dp"
                                     android:clickable="true"
                                     android:layout_height="260dp"
                                     android:layout_marginLeft="20dp"
-                                    app:cardCornerRadius="8dp"
+                                    app:cardPreventCornerOverlap="false"
+                                    style="@style/CustomCardViewStyle"
+                                    app:cardElevation="9dp"
                                     tools:layout_editor_absoluteX="1dp"
                                     tools:layout_editor_absoluteY="444dp">
                                     <LinearLayout
@@ -330,21 +314,13 @@
                                         android:orientation="vertical"
                                         android:layout_height="match_parent">
 
-                                        <androidx.cardview.widget.CardView
-                                            android:layout_width="115dp"
-                                            app:cardCornerRadius="7dp"
-                                            android:layout_marginTop="15dp"
+                                        <ImageView
                                             android:layout_gravity="center_horizontal"
-                                            android:layout_height="115dp">
-
-                                            <ImageView
-                                                android:id="@+id/imagetoppost3"
-                                                android:layout_width="match_parent"
-
-                                                android:scaleType="centerCrop"
-                                                android:layout_height="match_parent"
-                                                app:srcCompat="@drawable/protez1" />
-                                        </androidx.cardview.widget.CardView>
+                                            android:layout_height="135dp"
+                                            android:id="@+id/imagetoppost3"
+                                            android:layout_width="match_parent"
+                                            android:scaleType="centerCrop"
+                                            app:srcCompat="@drawable/protez1" />
 
                                         <FrameLayout
                                             android:layout_width="match_parent"
@@ -394,16 +370,18 @@
 
                                         </FrameLayout>
                                     </LinearLayout>
-                                </androidx.cardview.widget.CardView>
+                                </com.google.android.material.card.MaterialCardView>
 
-                                <androidx.cardview.widget.CardView
+                                <com.google.android.material.card.MaterialCardView
                                     android:id="@+id/TopPostCard4"
                                     android:foreground="?attr/selectableItemBackground"
                                     android:layout_width="150dp"
                                     android:clickable="true"
                                     android:layout_height="260dp"
                                     android:layout_marginLeft="20dp"
-                                    app:cardCornerRadius="8dp"
+                                    app:cardPreventCornerOverlap="false"
+                                    app:cardElevation="9dp"
+                                    style="@style/CustomCardViewStyle"
                                     tools:layout_editor_absoluteX="1dp"
                                     tools:layout_editor_absoluteY="444dp">
                                     <LinearLayout
@@ -411,21 +389,13 @@
                                         android:orientation="vertical"
                                         android:layout_height="match_parent">
 
-                                        <androidx.cardview.widget.CardView
-                                            android:layout_width="115dp"
-                                            app:cardCornerRadius="7dp"
-                                            android:layout_marginTop="15dp"
+                                        <ImageView
                                             android:layout_gravity="center_horizontal"
-                                            android:layout_height="115dp">
-
-                                            <ImageView
-                                                android:id="@+id/imagetoppost4"
-                                                android:layout_width="match_parent"
-
-                                                android:scaleType="centerCrop"
-                                                android:layout_height="match_parent"
-                                                app:srcCompat="@drawable/protez1" />
-                                        </androidx.cardview.widget.CardView>
+                                            android:layout_height="135dp"
+                                            android:id="@+id/imagetoppost4"
+                                            android:layout_width="match_parent"
+                                            android:scaleType="centerCrop"
+                                            app:srcCompat="@drawable/protez1" />
 
                                         <FrameLayout
                                             android:layout_width="match_parent"
@@ -474,17 +444,19 @@
 
                                         </FrameLayout>
                                     </LinearLayout>
-                                </androidx.cardview.widget.CardView>
+                                </com.google.android.material.card.MaterialCardView>
 
 
-                                <androidx.cardview.widget.CardView
+                                <com.google.android.material.card.MaterialCardView
                                     android:id="@+id/TopPostCard5"
                                     android:foreground="?attr/selectableItemBackground"
                                     android:layout_width="150dp"
                                     android:clickable="true"
                                     android:layout_height="260dp"
+                                    app:cardElevation="9dp"
                                     android:layout_marginLeft="20dp"
-                                    app:cardCornerRadius="8dp"
+                                    app:cardPreventCornerOverlap="false"
+                                    style="@style/CustomCardViewStyle"
                                     tools:layout_editor_absoluteX="1dp"
                                     tools:layout_editor_absoluteY="444dp">
                                     <LinearLayout
@@ -492,21 +464,13 @@
                                         android:orientation="vertical"
                                         android:layout_height="match_parent">
 
-                                        <androidx.cardview.widget.CardView
-                                            android:layout_width="115dp"
-                                            app:cardCornerRadius="7dp"
-                                            android:layout_marginTop="15dp"
+                                        <ImageView
                                             android:layout_gravity="center_horizontal"
-                                            android:layout_height="115dp">
-
-                                            <ImageView
-                                                android:id="@+id/imagetoppost5"
-                                                android:layout_width="match_parent"
-
-                                                android:scaleType="centerCrop"
-                                                android:layout_height="match_parent"
-                                                app:srcCompat="@drawable/protez1" />
-                                        </androidx.cardview.widget.CardView>
+                                            android:layout_height="135dp"
+                                            android:id="@+id/imagetoppost5"
+                                            android:layout_width="match_parent"
+                                            android:scaleType="centerCrop"
+                                            app:srcCompat="@drawable/protez1" />
 
                                         <FrameLayout
                                             android:layout_width="match_parent"
@@ -556,7 +520,7 @@
 
                                         </FrameLayout>
                                     </LinearLayout>
-                                </androidx.cardview.widget.CardView>
+                                </com.google.android.material.card.MaterialCardView>
                             </LinearLayout>
                         </HorizontalScrollView>
                     </FrameLayout>
@@ -624,16 +588,18 @@
                             android:orientation="horizontal"
                             android:paddingRight="20dp">
 
-                            <androidx.cardview.widget.CardView
+                            <com.google.android.material.card.MaterialCardView
                                 android:id="@+id/CardLibraryRow1Article1"
                                 android:foreground="?attr/selectableItemBackground"
                                 android:clickable="true"
+                                app:cardPreventCornerOverlap="false"
+                                style="@style/CustomCardViewStyle"
+                                app:cardElevation="6dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
                                 android:layout_height="180dp"
-                                android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp">
+                                android:layout_marginLeft="20dp">
                                 <ImageView
                                     android:scaleType="centerCrop"
                                     android:clickable="false"
@@ -657,18 +623,20 @@
                                     android:textSize="13sp" />
 
 
-                            </androidx.cardview.widget.CardView>
+                            </com.google.android.material.card.MaterialCardView>
 
-                            <androidx.cardview.widget.CardView
+                            <com.google.android.material.card.MaterialCardView
                                 android:foreground="?attr/selectableItemBackground"
                                 android:clickable="true"
+                                app:cardPreventCornerOverlap="false"
+                                style="@style/CustomCardViewStyle"
                                 android:id="@+id/CardLibraryRow1Article2"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
+                                app:cardElevation="6dp"
                                 android:layout_height="180dp"
-                                android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp">
+                                android:layout_marginLeft="20dp">
                                 <ImageView
                                     android:id="@+id/ImageCardLibraryRow1Article2"
                                     android:scaleType="centerCrop"
@@ -689,19 +657,21 @@
                                     android:textSize="14sp" />
 
 
-                            </androidx.cardview.widget.CardView>
+                            </com.google.android.material.card.MaterialCardView>
 
 
-                            <androidx.cardview.widget.CardView
+                            <com.google.android.material.card.MaterialCardView
                                 android:foreground="?attr/selectableItemBackground"
                                 android:clickable="true"
+                                app:cardPreventCornerOverlap="false"
+                                style="@style/CustomCardViewStyle"
                                 android:id="@+id/CardLibraryRow1Article3"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
+                                app:cardElevation="6dp"
                                 android:layout_height="180dp"
-                                android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp">
+                                android:layout_marginLeft="20dp">
                                 <ImageView
                                     android:id="@+id/ImageCardLibraryRow1Article3"
                                     android:scaleType="centerCrop"
@@ -720,7 +690,7 @@
                                     android:text=""
                                     android:textColor="@color/BlackSviut"
                                     android:textSize="14sp" />
-                            </androidx.cardview.widget.CardView>
+                            </com.google.android.material.card.MaterialCardView>
                         </LinearLayout>
                     </HorizontalScrollView>
 
@@ -786,16 +756,18 @@
                             android:orientation="horizontal"
                             android:paddingRight="20dp">
 
-                            <androidx.cardview.widget.CardView
+                            <com.google.android.material.card.MaterialCardView
                                 android:id="@+id/CardLibraryRow2Article1"
                                 android:foreground="?attr/selectableItemBackground"
+                                app:cardPreventCornerOverlap="false"
+                                style="@style/CustomCardViewStyle"
                                 android:clickable="true"
+                                app:cardElevation="6dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
                                 android:layout_height="180dp"
-                                android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp">
+                                android:layout_marginLeft="20dp">
                                 <ImageView
                                     android:id="@+id/ImageCardLibraryRow2Article1"
                                     android:scaleType="centerCrop"
@@ -820,18 +792,20 @@
                                     android:textSize="13sp" />
 
 
-                            </androidx.cardview.widget.CardView>
+                            </com.google.android.material.card.MaterialCardView>
 
-                            <androidx.cardview.widget.CardView
+                            <com.google.android.material.card.MaterialCardView
                                 android:id="@+id/CardLibraryRow2Article2"
                                 android:foreground="?attr/selectableItemBackground"
                                 android:clickable="true"
                                 android:layout_marginTop="5dp"
+                                app:cardPreventCornerOverlap="false"
+                                style="@style/CustomCardViewStyle"
+                                app:cardElevation="6dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
                                 android:layout_height="180dp"
-                                android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp">
+                                android:layout_marginLeft="20dp">
                                 <ImageView
                                     android:id="@+id/ImageCardLibraryRow2Article2"
                                     android:scaleType="centerCrop"
@@ -852,19 +826,21 @@
                                     android:textSize="14sp" />
 
 
-                            </androidx.cardview.widget.CardView>
+                            </com.google.android.material.card.MaterialCardView>
 
 
-                            <androidx.cardview.widget.CardView
+                            <com.google.android.material.card.MaterialCardView
                                 android:id="@+id/CardLibraryRow2Article3"
                                 android:foreground="?attr/selectableItemBackground"
                                 android:clickable="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
+                                app:cardPreventCornerOverlap="false"
+                                app:cardElevation="6dp"
+                                style="@style/CustomCardViewStyle"
                                 android:layout_height="180dp"
-                                android:layout_marginLeft="20dp"
-                                app:cardCornerRadius="8dp">
+                                android:layout_marginLeft="20dp">
                                 <ImageView
                                     android:id="@+id/ImageCardLibraryRow2Article3"
                                     android:scaleType="centerCrop"
@@ -885,7 +861,7 @@
                                     android:textSize="14sp" />
 
 
-                            </androidx.cardview.widget.CardView>
+                            </com.google.android.material.card.MaterialCardView>
                         </LinearLayout>
                     </HorizontalScrollView>
 

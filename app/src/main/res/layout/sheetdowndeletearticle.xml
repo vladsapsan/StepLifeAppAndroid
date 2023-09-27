@@ -15,16 +15,17 @@
 
 
         <TextView
+            android:id="@+id/TextSheetDialogDelete"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="20dp"
-            android:fontFamily="@font/montserrat1black"
+            android:fontFamily="@font/montserrat_semibold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:text="Удалить данную статью?"
             android:textColor="@color/black"
-            android:textSize="13dp"/>
+            android:textSize="18dp"/>
 
 
         <FrameLayout

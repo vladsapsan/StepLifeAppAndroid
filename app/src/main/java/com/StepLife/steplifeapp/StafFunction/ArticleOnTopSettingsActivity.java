@@ -17,7 +17,8 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
 
     ImageView imagebackEditArticles;
     NetworkChangeListner networkChangeListner;
-    Button TopPostRedactButton,HomeArticleRedactButton;
+
+    Button TopPostRedactButton,HomeArticleRedactButton,AddTagsButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +26,6 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
 
 
         //Дефолт стиль
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         getWindow().setStatusBarColor(getResources().getColor(R.color.white));
         getSupportActionBar().hide(); //Скрытие actionBar
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -37,6 +34,7 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
 
         Intent TopPostRedactintent = new Intent(getApplicationContext(), TopPostRedactActivity.class);
         Intent HomeArticleRedactintent = new Intent(getApplicationContext(), HomeArticleRedactActivity.class);
+        Intent AddTagsArticletintent = new Intent(getApplicationContext(), AddTagsArticle.class);
 
 
         //переход к окну редактирования верхней предложки учебника
@@ -53,6 +51,14 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(HomeArticleRedactintent);
+            }
+        });
+        //Переход к окну добавление тегов
+        AddTagsButton = findViewById(R.id.AddTagsButton);
+        AddTagsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(AddTagsArticletintent);
             }
         });
 

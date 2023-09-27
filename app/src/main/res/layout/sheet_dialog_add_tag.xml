@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:animateLayoutChanges="true"
-    android:id="@+id/SheetDialogStartBluetoothContainer"
+    android:id="@+id/SheetDialogAddTagContainer"
     android:background="@drawable/bottomsheetprofilesettingbackground"
     android:layout_height="match_parent">
 
@@ -33,12 +33,12 @@
                 android:fontFamily="@font/montserrat_semibold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Коленный модуль не обнаружен"
+                android:text="Добавление тега"
                 android:textColor="@color/black"
                 android:textSize="18dp"/>
 
             <TextView
-
+                android:id="@+id/textView11"
                 android:textSize="15dp"
                 android:gravity="center"
                 android:layout_marginLeft="25dp"
@@ -46,25 +46,42 @@
                 android:fontFamily="@font/montserratregular"
                 android:textColor="@color/MainGrayText"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Начать подключение модуля" />
+                android:text="Введите название тега и нажмите на кнопку для загрузки в базу. \n Масксимальная длина тега 20 символов" />
 
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:hint="Писать тег здесь..."
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/buttonstyle2"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:singleLine="true"
+                    android:maxLength="20"
+                    android:inputType="text"
+                    android:id="@+id/editTextTag"
+                    />
             <Button
-                android:id="@+id/StartButton"
-                android:layout_width="match_parent"
-                android:layout_marginTop="55dp"
-                android:layout_height="55dp"
-                android:gravity="center"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+                android:id="@+id/ButtonAddTag"
+                android:layout_width="110dp"
+                android:layout_marginBottom="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="70dp"
                 android:textSize="10dp"
-                android:textColor="@color/MainBlue"
-                android:backgroundTint="@color/secondBlue"
-                android:layout_gravity="bottom"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:fontFamily="@font/montserratsemibold"
-                android:text="Начать подключение"/>
-
+                android:backgroundTint="@color/MainBlue"
+                android:text="Продолжить"
+                android:textColor="@color/white" />
         </LinearLayout>
 
 

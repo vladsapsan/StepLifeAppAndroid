@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".StafFunction.EditArticlesActiviti">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:gravity="left"
+                android:text="Добавление тегов"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <androidx.cardview.widget.CardView
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:id="@+id/imagebackAddTags"
+                android:backgroundTint="@color/MainGray"
+                android:layout_width="30dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_height="30dp">
+                <ImageView
+                    android:clickable="false"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/ic_close_foreground"/>
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:foreground="?attr/selectableItemBackground"
+            android:id="@+id/AddTagsText"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="6dp"
+            android:backgroundTint="@color/secondBlue"
+            android:layout_gravity="center"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:textColor="@color/MainBlue"
+                android:fontFamily="@font/montserratsemibold"
+                android:textSize="14dp"
+                android:text="Добавить тег"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                app:cardCornerRadius="12dp"
+                android:layout_height="match_parent">
+                <ListView
+                    android:id="@+id/TagsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></ListView>
+            </androidx.cardview.widget.CardView>
+        </FrameLayout>
+
+    </LinearLayout>
+</FrameLayout>

@@ -15,9 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.StafFunction.AddNewArticle;
 import com.StepLife.steplifeapp.StafFunction.ArticleOnTopSettingsActivity;
 import com.StepLife.steplifeapp.StafFunction.EditArticlesActiviti;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
@@ -74,7 +74,9 @@ public class User_ProfileActiviti extends AppCompatActivity {
 
 
 
-        Intent EditArticlesActivitiintent = new Intent(User_ProfileActiviti.this, EditArticlesActiviti.class);
+        Intent EditArticlesActivitiintent = new Intent(getApplicationContext(), EditArticlesActiviti.class);
+        Intent AddNewArticleiintent = new Intent(getApplicationContext(), AddNewArticle.class);
+
         //Инициализация фрагментов
         Addarticleragment = new AddArticleFragment();
         SettingsFragment = new SettingsFragment();
@@ -96,10 +98,7 @@ public class User_ProfileActiviti extends AppCompatActivity {
         AddArticleFrameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction ft = (getSupportFragmentManager().beginTransaction());
-                ft.setCustomAnimations(R.anim.slide_down, R.anim.slide_up,R.anim.slide_down, R.anim.slide_up);
-                ft.addToBackStack("AddArticle");
-                ft.add(R.id.UserProfileActivitiFrame,Addarticleragment,"AddArticle").commit();
+                startActivity(AddNewArticleiintent);
             }
         });
         //Кнопка перехода в настройки

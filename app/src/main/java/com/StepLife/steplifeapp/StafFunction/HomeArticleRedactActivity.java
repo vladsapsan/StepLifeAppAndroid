@@ -1,9 +1,5 @@
 package com.StepLife.steplifeapp.StafFunction;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
@@ -19,12 +15,16 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import com.StepLife.steplifeapp.AllArticleViewModel;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.ui.Article;
 import com.StepLife.steplifeapp.ui.ArticleListAdapter;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -115,11 +115,7 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_article_redact);
 
 
-        // Установка стиля безрамочного
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        //Дефолт стиль
         getWindow().setStatusBarColor(getResources().getColor(R.color.white));
         getSupportActionBar().hide(); //Скрытие actionBar
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
