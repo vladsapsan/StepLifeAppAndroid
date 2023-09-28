@@ -22,7 +22,6 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.StepLife.steplifeapp.AllArticle;
 import com.StepLife.steplifeapp.AllArticleActivity;
 import com.StepLife.steplifeapp.ChooseArticle;
 import com.StepLife.steplifeapp.R;
@@ -132,8 +131,6 @@ public class HomeFragment extends Fragment {
 
         //Аунтефикация
         mAuth = FirebaseAuth.getInstance();
-        Fragment fragment = new AllArticle();
-        Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
         Intent intentAllArticle = new Intent(getActivity(), AllArticleActivity.class);
         Intent User_ProfileActiviti = new Intent(getActivity(), User_ProfileActiviti.class);
 
@@ -153,10 +150,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(DowArticle1!=null) {
+                    Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
                     // передача объекта с ключом "MainText" и значением
                     intentChooseArticle.putExtra("MainText", DowArticle1.MainText);
                     intentChooseArticle.putExtra("Date", DowArticle1.Date);
                     intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle1.HeadText).toString().trim());
+                    if(DowArticle1.TagList!=null){
+                        intentChooseArticle.putStringArrayListExtra("TagList", DowArticle1.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intentChooseArticle);
                 }
@@ -167,10 +168,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(DowArticle2!=null) {
+                    Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
                     // передача объекта с ключом "MainText" и значением
                     intentChooseArticle.putExtra("MainText", DowArticle2.MainText);
                     intentChooseArticle.putExtra("Date", DowArticle2.Date);
                     intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle2.HeadText).toString().trim());
+                    if(DowArticle2.TagList!=null){
+                        intentChooseArticle.putStringArrayListExtra("TagList", DowArticle2.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intentChooseArticle);
                 }
@@ -181,10 +186,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(DowArticle3!=null) {
+                    Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
                     // передача объекта с ключом "MainText" и значением
                     intentChooseArticle.putExtra("MainText", DowArticle3.MainText);
                     intentChooseArticle.putExtra("Date", DowArticle3.Date);
                     intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle3.HeadText).toString().trim());
+                    if(DowArticle3.TagList!=null){
+                        intentChooseArticle.putStringArrayListExtra("TagList", DowArticle3.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intentChooseArticle);
                 }
@@ -195,10 +204,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(DowArticle4!=null) {
+                    Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
                     // передача объекта с ключом "MainText" и значением
                     intentChooseArticle.putExtra("MainText", DowArticle4.MainText);
                     intentChooseArticle.putExtra("Date", DowArticle4.Date);
                     intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle4.HeadText).toString().trim());
+                    if(DowArticle4.TagList!=null){
+                        intentChooseArticle.putStringArrayListExtra("TagList", DowArticle4.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intentChooseArticle);
                 }
@@ -209,10 +222,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(DowArticle5!=null) {
+                    Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
                     // передача объекта с ключом "MainText" и значением
                     intentChooseArticle.putExtra("MainText", DowArticle5.MainText);
                     intentChooseArticle.putExtra("Date", DowArticle5.Date);
                     intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle5.HeadText).toString().trim());
+                    if(DowArticle5.TagList!=null){
+                        intentChooseArticle.putStringArrayListExtra("TagList", DowArticle5.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intentChooseArticle);
                 }

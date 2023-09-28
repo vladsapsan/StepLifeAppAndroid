@@ -50,7 +50,6 @@
                         android:layout_width="match_parent"
                         android:orientation="vertical"
                         android:layout_height="match_parent">
-
                         <TextView
                             android:id="@+id/DownloadHeadText"
                             android:clickable="false"
@@ -61,9 +60,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
-
                             android:breakStrategy="high_quality"
-
                             android:fontFamily="@font/montserrat_bold"
                             android:textColor="@color/black"
                             android:background="@null"
@@ -85,6 +82,14 @@
                             android:textSize="12dp" />
                         
 
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/RecycleviewTagsArticle"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_width="match_parent"
+                            tools:listitem="@layout/recycleview_tag_item"
+                            android:layout_height="wrap_content"/>
 
 
                         <TextView

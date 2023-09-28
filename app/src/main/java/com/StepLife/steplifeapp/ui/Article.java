@@ -1,11 +1,11 @@
 package com.StepLife.steplifeapp.ui;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Article {
 
     public String id,Date,HeadText;
-    public List<String> TagList;
+    public ArrayList<String> TagList;
     public String MainText;
     public String PreviewPhotoUri;
     public Article()
@@ -25,7 +25,7 @@ public class Article {
         this.MainText = MainText;
     }
 
-    public Article(String id, String Date, String HeadText,String MainText,String PreviewPhotoUri,List<String> TagList){
+    public Article(String id, String Date, String HeadText,String MainText,String PreviewPhotoUri,ArrayList<String> TagList){
         this.id = id;
         this.Date = Date;
         this.HeadText = HeadText;

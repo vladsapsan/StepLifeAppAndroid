@@ -91,7 +91,7 @@
                     android:backgroundTint="@color/secondBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
-                    android:text="Добавление, изменение тегов"/>
+                    android:text="Добавление, удаление тегов"/>
 
 
             </LinearLayout>

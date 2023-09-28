@@ -2,6 +2,7 @@ package com.StepLife.steplifeapp;
 
 import static com.StepLife.steplifeapp.AllArticle.getDeviceWidth;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -17,20 +18,28 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.StepLife.steplifeapp.other.MyRecyclerViewTagsAdapter;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-public class ChooseArticle extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class ChooseArticle extends AppCompatActivity implements MyRecyclerViewTagsAdapter.ItemClickListener {
     ImageView CloseArticleButton;
     ScrollView DownloadArticleScrollView;
 
+    RecyclerView recyclerView;
     Uri DownloadphotoUri;
     StorageReference storageRef ;
+    MyRecyclerViewTagsAdapter adapterArticleTags;
+    ArrayList<String> mNewArticleTags;
     ProgressBar progressBar;
     Bitmap bitmap1 = null;
 
@@ -41,6 +50,15 @@ public class ChooseArticle extends AppCompatActivity {
     private Target mTarget;
 
     TextView DownloadHeadText,TextDateDownloadArticle,MainTextDownloadArticle;
+
+
+    //считывание нажатия по тегу
+    @Override
+    public void onItemClick(View view, int position) {
+        Intent intent = new Intent(ChooseArticle.this, TagSearchArticle.class);
+        intent.putExtra("TagFilter",mNewArticleTags.get(position));
+        startActivity(intent);
+    }
 
 
     private class ImageGetter implements Html.ImageGetter {
@@ -133,8 +151,6 @@ public class ChooseArticle extends AppCompatActivity {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-
-
         // Установка стиля безрамочного
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -153,10 +169,18 @@ public class ChooseArticle extends AppCompatActivity {
         MainTextDownloadArticle=findViewById(R.id.MainTextDownloadArticle);
         progressBar=findViewById(R.id.progressBarArticle);
 
+        //Отображение тегов в списке новой статьи
+        recyclerView = findViewById(R.id.RecycleviewTagsArticle);
+        LinearLayoutManager layoutManager= new LinearLayoutManager(ChooseArticle.this,LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        mNewArticleTags = new ArrayList<>();
+        adapterArticleTags = new MyRecyclerViewTagsAdapter(ChooseArticle.this,mNewArticleTags);
+        adapterArticleTags.setClickListener(ChooseArticle.this);
+        recyclerView.setAdapter(adapterArticleTags);
 
 
 
-        //Установка OverScroll
+
         DownloadArticleScrollView = findViewById(R.id.DownloadArticleScrollView);
 
 
@@ -169,8 +193,6 @@ public class ChooseArticle extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
 
 
@@ -189,9 +211,12 @@ public class ChooseArticle extends AppCompatActivity {
         DownloadHeadText.setText(Html.fromHtml((String) arguments.get("HeaderText"),new GlideImageGetter(DownloadHeadText),null));
         TextDateDownloadArticle.setText((CharSequence) arguments.get("Date"));
         MainTextDownloadArticle.setText(Html.fromHtml((String) arguments.get("MainText"),new GlideImageGetter(MainTextDownloadArticle),null));
-
-
-
+        if(arguments.get("TagList")!=null){
+            if(mNewArticleTags.size()==0) {
+                mNewArticleTags.addAll((ArrayList<String>) arguments.get("TagList"));
+                adapterArticleTags.notifyDataSetChanged();
+            }
+        }
     }
 
 

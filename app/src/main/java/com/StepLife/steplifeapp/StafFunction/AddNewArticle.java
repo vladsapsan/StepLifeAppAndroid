@@ -1,7 +1,5 @@
 package com.StepLife.steplifeapp.StafFunction;
 
-import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
@@ -27,7 +25,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -450,7 +447,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                                 String Simpledate = df.format(Calendar.getInstance().getTime());
 
                                 if(mNewArticleTags!=null){
-                                     newArticle = new Article(idArticle, Simpledate, HeadString, (Html.toHtml(Main.getText())), uploadArticlePhotoUri.toString(),mNewArticleTags);
+                                     newArticle = new Article(idArticle, Simpledate, HeadString, (Html.toHtml(Main.getText())), uploadArticlePhotoUri.toString(), (ArrayList<String>) mNewArticleTags);
                                 }else {
                                     newArticle = new Article(idArticle, Simpledate, HeadString, (Html.toHtml(Main.getText())), uploadArticlePhotoUri.toString());
                                 }

@@ -27,9 +27,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StepLifeApp">
         <activity
+            android:name=".TagSearchArticle"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".StafFunction.AddNewArticle"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".StafFunction.AddTagsArticle"
             android:exported="false"

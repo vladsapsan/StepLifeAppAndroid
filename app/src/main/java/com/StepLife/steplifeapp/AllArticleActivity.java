@@ -18,10 +18,16 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.StepLife.steplifeapp.other.MyRecyclerViewTagsAdapter;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.ui.Article;
 import com.StepLife.steplifeapp.ui.ArticleListAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,24 +35,31 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class AllArticleActivity extends AppCompatActivity {
+public class AllArticleActivity extends AppCompatActivity implements MyRecyclerViewTagsAdapter.ItemClickListener {
 
 
     private ImageView backbutton;
 
     private ArticleListAdapter ArticleListAdapter;
     private ListView allArticlelist;
+    CardView CardViewAllChooseTags;
     private NetworkChangeListner networkChangeListner;
 
     private List<String> listData;
+    RecyclerView AllArticleRecycleview,AllChooseArticleRecycleview;
+    MyRecyclerViewTagsAdapter adapterArticleTags,adapterArticleChooseTags;
     ValueEventListener valueEventListener;
+    ArrayList<String> mNewArticleTags,mChooseArticleTags;
+    private static final String Tags_Key ="AllTags";
     private ArrayList <Article> listTemp = new ArrayList<Article>();
+    private ArrayList <Article> listTempTags = new ArrayList<Article>();
     ProgressBar progressBar;
     Article DowArticle;
-    private String Article_Key ="AllArticle";
-    private DatabaseReference mDataBase;
+    private static final String Article_Key ="AllArticle";
+    private DatabaseReference mDataBase,mDataTags;
 
     //Иницилизация компонентов
     private void initilization()
@@ -74,6 +87,7 @@ public class AllArticleActivity extends AppCompatActivity {
                     Article article = ds.getValue(Article.class);
                     assert article != null;
                     listTemp.add(article);
+                    listTempTags.add(article);
                     a++;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         progressBar.setProgress(a, true);
@@ -109,8 +123,31 @@ public class AllArticleActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
-
         progressBar = findViewById(R.id.progressBarAllArticleActivity);
+        //Отображение тегов в списке новой статьи
+        AllArticleRecycleview = findViewById(R.id.AllArticleRecycleview);
+        LinearLayoutManager layoutManager= new LinearLayoutManager(AllArticleActivity.this,LinearLayoutManager.HORIZONTAL, false);
+        AllArticleRecycleview.setLayoutManager(layoutManager);
+        mNewArticleTags = new ArrayList<>();
+        adapterArticleTags = new MyRecyclerViewTagsAdapter(AllArticleActivity.this,mNewArticleTags);
+        adapterArticleTags.setClickListener(AllArticleActivity.this);
+        AllArticleRecycleview.setAdapter(adapterArticleTags);
+        adapterArticleTags.notifyDataSetChanged();
+
+
+        //Отображение выбранных! тегов в списке новой статьи
+        AllChooseArticleRecycleview = findViewById(R.id.AllChooseArticleRecycleview);
+        LinearLayoutManager layoutManager1= new LinearLayoutManager(AllArticleActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        AllChooseArticleRecycleview.setLayoutManager(layoutManager1);
+
+        mChooseArticleTags = new ArrayList<>();
+        adapterArticleChooseTags = new MyRecyclerViewTagsAdapter(AllArticleActivity.this,mChooseArticleTags);
+
+        AllChooseArticleRecycleview.setAdapter(adapterArticleChooseTags);
+        adapterArticleChooseTags.notifyDataSetChanged();
+
+
+        CardViewAllChooseTags = findViewById(R.id.CardViewAllChooseTags);
 
 
         //Загрузка элементов
@@ -156,6 +193,9 @@ public class AllArticleActivity extends AppCompatActivity {
                 intent.putExtra("MainText",DowArticle.MainText);
                 intent.putExtra("Date",DowArticle.Date);
                 intent.putExtra("HeaderText", Html.fromHtml(DowArticle.HeadText).toString().trim());
+                if(DowArticle.TagList!=null){
+                    intent.putStringArrayListExtra("TagList", DowArticle.TagList);
+                }
                 // запуск ChooseArticle
                 startActivity(intent);
             }
@@ -170,6 +210,31 @@ public class AllArticleActivity extends AppCompatActivity {
             }
         });
     }
-
-
+    //Выбор тега
+    @Override
+    public void onItemClick(View view, int position) {
+        // mChooseArticleTags.add(mNewArticleTags.get(position));
+       // mNewArticleTags.remove(position);
+       // adapterArticleChooseTags.notifyDataSetChanged();
+       // adapterArticleTags.notifyDataSetChanged();
+        Intent intent = new Intent(AllArticleActivity.this, TagSearchArticle.class);
+        intent.putExtra("TagFilter",mNewArticleTags.get(position));
+        startActivity(intent);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mNewArticleTags.size()==0) {
+            mDataTags = FirebaseDatabase.getInstance().getReference(Tags_Key);
+            mDataTags.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    HashMap<String, String> map = new HashMap<String, String>();
+                    map = (HashMap<String, String>) task.getResult().getValue();
+                    mNewArticleTags.addAll(map.values());
+                    adapterArticleTags.notifyDataSetChanged();
+                }
+            });
+        }
+    }
 }

@@ -570,6 +570,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowArticle.MainText);
                     intent.putExtra("Date", DowArticle.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowArticle.HeadText).toString().trim());
+                    if(DowArticle.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowArticle.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
@@ -587,6 +590,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowArticle1.MainText);
                     intent.putExtra("Date", DowArticle1.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowArticle1.HeadText).toString().trim());
+                    if(DowArticle1.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowArticle1.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
@@ -604,6 +610,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowArticle2.MainText);
                     intent.putExtra("Date", DowArticle2.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowArticle2.HeadText).toString().trim());
+                    if(DowArticle2.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowArticle2.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
@@ -621,6 +630,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowArticle3.MainText);
                     intent.putExtra("Date", DowArticle3.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowArticle3.HeadText).toString().trim());
+                    if(DowArticle3.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowArticle3.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
@@ -639,6 +651,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowArticle4.MainText);
                     intent.putExtra("Date", DowArticle4.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowArticle4.HeadText).toString().trim());
+                    if(DowArticle4.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowArticle4.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
@@ -655,6 +670,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowRow1Article1.MainText);
                     intent.putExtra("Date", DowRow1Article1.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowRow1Article1.HeadText).toString().trim());
+                    if(DowRow1Article1.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowRow1Article1.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
@@ -669,6 +687,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowRow1Article2.MainText);
                     intent.putExtra("Date", DowRow1Article2.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowRow1Article2.HeadText).toString().trim());
+                    if(DowRow1Article2.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowRow1Article2.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
@@ -683,6 +704,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowRow1Article3.MainText);
                     intent.putExtra("Date", DowRow1Article3.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowRow1Article3.HeadText).toString().trim());
+                    if(DowRow1Article3.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowRow1Article3.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
@@ -700,6 +724,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowRow2Article1.MainText);
                     intent.putExtra("Date", DowRow2Article1.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowRow2Article1.HeadText).toString().trim());
+                    if(DowRow2Article1.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowRow2Article1.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
@@ -714,6 +741,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowRow2Article2.MainText);
                     intent.putExtra("Date", DowRow2Article2.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowRow2Article2.HeadText).toString().trim());
+                    if(DowRow2Article2.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowRow2Article2.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
@@ -728,6 +758,9 @@ public class NotificationsFragment extends Fragment {
                     intent.putExtra("MainText", DowRow2Article3.MainText);
                     intent.putExtra("Date", DowRow2Article3.Date);
                     intent.putExtra("HeaderText", Html.fromHtml(DowRow2Article3.HeadText).toString().trim());
+                    if(DowRow2Article3.TagList!=null){
+                        intent.putStringArrayListExtra("TagList", DowRow2Article3.TagList);
+                    }
                     // запуск ChooseArticle
                     startActivity(intent);
                 }
