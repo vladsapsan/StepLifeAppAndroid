@@ -52,6 +52,20 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/PublicationArticleButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:gravity="center"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="12dp"
+                    android:textColor="@color/MainBlue"
+                    android:backgroundTint="@color/secondBlue"
+                    android:layout_gravity="bottom"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="Публикация материала"/>
+
+                <Button
                     android:id="@+id/HomeArticleRedactButton"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"

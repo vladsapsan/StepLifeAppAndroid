@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
 import com.StepLife.steplifeapp.R;
 import com.squareup.picasso.Picasso;
@@ -48,7 +49,10 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
         TextView HeadText = convertView.findViewById(R.id.ArticleHeadTextItems);
         TextView Date = convertView.findViewById(R.id.ArticleDateTextItems);
         ImageView PreviewImage = convertView.findViewById(R.id.PreviewPhoto);
-
+        TextView TextviewTag  = convertView.findViewById(R.id.TextviewTag);
+        CardView MoreTagsArticle = convertView.findViewById(R.id.MoreTagsArticle);
+        TextView TextviewMoreTag = convertView.findViewById(R.id.TextviewMoreTag);
+        CardView AddTagsArticleCard = convertView.findViewById(R.id.AddTagsArticleCard);
         //Загрузка картинок с помощью библиотеки пикассо
         if(article.PreviewPhotoUri!=null) {
             if(PreviewImage.getDrawable()==null) {
@@ -58,6 +62,14 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
         }
 
 
+        if(article.TagList!=null){
+            AddTagsArticleCard.setVisibility(View.VISIBLE);
+            TextviewTag.setText(article.TagList.get(0));
+            if(article.TagList.size()>1){
+                MoreTagsArticle.setVisibility(View.VISIBLE);
+                TextviewMoreTag.setText("+"+(article.TagList.size()-1));
+            }
+        }
         //Загрузка картинки с помощью Glide
      //   if(getItem(position).PreviewPhotoUri!=null) {
       //      if(PreviewImage.getDrawable()==null) {

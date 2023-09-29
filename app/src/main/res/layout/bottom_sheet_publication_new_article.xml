@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:id="@+id/SheetDialogPublicationNewArticleContainer"
+    android:background="@drawable/bottomsheetprofilesettingbackground"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="55dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/cornerdefault"
+                android:layout_height="5dp"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="20dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Действия с данным материалом"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
+                <Button
+                    android:id="@+id/buttonShowNonArticle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="10dp"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:background="@drawable/buttonstyle2"
+                    android:text="Просмотреть материал"
+                    android:textColor="@color/black"
+                    android:theme="@style/Theme.ButtonWhite" />
+
+            <Button
+                android:id="@+id/buttonPublicArticle"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="55dp"
+                android:layout_gravity="right"
+                android:textSize="10dp"
+                android:layout_marginLeft="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:backgroundTint="@color/MainBlue"
+                android:text="Опубликовать материал в сети"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/buttonDeleteArticle"
+                android:layout_width="match_parent"
+                android:layout_marginTop="100dp"
+                android:layout_height="55dp"
+                android:layout_gravity="right"
+                android:textSize="10dp"
+                android:layout_marginLeft="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:backgroundTint="@color/RedExit"
+                android:text="Удалить материал из неопубликованных"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

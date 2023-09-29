@@ -471,7 +471,6 @@ public class AddArticleFragment extends Fragment {
                         spannable1.setSpan(new AbsoluteSizeSpan(30),Main.getSelectionStart(),Main.getSelectionEnd(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                         Main.setText(spannable1);
                         Main.setSelection(Main.getText().length());
-
                         break;
 
                     default:

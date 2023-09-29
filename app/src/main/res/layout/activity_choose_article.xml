@@ -84,8 +84,8 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/RecycleviewTagsArticle"
-                            android:layout_marginLeft="8dp"
                             android:layout_marginTop="5dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginBottom="2dp"
                             android:layout_width="match_parent"
                             tools:listitem="@layout/recycleview_tag_item"
@@ -104,10 +104,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:fontFamily="@font/montserrat_regular"
+                            android:fontFamily="@font/montserrat_medium"
                             android:textColor="@color/black"
                             android:background="@null"
-                            android:textSize="15.5dp" />
+                            android:textSize="16dp" />
                     </LinearLayout>
 
 

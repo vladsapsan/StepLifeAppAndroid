@@ -12,6 +12,7 @@
     <color name="MainGray">#F4F7FA</color>
     <color name="MainYellow">#FFDF43</color>
     <color name="SecondGray">#E4EAEF</color>
+    <color name="OpacityColor">#66FF0000</color>
 
     <color name="MainBlue">#0094FF</color>
     <color name="BlackSviut">#363A43</color>

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -14,10 +15,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
+import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ImageSpan;
+import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -106,6 +111,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
     ProgressBar progresscheck;
     FirebaseStorage storage;
     private RadioGroup EditTextRG;
+    private final static String Non_Public_Article_Key ="AllNonPublicArticle";
     private boolean DoneArticle,bottomsheetstart,DoneDowndloadPhoto;
 
     public static int getDeviceWidth(Context context){
@@ -266,6 +272,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
         progresscheck = findViewById(R.id.progressBaraddArticle);
         linearLayout = findViewById(R.id.PictureLayout);
 
+        EditTextRG = findViewById(R.id.RadioGroupTextEdit);
 
         //Отображение тегов в списке новой статьи
         RecycleviewTags = findViewById(R.id.RecycleviewTags);
@@ -327,6 +334,33 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
             }
         });
 
+        EditTextRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId)
+                {
+                    case R.id.HeaderText:
+                        SpannableStringBuilder spannable = new SpannableStringBuilder(Main.getText());
+                        StyleSpan b = new StyleSpan(Typeface.BOLD);
+                        spannable.setSpan(b,Main.getSelectionStart(),Main.getSelectionEnd(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                        spannable.setSpan(new AbsoluteSizeSpan(45),Main.getSelectionStart(),Main.getSelectionEnd(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                        Main.setText(spannable);
+                        Main.setSelection(Main.getText().length());
+
+                        break;
+                    case R.id.UsualText:
+                        SpannableStringBuilder spannable1 = new SpannableStringBuilder(Main.getText());
+                        StyleSpan b1 = new StyleSpan(Typeface.NORMAL);
+                        spannable1.setSpan(b1,Main.getSelectionStart(),Main.getSelectionEnd(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                        spannable1.setSpan(new AbsoluteSizeSpan(30),Main.getSelectionStart(),Main.getSelectionEnd(),Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                        Main.setText(spannable1);
+                        Main.setSelection(Main.getText().length());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
 
 
 
@@ -398,7 +432,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                     }
                     if (DoneArticle == true) {
                         //Подключение storage
-                        mDataBase = FirebaseDatabase.getInstance().getReference("AllArticle");
+                        mDataBase = FirebaseDatabase.getInstance().getReference(Non_Public_Article_Key);
                         progresscheck = findViewById(R.id.progressBaraddArticle);
                         progresscheck.setVisibility(View.VISIBLE);
                         NextBtn.setVisibility(View.GONE);
@@ -415,7 +449,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                         //Фото превью
                         Bitmap PhotoPreviewBitMap = ((BitmapDrawable) Downloadpreviewimage.getDrawable()).getBitmap();
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        PhotoPreviewBitMap.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+                        PhotoPreviewBitMap.compress(Bitmap.CompressFormat.JPEG, 75, baos);
                         byte[] PhotoPreviewByteArray = baos.toByteArray();
                         StorageReference MainPhotoRef = storageRef.child(System.nanoTime() + "PreviewImage");
 
@@ -453,7 +487,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                                 }
                                 mDataBase.push().setValue(newArticle);
                                 progresscheck.setVisibility(View.INVISIBLE);
-                                Toast.makeText(getApplicationContext(), "Статья успешно добавлена", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Статья успешно добавлена в неопубликованные", Toast.LENGTH_SHORT).show();
                                 finish();
 
                             }

@@ -12,9 +12,9 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
         <FrameLayout
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="60dp">
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:visibility="gone"
@@ -53,7 +53,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="left|center_vertical"
                 app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/MainGray"
+                app:cardBackgroundColor="@color/white"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:rotationY="180"
@@ -61,8 +61,6 @@
                     android:layout_height="29dp"
                     android:src="@drawable/font_angle_small_right" />
             </androidx.cardview.widget.CardView>
-
-
 
             <androidx.cardview.widget.CardView
                 android:foreground="?attr/selectableItemBackground"
@@ -73,19 +71,19 @@
                 android:layout_marginBottom="2dp"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                app:cardCornerRadius="8dp"
-                android:backgroundTint="@color/secondBlue"
+                app:cardCornerRadius="16dp"
+                android:backgroundTint="@color/white"
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/TextviewTagFilter"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginRight="9dp"
                     android:layout_marginLeft="9dp"
-                    android:textColor="@color/MainBlue"
+                    android:textColor="@color/MainGrayText"
                     android:fontFamily="@font/montserrat_bold"
                     android:textSize="18dp"
                     android:text="Текущий тег"
@@ -105,27 +103,13 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
+                    android:background="@color/white"
                     android:layout_height="wrap_content">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                        <androidx.cardview.widget.CardView
-                            android:backgroundTint="@color/white"
-                            android:id="@+id/CardViewAllChooseTags"
-                            android:visibility="gone"
-                            android:layout_marginRight="20dp"
-                            app:cardCornerRadius="8dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/AllChooseArticleRecycleview"
-                                android:layout_width="match_parent"
-                                app:spanCount="2"
-                                tools:listitem="@layout/recycleview_tag_item"
-                                android:layout_height="wrap_content"/>
-                        </androidx.cardview.widget.CardView>
+
                         <ProgressBar
                             android:layout_marginTop="5dp"
                             android:id="@+id/progressBarAllArticleTagsActivity"
@@ -139,8 +123,10 @@
                 </FrameLayout>
                 <FrameLayout
                     android:layout_width="match_parent"
+                    android:background="@color/MainGray"
                     android:layout_height="wrap_content">
                     <ListView
+                        android:background="@color/MainGray"
                         android:footerDividersEnabled="false"
                         android:divider="@null"
                         android:paddingTop="5dp"

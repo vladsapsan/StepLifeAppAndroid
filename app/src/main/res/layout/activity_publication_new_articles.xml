@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/MainGray"
+    android:background="@color/white"
     tools:context=".StafFunction.EditArticlesActiviti">
 
     <LinearLayout
@@ -13,32 +13,28 @@
 
         android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/montserratsemibold"
-                    android:gravity="left"
-                    android:text="Удаление материала"
-                    android:textColor="@color/black"
-                    android:textSize="19sp" />
-                <ImageView
-
-                    android:clickable="true"
-                    android:id="@+id/imagebackEditArticles"
-                    android:layout_width="40dp"
-                    android:layout_gravity="right"
-                    android:layout_height="40dp"
-                    android:src="@mipmap/ic_close_foreground"/>
-            </FrameLayout>
-
-
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:gravity="left"
+                android:text="Публикация материала"
+                android:textColor="@color/black"
+                android:textSize="19sp" />
+            <ImageView
+                android:clickable="true"
+                android:id="@+id/imagebackPublicationArticles"
+                android:layout_width="40dp"
+                android:layout_gravity="right"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_close_foreground"/>
+        </FrameLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,10 +43,9 @@
             android:layout_marginRight="15dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="left"
-            android:text="Выберите нужный материал для удаления из сети"
+            android:text="Выберите нужный материал для дальнейшей публикации в сети"
             android:textColor="@color/MainGrayText"
             android:textSize="14sp" />
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -59,7 +54,7 @@
                 android:divider="@null"
                 android:paddingTop="10dp"
                 android:animateLayoutChanges="true"
-                android:id="@+id/AllArticleEditListview"
+                android:id="@+id/AllNonPublicateArticleEditListview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </FrameLayout>

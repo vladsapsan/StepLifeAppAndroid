@@ -98,7 +98,6 @@ public class EditArticlesActiviti extends AppCompatActivity {
 
         };
         mDataBase.addValueEventListener(valueEventListener);
-
     }
 
     @Override

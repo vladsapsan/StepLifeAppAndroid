@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +48,7 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
     private ListView allArticlelist;
     CardView CardViewAllChooseTags;
     private NetworkChangeListner networkChangeListner;
+    private RadioGroup EditTextRG;
 
     private List<String> listData;
     RecyclerView AllArticleRecycleview,AllChooseArticleRecycleview;
@@ -116,7 +118,7 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        getWindow().setStatusBarColor(getResources().getColor(R.color.MainGray));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
         getSupportActionBar().hide(); //Скрытие actionBar
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -180,6 +182,10 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
 
             }
         });
+
+
+
+
 
         //При выборе урока переход на новый экран
         allArticlelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
