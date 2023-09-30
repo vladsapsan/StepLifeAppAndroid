@@ -52,8 +52,8 @@
                 android:layout_marginRight="35dp"
                 android:layout_marginLeft="35dp"
                 android:textSize="9dp"
-                android:textColor="@color/MainBlue"
-                android:backgroundTint="@color/secondBlue"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/MainBlue"
                 android:fontFamily="@font/montserratsemibold"
                 android:text="Отмена"/>
 
@@ -65,8 +65,8 @@
                 android:layout_marginRight="35dp"
                 android:layout_marginLeft="35dp"
                 android:textSize="9dp"
-                android:textColor="@color/RedExit"
-                android:backgroundTint="@color/secondBlue"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/RedExit"
                 android:fontFamily="@font/montserratsemibold"
                 android:text="Удалить"/>
         </LinearLayout>

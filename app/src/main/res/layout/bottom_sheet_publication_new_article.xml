@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:animateLayoutChanges="true"
+    android:theme="@style/Theme.Material3.Light"
     android:id="@+id/SheetDialogPublicationNewArticleContainer"
     android:background="@drawable/bottomsheetprofilesettingbackground"
     android:layout_height="match_parent">
@@ -32,6 +32,8 @@
                 android:text="Действия с данным материалом"
                 android:textColor="@color/black"
                 android:textSize="18dp"/>
+
+
                 <Button
                     android:id="@+id/buttonShowNonArticle"
                     android:layout_width="wrap_content"
@@ -46,26 +48,51 @@
                     android:text="Просмотреть материал"
                     android:textColor="@color/black"
                     android:theme="@style/Theme.ButtonWhite" />
-
             <Button
                 android:id="@+id/buttonPublicArticle"
+                app:icon="@drawable/add_circle24px"
+                app:iconTint = "@color/white"
+                app:iconGravity = "textStart"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="55dp"
                 android:layout_gravity="right"
                 android:textSize="10dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="50dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="50dp"
                 android:fontFamily="@font/montserratsemibold"
                 android:backgroundTint="@color/MainBlue"
                 android:text="Опубликовать материал в сети"
+                android:textColor="@color/white" />
+            <Button
+                android:id="@+id/buttonEditArticle"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="55dp"
+                android:layout_gravity="right"
+                android:textSize="10dp"
+                android:layout_marginLeft="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginRight="50dp"
+
+                app:icon="@drawable/draw24px"
+                app:iconTint = "@color/white"
+                app:iconGravity = "textStart"
+                android:fontFamily="@font/montserratsemibold"
+                android:backgroundTint="@color/MainBlue"
+                android:text="Редактировать материал"
                 android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/buttonDeleteArticle"
                 android:layout_width="match_parent"
+
+                app:icon="@drawable/delete24px"
+                app:iconTint = "@color/white"
+                app:iconGravity = "textStart"
                 android:layout_marginTop="100dp"
                 android:layout_height="55dp"
                 android:layout_gravity="right"

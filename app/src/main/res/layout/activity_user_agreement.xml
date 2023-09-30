@@ -20,13 +20,13 @@
             android:layout_height="50dp">
             <ImageView
                 android:rotationY="180"
-                android:id="@+id/Backto"
-                android:layout_gravity="left"
+                android:layout_marginRight="26dp"
+                android:layout_width="24dp"
+                android:layout_gravity="left|center_vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:src="@drawable/font_angle_small_right" />
+                android:layout_height="24dp"
+                android:id="@+id/Backto"
+                android:src="@drawable/arrow_forward_ios24px" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

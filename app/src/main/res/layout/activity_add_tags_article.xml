@@ -41,9 +41,10 @@
                 <ImageView
                     android:clickable="false"
                     android:layout_gravity="center"
+                    android:padding="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/ic_close_foreground"/>
+                    android:src="@drawable/close24px"/>
             </androidx.cardview.widget.CardView>
 
         </FrameLayout>

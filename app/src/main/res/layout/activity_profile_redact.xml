@@ -18,12 +18,13 @@
 
                 android:rotationY="180"
                 android:id="@+id/BacktoSettings"
-                android:layout_gravity="left"
+                android:layout_gravity="left|center_vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="9dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/font_angle_small_right" />
+                android:layout_width="35dp"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:layout_height="35dp"
+                android:src="@drawable/arrow_forward_ios24px" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -167,22 +168,15 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_gravity="center"
-                    app:boxBackgroundColor="@color/MainYellow"
-                    android:baselineAligned="false"
-                    android:outlineProvider="bounds"
-                    app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusTopEnd="10dp"
-                    app:boxCornerRadiusTopStart="10dp"
-                    app:boxCornerRadiusBottomEnd="10dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="30dp"
-                    app:boxStrokeWidth="0dp"
-                    app:boxStrokeWidthFocused="0dp"
+                    android:layout_height="60dp"
+                    app:counterEnabled="true"
                     android:layout_marginLeft="30dp"
-                    android:layout_height="50dp"
-                    app:errorEnabled="true">
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="30dp"
+                    app:counterMaxLength="35"
+                    app:boxStrokeWidth="2dp"
+                    app:boxStrokeColor="@color/MainYellow"
+                    android:layout_width="match_parent">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -190,12 +184,11 @@
                         android:fontFamily="@font/montserrat_semibold"
                         android:hint="Имя"
                         android:singleLine="true"
-                        android:imeOptions="actionDone"
                         android:maxLength="35"
-                        android:inputType="text"
                         android:id="@+id/editTextUserName"
-                        />
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/TextViewSaveUserinformation"
                     android:foreground="?attr/selectableItemBackground"

@@ -21,10 +21,11 @@
                 android:id="@+id/BacktoSettings"
                 android:layout_gravity="left"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="9dp"
-                android:layout_width="31dp"
-                android:layout_height="31dp"
-                android:src="@drawable/font_angle_small_right" />
+                android:layout_marginTop="4dp"
+                android:padding="5dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/arrow_forward_ios24px" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

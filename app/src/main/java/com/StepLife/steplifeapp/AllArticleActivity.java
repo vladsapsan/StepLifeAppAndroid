@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ import com.StepLife.steplifeapp.ui.Article;
 import com.StepLife.steplifeapp.ui.ArticleListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +45,7 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
 
 
     private ImageView backbutton;
+    FloatingActionButton floating_action_button_AllArticle;
 
     private ArticleListAdapter ArticleListAdapter;
     private ListView allArticlelist;
@@ -67,6 +70,26 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
     private void initilization()
     {
         allArticlelist = findViewById(R.id.AllArticleListviewActivity);
+        allArticlelist.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+
+            }
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                //Проверка на то , видно ли первый элемент таблицы всех статей
+                if (allArticlelist != null) {
+                    try {
+                        if (allArticlelist.getFirstVisiblePosition()==0) {
+                            //Видно
+                            floating_action_button_AllArticle.hide();
+                        } else {
+                            floating_action_button_AllArticle.show();
+                        }
+                    }catch (Exception e){}
+                }
+            }
+        });
         listData = new ArrayList<>();
         mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
         ArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listTemp);
@@ -152,9 +175,20 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
         CardViewAllChooseTags = findViewById(R.id.CardViewAllChooseTags);
 
 
+
         //Загрузка элементов
         initilization();
         DownloadArticleFirebaseData();
+
+        //Кнопка возврата к началу списка
+        floating_action_button_AllArticle = findViewById(R.id.floating_action_button_AllArticle);
+        floating_action_button_AllArticle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                allArticlelist.smoothScrollToPosition(0);
+            }
+        });
+        floating_action_button_AllArticle.hide();
 
         //Поиск
         EditText SearchText = findViewById(R.id.editTextSearchActivity);

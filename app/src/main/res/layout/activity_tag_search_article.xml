@@ -57,9 +57,10 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:rotationY="180"
-                    android:layout_width="29dp"
-                    android:layout_height="29dp"
-                    android:src="@drawable/font_angle_small_right" />
+                    android:layout_width="30dp"
+                    android:padding="5dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/arrow_forward_ios24px" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView

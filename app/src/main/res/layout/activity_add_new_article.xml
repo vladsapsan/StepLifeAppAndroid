@@ -31,16 +31,15 @@
                 android:textSize="18sp" />
 
             <ImageView
-
                 android:clickable="true"
                 android:id="@+id/imagebackAddArticle"
                 android:layout_width="40dp"
                 android:layout_gravity="left"
                 android:layout_marginTop="12dp"
-
+                android:padding="6dp"
                 android:layout_marginBottom="10dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/ic_close_foreground"/>
+                android:src="@drawable/close24px"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="30dp"
@@ -81,31 +80,52 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_marginLeft="5dp"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:id="@+id/AddTagsArticle"
-                    android:clickable="true"
-                    android:layout_width="wrap_content"
-                    android:layout_marginRight="10dp"
-                    app:cardCornerRadius="6dp"
-                    android:backgroundTint="@color/MainYellow"
-                    android:layout_gravity="left|center_vertical"
+                <FrameLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_gravity="center"
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginLeft="5dp"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:id="@+id/AddTagsArticle"
+                        android:clickable="true"
+                        android:layout_width="wrap_content"
+                        android:layout_marginRight="10dp"
+                        app:cardCornerRadius="6dp"
+                        android:backgroundTint="@color/MainBlue"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:textSize="14dp"
+                            android:text="Добавить теги"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <Button
+                        android:id="@+id/AddRecomendationButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/BlackSviut"
+                        android:gravity="center"
+                        style="@style/Widget.Material3.Button.Icon"
+                        app:icon="@drawable/library_add24px"
+                        android:textSize="9dp"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="5dp"
+                        android:backgroundTint="@color/MainBlue"
+                        android:layout_gravity="right"
                         android:fontFamily="@font/montserrat_semibold"
-                        android:textSize="14dp"
-                        android:text="Добавить теги"
-                        />
-                </androidx.cardview.widget.CardView>
+                        android:text="Добавить рекомендации"/>
+                </FrameLayout>
+
                 <FrameLayout
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="5dp"
@@ -250,7 +270,7 @@
                 android:paddingRight="5dp"
                 android:layout_width="33dp"
                 android:layout_height="33dp"
-                android:src="@drawable/icon_font_picture"
+                android:src="@drawable/perm_media24px"
                 />
             <RadioGroup
                 android:visibility="gone"

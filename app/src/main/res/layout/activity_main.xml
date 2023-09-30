@@ -7,8 +7,7 @@
 
     android:theme="@style/Theme.StepLifeApp.NoActionBar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
 
     <fragment
@@ -21,12 +20,13 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_gravity="bottom"
+        app:itemTextAppearanceInactive="@color/MainGrayText"
+        app:itemRippleColor="@color/MainYellow"
+        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         android:id="@+id/nav_view"
+        android:background="@drawable/bottomnavigationstyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         app:itemIconSize="20dp"
-        app:itemIconTint="@color/bottomnavcolor"
-        app:itemRippleColor="@color/TranspanetColor"
-        app:itemTextColor="@color/bottomnavcolor"
         app:menu="@menu/bottom_nav_menu" />
 </FrameLayout>

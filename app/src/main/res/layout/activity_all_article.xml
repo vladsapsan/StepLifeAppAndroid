@@ -53,10 +53,11 @@
                 android:rotationY="180"
                 android:layout_gravity="left|center_vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_width="30dp"
+                android:layout_width="40dp"
+                android:padding="5dp"
                 android:layout_marginTop="2dp"
-                android:layout_height="30dp"
-                android:src="@drawable/font_angle_small_right" />
+                android:layout_height="40dp"
+                android:src="@drawable/arrow_forward_ios24px" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,6 +73,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floating_action_button_AllArticle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:backgroundTint="@color/MainYellow"
+                android:layout_margin="16dp"
+                android:contentDescription=""
+                app:srcCompat="@drawable/expand_less24px"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -137,13 +147,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ListView
-
                         android:footerDividersEnabled="false"
                         android:divider="@null"
                         android:paddingTop="5dp"
                         android:animateLayoutChanges="false"
                         android:id="@+id/AllArticleListviewActivity"
-
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
                 </FrameLayout>

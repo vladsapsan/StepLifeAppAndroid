@@ -128,7 +128,8 @@ public class PublicationNewArticles extends AppCompatActivity {
 
 
         //Диалог действий с материалом
-        bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialog);
+        bottomSheetDialog = new BottomSheetDialog(PublicationNewArticles.this, R.style.BottomSheetDialog);
+        bottomSheetDialog.setDismissWithAnimation(true);
         bottomSheetDialog.setCanceledOnTouchOutside(false);
         View bottomSheetView = LayoutInflater.from(this.getApplicationContext())
                 .inflate(

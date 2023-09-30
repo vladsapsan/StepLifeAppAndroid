@@ -185,6 +185,8 @@
                     <com.google.android.material.card.MaterialCardView
                         app:cardPreventCornerOverlap="false"
                         style="@style/CustomCardViewStyle"
+                        android:backgroundTint="@color/white"
+                        app:strokeWidth="0dp"
                         android:id="@+id/CardHomeArticle1"
                         app:cardElevation="9dp"
                         android:foreground="?attr/selectableItemBackground"
@@ -225,6 +227,8 @@
                         android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
                         app:cardElevation="9dp"
+
+                        app:cardBackgroundColor="@color/white"
                         android:id="@+id/CardHomeArticle2"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -259,6 +263,7 @@
                         style="@style/CustomCardViewStyle"
                         android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
+                        app:cardBackgroundColor="@color/white"
                         app:cardElevation="9dp"
                         android:id="@+id/CardHomeArticle3"
                         android:layout_marginTop="5dp"
@@ -297,6 +302,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         app:cardElevation="9dp"
+                        app:cardBackgroundColor="@color/white"
                         android:layout_width="192dp"
                         android:layout_height="180dp"
                         android:layout_marginLeft="20dp">
@@ -332,6 +338,7 @@
                         app:cardElevation="9dp"
                         android:layout_marginBottom="5dp"
                         android:layout_width="192dp"
+                        app:cardBackgroundColor="@color/white"
                         android:layout_height="180dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="10dp">
@@ -413,7 +420,7 @@
                         android:layout_width="192dp"
                         android:layout_height="180dp"
                         android:layout_marginLeft="20dp"
-
+                        app:cardBackgroundColor="@color/white"
                         tools:layout_editor_absoluteX="1dp"
                         tools:layout_editor_absoluteY="444dp">
                         <ImageButton
@@ -446,7 +453,7 @@
                         android:layout_height="180dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="50dp"
-
+                        app:cardBackgroundColor="@color/white"
                         tools:layout_editor_absoluteX="1dp"
                         tools:layout_editor_absoluteY="444dp">
 
@@ -502,9 +509,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
-                android:textSize="13dp"
+                android:textSize="14dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:letterSpacing="0.03"
+                android:letterSpacing="0.02"
                 android:background="@drawable/buttonstyle2"
                 android:text="Подключить коленный модуль"
                 android:textColor="@color/black"
@@ -532,7 +539,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="56dp">
+                android:layout_marginBottom="100dp">
                 <Button
                     android:layout_width="51dp"
                     android:layout_height="15dp"

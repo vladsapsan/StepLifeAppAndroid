@@ -57,8 +57,8 @@
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:textSize="9dp"
-        android:textColor="@color/MainBlue"
-        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/MainBlue"
         android:layout_gravity="bottom"
         android:fontFamily="@font/montserratsemibold"
 

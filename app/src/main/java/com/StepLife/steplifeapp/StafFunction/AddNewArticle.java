@@ -32,6 +32,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -55,6 +56,7 @@ import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.other.MyRecyclerViewTagsAdapter;
 import com.StepLife.steplifeapp.ui.AddArticleViewModel;
 import com.StepLife.steplifeapp.ui.Article;
+import com.StepLife.steplifeapp.ui.ArticleListAdapter;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -62,8 +64,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -86,10 +90,12 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
             BottomSheetDialog bottomSheetWaitDialog;
     private WebView WebRedactor;
     MyRecyclerViewTagsAdapter adapterArticleTags;
+    ArticleListAdapter ArticleListAdapter;
     private ScrollView addArticleScrollView;
     private HorizontalScrollView ImageAddArticleScrolView;
     private DatabaseReference mDataBase;
     ImageView ExitBtn,NextBtn;
+    ArrayAdapter ChooseArticleListAdapter;
     ContentResolver cr;
     InputStream is;
     CardView AddTagsArticle;
@@ -101,15 +107,19 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
     private RadioButton HeaderButton,TextButton,CircleButton,NumericButton;
     private ImageView Downloadpreviewimage;
     private static final String Tags_Key ="AllTags";
+    Button AddRecomendationButton;
     private Uri uploadArticleMainTextUri = null;
     DisplayMetrics displayMetrics;
     List<String> mTags,mNewArticleTags;
-    ListView TagsList;
+    private ArrayList <Article> listTemp = new ArrayList<Article>();
+    ArrayList<String> ArticleRecomendationList = new ArrayList<>();
+    ListView TagsList,ListView,ListView1;
     private Uri uploadArticlePhotoUri = null;
     StorageReference storageRef;
     AlertDialog alertDialog;
     ProgressBar progresscheck;
     FirebaseStorage storage;
+    private String Article_Key ="AllArticle";
     private RadioGroup EditTextRG;
     private final static String Non_Public_Article_Key ="AllNonPublicArticle";
     private boolean DoneArticle,bottomsheetstart,DoneDowndloadPhoto;
@@ -140,6 +150,42 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
         startActivityForResult(Intent.createChooser(intent,
                 "Select Picture"), SELECT_PICTURE);
     }
+
+
+    //Иницилизация компонентов
+    private void initilization()
+    {
+        mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
+
+    }
+
+
+    //Загрузка уроков из базы
+    private void DownloadArticleFirebaseData()
+    {
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(listTemp.size()>0) listTemp.clear();
+                for (DataSnapshot ds : snapshot.getChildren())
+                {
+                    Article article = ds.getValue(Article.class);
+                    //Проверка
+                    assert article != null;
+                    listTemp.add(article);
+                }
+                ArticleListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        };
+        mDataBase.addValueEventListener(valueEventListener);
+    }
+
 
     //загрузка фото
     @SuppressLint("SetTextI18n")
@@ -284,6 +330,61 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
         RecycleviewTags.setAdapter(adapterArticleTags);
 
 
+        //Диалог Загрузки рекомендованных статей
+        BottomSheetDialog bottomSheetRecomendationDialog = new BottomSheetDialog(AddNewArticle.this, R.style.BottomSheetDialog);
+        bottomSheetRecomendationDialog.setDismissWithAnimation(true);
+        View bottomSheetRecomendationView = LayoutInflater.from(getApplicationContext())
+                .inflate(
+                        R.layout.bottom_sheet_add_recomendation_article,
+                        (FrameLayout) findViewById(R.id.SheetDialogAddRecomendationContainer)
+                );
+        bottomSheetRecomendationDialog.setContentView(bottomSheetRecomendationView);
+
+
+        //Отображение рекомендованных статей в списке новой статьи
+        ListView = bottomSheetRecomendationView.findViewById(R.id.ListView);
+        ArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listTemp);
+        ListView.setAdapter(ArticleListAdapter);
+        ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if(ArticleRecomendationList.size()<3) {
+                    ArticleRecomendationList.add(String.valueOf(Html.fromHtml(listTemp.get(position).HeadText).toString()));
+                    ChooseArticleListAdapter.notifyDataSetChanged();
+                }
+
+                    Toast.makeText(getApplicationContext(),"Не более 3 рекоммендованных уроков",Toast.LENGTH_SHORT);
+
+            }
+        });
+
+
+        //Отображение выбранных рекомендованных статей в списке
+        ListView1 = bottomSheetRecomendationView.findViewById(R.id.ListView1);
+        ChooseArticleListAdapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1, ArticleRecomendationList);
+        ListView1.setAdapter(ChooseArticleListAdapter);
+        ListView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                ArticleRecomendationList.remove(position);
+                ChooseArticleListAdapter.notifyDataSetChanged();
+            }
+        });
+
+        //Инициализацяи бд и загрузка уроков
+        initilization();
+        DownloadArticleFirebaseData();
+
+
+        //Кнопка добавления рекомендаций к статье
+        AddRecomendationButton = findViewById(R.id.AddRecomendationButton);
+        AddRecomendationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetRecomendationDialog.show();
+            }
+        });
+
 
         //Диалог Загрузки обложки
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(AddNewArticle.this, R.style.BottomSheetDialog);
@@ -361,6 +462,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                 }
             }
         });
+
 
 
 
@@ -481,7 +583,11 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                                 String Simpledate = df.format(Calendar.getInstance().getTime());
 
                                 if(mNewArticleTags!=null){
-                                     newArticle = new Article(idArticle, Simpledate, HeadString, (Html.toHtml(Main.getText())), uploadArticlePhotoUri.toString(), (ArrayList<String>) mNewArticleTags);
+                                    if(ArticleRecomendationList.size()>0){
+                                        newArticle = new Article(idArticle, Simpledate, HeadString, (Html.toHtml(Main.getText())), uploadArticlePhotoUri.toString(), (ArrayList<String>) mNewArticleTags,ArticleRecomendationList);
+                                    }else {
+                                        newArticle = new Article(idArticle, Simpledate, HeadString, (Html.toHtml(Main.getText())), uploadArticlePhotoUri.toString(), (ArrayList<String>) mNewArticleTags);
+                                    }
                                 }else {
                                     newArticle = new Article(idArticle, Simpledate, HeadString, (Html.toHtml(Main.getText())), uploadArticlePhotoUri.toString());
                                 }

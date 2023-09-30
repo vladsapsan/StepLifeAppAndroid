@@ -17,10 +17,11 @@
             android:id="@+id/BacktoProfile"
             android:layout_gravity="left"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="9dp"
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:src="@drawable/font_angle_small_right" />
+            android:layout_marginTop="4dp"
+            android:padding="5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/arrow_forward_ios24px" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,13 +84,11 @@
                 android:textSize="11sp" />
 
             <ImageView
-
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="26dp"
-                android:layout_gravity="right"
+                android:layout_gravity="right|center_vertical"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@drawable/font_angle_small_right" />
+                android:src="@drawable/arrow_forward_ios24px" />
         </androidx.cardview.widget.CardView>
 
     </FrameLayout>
@@ -113,16 +112,15 @@
             android:gravity="left"
             android:text="О программе"
             android:textColor="@color/BlackSviut"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
 
 
         <ImageView
-            android:layout_marginRight="26dp"
-            android:layout_width="16dp"
-            android:layout_marginTop="3dp"
-            android:layout_gravity="right"
-            android:layout_height="16dp"
-            android:src="@drawable/font_angle_small_right" />
+            android:layout_marginRight="30dp"
+            android:layout_width="20dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_height="20dp"
+            android:src="@drawable/arrow_forward_ios24px" />
     </FrameLayout>
 
 

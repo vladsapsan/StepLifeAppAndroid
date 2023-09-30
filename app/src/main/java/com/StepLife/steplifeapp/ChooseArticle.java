@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.StepLife.steplifeapp.other.MyRecyclerViewTagsAdapter;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
+import com.StepLife.steplifeapp.ui.Article;
+import com.StepLife.steplifeapp.ui.ArticleListAdapter;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -34,7 +37,9 @@ import java.util.ArrayList;
 public class ChooseArticle extends AppCompatActivity implements MyRecyclerViewTagsAdapter.ItemClickListener {
     ImageView CloseArticleButton;
     ScrollView DownloadArticleScrollView;
+    ArticleListAdapter ArticleListAdapter;
 
+    ListView RecomendationListviewArticle;
     RecyclerView recyclerView;
     Uri DownloadphotoUri;
     StorageReference storageRef ;
@@ -42,6 +47,7 @@ public class ChooseArticle extends AppCompatActivity implements MyRecyclerViewTa
     ArrayList<String> mNewArticleTags;
     ProgressBar progressBar;
     Bitmap bitmap1 = null;
+    private ArrayList <Article> listTemp = new ArrayList<Article>();
 
     Drawable drawable;
     SwipeRefreshLayout SwipeRefreshArticle;
@@ -49,7 +55,7 @@ public class ChooseArticle extends AppCompatActivity implements MyRecyclerViewTa
 
     private Target mTarget;
 
-    TextView DownloadHeadText,TextDateDownloadArticle,MainTextDownloadArticle;
+    TextView DownloadHeadText,TextDateDownloadArticle,MainTextDownloadArticle,NextArticlesText;
 
 
     //считывание нажатия по тегу
@@ -163,6 +169,8 @@ public class ChooseArticle extends AppCompatActivity implements MyRecyclerViewTa
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
+
+
         //Основные элементы статьи
         DownloadHeadText=findViewById(R.id.DownloadHeadText);
         TextDateDownloadArticle=findViewById(R.id.TextDateDownloadArticle);
@@ -179,6 +187,14 @@ public class ChooseArticle extends AppCompatActivity implements MyRecyclerViewTa
         recyclerView.setAdapter(adapterArticleTags);
 
 
+
+        //Лист рекомендаций в конце статьи
+        NextArticlesText  = findViewById(R.id.NextArticlesText);
+        NextArticlesText.setVisibility(View.GONE);
+        RecomendationListviewArticle = findViewById(R.id.RecomendationListviewArticle);
+        ArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listTemp);
+        RecomendationListviewArticle.setAdapter(ArticleListAdapter);
+        RecomendationListviewArticle.setVisibility(View.GONE);
 
 
         DownloadArticleScrollView = findViewById(R.id.DownloadArticleScrollView);

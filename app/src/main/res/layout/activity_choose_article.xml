@@ -13,6 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
+
             <ProgressBar
                 android:visibility="gone"
                 android:id="@+id/progressBarArticle"
@@ -27,16 +29,16 @@
                 android:layout_height="30dp" />
 
             <ImageView
-
                 android:clickable="true"
                 android:id="@+id/CloseArticleButton"
                 android:layout_width="40dp"
-                android:layout_gravity="right"
-                android:layout_marginTop="5dp"
+                android:layout_gravity="right|center_vertical"
 
-                android:layout_marginBottom="10dp"
+                android:padding="6dp"
+                android:layout_marginRight="10dp"
+
                 android:layout_height="40dp"
-                android:src="@mipmap/ic_close_foreground"/>
+                android:src="@drawable/close24px"/>
         </FrameLayout>
         <ScrollView
             android:id="@+id/DownloadArticleScrollView"
@@ -119,12 +121,8 @@
                     android:layout_marginBottom="50dp"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:layout_gravity="center"
-
-
-                    >
+                    android:layout_gravity="center">
                     <Button
-
                         android:id="@+id/buttonLogo1"
                         android:layout_width="51dp"
                         android:layout_height="15dp"
@@ -146,6 +144,34 @@
                         android:theme="@style/Theme.ButtonGrayLogo"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/NextArticlesText"
+                    android:clickable="false"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="20dp"
+                    android:layout_marginRight="65dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Возможно, вам подойдет"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:breakStrategy="high_quality"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:textColor="@color/black"
+                    android:background="@null"
+                    android:textSize="18dp"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="410dp">
+                    <ListView
+                        android:divider="@null"
+                        tools:listitem="@layout/listviewarticleitem"
+                        android:paddingTop="5dp"
+                        android:id="@+id/RecomendationListviewArticle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
                 </FrameLayout>
             </LinearLayout>
         </ScrollView>

@@ -80,6 +80,7 @@
                             android:layout_marginLeft="30dp"
                             android:layout_marginRight="30dp"
                             android:layout_width="match_parent"
+                            app:cardBackgroundColor="@color/white"
                             app:cardCornerRadius="12dp"
                             android:layout_height="293dp">
 

@@ -35,9 +35,10 @@
                     android:clickable="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="7dp"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@mipmap/ic_close_foreground" />
+                    android:layout_width="40dp"
+                    android:padding="6dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/close24px" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,12 +95,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
+                                android:layout_marginRight="75dp"
                                 android:layout_marginLeft="10dp"
                                 android:fontFamily="@font/montserratsemibold"
                                 android:gravity="left"
-                                android:text="Имя,dsadasdasdasdasdsadsadasdsa"
+                                android:text="Владислав"
                                 android:textColor="@color/MainGrayText"
-                                android:textSize="18sp" />
+                                android:textSize="17sp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -110,6 +112,13 @@
                                 android:text="Добро пожаловать!"
                                 android:textColor="@color/black"
                                 android:textSize="15sp" />
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginLeft="23dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_gravity="right|center_vertical"
+                                android:src="@drawable/draw24px" />
                         </FrameLayout>
 
                     </LinearLayout>
@@ -173,18 +182,18 @@
 
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginLeft="20dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="23dp"
                             android:layout_gravity="left|center_vertical"
-                            android:src="@drawable/plus_insert_add_rectangle_icon" />
+                            android:src="@drawable/library_add24px" />
 
                         <ImageView
                             android:layout_marginRight="26dp"
                             android:layout_width="16dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_height="16dp"
-                            android:src="@drawable/font_angle_small_right" />
+                            android:src="@drawable/arrow_forward_ios24px" />
 
                         <View
                             android:layout_width="match_parent"
@@ -224,7 +233,7 @@
                             android:layout_marginLeft="23dp"
                             android:layout_gravity="center_vertical"
 
-                            android:src="@drawable/free_icon_font_edit" />
+                            android:src="@drawable/delete24px" />
 
                         <ImageView
                             android:layout_marginRight="26dp"
@@ -232,7 +241,7 @@
                             android:layout_marginTop="12dp"
                             android:layout_gravity="right"
                             android:layout_height="16dp"
-                            android:src="@drawable/font_angle_small_right" />
+                            android:src="@drawable/arrow_forward_ios24px" />
 
                         <View
                             android:layout_width="match_parent"
@@ -269,7 +278,7 @@
                             android:layout_marginLeft="23dp"
                             android:layout_gravity="center_vertical"
 
-                            android:src="@drawable/free_icon_font_edit" />
+                            android:src="@drawable/border_color24px" />
 
                         <ImageView
                             android:layout_marginRight="26dp"
@@ -277,7 +286,7 @@
                             android:layout_marginTop="12dp"
                             android:layout_gravity="right"
                             android:layout_height="16dp"
-                            android:src="@drawable/font_angle_small_right" />
+                            android:src="@drawable/arrow_forward_ios24px" />
 
                         <View
                             android:layout_width="match_parent"
@@ -313,14 +322,14 @@
                             android:layout_height="25dp"
                             android:layout_marginLeft="23dp"
                             android:layout_gravity="left|center_vertical"
-                            android:src="@drawable/free_icon_font_settings" />
+                            android:src="@drawable/settings24px" />
 
                         <ImageView
                             android:layout_marginRight="26dp"
                             android:layout_width="16dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_height="16dp"
-                            android:src="@drawable/font_angle_small_right" />
+                            android:src="@drawable/arrow_forward_ios24px" />
                     </FrameLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -333,8 +342,8 @@
                 android:layout_width="match_parent"
                 app:cardCornerRadius="10dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -362,19 +371,19 @@
                         android:text="Дайте нам знать если у вас возникли проблемы или вопросы" />
 
                     <Button
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginRight="50dp"
                         android:layout_marginLeft="40dp"
-                        android:textSize="9dp"
+                        android:textSize="12dp"
                         android:textColor="@color/white"
                         android:layout_marginBottom="20dp"
                         android:backgroundTint="@color/logoGray"
                         android:layout_gravity="bottom"
                         android:fontFamily="@font/montserratsemibold"
-
+                        style="@style/Widget.Material3.Button.Icon"
+                        app:icon="@drawable/done24px"
                         android:text="Получить помощь"/>
                 </LinearLayout>
 

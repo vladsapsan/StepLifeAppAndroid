@@ -5,18 +5,18 @@
     <item
         android:id="@+id/navigation_dashboard"
         android:enabled="true"
-        android:icon="@drawable/assembly_control_fix_setting_108715"
+        android:icon="@drawable/tools_power_drill2_24px"
         android:title="Модуль" />
     <item
         android:id="@+id/navigation_home"
         android:enabled="true"
-        android:icon="@drawable/building_home_house_main_menu_start_113416"
+        android:icon="@drawable/home24px"
         android:title="Главная" />
 
     <item
         android:id="@+id/navigation_notifications"
         android:enabled="true"
-        android:icon="@drawable/icon_font_book_bookmark"
+        android:icon="@drawable/school24px"
         android:title="Учебник" />
 
 

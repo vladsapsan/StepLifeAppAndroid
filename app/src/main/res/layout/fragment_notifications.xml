@@ -163,6 +163,7 @@
                                     android:layout_width="150dp"
                                     app:cardElevation="9dp"
                                     android:layout_height="260dp"
+                                    app:cardBackgroundColor="@color/white"
                                     android:layout_marginLeft="15dp">
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -230,6 +231,7 @@
                                     android:clickable="true"
                                     android:layout_height="260dp"
                                     android:layout_marginLeft="20dp"
+                                    app:cardBackgroundColor="@color/white"
                                     app:cardElevation="9dp"
                                     tools:layout_editor_absoluteX="1dp"
                                     tools:layout_editor_absoluteY="444dp">
@@ -305,6 +307,7 @@
                                     android:layout_height="260dp"
                                     android:layout_marginLeft="20dp"
                                     app:cardPreventCornerOverlap="false"
+                                    app:cardBackgroundColor="@color/white"
                                     style="@style/CustomCardViewStyle"
                                     app:cardElevation="9dp"
                                     tools:layout_editor_absoluteX="1dp"
@@ -382,6 +385,7 @@
                                     app:cardPreventCornerOverlap="false"
                                     app:cardElevation="9dp"
                                     style="@style/CustomCardViewStyle"
+                                    app:cardBackgroundColor="@color/white"
                                     tools:layout_editor_absoluteX="1dp"
                                     tools:layout_editor_absoluteY="444dp">
                                     <LinearLayout
@@ -454,6 +458,7 @@
                                     android:clickable="true"
                                     android:layout_height="260dp"
                                     app:cardElevation="9dp"
+                                    app:cardBackgroundColor="@color/white"
                                     android:layout_marginLeft="20dp"
                                     app:cardPreventCornerOverlap="false"
                                     style="@style/CustomCardViewStyle"
@@ -536,6 +541,69 @@
                         android:paddingBottom="5dp"
                         android:textColor="@color/BlackSviut"
                         android:fontFamily="@font/montserrat_extrabold"/>
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroup"
+                       android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        app:chipSpacingVertical="0dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip"
+                            app:chipBackgroundColor="@color/MainBlue"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/montserrat_semibold"
+                            app:chipStrokeColor="@color/MainBlue"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            app:checkedIconTint="@color/white"
+                            app:chipSurfaceColor="@color/white"
+                            android:layout_height="wrap_content"
+                            android:text="Новости"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip1"
+                            app:chipBackgroundColor="@color/MainYellow"
+                            android:textColor="@color/BlackSviut"
+                            app:chipStrokeWidth="0dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:text="Ходьба"/>
+                        <com.google.android.material.chip.Chip
+                            app:chipBackgroundColor="@color/white"
+                            app:chipStrokeColor="@color/MainBlue"
+                            android:id="@+id/chip2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:chipCornerRadius="20dp"
+                            app:checkedIconTint="@color/MainBlue"
+                            app:chipSurfaceColor="@color/MainGray"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:text="Шаг в жизнь"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip3"
+                            android:layout_width="wrap_content"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            app:chipBackgroundColor="@color/MainBlue"
+                            android:text="Протез"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip4"
+                            android:layout_width="wrap_content"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_height="wrap_content"
+                            android:text="Инновации"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip5"
+                            android:layout_width="wrap_content"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_height="wrap_content"
+                            android:text="StepLife"/>
+                        <!-- Chips can be declared here, or added dynamically. -->
+
+                    </com.google.android.material.chip.ChipGroup>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_marginLeft="15dp"
@@ -931,6 +999,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
+                                app:cardBackgroundColor="@color/white"
                                 android:layout_height="180dp"
                                 android:layout_marginLeft="20dp">
                                 <ImageView
@@ -967,6 +1036,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
+                                app:cardBackgroundColor="@color/white"
                                 app:cardElevation="6dp"
                                 android:layout_height="180dp"
                                 android:layout_marginLeft="20dp">
@@ -1002,6 +1072,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_width="192dp"
+                                app:cardBackgroundColor="@color/white"
                                 app:cardElevation="6dp"
                                 android:layout_height="180dp"
                                 android:layout_marginLeft="20dp">
@@ -1210,8 +1281,8 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="20dp"
                         android:textSize="10dp"
-                        android:textColor="@color/MainBlue"
-                        android:backgroundTint="@color/secondBlue"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/MainBlue"
                         android:layout_gravity="bottom"
                         android:fontFamily="@font/montserrat_semibold"
                         android:text="Перейти ко всем урокам"/>
@@ -1221,7 +1292,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
-                        android:layout_marginBottom="56dp">
+                        android:layout_marginBottom="100dp">
                         <Button
                             android:layout_width="51dp"
                             android:layout_height="15dp"
