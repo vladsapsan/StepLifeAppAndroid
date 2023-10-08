@@ -1,22 +1,29 @@
 package com.StepLife.steplifeapp;
 
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.StepLife.steplifeapp.TelephoneSign.TelephoneSignUp;
 import com.StepLife.steplifeapp.databinding.ActivityMainBinding;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.ui.dashboard.DashboardFragment;
 import com.StepLife.steplifeapp.ui.home.HomeFragment;
 import com.StepLife.steplifeapp.ui.notifications.NotificationsFragment;
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -25,6 +32,9 @@ public class MainActivity extends AppCompatActivity  {
     boolean CheckApp;
     HomeFragment homeFragment;
     DashboardFragment dashboardFragment;
+    private FirebaseAuth mAuth;
+    CardView ProfileUserButton;
+    ImageView imageviewprofile;
     NotificationsFragment notificationsFragment;
     NetworkChangeListner networkChangeListner = new NetworkChangeListner();
     Fragment active = null;
@@ -43,6 +53,9 @@ public class MainActivity extends AppCompatActivity  {
         notificationsFragment = new NotificationsFragment();
         setFragment(homeFragment, "1", 1);
 
+        //Окно пользователя
+        mAuth = FirebaseAuth.getInstance();
+        Intent User_ProfileActiviti = new Intent(this, com.StepLife.steplifeapp.UserProfile.User_ProfileActiviti.class);
 
         navView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()){
@@ -57,6 +70,26 @@ public class MainActivity extends AppCompatActivity  {
                     break;
             }
             return true;
+        });
+
+
+        //Кнопка профиля
+        imageviewprofile = findViewById(R.id.imageviewprofile);
+        ProfileUserButton = findViewById(R.id.ProfileUserButton);
+        ProfileUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseUser cUser = mAuth.getCurrentUser();
+                if(cUser!=null)
+                {
+                    startActivity(User_ProfileActiviti);
+                }
+                else
+                {
+                    Intent intent = new Intent(MainActivity.this, TelephoneSignUp.class);
+                    startActivity(intent);
+                }
+            }
         });
 
         // Passing each menu ID as a set of Ids because each
@@ -121,6 +154,20 @@ public class MainActivity extends AppCompatActivity  {
         super.onStart();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkChangeListner,intentFilter);
+
+        FirebaseUser cUser = mAuth.getCurrentUser();
+        //Данные аутентификации
+        if(cUser!=null)
+        {
+            if(cUser.getPhotoUrl()!=null) {
+                //   Загрузка фото
+                //Picasso.get().load(cUser.getPhotoUrl()).into(ImageProfile);
+                Glide
+                        .with(this)
+                        .load(cUser.getPhotoUrl())
+                        .into(imageviewprofile);
+            }
+        }
     }
 
 

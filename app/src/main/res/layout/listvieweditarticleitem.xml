@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:singleLine="true"
-            android:fontFamily="@font/normalidadextended1thin"
+            android:fontFamily="@font/normalidadextended_extbold"
             android:text="Статья"
             android:textColor="@color/MainGrayText"
             android:textSize="14dp" />

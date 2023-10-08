@@ -25,76 +25,7 @@
 
 
 
-            <FrameLayout
-                android:id="@+id/HomeAppBar"
-                android:elevation="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="60dp">
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/logosteplifebase" />
-
-                <androidx.cardview.widget.CardView
-                    android:foreground="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:id="@+id/ProfileButton"
-                    android:visibility="visible"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="12dp"
-                    android:backgroundTint="@color/MainGray"
-                    android:layout_marginRight="20dp"
-
-                    app:cardCornerRadius="50dp">
-                    <ImageView
-                        android:clickable="false"
-                        android:id="@+id/ImageProfile"
-                        android:padding="7dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/profile_user_account_people_icon_229121" />
-                </androidx.cardview.widget.CardView>
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:visibility="gone"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginRight="20dp"
-                    android:clickable="true"
-
-                    android:layout_gravity="right"
-                    android:layout_marginTop="15dp"
-                    android:src="@drawable/profile_user_account_people_icon_229121"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/logoGray"/>
-
-
-
-
-
-                <androidx.cardview.widget.CardView
-                    android:visibility="gone"
-                    android:layout_width="29dp"
-                    android:layout_height="29dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="@color/MainGray"
-                    android:clickable="true"
-                    app:cardCornerRadius="50dp">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/free_icon_gear_1160356" />
-                </androidx.cardview.widget.CardView>
-
-            </FrameLayout>
 
             <FrameLayout
 
@@ -111,35 +42,53 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-                <TextView
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/normalidadwidethin"
-                    android:text="Видео инструкция"
-                    android:textColor="@color/BlackSviut"
-                    android:textSize="17dp" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="12dp"
-                    android:layout_height="192dp"
-                    style="@style/CustomCardViewStyle"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_gravity="center"
-                    app:cardPreventCornerOverlap="false"
-                    android:background="@drawable/buttonstyle1">
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/imageButton4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/video" />
-                </com.google.android.material.card.MaterialCardView>
                     <TextView
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/normalidad_extended_extreg"
+                        android:text="Модули Steplife"
+                        android:textColor="@color/BlackSviut"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/BlackSviut"
+                        android:layout_marginRight="25dp"
+                        android:textSize="13dp"
+                        android:text="@string/VideoHelp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_marginBottom="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="12dp"
+                        android:layout_height="192dp"
+                        style="@style/CustomCardViewStyle"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_gravity="center"
+                        app:cardPreventCornerOverlap="false"
+                        android:background="@drawable/buttonstyle1">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/imageButton4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/video" />
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_gravity="center"
+                            android:layout_height="48dp"
+                            android:src="@drawable/play_circle24px"/>
+                    </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:visibility="gone"
                         android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:id="@+id/textHideVideoButton"
@@ -155,20 +104,143 @@
                 </LinearLayout>
             </FrameLayout>
 
-            <TextView
-                android:textStyle="bold"
-                android:id="@+id/textTeach"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/normalidadwidethin"
-                android:text="Учебник"
-                android:textColor="@color/MainGrayText"
-                android:textSize="18dp"
-                app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-                app:layout_constraintStart_toStartOf="parent" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="25dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="24dp"
+                    android:src="@drawable/directions_walk24px"
+                    android:layout_height="24dp"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Школа ходьбы"
+                    android:textSize="16dp"
+                    android:textColor="@color/BlackSviut"
+                    android:fontFamily="@font/normalidad_extended_extreg"/>
+            </LinearLayout>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/BlackSviut"
+                android:layout_marginRight="30dp"
+                android:textSize="13dp"
+                android:layout_marginBottom="10dp"
+                android:text="Это наш авторский курс по обучению человека пользованию протеза, начните учиться уже сейчас!"
+                android:layout_marginTop="5dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                app:cardPreventCornerOverlap="false"
+                style="@style/CustomCardViewStyle"
+                android:backgroundTint="@color/white"
+                app:strokeWidth="0dp"
+                app:cardElevation="9dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:src="@drawable/trainingphoto"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="135dp"/>
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="Подготовка к протезированию"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/BlackSviut"
+                        android:layout_marginRight="20dp"
+                        android:textSize="12dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Наш первый курс для новичков, который расскажет вам о том как плавно перейти к протезированию"
+                        />
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_gravity="top|right"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/MainYellow"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/TextviewTag"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/BlackSviut"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textSize="13dp"
+                        android:text="Новое"
+                        />
+                </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="25dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="24dp"
+                    android:src="@drawable/sort24px"
+                    android:layout_height="24dp"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/textTeach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+
+                    android:fontFamily="@font/normalidad_extended_extreg"
+                    android:text="Внутри этого курса"
+                    android:textColor="@color/BlackSviut"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </LinearLayout>
 
 
             <HorizontalScrollView
@@ -178,7 +250,7 @@
                 android:scrollbars="none">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="210dp"
+                    android:layout_height="205dp"
                     android:orientation="horizontal"
                     android:paddingRight="20dp">
 
@@ -191,11 +263,12 @@
                         app:cardElevation="9dp"
                         android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
+
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:layout_width="192dp"
                         android:layout_height="180dp"
-                        android:layout_marginLeft="20dp">
+                        android:layout_marginLeft="25dp">
                         <ImageView
                             android:scaleType="centerCrop"
                             android:clickable="false"
@@ -217,8 +290,6 @@
                             android:maxLines="2"
                             android:textColor="@color/BlackSviut"
                             android:textSize="13sp" />
-
-
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -368,12 +439,13 @@
 
             <TextView
 
+                android:visibility="gone"
                 android:clickable="true"
                 android:id="@+id/AllAcricleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
+
                 android:fontFamily="@font/montserrat_semibold"
                 android:text="☰ Все статьи"
                 android:textColor="@color/MainBlue"
@@ -381,124 +453,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
-            <TextView
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/normalidadwidethin"
-                android:text="Тренировки"
-                android:textColor="@color/MainGrayText"
-                android:textSize="18dp"
-                app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView2"
-                app:layout_constraintStart_toStartOf="parent" />
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView2"
-                android:layout_width="413dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="10dp"
-                android:scrollbars="none"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
                 <LinearLayout
-                    android:paddingTop="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingRight="20dp">
-
-                    <com.google.android.material.card.MaterialCardView
-                        app:cardPreventCornerOverlap="false"
-                        style="@style/CustomCardViewStyle"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:cardElevation="6dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/directions_walk24px"/>
+                    <TextView
                         android:clickable="true"
-                        android:layout_width="192dp"
-                        android:layout_height="180dp"
-                        android:layout_marginLeft="20dp"
-                        app:cardBackgroundColor="@color/white"
-                        tools:layout_editor_absoluteX="1dp"
-                        tools:layout_editor_absoluteY="444dp">
-                        <ImageButton
-                            android:layout_width="match_parent"
-                            android:layout_height="124dp"
-                            app:srcCompat="@drawable/training1"
-                            tools:layout_editor_absoluteX="59dp"
-                            tools:layout_editor_absoluteY="448dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="Школа ходьбы"
+                        android:textColor="@color/MainBlue"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
-                        <TextView
-                            android:layout_width="160dp"
-                            android:layout_height="37dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:gravity="left"
-                            android:text="Сила и выносливость"
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="14sp" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        app:cardPreventCornerOverlap="false"
-                        style="@style/CustomCardViewStyle"
-                        app:cardElevation="6dp"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:layout_width="192dp"
-                        android:layout_height="180dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="50dp"
-                        app:cardBackgroundColor="@color/white"
-                        tools:layout_editor_absoluteX="1dp"
-                        tools:layout_editor_absoluteY="444dp">
-
-                        <ImageButton
-
-                            android:layout_width="match_parent"
-
-                            android:layout_height="124dp"
-                            app:srcCompat="@drawable/training1"
-                            tools:layout_editor_absoluteX="59dp"
-                            tools:layout_editor_absoluteY="448dp" />
-
-                        <TextView
-
-                            android:layout_width="160dp"
-                            android:layout_height="37dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:gravity="left"
-                            android:text="Координация"
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="14sp" />
-                    </com.google.android.material.card.MaterialCardView>
-
-
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="right|center_vertical"
+                            android:layout_margin="4dp"
+                            android:src="@drawable/arrow_forward_ios24px"/>
+                    </FrameLayout>
 
                 </LinearLayout>
-            </HorizontalScrollView>
-
-
-            <TextView
-
-                android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/montserrat_semibold"
-                android:text="☰ Все тренировки"
-                android:textColor="@color/MainBlue"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
 
 
             <Button
@@ -509,11 +501,11 @@
                 android:layout_marginLeft="20dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
-                android:textSize="14dp"
+                android:textSize="16dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:letterSpacing="0.02"
+
                 android:background="@drawable/buttonstyle2"
-                android:text="Подключить коленный модуль"
+                android:text="Подключить модуль"
                 android:textColor="@color/black"
                 android:theme="@style/Theme.ButtonWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -545,7 +537,7 @@
                     android:layout_height="15dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="15dp"
-                      android:layout_marginRight="25dp"
+                    android:layout_marginRight="25dp"
                     android:background="@drawable/graylogoframe"
                     android:theme="@style/Theme.ButtonGrayLogo"
                     app:layout_constraintBottom_toBottomOf="parent"

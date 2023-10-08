@@ -97,17 +97,36 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+                        <Button
+                            android:id="@+id/AddSortBytagButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginLeft="20dp"
+                            android:textSize="12dp"
+                            android:textColor="@color/white"
+                            app:iconTint = "@color/white"
+                            app:iconGravity = "textStart"
+                            android:backgroundTint="@color/MainBlue"
+                            android:layout_gravity="bottom"
+                            android:fontFamily="@font/montserratsemibold"
+                            style="@style/Widget.Material3.Button.Icon"
+                            app:icon="@drawable/category24px"
+                            android:text="Сортировать по тегам"/>
                         <TextView
+                            android:id="@+id/SortTextView"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
                             android:fontFamily="@font/montserrat_semibold"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="5dp"
-                            android:text="Поиск уроков по тегу"
+                            android:text="Сортировка по популярным тегам"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
                         <androidx.recyclerview.widget.RecyclerView
+                            android:visibility="gone"
                             android:layout_marginTop="3dp"
                             android:id="@+id/AllArticleRecycleview"
                             android:layout_width="match_parent"
@@ -132,6 +151,24 @@
                                 tools:listitem="@layout/recycleview_tag_item"
                                 android:layout_height="wrap_content"/>
                         </androidx.cardview.widget.CardView>
+
+
+                        <HorizontalScrollView
+                            android:layout_width="match_parent"
+                            android:scrollbarSize="2dp"
+                            android:layout_height="wrap_content">
+                        <com.google.android.material.chip.ChipGroup
+                            android:visibility="gone"
+                            android:id="@+id/chipGroup"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            app:chipSpacingVertical="0dp"
+                            app:singleLine="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </com.google.android.material.chip.ChipGroup>
+                        </HorizontalScrollView>
+
                         <ProgressBar
                             android:layout_marginTop="5dp"
                             android:id="@+id/progressBarAllArticleActivity"

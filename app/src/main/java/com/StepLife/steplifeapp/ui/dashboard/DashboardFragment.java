@@ -167,8 +167,7 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         CalibationModuleButton = view.findViewById(R.id.CalibationModuleButton);
-        //Текст о состоянии аккумулятора
-        TextBattery = view.findViewById(R.id.TextBattery);
+
         //Количество шагов текст
         TextViewFoot = view.findViewById(R.id.TextViewFoot);
         //Прогрессбар о состоянии аккумулятора
@@ -256,13 +255,7 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         bottomSheetWaitDialog.setContentView(bottomSheetStartView);
 
 
-        SettingModuleButton = view.findViewById(R.id.SettingModuleButton);
-        SettingModuleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent);
-            }
-        });
+
 
         TypeProthesisModuleCardButton = view.findViewById(R.id.TypeProthesisModuleCardButton);
         TypeProthesisModuleCardButton.setOnClickListener(new View.OnClickListener() {

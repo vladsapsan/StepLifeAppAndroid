@@ -17,6 +17,11 @@
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
     </style>
 
+    <style name="Theme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:background">@color/MainYellow</item>
+        <item name="android:windowBackground">@color/MainYellow</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">0dp</item>

@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/ic_logo_steplife"/>
+                android:src="@mipmap/main_logo_steplife"/>
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -87,14 +87,14 @@
                     android:layout_gravity="center"
                     android:textSize="13dp"
                     android:textColor="@color/BlackSviut"
-                    android:fontFamily="@font/montserratsemibold"
+                    android:fontFamily="@font/montserrat_regular"
                     android:text="Версия: "/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="15dp"
-                    android:fontFamily="@font/montserratregular"
+                    android:fontFamily="@font/montserrat_semibold"
                     android:textColor="@color/BlackSviut"
                     android:text="@string/VersionApp"/>
             </LinearLayout>

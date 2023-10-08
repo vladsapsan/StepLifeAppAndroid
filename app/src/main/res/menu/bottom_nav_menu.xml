@@ -5,7 +5,7 @@
     <item
         android:id="@+id/navigation_dashboard"
         android:enabled="true"
-        android:icon="@drawable/tools_power_drill2_24px"
+        android:icon="@drawable/tune24px"
         android:title="Модуль" />
     <item
         android:id="@+id/navigation_home"
@@ -16,10 +16,8 @@
     <item
         android:id="@+id/navigation_notifications"
         android:enabled="true"
-        android:icon="@drawable/school24px"
-        android:title="Учебник" />
-
-
+        android:icon="@drawable/directions_walk24px"
+        android:title="Школа" />
 
 
 

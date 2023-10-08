@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:singleLine="true"
-                    android:fontFamily="@font/normalidadextended1thin"
+                    android:fontFamily="@font/normalidad_extended_extreg"
                     android:text="Статья"
                     android:textColor="@color/MainGrayText"
                     android:textSize="14dp" />
@@ -93,7 +93,7 @@
                         android:visibility="gone"
                         android:id="@+id/MoreTagsArticle"
                         android:layout_marginTop="3dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginBottom="2dp"
                         android:layout_width="wrap_content"
                         android:layout_gravity="right|bottom"

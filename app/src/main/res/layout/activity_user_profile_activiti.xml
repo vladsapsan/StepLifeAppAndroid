@@ -112,7 +112,9 @@
                                 android:text="Добро пожаловать!"
                                 android:textColor="@color/black"
                                 android:textSize="15sp" />
+
                             <ImageView
+
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:layout_marginLeft="23dp"
@@ -149,6 +151,7 @@
                 app:cardElevation="5dp"
                 app:cardCornerRadius="8dp"
                 android:layout_width="match_parent"
+                app:cardBackgroundColor="@color/white"
                 android:layout_gravity="left"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="15dp"
@@ -377,9 +380,11 @@
                         android:layout_marginRight="50dp"
                         android:layout_marginLeft="40dp"
                         android:textSize="12dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/BlackSviut"
+                        app:iconTint = "@color/BlackSviut"
+                        app:iconGravity = "textStart"
                         android:layout_marginBottom="20dp"
-                        android:backgroundTint="@color/logoGray"
+                        android:backgroundTint="@color/MainYellow"
                         android:layout_gravity="bottom"
                         android:fontFamily="@font/montserratsemibold"
                         style="@style/Widget.Material3.Button.Icon"
@@ -407,6 +412,9 @@
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:textSize="10dp"
+                app:icon="@drawable/logout24px"
+                app:iconTint = "@color/RedExit"
+                app:iconGravity = "textStart"
                 android:textColor="@color/RedExit"
                 android:backgroundTint="@color/white"
                 android:layout_gravity="bottom"

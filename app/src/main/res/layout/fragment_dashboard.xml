@@ -10,49 +10,154 @@
 
 
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
 
-        <FrameLayout
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            app:cardPreventCornerOverlap="false"
+            style="@style/CustomCardViewStyle"
+            android:backgroundTint="@color/white"
+            app:strokeWidth="0dp"
+            app:cardElevation="9dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="0dp">
+            android:layout_height="91dp"
+            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logosteplifebase" />
-
-
-            <androidx.cardview.widget.CardView
-                android:foreground="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_gravity="left|center_vertical"
-                android:id="@+id/SettingModuleButton"
-                android:layout_marginLeft="20dp"
-                android:backgroundTint="@color/MainGray"
-                app:cardCornerRadius="100dp">
-                <ImageView
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/MainGrayText"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:layout_height="wrap_content"
+                    android:text="Заряд"/>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/MainGray"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/TextViewBatteryCharge"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="38dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:layout_height="wrap_content"
+                        android:text="0"/>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:scaleType="centerCrop"
+                            android:layout_height="48dp"
+                            android:layout_gravity="right"
+                            android:src="@drawable/battery_horiz_24px"/>
+                        <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:layout_width="30dp"
+                            android:visibility="gone"
+                            android:layout_marginRight="5dp"
+                            android:layout_gravity="right|center_vertical"
+                            app:trackColor="@color/white"
+                            android:progress="50"
+                            app:indicatorColor="@color/MainBlue"
+                            android:layout_height="38dp"/>
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-                    android:padding="10dp"
+        <com.google.android.material.card.MaterialCardView
+            app:cardPreventCornerOverlap="false"
+            style="@style/CustomCardViewStyle"
+            android:backgroundTint="@color/white"
+            app:strokeWidth="0dp"
 
-                    android:src="@drawable/free_icon_gear_1160356" />
-            </androidx.cardview.widget.CardView>
-        </FrameLayout>
+            app:cardElevation="9dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="91dp"
+            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/MainGrayText"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:layout_height="wrap_content"
+                    android:text="Количество шагов"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/TextViewFoot"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="38dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:layout_height="wrap_content"
+                        android:text="0"/>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:scaleType="centerCrop"
+                            android:layout_gravity="right"
+                            android:src="@drawable/steps24px"/>
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
 
+        <Button
+            android:id="@+id/buttonConnect"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:textSize="16dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:background="@drawable/buttonstyle2"
+            android:text="Калибровать модуль"
+            android:textColor="@color/black"
+            android:theme="@style/Theme.ButtonWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -70,74 +175,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="top">
-
-                <androidx.cardview.widget.CardView
-                    android:foreground="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:layout_marginBottom="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    app:cardCornerRadius="15dp"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="10dp"
-                        android:gravity="center">
-                        <TextView
-                            android:id="@+id/TextViewFoot"
-                            android:textStyle="bold"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/normalidadcompactbold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textColor="@color/MainBlue"
-                            android:textSize="17dp"/>
-
-                        <ImageView
-                            android:layout_marginLeft="5dp"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/footstep"/>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/TextViewBatteryCharge"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/normalidadcompactbold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0%"
-                    android:textColor="@color/BlackSviut"
-                    android:textSize="50dp"/>
-                <TextView
-                    android:id="@+id/TextBattery"
-                    android:textSize="15dp"
-                    android:fontFamily="@font/normalidadcompactbold"
-                    android:textColor="@color/MainGrayText"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Заряд аккумулятора" />
-            </LinearLayout>
         </FrameLayout>
 
 
         <androidx.cardview.widget.CardView
+            android:visibility="gone"
             android:foreground="?attr/selectableItemBackground"
             android:clickable="true"
             android:id="@+id/TypeProthesisModuleCardButton"
@@ -175,6 +217,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:visibility="gone"
             android:foreground="?attr/selectableItemBackground"
             android:clickable="true"
             android:layout_marginTop="10dp"
@@ -229,5 +272,5 @@
 
 
     </LinearLayout>
-
+</ScrollView>
 </FrameLayout>

@@ -12,11 +12,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,8 @@ import com.StepLife.steplifeapp.ui.Article;
 import com.StepLife.steplifeapp.ui.ArticleListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,10 +54,13 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
     private ArticleListAdapter ArticleListAdapter;
     private ListView allArticlelist;
     CardView CardViewAllChooseTags;
+    ChipGroup chipGroup;
+    Button AddSortBytagButton;
     private NetworkChangeListner networkChangeListner;
     private RadioGroup EditTextRG;
 
     private List<String> listData;
+    private List<String> ListSelectChips;
     RecyclerView AllArticleRecycleview,AllChooseArticleRecycleview;
     MyRecyclerViewTagsAdapter adapterArticleTags,adapterArticleChooseTags;
     ValueEventListener valueEventListener;
@@ -63,6 +70,7 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
     private ArrayList <Article> listTempTags = new ArrayList<Article>();
     ProgressBar progressBar;
     Article DowArticle;
+    TextView SortTextView;
     private static final String Article_Key ="AllArticle";
     private DatabaseReference mDataBase,mDataTags;
 
@@ -159,6 +167,36 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
         AllArticleRecycleview.setAdapter(adapterArticleTags);
         adapterArticleTags.notifyDataSetChanged();
 
+
+
+
+        //группа тегов) и текст
+        chipGroup = findViewById(R.id.chipGroup);
+        chipGroup.setOnCheckedStateChangeListener(new ChipGroup.OnCheckedStateChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull ChipGroup group, @NonNull List<Integer> checkedIds) {
+            }
+        });
+        SortTextView = findViewById(R.id.SortTextView);
+        AddSortBytagButton = findViewById(R.id.AddSortBytagButton);
+        AddSortBytagButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int i=0;i<mNewArticleTags.size();i++) {
+                    Chip chip = new Chip(chipGroup.getContext());
+                    chip.setText(mNewArticleTags.get(i).toString());
+                    chip.setClickable(true);
+                    chip.setCheckable(true);
+                    chip.setChipStrokeColor(getResources().getColorStateList(R.color.chipselectedtextcolor));
+                    chip.setChipBackgroundColor(getResources().getColorStateList(R.color.bottomnavcolor));
+                    chip.setTextColor(getResources().getColorStateList(R.color.chipselectedtextcolor));
+                    chipGroup.addView(chip);
+                }
+                SortTextView.setVisibility(View.VISIBLE);
+                chipGroup.setVisibility(View.VISIBLE);
+                AddSortBytagButton.setVisibility(View.GONE);
+            }
+        });
 
         //Отображение выбранных! тегов в списке новой статьи
         AllChooseArticleRecycleview = findViewById(R.id.AllChooseArticleRecycleview);

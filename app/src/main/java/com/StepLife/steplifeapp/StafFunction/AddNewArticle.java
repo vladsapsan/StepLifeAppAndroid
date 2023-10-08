@@ -48,7 +48,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -98,7 +97,6 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
     ArrayAdapter ChooseArticleListAdapter;
     ContentResolver cr;
     InputStream is;
-    CardView AddTagsArticle;
     private ImageView LoadPicture;
     private FrameLayout EditTextButtonsFrame;
     LinearLayout linearLayout;
@@ -107,7 +105,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
     private RadioButton HeaderButton,TextButton,CircleButton,NumericButton;
     private ImageView Downloadpreviewimage;
     private static final String Tags_Key ="AllTags";
-    Button AddRecomendationButton;
+    Button AddRecomendationButton,AddTagsArticle;
     private Uri uploadArticleMainTextUri = null;
     DisplayMetrics displayMetrics;
     List<String> mTags,mNewArticleTags;
@@ -152,39 +150,6 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
     }
 
 
-    //Иницилизация компонентов
-    private void initilization()
-    {
-        mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
-
-    }
-
-
-    //Загрузка уроков из базы
-    private void DownloadArticleFirebaseData()
-    {
-        ValueEventListener valueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(listTemp.size()>0) listTemp.clear();
-                for (DataSnapshot ds : snapshot.getChildren())
-                {
-                    Article article = ds.getValue(Article.class);
-                    //Проверка
-                    assert article != null;
-                    listTemp.add(article);
-                }
-                ArticleListAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-
-        };
-        mDataBase.addValueEventListener(valueEventListener);
-    }
 
 
     //загрузка фото
@@ -330,60 +295,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
         RecycleviewTags.setAdapter(adapterArticleTags);
 
 
-        //Диалог Загрузки рекомендованных статей
-        BottomSheetDialog bottomSheetRecomendationDialog = new BottomSheetDialog(AddNewArticle.this, R.style.BottomSheetDialog);
-        bottomSheetRecomendationDialog.setDismissWithAnimation(true);
-        View bottomSheetRecomendationView = LayoutInflater.from(getApplicationContext())
-                .inflate(
-                        R.layout.bottom_sheet_add_recomendation_article,
-                        (FrameLayout) findViewById(R.id.SheetDialogAddRecomendationContainer)
-                );
-        bottomSheetRecomendationDialog.setContentView(bottomSheetRecomendationView);
 
-
-        //Отображение рекомендованных статей в списке новой статьи
-        ListView = bottomSheetRecomendationView.findViewById(R.id.ListView);
-        ArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listTemp);
-        ListView.setAdapter(ArticleListAdapter);
-        ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if(ArticleRecomendationList.size()<3) {
-                    ArticleRecomendationList.add(String.valueOf(Html.fromHtml(listTemp.get(position).HeadText).toString()));
-                    ChooseArticleListAdapter.notifyDataSetChanged();
-                }
-
-                    Toast.makeText(getApplicationContext(),"Не более 3 рекоммендованных уроков",Toast.LENGTH_SHORT);
-
-            }
-        });
-
-
-        //Отображение выбранных рекомендованных статей в списке
-        ListView1 = bottomSheetRecomendationView.findViewById(R.id.ListView1);
-        ChooseArticleListAdapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1, ArticleRecomendationList);
-        ListView1.setAdapter(ChooseArticleListAdapter);
-        ListView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                ArticleRecomendationList.remove(position);
-                ChooseArticleListAdapter.notifyDataSetChanged();
-            }
-        });
-
-        //Инициализацяи бд и загрузка уроков
-        initilization();
-        DownloadArticleFirebaseData();
-
-
-        //Кнопка добавления рекомендаций к статье
-        AddRecomendationButton = findViewById(R.id.AddRecomendationButton);
-        AddRecomendationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottomSheetRecomendationDialog.show();
-            }
-        });
 
 
         //Диалог Загрузки обложки
@@ -462,7 +374,6 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                 }
             }
         });
-
 
 
 
@@ -581,7 +492,6 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                                 Article newArticle;
                                 DateFormat df = new SimpleDateFormat("d MMM yyyy");
                                 String Simpledate = df.format(Calendar.getInstance().getTime());
-
                                 if(mNewArticleTags!=null){
                                     if(ArticleRecomendationList.size()>0){
                                         newArticle = new Article(idArticle, Simpledate, HeadString, (Html.toHtml(Main.getText())), uploadArticlePhotoUri.toString(), (ArrayList<String>) mNewArticleTags,ArticleRecomendationList);
@@ -591,10 +501,14 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                                 }else {
                                     newArticle = new Article(idArticle, Simpledate, HeadString, (Html.toHtml(Main.getText())), uploadArticlePhotoUri.toString());
                                 }
-                                mDataBase.push().setValue(newArticle);
-                                progresscheck.setVisibility(View.INVISIBLE);
-                                Toast.makeText(getApplicationContext(), "Статья успешно добавлена в неопубликованные", Toast.LENGTH_SHORT).show();
-                                finish();
+                                mDataBase.push().setValue(newArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progresscheck.setVisibility(View.INVISIBLE);
+                                        Toast.makeText(getApplicationContext(), "Статья успешно добавлена в неопубликованные", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+                                });
 
                             }
                         });

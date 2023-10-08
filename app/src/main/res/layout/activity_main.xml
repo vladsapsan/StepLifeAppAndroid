@@ -9,24 +9,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:background="@color/MainGray"
+        android:elevation="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logosteplifebase" />
+
+        <androidx.cardview.widget.CardView
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:id="@+id/ProfileUserButton"
+            android:visibility="visible"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/MainGray"
+            android:layout_marginRight="20dp"
+            app:cardCornerRadius="50dp">
+            <ImageView
+                android:id="@+id/imageviewprofile"
+                android:clickable="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/profile_user_account_people_icon_229121" />
+        </androidx.cardview.widget.CardView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:visibility="gone"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginRight="20dp"
+            android:clickable="true"
+
+            android:layout_gravity="right"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/profile_user_account_people_icon_229121"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/logoGray"/>
+    </FrameLayout>
+
 
     <fragment
         android:id="@+id/nav_host_fragment_activity_main"
+        android:layout_marginTop="60dp"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/nav_view" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:backgroundTint="@color/MainYellow"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="100dp"
+        app:srcCompat="@drawable/live_help20px"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_gravity="bottom"
+        android:background="@color/white"
         app:itemTextAppearanceInactive="@color/MainGrayText"
         app:itemRippleColor="@color/MainYellow"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         android:id="@+id/nav_view"
-        android:background="@drawable/bottomnavigationstyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemIconSize="20dp"
+        app:itemIconSize="26dp"
         app:menu="@menu/bottom_nav_menu" />
 </FrameLayout>

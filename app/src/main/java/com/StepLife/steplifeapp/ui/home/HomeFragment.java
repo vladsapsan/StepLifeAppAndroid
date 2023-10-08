@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.StepLife.steplifeapp.AllArticleActivity;
 import com.StepLife.steplifeapp.ChooseArticle;
 import com.StepLife.steplifeapp.R;
-import com.StepLife.steplifeapp.TelephoneSign.TelephoneSignUp;
 import com.StepLife.steplifeapp.UserProfile.User_ProfileActiviti;
 import com.StepLife.steplifeapp.ui.Article;
 import com.StepLife.steplifeapp.ui.ArticleListAdapter;
@@ -33,7 +32,6 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +43,7 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment {
-    FrameLayout FrameVideo,HomeAppBar;
+    FrameLayout FrameVideo;
     TextView TextBtnHide,AllAcricleButton;
     private String HomeArticle_Key ="HomeArticle";
     private String Library_Key ="Lib";
@@ -136,7 +134,7 @@ public class HomeFragment extends Fragment {
 
 
         HomeArticleScroll = view.findViewById(R.id.HomeArticleScroll);
-        HomeAppBar = view.findViewById(R.id.HomeAppBar);
+
 
 
         //Инициализация анимации
@@ -293,27 +291,6 @@ public class HomeFragment extends Fragment {
      //   ArticleState3 =  view.findViewById(R.id.ArticleState3);
 
 
-
-        //Кнопка перехода в профиль
-        ImageProfile =  view.findViewById(R.id.ProfileButton);
-        ImageProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseUser cUser = mAuth.getCurrentUser();
-                if(cUser!=null)
-                {
-                    startActivity(User_ProfileActiviti);
-                }
-                else
-                {
-                    Intent intent = new Intent(getActivity(), TelephoneSignUp.class);
-                    startActivity(intent);
-                }
-            }
-        });
-
-
-
     }
     //Скрытие Видео по нажатию на текст
 
@@ -325,7 +302,6 @@ public class HomeFragment extends Fragment {
        // {
         //Запуск анимации при старте
         HomeArticleScroll.setAnimation(animationIN);
-        HomeAppBar.setAnimation(animationUP);
         FrameVideo.setAnimation(animationUP);
         mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
         //Загрузка данных о 1 карточке

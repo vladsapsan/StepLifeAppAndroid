@@ -105,8 +105,6 @@ public class NotificationsFragment extends Fragment {
 
 
         //Запуск анимации
-        NotificationAppBar.setAnimation(animationUP);
-
 
 
         //Первая строка статей
@@ -476,7 +474,6 @@ public class NotificationsFragment extends Fragment {
         LibPostTextRow1  = view.findViewById(R.id.LibPostTextRow1);
         LibPostTextRow2  = view.findViewById(R.id.LibPostTextRow2);
 
-        NotificationAppBar = view.findViewById(R.id.NotificationAppBar);
 
         //Инициализация анимации
         animationIN = AnimationUtils.loadAnimation(getContext(),R.anim.expectedanim);
@@ -540,15 +537,7 @@ public class NotificationsFragment extends Fragment {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
 
-        //кнопка уведомлений
-        NotificationButton = view.findViewById(R.id.NotificationButton);
-        NotificationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getActivity());
-                notificationManager.notify(3, builder.build());
-            }
-        });
+
 
 
         EditDataTextTopPost1 = view.findViewById(R.id.EditDataTextTopPost1);
@@ -766,16 +755,11 @@ public class NotificationsFragment extends Fragment {
                 }
             }
         });
+
         SeeAllButton = view.findViewById(R.id.seeallArticleButton);
         SeeAllText = view.findViewById(R.id.seeallArticleText);
         SeeAllText2 = view.findViewById(R.id.seeallArticleText2);
-        SearchButton = view.findViewById(R.id.SearchButton);
-        SearchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intentAllArticle);
-            }
-        });
+
 
         //Переход ко всем статьям
         SeeAllText.setOnClickListener(new View.OnClickListener() {

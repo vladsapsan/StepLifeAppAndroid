@@ -13,7 +13,7 @@ android {
         //noinspection EditedTargetSdkVersion
         targetSdk 33
         versionCode 1
-        versionName "0.6.3"
+        versionName "0.6.4"
     }
 
     buildTypes {
