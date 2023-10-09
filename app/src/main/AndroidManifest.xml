@@ -28,19 +28,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StepLifeApp">
         <activity
-            android:name=".Splash_Screen"
-            android:theme="@style/Theme"
+            android:name=".StafFunction.AddNewSection"
             android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="false" />
+        <activity
+            android:name=".Helper"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
+        <activity
+            android:name=".Splash_Screen"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".StafFunction.PublicationNewArticles"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".TagSearchArticle"
             android:exported="false"
@@ -96,7 +106,7 @@
         <activity
             android:name=".DeveloperAcsessActiviti"
             android:exported="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".StafFunction.EditArticlesActiviti"
             android:exported="false"
@@ -147,8 +157,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustUnspecified">
-        </activity>
+            android:windowSoftInputMode="adjustUnspecified" />
     </application>
 
 </manifest>

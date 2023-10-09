@@ -22,6 +22,7 @@ import com.StepLife.steplifeapp.ui.home.HomeFragment;
 import com.StepLife.steplifeapp.ui.notifications.NotificationsFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity  {
     boolean CheckApp;
     HomeFragment homeFragment;
     DashboardFragment dashboardFragment;
+    FloatingActionButton HelperButton;
     private FirebaseAuth mAuth;
     CardView ProfileUserButton;
     ImageView imageviewprofile;
@@ -86,9 +88,17 @@ public class MainActivity extends AppCompatActivity  {
                 }
                 else
                 {
-                    Intent intent = new Intent(MainActivity.this, TelephoneSignUp.class);
-                    startActivity(intent);
+                    startActivity(new Intent(MainActivity.this, TelephoneSignUp.class));
                 }
+            }
+        });
+
+        //Кнопка получения помощи
+        HelperButton = findViewById(R.id.HelperButton);
+        HelperButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,Helper.class));
             }
         });
 
@@ -123,11 +133,9 @@ public class MainActivity extends AppCompatActivity  {
         fragmentTransaction.commit();
     }
 
-
     public void setFragment(Fragment fragment, String tag, int position) {
-        if (fragment.isAdded()|| fm.findFragmentByTag(tag)!=null) {
+        if (fragment.isAdded()) {
             if (fragment == active) {
-
             }else if(active ==dashboardFragment){
                 fm.beginTransaction().detach(active).show(fragment).commit();
             } else if (fragment == dashboardFragment) {

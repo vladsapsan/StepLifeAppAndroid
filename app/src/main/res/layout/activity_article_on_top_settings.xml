@@ -34,7 +34,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/montserratsemibold"
                 android:gravity="left"
-                android:text="Настройка статей"
+                android:text="@string/EditMaterial"
                 android:textColor="@color/BlackSviut"
                 android:textSize="16sp" />
         </FrameLayout>
@@ -57,12 +57,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:gravity="center"
-
+                    app:icon="@drawable/draw24px"
+                    app:iconTint = "@color/white"
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="25dp"
                     android:textSize="12dp"
-                    android:textColor="@color/MainBlue"
-                    android:backgroundTint="@color/secondBlue"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/MainBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
                     android:text="Публикация материала"/>
@@ -72,11 +73,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:gravity="center"
+                    app:icon="@drawable/home24px"
+                    app:iconTint = "@color/white"
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="25dp"
                     android:textSize="12dp"
-                    android:textColor="@color/MainBlue"
-                    android:backgroundTint="@color/secondBlue"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/MainBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
                     android:text="Статьи домашней страницы"/>
@@ -88,9 +91,11 @@
                     android:gravity="center"
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="25dp"
+                    app:icon="@drawable/school24px"
+                    app:iconTint = "@color/white"
                     android:textSize="12dp"
-                    android:textColor="@color/MainBlue"
-                    android:backgroundTint="@color/secondBlue"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/MainBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
                     android:text="Верхняя предложка учебника"/>
@@ -100,14 +105,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:gravity="center"
+                    app:icon="@drawable/sort24px"
+                    app:iconTint = "@color/white"
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="25dp"
                     android:textSize="12dp"
-                    android:textColor="@color/MainBlue"
-                    android:backgroundTint="@color/secondBlue"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/MainBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
                     android:text="Добавление, удаление тегов"/>
+
+                <Button
+                    android:id="@+id/AddSectionButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:gravity="center"
+                    app:icon="@drawable/steps24px"
+                    app:iconTint = "@color/white"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="12dp"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/MainBlue"
+                    android:layout_gravity="bottom"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:text="Добавление курсов"/>
 
 
             </LinearLayout>

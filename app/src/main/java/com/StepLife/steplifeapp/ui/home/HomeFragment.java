@@ -20,14 +20,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.AllArticleActivity;
+import com.StepLife.steplifeapp.ArticleSection;
 import com.StepLife.steplifeapp.ChooseArticle;
+import com.StepLife.steplifeapp.MainActivity;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.UserProfile.User_ProfileActiviti;
 import com.StepLife.steplifeapp.ui.Article;
 import com.StepLife.steplifeapp.ui.ArticleListAdapter;
+import com.StepLife.steplifeapp.ui.notifications.NotificationsFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,7 +52,7 @@ public class HomeFragment extends Fragment {
     private String HomeArticle_Key ="HomeArticle";
     private String Library_Key ="Lib";
     Article DowArticle1,DowArticle2,DowArticle3,DowArticle4,DowArticle5;
-    CardView CardHomeArticle1,CardHomeArticle2,CardHomeArticle3,CardHomeArticle4,CardHomeArticle5;
+    CardView CardHomeArticle1,CardHomeArticle2,CardHomeArticle3,CardHomeArticle4,CardHomeArticle5,CardArticleSection;
     TextView TextHomeArticle1,TextHomeArticle2,TextHomeArticle3,TextHomeArticle4,TextHomeArticle5;
     ImageView ImageHomeArticle1,ImageHomeArticle2,ImageHomeArticle3,ImageHomeArticle4,ImageHomeArticle5;
     List<String> HomeTopArticleList;
@@ -141,6 +145,29 @@ public class HomeFragment extends Fragment {
         animationIN = AnimationUtils.loadAnimation(getContext(),R.anim.expected_home_fragment);
         animationUP = AnimationUtils.loadAnimation(getContext(),R.anim.expected_app_bar);
 
+
+        //Карточка курса подготовки к реабилитации
+        CardArticleSection = view.findViewById(R.id.CardArticleSection);
+        CardArticleSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Переход по навигации в фграмент школа
+                ArticleSection articleSection = new ArticleSection();
+                NotificationsFragment notificationsFragment;
+                FragmentManager fragmentManager = getFragmentManager();
+                if(fragmentManager.findFragmentByTag("3")!=null) {
+                     notificationsFragment = (NotificationsFragment) fragmentManager.findFragmentByTag("3");
+                }else {
+                     notificationsFragment = new NotificationsFragment();
+                }
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.setFragment(notificationsFragment,"3",2);
+                //и замена текущего главного фрагмента на фрагмент раздела
+                  fragmentManager.beginTransaction().addToBackStack(null)
+                         .replace(R.id.nav_host_fragment_activity_main, articleSection)
+                         .commit();
+            }
+        });
 
         //инициализация карточек
         CardHomeArticle1 = view.findViewById(R.id.CardHomeArticle1);

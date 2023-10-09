@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MainGray"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.ProfileSettingsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:rotationY="180"
+                android:id="@+id/BacktoSettings"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:layout_height="35dp"
+                android:src="@drawable/arrow_forward_ios24px" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/normalidad_extended_extreg"
+                android:gravity="left"
+                android:text="Получить помощь"
+                android:textColor="@color/SecondGrayText"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+
+                android:layout_gravity="right"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="10dp"
+                android:indeterminateTint="@color/MainBlue"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </FrameLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            style="@style/CustomCardViewStyle"
+            android:backgroundTint="@color/white"
+            android:id="@+id/CardArticleSection"
+            app:strokeWidth="0dp"
+            app:cardElevation="9dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/buttonstyle1"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:gravity="left"
+                    android:text="Отправьте свой вопрос по данной форме если вас что-то интересует"
+                    android:textColor="@color/SecondGrayText"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/NametextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxStrokeColor="@color/MainYellow"
+                    android:textColorHint="@color/BlackSviut"
+                    app:hintTextColor="@color/BlackSviut"
+                    android:hint="Имя">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:inputType="textPersonName"
+                        android:singleLine="true"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:layout_height="wrap_content"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/TelephonetextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxStrokeColor="@color/MainYellow"
+                    android:textColorHint="@color/BlackSviut"
+                    app:hintTextColor="@color/BlackSviut"
+                    android:hint="Контактный телефон">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:inputType="phone"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:layout_height="wrap_content"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/MessegetextField"
+                    android:layout_width="match_parent"
+                    app:boxStrokeColor="@color/MainYellow"
+                    android:layout_marginTop="16dp"
+                    app:hintTextColor="@color/BlackSviut"
+                    android:textColorHint="@color/BlackSviut"
+                    android:layout_height="wrap_content"
+                    android:hint="Сообщение">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:layout_height="200dp"
+                        android:layout_gravity="left"
+                        android:gravity="left"
+                        android:inputType="textLongMessage"
+                        android:textSize="14dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/buttonStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:background="@drawable/buttonstyle2"
+                    android:text="Отправить"
+                    android:textColor="@color/black"
+                    android:theme="@style/Theme.ButtonWhite" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="left"
+                    android:text="@string/Accses"
+                    android:textColor="@color/SecondGrayText"
+                    android:textSize="14sp" />
+
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

@@ -18,7 +18,7 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
     ImageView imagebackEditArticles;
     NetworkChangeListner networkChangeListner;
 
-    Button TopPostRedactButton,HomeArticleRedactButton,AddTagsButton,PublicationArticleButton;
+    Button TopPostRedactButton,HomeArticleRedactButton,AddTagsButton,PublicationArticleButton,AddSectionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,7 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
         Intent HomeArticleRedactintent = new Intent(getApplicationContext(), HomeArticleRedactActivity.class);
         Intent AddTagsArticletintent = new Intent(getApplicationContext(), AddTagsArticle.class);
         Intent PublicationNewArticlesintent = new Intent(getApplicationContext(), PublicationNewArticles.class);
+        Intent AddNewSectionintent = new Intent(getApplicationContext(), AddNewSection.class);
 
 
         //переход к окну редактирования верхней предложки учебника
@@ -70,6 +71,15 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(AddTagsArticletintent);
+            }
+        });
+
+        //Переход к редактированию и добавлению курсов
+        AddSectionButton = findViewById(R.id.AddSectionButton);
+        AddSectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(AddNewSectionintent);
             }
         });
 

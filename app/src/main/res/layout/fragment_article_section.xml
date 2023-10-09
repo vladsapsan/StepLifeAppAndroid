@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/MainGray"
+    tools:context=".ArticleSection">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="right"
+                    app:boxBackgroundColor="@color/MainYellow"
+                    android:baselineAligned="false"
+                    android:outlineProvider="bounds"
+                    app:boxCornerRadiusBottomStart="0dp"
+                    app:boxCornerRadiusTopEnd="0dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    android:layout_marginLeft="45dp"
+                    android:layout_height="50dp"
+                    app:errorEnabled="true">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:hint="Поиск"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:id="@+id/editTextSearchActivity"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/BacktoButton"
+                    android:rotationY="180"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="40dp"
+                    android:padding="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/arrow_forward_ios24px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Подготовка к протезированию"
+                    android:textColor="@color/BlackSviut"
+                    android:textSize="16sp" />
+
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floating_action_button_AllArticle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:backgroundTint="@color/MainYellow"
+                    android:layout_margin="16dp"
+                    android:contentDescription=""
+                    app:srcCompat="@drawable/expand_less24px"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/Protehsisespand"
+                        android:textColor="@color/BlackSviut"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/buttonStart"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:textSize="16dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:background="@drawable/buttonstyle2"
+                        android:text="Начать"
+                        android:textColor="@color/black"
+                        android:theme="@style/Theme.ButtonWhite"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="left"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="Внутри этого курса:"
+                        android:textColor="@color/BlackSviut"
+                        android:textSize="16sp" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ListView
+                            android:footerDividersEnabled="false"
+                            android:divider="@null"
+                            android:paddingTop="5dp"
+                            android:animateLayoutChanges="false"
+                            android:id="@+id/AllArticleListviewActivity"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </FrameLayout>
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+        </LinearLayout>
+
+
+
+
+</FrameLayout>

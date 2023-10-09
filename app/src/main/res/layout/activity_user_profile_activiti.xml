@@ -270,7 +270,7 @@
                             android:layout_marginLeft="55dp"
                             android:fontFamily="@font/montserratsemibold"
                             android:gravity="left"
-                            android:text="Настройка статей"
+                            android:text="@string/EditMaterial"
                             android:textColor="@color/BlackSviut"
                             android:textSize="14sp" />
 
@@ -281,7 +281,7 @@
                             android:layout_marginLeft="23dp"
                             android:layout_gravity="center_vertical"
 
-                            android:src="@drawable/border_color24px" />
+                            android:src="@drawable/tune24px" />
 
                         <ImageView
                             android:layout_marginRight="26dp"
