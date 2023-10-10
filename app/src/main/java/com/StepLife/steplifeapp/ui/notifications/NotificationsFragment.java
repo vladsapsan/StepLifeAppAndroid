@@ -31,6 +31,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.StepLife.steplifeapp.TagSearchArticle;
 import com.bumptech.glide.Glide;
 import com.StepLife.steplifeapp.AllArticleActivity;
 import com.StepLife.steplifeapp.ChooseArticle;
@@ -40,6 +41,7 @@ import com.StepLife.steplifeapp.databinding.FragmentNotificationsBinding;
 import com.StepLife.steplifeapp.ui.Article;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -71,6 +73,8 @@ public class NotificationsFragment extends Fragment {
     private static final String Library_Row2_Key ="Row2";
 
     private DatabaseReference mDataBase,bDataBase;
+
+    Chip TagChip1,TagChip2,TagChip3,TagChip4,TagChip5,TagChip6;
 
     CardView TopPostCard1,TopPostCard2,TopPostCard3,TopPostCard4,TopPostCard5,SeeAllText,SeeAllText2;
     CardView CardLibraryRow1Article1,CardLibraryRow1Article2,CardLibraryRow1Article3;
@@ -568,6 +572,62 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
+        //Теги с переходами на новое окно
+        TagChip1 = view.findViewById(R.id.TagChip1);
+        TagChip1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TagSearchArticle.class);
+                intent.putExtra("TagFilter",TagChip1.getText());
+                startActivity(intent);
+            }
+        });
+        TagChip2 = view.findViewById(R.id.TagChip2);
+        TagChip2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TagSearchArticle.class);
+                intent.putExtra("TagFilter",TagChip2.getText());
+                startActivity(intent);
+            }
+        });
+        TagChip3 = view.findViewById(R.id.TagChip3);
+        TagChip3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TagSearchArticle.class);
+                intent.putExtra("TagFilter",TagChip3.getText());
+                startActivity(intent);
+            }
+        });
+        TagChip4 = view.findViewById(R.id.TagChip4);
+        TagChip4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TagSearchArticle.class);
+                intent.putExtra("TagFilter",TagChip4.getText());
+                startActivity(intent);
+            }
+        });
+        TagChip5 = view.findViewById(R.id.TagChip5);
+        TagChip5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TagSearchArticle.class);
+                intent.putExtra("TagFilter",TagChip5.getText());
+                startActivity(intent);
+            }
+        });
+        TagChip6 = view.findViewById(R.id.TagChip6);
+        TagChip6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), TagSearchArticle.class);
+                intent.putExtra("TagFilter",TagChip6.getText());
+                startActivity(intent);
+            }
+        });
+
         //Переход к статье по карточке
         TopPostCard2 = view.findViewById(R.id.TopPostCard2);
         TopPostCard2.setOnClickListener(new View.OnClickListener() {
@@ -757,23 +817,6 @@ public class NotificationsFragment extends Fragment {
         });
 
         SeeAllButton = view.findViewById(R.id.seeallArticleButton);
-        SeeAllText = view.findViewById(R.id.seeallArticleText);
-        SeeAllText2 = view.findViewById(R.id.seeallArticleText2);
-
-
-        //Переход ко всем статьям
-        SeeAllText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intentAllArticle);
-            }
-        });
-        SeeAllText2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intentAllArticle);
-            }
-        });
         //Переход ко всем статьям
         SeeAllButton.setOnClickListener(new View.OnClickListener() {
             @Override

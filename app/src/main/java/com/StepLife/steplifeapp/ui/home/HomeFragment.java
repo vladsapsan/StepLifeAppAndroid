@@ -1,6 +1,7 @@
 package com.StepLife.steplifeapp.ui.home;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
@@ -16,6 +17,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -81,7 +83,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private ListView allArticlelist;
 
-    final static String HomeVideoUri = "https://www.youtube.com/embed/93OlYWB74rY?si=u3tbkRdy71P8aw0B";
+    final static String HomeVideoUri = "https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/SupportFiles%2FSteplife%20P5.mp4?alt=media&token=5a742670-600c-49d7-b461-913920fa2fb6";
     Animation animationClick;
     private ArrayAdapter<String> adapter;
     private DatabaseReference mDataBase;
@@ -134,6 +136,14 @@ public class HomeFragment extends Fragment {
 
     }
 
+    MediaPlayer.OnCompletionListener myVideoViewCompletionListener
+            = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer arg0) {
+            VideoStartButton.setVisibility(View.VISIBLE);
+        }
+    };
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -157,14 +167,16 @@ public class HomeFragment extends Fragment {
 
         //Видео плеер окна
         HomeVideoView = view.findViewById(R.id.HomeVideoView);
+        HomeVideoView.setOnCompletionListener(myVideoViewCompletionListener);
+        HomeVideoView.setVideoURI(Uri.parse(HomeVideoUri));
+        HomeVideoView.setMediaController(new MediaController(getContext()));
         VideoStartButton  = view.findViewById(R.id.VideoStartButton);
         VideoStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 VideoStartButton.setVisibility(View.GONE);
-                HomeVideoView.setVideoURI(Uri.parse(HomeVideoUri));
-                HomeVideoView .requestFocus();
                 HomeVideoView.start();
+
             }
         });
 
@@ -176,17 +188,10 @@ public class HomeFragment extends Fragment {
                 //Переход по навигации в фграмент школа
                 ArticleSection articleSection = new ArticleSection();
                 FragmentManager fragmentManager = getFragmentManager();
-                if(fragmentManager.findFragmentByTag("3")!=null) {
-                     notificationsFragment = (NotificationsFragment) fragmentManager.findFragmentByTag("3");
-                }else {
-                     notificationsFragment = new NotificationsFragment();
-                }
-                MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.setFragment(notificationsFragment,"3",2);
                 //и замена текущего главного фрагмента на фрагмент раздела
                 if(fragmentManager.findFragmentByTag("section")==null) {
                     fragmentManager.beginTransaction()
-                            .replace(R.id.TeachArticleFrame, articleSection, "section").addToBackStack(null).commit();
+                            .replace(R.id.HomeFragment, articleSection, "section").addToBackStack(null).commit();
                 }
             }
         });
