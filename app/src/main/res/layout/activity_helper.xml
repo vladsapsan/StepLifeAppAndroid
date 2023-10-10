@@ -131,7 +131,6 @@
                         android:layout_height="200dp"
                         android:layout_gravity="left"
                         android:gravity="left"
-                        android:inputType="textLongMessage"
                         android:textSize="14dp"
                         />
                 </com.google.android.material.textfield.TextInputLayout>

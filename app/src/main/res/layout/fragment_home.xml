@@ -23,10 +23,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-
-
-
             <FrameLayout
 
                 android:id="@+id/FrameVideoInstruction"
@@ -75,17 +71,24 @@
                         app:cardPreventCornerOverlap="false"
                         android:background="@drawable/buttonstyle1">
 
+                        <VideoView
+                            android:id="@+id/HomeVideoView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
                         <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/imageButton4"
+                            android:id="@+id/VideoStartButton"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
                             app:srcCompat="@drawable/video_presentation" />
-                        <ImageView
-                            android:layout_width="48dp"
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/playbuttonCircle"
+                            android:layout_width="wrap_content"
+                            style="?attr/floatingActionButtonSmallStyle"
                             android:layout_gravity="center"
-                            android:layout_height="48dp"
-                            android:src="@drawable/play_circle24px"/>
+                            android:layout_height="wrap_content"
+                            app:backgroundTint="@color/white"
+                            app:srcCompat="@drawable/play_circle24px"/>
                     </com.google.android.material.card.MaterialCardView>
                     <TextView
                         android:visibility="gone"
@@ -551,6 +554,9 @@
             </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout
+                    android:id="@+id/ShoolStepButton"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_marginLeft="16dp"

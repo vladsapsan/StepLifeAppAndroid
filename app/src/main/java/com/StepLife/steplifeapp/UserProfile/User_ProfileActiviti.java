@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.StepLife.steplifeapp.Helper;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.StafFunction.AddNewArticle;
 import com.StepLife.steplifeapp.StafFunction.ArticleOnTopSettingsActivity;
@@ -37,7 +38,7 @@ import java.util.List;
 public class User_ProfileActiviti extends AppCompatActivity {
 
     ImageView BackBtn;
-    Button LogOutButton;
+    Button LogOutButton,buttonHelp;
     List<String> EditorsPhoneList;
     final String EDITORS = "AllEditors";
     Fragment Addarticleragment ;
@@ -90,6 +91,15 @@ public class User_ProfileActiviti extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentSetting = new Intent(User_ProfileActiviti.this, ProfileRedactActivity.class);
                 startActivity(intentSetting);
+            }
+        });
+
+        //Кнопка получения помощи
+        buttonHelp = findViewById(R.id.buttonHelp);
+        buttonHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(User_ProfileActiviti.this, Helper.class));
             }
         });
 

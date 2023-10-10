@@ -1,6 +1,7 @@
 package com.StepLife.steplifeapp.ui.home;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -13,9 +14,11 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -67,17 +70,23 @@ public class HomeFragment extends Fragment {
     CardView  ArticleTeach;
     ScrollView HomescrollView;
     RecyclerView HomeArticleListView;
+    LinearLayout ShoolStepButton;
     HorizontalScrollView HomeArticleScroll;
-    private ImageView ArticleState1,ArticleState2,ArticleState3;
+    //Фрагмент школа Ходьбы
+    NotificationsFragment notificationsFragment;
+    private ImageView ArticleState1,ArticleState2,ArticleState3,VideoStartButton;
     private FirebaseAuth mAuth;
     HorizontalScrollView horizontalScrollViewArticle,horizontalScrollView2;
     private Animation HideAnimation;
     private HomeViewModel homeViewModel;
     private ListView allArticlelist;
+
+    final static String HomeVideoUri = "https://www.youtube.com/embed/93OlYWB74rY?si=u3tbkRdy71P8aw0B";
     Animation animationClick;
     private ArrayAdapter<String> adapter;
     private DatabaseReference mDataBase;
     int CurrnetPositionList ;
+    VideoView HomeVideoView;
     private List<String> listData;
     Animation animationIN,animationUP;
     private String Article_Key ="AllArticle";
@@ -146,6 +155,19 @@ public class HomeFragment extends Fragment {
         animationUP = AnimationUtils.loadAnimation(getContext(),R.anim.expected_app_bar);
 
 
+        //Видео плеер окна
+        HomeVideoView = view.findViewById(R.id.HomeVideoView);
+        VideoStartButton  = view.findViewById(R.id.VideoStartButton);
+        VideoStartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VideoStartButton.setVisibility(View.GONE);
+                HomeVideoView.setVideoURI(Uri.parse(HomeVideoUri));
+                HomeVideoView .requestFocus();
+                HomeVideoView.start();
+            }
+        });
+
         //Карточка курса подготовки к реабилитации
         CardArticleSection = view.findViewById(R.id.CardArticleSection);
         CardArticleSection.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +175,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 //Переход по навигации в фграмент школа
                 ArticleSection articleSection = new ArticleSection();
-                NotificationsFragment notificationsFragment;
                 FragmentManager fragmentManager = getFragmentManager();
                 if(fragmentManager.findFragmentByTag("3")!=null) {
                      notificationsFragment = (NotificationsFragment) fragmentManager.findFragmentByTag("3");
@@ -163,9 +184,10 @@ public class HomeFragment extends Fragment {
                 MainActivity mainActivity = (MainActivity) getActivity();
                 mainActivity.setFragment(notificationsFragment,"3",2);
                 //и замена текущего главного фрагмента на фрагмент раздела
-                  fragmentManager.beginTransaction().addToBackStack(null)
-                         .replace(R.id.nav_host_fragment_activity_main, articleSection)
-                         .commit();
+                if(fragmentManager.findFragmentByTag("section")==null) {
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.TeachArticleFrame, articleSection, "section").addToBackStack(null).commit();
+                }
             }
         });
 
@@ -310,6 +332,22 @@ public class HomeFragment extends Fragment {
                 FrameVideo.setVisibility(View.GONE);
             }
 
+        });
+
+        //Кнопка перехода в школу ходьбы
+        ShoolStepButton = view.findViewById(R.id.ShoolStepButton);
+        ShoolStepButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getFragmentManager();
+                if(fragmentManager.findFragmentByTag("3")!=null) {
+                    notificationsFragment = (NotificationsFragment) fragmentManager.findFragmentByTag("3");
+                }else {
+                    notificationsFragment = new NotificationsFragment();
+                }
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.setFragment(notificationsFragment,"3",2);
+            }
         });
 
         //Картинки статей на главном экране

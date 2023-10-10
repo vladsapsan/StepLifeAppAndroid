@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void setFragment(Fragment fragment, String tag, int position) {
-        if (fragment.isAdded()) {
+        if (fm.findFragmentByTag(tag)!=null) {
             if (fragment == active) {
             }else if(active ==dashboardFragment){
                 fm.beginTransaction().detach(active).show(fragment).commit();
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity  {
                 fm.beginTransaction().hide(active).add(R.id.nav_host_fragment_activity_main, fragment, tag).commit();
             }
         } else {
-            fm.beginTransaction().add(R.id.nav_host_fragment_activity_main, fragment).commit();
+            fm.beginTransaction().add(R.id.nav_host_fragment_activity_main, fragment,tag).commit();
         }
         navView.getMenu().getItem(position).setChecked(true);
         active = fragment;
