@@ -48,8 +48,6 @@ public class EditArticlesActiviti extends AppCompatActivity {
     private ListView allArticlelist;
     private ArrayAdapter<String> adapter;
     int CurrnetPositionList ;
-
-
     private List<String> listData;
     NetworkChangeListner networkChangeListner;
     private ArrayList <Article> listTemp = new ArrayList<Article>();

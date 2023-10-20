@@ -12,11 +12,11 @@
         android:layout_width="match_parent"
         android:src="@drawable/trainingphoto"
         android:scaleType="centerCrop"
-        android:layout_height="230dp">
+        android:layout_height="150dp">
     </ImageView>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="150dp"
         android:background="@color/white"
         android:backgroundTint="@color/black"
         android:alpha="0.7"
@@ -42,6 +42,7 @@
                     android:layout_gravity="center_vertical"
                     android:rotationY="180"
                     app:fabSize="mini"
+                    app:iconTint = "@color/BlackSviut"
                     app:srcCompat="@drawable/arrow_forward_ios24px"
                     android:layout_height="wrap_content"/>
 
@@ -64,6 +65,15 @@
                         android:layout_gravity="right"
                         android:fontFamily="@font/montserratsemibold"
                         android:text="2 часа"/>
+                    <ProgressBar
+                        android:visibility="gone"
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_marginLeft="8dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:indeterminateTint="@color/MainBlue"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
                 </FrameLayout>
 
 
@@ -79,66 +89,50 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/NameTextSection"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Подготовка к протезированию"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
                     <TextView
+                        android:id="@+id/TextSectionAbout"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:layout_marginTop="5dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/Protehsisespand"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
 
-                    <Button
-                        android:id="@+id/buttonStart"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="25dp"
-                        android:textSize="16dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:background="@drawable/buttonstyle2"
-                        android:text="Начать"
-                        android:textColor="@color/black"
-                        android:theme="@style/Theme.ButtonWhite"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="15dp"
                         android:layout_gravity="left"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="Внутри этого курса:"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="Внутри этого раздела:"
                         android:textColor="@color/BlackSviut"
                         android:textSize="16sp" />
-
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ListView
                             android:footerDividersEnabled="false"
+                            tools:listitem="@layout/listviewarticleitem"
                             android:divider="@null"
+                            android:layout_marginBottom="80dp"
                             android:paddingTop="5dp"
                             android:animateLayoutChanges="false"
-                            android:id="@+id/AllArticleListviewActivity"
+                            android:id="@+id/SectionArticleListView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                     </FrameLayout>

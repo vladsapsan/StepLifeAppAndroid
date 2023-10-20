@@ -157,6 +157,17 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
+    public Fragment getFragment(int Fragment_id){
+        if(Fragment_id==3){
+            return notificationsFragment;
+        }else if(Fragment_id==2){
+            return dashboardFragment;
+        }
+        else {
+            return homeFragment;
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();

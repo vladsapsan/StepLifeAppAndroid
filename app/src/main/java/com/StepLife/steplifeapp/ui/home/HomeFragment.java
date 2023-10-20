@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.AllArticleActivity;
@@ -34,11 +35,14 @@ import com.StepLife.steplifeapp.ChooseArticle;
 import com.StepLife.steplifeapp.MainActivity;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.UserProfile.User_ProfileActiviti;
+import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
 import com.StepLife.steplifeapp.ui.Article;
 import com.StepLife.steplifeapp.ui.ArticleListAdapter;
+import com.StepLife.steplifeapp.ui.dashboard.DashboardFragment;
 import com.StepLife.steplifeapp.ui.notifications.NotificationsFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -46,24 +50,27 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements SectionArticleViewAdapter.ItemClickListener{
     FrameLayout FrameVideo;
-    TextView TextBtnHide,AllAcricleButton;
+    TextView TextBtnHide,AllAcricleButton,TextviewSectionName1,TextviewSectionName2;
     private String HomeArticle_Key ="HomeArticle";
     private String Library_Key ="Lib";
     Article DowArticle1,DowArticle2,DowArticle3,DowArticle4,DowArticle5;
-    CardView CardHomeArticle1,CardHomeArticle2,CardHomeArticle3,CardHomeArticle4,CardHomeArticle5,CardArticleSection;
+    CardView CardHomeArticle1,CardHomeArticle2,CardHomeArticle3,CardHomeArticle4,CardHomeArticle5;
     TextView TextHomeArticle1,TextHomeArticle2,TextHomeArticle3,TextHomeArticle4,TextHomeArticle5;
     ImageView ImageHomeArticle1,ImageHomeArticle2,ImageHomeArticle3,ImageHomeArticle4,ImageHomeArticle5;
     List<String> HomeTopArticleList;
+
     CardView ImageProfile,HowToGetProtCard;
     final private static String DBase_Code = "AllArticle";
     final private static String DBase_HomeTopArticleCode = "HomeTopArticle";
+    private static final String Section_Article_Key ="AllArticleSection";
     final private static String DB_Article_HowToGet = "-NJgrzWOZOFxEejjLr5J";
     private DatabaseReference mDatabase;
     private ArrayList<Article> listTemp = new ArrayList<Article>();
@@ -72,26 +79,35 @@ public class HomeFragment extends Fragment {
     CardView  ArticleTeach;
     ScrollView HomescrollView;
     RecyclerView HomeArticleListView;
-    LinearLayout ShoolStepButton;
+    LinearLayout ShoolStepButton,CardArticleSection,CardArticleSection2;
     HorizontalScrollView HomeArticleScroll;
     //Фрагмент школа Ходьбы
     NotificationsFragment notificationsFragment;
-    private ImageView ArticleState1,ArticleState2,ArticleState3,VideoStartButton;
+    private ImageView ArticleState1,ArticleState2,ArticleState3,VideoStartButton,BackgroundImageVideo;
     private FirebaseAuth mAuth;
     HorizontalScrollView horizontalScrollViewArticle,horizontalScrollView2;
     private Animation HideAnimation;
     private HomeViewModel homeViewModel;
+    DashboardFragment dashboardFragment;
     private ListView allArticlelist;
 
-    final static String HomeVideoUri = "https://firebasestorage.googleapis.com/v0/b/steplife1.appspot.com/o/SupportFiles%2FSteplife%20P5.mp4?alt=media&token=5a742670-600c-49d7-b461-913920fa2fb6";
+    final static String HomeVideoUri = "/SupportFiles/Steplife P5.mp4";
     Animation animationClick;
     private ArrayAdapter<String> adapter;
     private DatabaseReference mDataBase;
     int CurrnetPositionList ;
+    RecyclerView RecycleviewSectionArticle2;
+    MediaController MediaController ;
+    ArrayList <Article> ArticlelistTemp = new ArrayList<>();
     VideoView HomeVideoView;
+    SectionArticleViewAdapter sectionArticleViewAdapter;
     private List<String> listData;
+    String SectionID,Section1ID,Section2ID;
     Animation animationIN,animationUP;
     private String Article_Key ="AllArticle";
+    public final static String Bundle_Section_Tag ="SectionInfo";
+    private MainActivity mainActivity;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
@@ -100,40 +116,53 @@ public class HomeFragment extends Fragment {
     //Иницилизация компонентов
     private void initilization()
     {
-
         listData = new ArrayList<>();
         mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
         ArticleListAdapter = new ArticleListAdapter(getContext(),R.layout.listviewhomearticle, listTemp);
       //  HomeArticleListView.setAdapter(ArticleListAdapter);
     }
+    private void VideoStart(){
+        //Получение ссылки и запуск видео
+        VideoStartButton.setVisibility(View.GONE);
+        FirebaseStorage.getInstance().getReference().child(HomeVideoUri).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+        {
+            @Override
+            public void onSuccess(Uri downloadUrl)
+            {
+                HomeVideoView.setVideoURI(downloadUrl);
+                HomeVideoView.start();
+            }
+        });
+    }
 
 
-    //Загрузка уроков из базы
-    private void DownloadArticleFirebaseData()
+    //Загрузка раздела из базы
+    private void DownloadArticleFirebaseData(DatabaseReference mDataBase)
     {
+        ArticlelistTemp.clear();
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(listData.size()>0) listData.clear();
-                if(listTemp.size()>0) listTemp.clear();
+                if(ArticlelistTemp.size()>0) ArticlelistTemp.clear();
+                int count = 0;
                 for (DataSnapshot ds : snapshot.getChildren())
                 {
+                    if(count>=5){
+                        break;
+                    }
                     Article article = ds.getValue(Article.class);
                     //Проверка
                     assert article != null;
-                    listTemp.add(article);
+                    ArticlelistTemp.add(article);
+                    count++;
                 }
-                ArticleListAdapter.notifyDataSetChanged();
+                sectionArticleViewAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
-
         };
         mDataBase.addValueEventListener(valueEventListener);
-
     }
 
     MediaPlayer.OnCompletionListener myVideoViewCompletionListener
@@ -154,10 +183,16 @@ public class HomeFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         Intent intentAllArticle = new Intent(getActivity(), AllArticleActivity.class);
         Intent User_ProfileActiviti = new Intent(getActivity(), User_ProfileActiviti.class);
-
+        mainActivity = (MainActivity) getActivity();
 
         HomeArticleScroll = view.findViewById(R.id.HomeArticleScroll);
 
+        RecycleviewSectionArticle2 = view.findViewById(R.id.RecycleviewSectionArticle2);
+        LinearLayoutManager layoutManager= new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
+        RecycleviewSectionArticle2.setLayoutManager(layoutManager);
+        sectionArticleViewAdapter = new SectionArticleViewAdapter(getContext(),ArticlelistTemp);
+        sectionArticleViewAdapter.setClickListener(this::onItemClick);
+        RecycleviewSectionArticle2.setAdapter(sectionArticleViewAdapter);
 
 
         //Инициализация анимации
@@ -165,37 +200,62 @@ public class HomeFragment extends Fragment {
         animationUP = AnimationUtils.loadAnimation(getContext(),R.anim.expected_app_bar);
 
 
+
+
         //Видео плеер окна
         HomeVideoView = view.findViewById(R.id.HomeVideoView);
         HomeVideoView.setOnCompletionListener(myVideoViewCompletionListener);
-        HomeVideoView.setVideoURI(Uri.parse(HomeVideoUri));
-        HomeVideoView.setMediaController(new MediaController(getContext()));
+        MediaController = new MediaController(getContext());
+       // HomeVideoView.setMediaController(MediaController);
         VideoStartButton  = view.findViewById(R.id.VideoStartButton);
         VideoStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 VideoStartButton.setVisibility(View.GONE);
-                HomeVideoView.start();
-
+                        HomeVideoView.start();
             }
         });
+        VideoStart();
 
-        //Карточка курса подготовки к реабилитации
+        //Название раздела
+        TextviewSectionName1 = view.findViewById(R.id.TextviewSectionName1);
+        //Карточка раздела 1
         CardArticleSection = view.findViewById(R.id.CardArticleSection);
         CardArticleSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Переход по навигации в фграмент школа
-                ArticleSection articleSection = new ArticleSection();
-                FragmentManager fragmentManager = getFragmentManager();
-                //и замена текущего главного фрагмента на фрагмент раздела
-                if(fragmentManager.findFragmentByTag("section")==null) {
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.HomeFragment, articleSection, "section").addToBackStack(null).commit();
+                if(Section1ID!=null) {
+                    //Переход по навигации в фграмент школа
+                    Bundle InfoBundle = new Bundle();
+                    InfoBundle.putString(Bundle_Section_Tag, Section1ID);
+
+
+                    ArticleSection articleSection = new ArticleSection();
+                    articleSection.setArguments(InfoBundle);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    //и замена текущего главного фрагмента на фрагмент раздела
+                        fragmentManager.beginTransaction().replace(R.id.HomeFragment, articleSection, "section").addToBackStack(null).commit();
                 }
             }
         });
+        //Карточка раздела 1
+        CardArticleSection2 = view.findViewById(R.id.CardArticleSection2);
+        CardArticleSection2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Section2ID!=null) {
+                    //Переход по навигации в фграмент школа
+                    Bundle InfoBundle = new Bundle();
+                    InfoBundle.putString(Bundle_Section_Tag, Section2ID);
 
+                    ArticleSection articleSection = new ArticleSection();
+                    articleSection.setArguments(InfoBundle);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    //и замена текущего главного фрагмента на фрагмент раздела
+                        fragmentManager.beginTransaction().replace(R.id.HomeFragment, articleSection, "section").addToBackStack(null).commit();
+                }
+            }
+        });
         //инициализация карточек
         CardHomeArticle1 = view.findViewById(R.id.CardHomeArticle1);
         CardHomeArticle1.setOnClickListener(new View.OnClickListener() {
@@ -322,7 +382,14 @@ public class HomeFragment extends Fragment {
         buttonConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fragmentManager = getFragmentManager();
 
+                if(fragmentManager.findFragmentByTag("2")!=null) {
+                    dashboardFragment = (DashboardFragment) fragmentManager.findFragmentByTag("2");
+                }else {
+                    dashboardFragment = (DashboardFragment) mainActivity.getFragment(2);
+                }
+                mainActivity.setFragment(dashboardFragment, "2", 0);
             }
         });
 
@@ -348,12 +415,14 @@ public class HomeFragment extends Fragment {
                 if(fragmentManager.findFragmentByTag("3")!=null) {
                     notificationsFragment = (NotificationsFragment) fragmentManager.findFragmentByTag("3");
                 }else {
-                    notificationsFragment = new NotificationsFragment();
+                    notificationsFragment = (NotificationsFragment) mainActivity.getFragment(3);
                 }
-                MainActivity mainActivity = (MainActivity) getActivity();
                 mainActivity.setFragment(notificationsFragment,"3",2);
             }
         });
+
+        //Второй раздел название
+        TextviewSectionName2 = view.findViewById(R.id.TextviewSectionName2);
 
         //Картинки статей на главном экране
     //    ArticleState1 =  view.findViewById(R.id.ArticleState1);
@@ -373,9 +442,34 @@ public class HomeFragment extends Fragment {
         //Запуск анимации при старте
         HomeArticleScroll.setAnimation(animationIN);
         FrameVideo.setAnimation(animationUP);
-        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
+        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child("Section1");
         //Загрузка данных о 1 карточке
-        mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                        //Данные получены
+                    TextviewSectionName1.setText(task.getResult().getValue().toString());
+                }
+            }
+        });
+        mDataBase.child("SectionID").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    //Данные получены
+                    Section1ID = task.getResult().getValue().toString();
+                }
+            }
+        });
+        //Загрузка данных о 1 карточке
+        mDataBase.child("articleList").child("0").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -396,7 +490,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        mDataBase.child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child("articleList").child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -417,7 +511,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        mDataBase.child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child("articleList").child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -438,7 +532,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        mDataBase.child("4").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child("articleList").child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -459,11 +553,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        mDataBase.child("5").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child("articleList").child("4").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
                     //Ошибка получения данных
+                    CardHomeArticle5.setVisibility(View.GONE);
                 }
                 else {
                     try {
@@ -472,10 +567,39 @@ public class HomeFragment extends Fragment {
                         if(DowArticle5!= null){
                             TextHomeArticle5.setText(Html.fromHtml(DowArticle5.HeadText).toString().trim());
                             Glide.with(getActivity()).load(DowArticle5.PreviewPhotoUri).into(ImageHomeArticle5);
+                        } else {
+                            CardHomeArticle5.setVisibility(View.GONE);
                         }
                     }
                     catch (Exception e){
                     }
+                }
+            }
+        });
+
+        DownloadArticleFirebaseData(FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child("Section2").child("articleList"));
+        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child("Section2");
+        mDataBase.child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    //Данные получены
+                    TextviewSectionName2.setText(task.getResult().getValue().toString());
+                }
+            }
+        });
+        mDataBase.child("SectionID").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    //Ошибка получения данных
+                }
+                else {
+                    //Данные получены
+                    Section2ID = task.getResult().getValue().toString();
                 }
             }
         });
@@ -485,4 +609,20 @@ public class HomeFragment extends Fragment {
       //  }
     }
 
+    //Нажатие на карточку статьи
+    @Override
+    public void onItemClick(View view, int position) {
+        if(ArticlelistTemp.get(position)!=null) {
+            Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
+            // передача объекта с ключом "MainText" и значением
+            intentChooseArticle.putExtra("MainText", ArticlelistTemp.get(position).MainText);
+            intentChooseArticle.putExtra("Date", ArticlelistTemp.get(position).Date);
+            intentChooseArticle.putExtra("HeaderText", Html.fromHtml(ArticlelistTemp.get(position).HeadText).toString().trim());
+            if(ArticlelistTemp.get(position).TagList!=null){
+                intentChooseArticle.putStringArrayListExtra("TagList", ArticlelistTemp.get(position).TagList);
+            }
+            // запуск ChooseArticle
+            startActivity(intentChooseArticle);
+        }
+    }
 }

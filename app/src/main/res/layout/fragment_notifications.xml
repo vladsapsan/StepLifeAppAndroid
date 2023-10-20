@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/MainGray"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:id="@+id/TeachArticleFrame"
     tools:context=".ui.notifications.NotificationsFragment">
     <LinearLayout
@@ -60,7 +61,7 @@
                                 android:gravity="left"
                                 android:textStyle="bold"
                                 android:layout_marginTop="20dp"
-                                android:text=""
+                                android:text="Школа ходьбы"
                                 android:textSize="21dp"
                                 android:layout_marginLeft="15dp"
                                 android:textColor="@color/BlackSviut"
@@ -71,7 +72,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
                                 android:layout_marginTop="0dp"
-                                android:text=""
+                                android:text="Авторский учебник разработанный нашими сотрудниками для вас!"
                                 android:layout_marginRight="15dp"
                                 android:textSize="14dp"
                                 android:layout_marginLeft="15dp"
@@ -79,8 +80,6 @@
                                 android:textColor="@color/BlackSviut"
                                 android:fontFamily="@font/montserrat_medium"/>
                         </LinearLayout>
-
-
                     </FrameLayout>
 
                     <com.google.android.material.chip.ChipGroup
@@ -169,689 +168,138 @@
 
 
 
-                    <HorizontalScrollView
-                        android:id="@+id/ScrollMainViewArticles"
+
+
+
+                    <LinearLayout
+                        android:id="@+id/CardArticleSection1"
+                        android:clickable="true"
                         android:layout_width="match_parent"
-                        android:layout_height="290dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textStyle="bold"
+                            android:id="@+id/TextviewSectionName1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text=""
+                            android:textColor="@color/SecondGrayText"
+                            android:textSize="16dp"
+                            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+                            app:layout_constraintStart_toStartOf="parent" />
+                        <ImageView
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_width="16dp"
+                            android:src="@drawable/arrow_forward_ios24px"
+                            android:layout_height="16dp"/>
+                    </LinearLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/RecycleviewSectionArticle1"
                         android:layout_marginTop="5dp"
-                        android:layout_gravity="bottom"
-
-                        android:scrollbars="none"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:paddingTop="5dp"
-
-                            android:paddingRight="20dp">
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/TopPostCard1"
-                                android:foreground="?attr/selectableItemBackground"
-                                android:clickable="true"
-                                app:cardPreventCornerOverlap="false"
-                                style="@style/CustomCardViewStyle"
-                                android:layout_width="150dp"
-                                app:cardElevation="9dp"
-                                android:layout_height="260dp"
-                                app:cardBackgroundColor="@color/white"
-                                android:layout_marginLeft="15dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:orientation="vertical"
-                                    android:layout_height="match_parent">
-                                    <ImageView
-                                        android:layout_gravity="center_horizontal"
-                                        android:layout_height="135dp"
-                                        android:id="@+id/imagetoppost1"
-                                        android:layout_width="match_parent"
-                                        android:scaleType="centerCrop"
-                                        app:srcCompat="@drawable/protez1" />
-                                    <FrameLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <LinearLayout
-                                            android:gravity="center"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:orientation="vertical">
-                                            <TextView
-                                                android:id="@+id/EditTextTopPost1"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|bottom"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="0dp"
-                                                android:layout_marginTop="15dp"
-                                                android:breakStrategy="high_quality"
-
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserrat_medium"
-                                                android:gravity="left"
-                                                android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="12sp" />
-
-                                            <TextView
-                                                android:id="@+id/EditDataTextTopPost1"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|top"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:breakStrategy="high_quality"
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratregular"
-                                                android:gravity="left"
-                                                android:text="27 апр 2023"
-                                                android:textColor="@color/MainGrayText"
-                                                android:textSize="11sp" />
-                                        </LinearLayout>
-                                    </FrameLayout>
-                                </LinearLayout>
-                            </com.google.android.material.card.MaterialCardView>
-
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/TopPostCard2"
-                                android:foreground="?attr/selectableItemBackground"
-                                android:layout_width="150dp"
-                                app:cardPreventCornerOverlap="false"
-                                style="@style/CustomCardViewStyle"
-                                android:clickable="true"
-                                android:layout_height="260dp"
-                                android:layout_marginLeft="20dp"
-                                app:cardBackgroundColor="@color/white"
-                                app:cardElevation="9dp"
-                                tools:layout_editor_absoluteX="1dp"
-                                tools:layout_editor_absoluteY="444dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:orientation="vertical"
-                                    android:layout_height="match_parent">
-
-                                    <ImageView
-                                        android:layout_gravity="center_horizontal"
-                                        android:layout_height="135dp"
-                                        android:id="@+id/imagetoppost2"
-                                        android:layout_width="match_parent"
-                                        android:scaleType="centerCrop"
-                                        app:srcCompat="@drawable/protez1"/>
-
-
-                                    <FrameLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <LinearLayout
-                                            android:gravity="center"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:orientation="vertical">
-                                            <TextView
-                                                android:id="@+id/EditTextTopPost2"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|bottom"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="0dp"
-                                                android:layout_marginTop="15dp"
-                                                android:breakStrategy="high_quality"
-
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserrat_medium"
-                                                android:gravity="left"
-                                                android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="12sp" />
-
-                                            <TextView
-                                                android:id="@+id/EditDataTextTopPost2"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|top"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:breakStrategy="high_quality"
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratregular"
-                                                android:gravity="left"
-                                                android:text="27 апр 2023"
-                                                android:textColor="@color/MainGrayText"
-                                                android:textSize="11sp" />
-
-
-                                        </LinearLayout>
-
-
-                                    </FrameLayout>
-                                </LinearLayout>
-                            </com.google.android.material.card.MaterialCardView>
-
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/TopPostCard3"
-                                android:foreground="?attr/selectableItemBackground"
-                                android:layout_width="150dp"
-                                android:clickable="true"
-                                android:layout_height="260dp"
-                                android:layout_marginLeft="20dp"
-                                app:cardPreventCornerOverlap="false"
-                                app:cardBackgroundColor="@color/white"
-                                style="@style/CustomCardViewStyle"
-                                app:cardElevation="9dp"
-                                tools:layout_editor_absoluteX="1dp"
-                                tools:layout_editor_absoluteY="444dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:orientation="vertical"
-                                    android:layout_height="match_parent">
-
-                                    <ImageView
-                                        android:layout_gravity="center_horizontal"
-                                        android:layout_height="135dp"
-                                        android:id="@+id/imagetoppost3"
-                                        android:layout_width="match_parent"
-                                        android:scaleType="centerCrop"
-                                        app:srcCompat="@drawable/protez1" />
-
-                                    <FrameLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <LinearLayout
-                                            android:gravity="center"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:orientation="vertical">
-                                            <TextView
-                                                android:id="@+id/EditTextTopPost3"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|bottom"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="0dp"
-                                                android:layout_marginTop="15dp"
-                                                android:breakStrategy="high_quality"
-
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserrat_medium"
-                                                android:gravity="left"
-                                                android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="12sp" />
-
-                                            <TextView
-                                                android:id="@+id/EditDataTextTopPost3"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|top"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:breakStrategy="high_quality"
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratregular"
-                                                android:gravity="left"
-                                                android:text="27 апр 2023"
-                                                android:textColor="@color/MainGrayText"
-                                                android:textSize="11sp" />
-
-
-
-                                        </LinearLayout>
-
-
-                                    </FrameLayout>
-                                </LinearLayout>
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/TopPostCard4"
-                                android:foreground="?attr/selectableItemBackground"
-                                android:layout_width="150dp"
-                                android:clickable="true"
-                                android:layout_height="260dp"
-                                android:layout_marginLeft="20dp"
-                                app:cardPreventCornerOverlap="false"
-                                app:cardElevation="9dp"
-                                style="@style/CustomCardViewStyle"
-                                app:cardBackgroundColor="@color/white"
-                                tools:layout_editor_absoluteX="1dp"
-                                tools:layout_editor_absoluteY="444dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:orientation="vertical"
-                                    android:layout_height="match_parent">
-
-                                    <ImageView
-                                        android:layout_gravity="center_horizontal"
-                                        android:layout_height="135dp"
-                                        android:id="@+id/imagetoppost4"
-                                        android:layout_width="match_parent"
-                                        android:scaleType="centerCrop"
-                                        app:srcCompat="@drawable/protez1" />
-
-                                    <FrameLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <LinearLayout
-                                            android:gravity="center"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:orientation="vertical">
-                                            <TextView
-                                                android:id="@+id/EditTextTopPost4"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|bottom"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="0dp"
-                                                android:layout_marginTop="15dp"
-                                                android:breakStrategy="high_quality"
-
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserrat_medium"
-                                                android:gravity="left"
-                                                android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="12sp" />
-
-                                            <TextView
-                                                android:id="@+id/EditDataTextTopPost4"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|top"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:breakStrategy="high_quality"
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratregular"
-                                                android:gravity="left"
-                                                android:text="27 апр 2023"
-                                                android:textColor="@color/MainGrayText"
-                                                android:textSize="11sp" />
-
-
-                                        </LinearLayout>
-
-
-                                    </FrameLayout>
-                                </LinearLayout>
-                            </com.google.android.material.card.MaterialCardView>
-
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/TopPostCard5"
-                                android:foreground="?attr/selectableItemBackground"
-                                android:layout_width="150dp"
-                                android:clickable="true"
-                                android:layout_height="260dp"
-                                app:cardElevation="9dp"
-                                app:cardBackgroundColor="@color/white"
-                                android:layout_marginLeft="20dp"
-                                app:cardPreventCornerOverlap="false"
-                                style="@style/CustomCardViewStyle"
-                                tools:layout_editor_absoluteX="1dp"
-                                tools:layout_editor_absoluteY="444dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:orientation="vertical"
-                                    android:layout_height="match_parent">
-
-                                    <ImageView
-                                        android:layout_gravity="center_horizontal"
-                                        android:layout_height="135dp"
-                                        android:id="@+id/imagetoppost5"
-                                        android:layout_width="match_parent"
-                                        android:scaleType="centerCrop"
-                                        app:srcCompat="@drawable/protez1" />
-
-                                    <FrameLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <LinearLayout
-                                            android:gravity="center"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:orientation="vertical">
-                                            <TextView
-                                                android:id="@+id/EditTextTopPost5"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|bottom"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="0dp"
-                                                android:layout_marginTop="15dp"
-                                                android:breakStrategy="high_quality"
-
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserrat_medium"
-                                                android:gravity="left"
-                                                android:text="Как получить протез бесплатно?"
-                                                android:textColor="@color/black"
-                                                android:textSize="12sp" />
-
-                                            <TextView
-                                                android:id="@+id/EditDataTextTopPost5"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_gravity="left|top"
-                                                android:layout_marginLeft="20dp"
-                                                android:layout_marginBottom="5dp"
-                                                android:breakStrategy="high_quality"
-                                                android:layout_marginRight="20dp"
-                                                android:fontFamily="@font/montserratregular"
-                                                android:gravity="left"
-                                                android:text="27 апр 2023"
-                                                android:textColor="@color/MainGrayText"
-                                                android:textSize="11sp" />
-
-
-
-                                        </LinearLayout>
-
-
-                                    </FrameLayout>
-                                </LinearLayout>
-                            </com.google.android.material.card.MaterialCardView>
-                        </LinearLayout>
-                    </HorizontalScrollView>
-
-
-                    <FrameLayout
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="2dp"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+
+
+
+                    <LinearLayout
+                        android:id="@+id/CardArticleSection2"
+                        android:clickable="true"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="5dp"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:id="@+id/LibPostTextRow1"
+                            android:textStyle="bold"
+                            android:id="@+id/TextviewSectionName2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_marginTop="10dp"
-                            android:text="То, с чего стоит начать"
-                            android:textSize="17dp"
-                            android:layout_marginLeft="15dp"
-                            android:paddingBottom="5dp"
-                            android:textColor="@color/BlackSviut"
-                            android:fontFamily="@font/montserrat_extrabold"/>
+                            android:layout_marginLeft="5dp"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text=""
+                            android:textColor="@color/SecondGrayText"
+                            android:textSize="16dp"
+                            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+                            app:layout_constraintStart_toStartOf="parent" />
+                        <ImageView
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_width="16dp"
+                            android:src="@drawable/arrow_forward_ios24px"
+                            android:layout_height="16dp"/>
+                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/RecycleviewSectionArticle2"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="2dp"
 
-                        
-
-
-                    </FrameLayout>
-
-
-
-
-                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="210dp"
-                        android:scrollbars="none">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
 
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/CardLibraryRow1Article1"
-                                android:foreground="?attr/selectableItemBackground"
-                                android:clickable="true"
-                                app:cardPreventCornerOverlap="false"
-                                style="@style/CustomCardViewStyle"
-                                app:cardElevation="6dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_width="192dp"
-                                app:cardBackgroundColor="@color/white"
-                                android:layout_height="180dp"
-                                android:layout_marginLeft="20dp">
-                                <ImageView
-                                    android:scaleType="centerCrop"
-                                    android:clickable="false"
-                                    android:id="@+id/ImageCardLibraryRow1Article1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="124dp" />
-                                <TextView
-                                    android:id="@+id/TextCardLibraryRow1Article1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="37dp"
-                                    android:layout_gravity="bottom"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:fontFamily="@font/montserrat_medium"
-                                    android:gravity="left"
-                                    android:text=""
-                                    android:ellipsize="end"
-                                    android:maxLines="2"
-                                    android:textColor="@color/BlackSviut"
-                                    android:textSize="13sp" />
-
-
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:foreground="?attr/selectableItemBackground"
-                                android:clickable="true"
-                                app:cardPreventCornerOverlap="false"
-                                style="@style/CustomCardViewStyle"
-                                android:id="@+id/CardLibraryRow1Article2"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_width="192dp"
-                                app:cardBackgroundColor="@color/white"
-                                app:cardElevation="6dp"
-                                android:layout_height="180dp"
-                                android:layout_marginLeft="20dp">
-                                <ImageView
-                                    android:id="@+id/ImageCardLibraryRow1Article2"
-                                    android:scaleType="centerCrop"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="124dp" />
-                                <TextView
-                                    android:id="@+id/TextCardLibraryRow1Article2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="37dp"
-                                    android:layout_gravity="bottom"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:fontFamily="@font/montserrat_medium"
-                                    android:gravity="left"
-                                    android:text=""
-                                    android:textColor="@color/BlackSviut"
-                                    android:textSize="14sp" />
-
-
-                            </com.google.android.material.card.MaterialCardView>
-
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:foreground="?attr/selectableItemBackground"
-                                android:clickable="true"
-                                app:cardPreventCornerOverlap="false"
-                                style="@style/CustomCardViewStyle"
-                                android:id="@+id/CardLibraryRow1Article3"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_width="192dp"
-                                app:cardBackgroundColor="@color/white"
-                                app:cardElevation="6dp"
-                                android:layout_height="180dp"
-                                android:layout_marginLeft="20dp">
-                                <ImageView
-                                    android:id="@+id/ImageCardLibraryRow1Article3"
-                                    android:scaleType="centerCrop"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="124dp" />
-                                <TextView
-                                    android:id="@+id/TextCardLibraryRow1Article3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="37dp"
-                                    android:layout_gravity="bottom"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:fontFamily="@font/montserrat_medium"
-                                    android:gravity="left"
-                                    android:text=""
-                                    android:textColor="@color/BlackSviut"
-                                    android:textSize="14sp" />
-                            </com.google.android.material.card.MaterialCardView>
-                        </LinearLayout>
-                    </HorizontalScrollView>
-
-
-
-                    <FrameLayout
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:id="@+id/CardArticleSection3"
+                        android:clickable="true"
                         android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="5dp"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:id="@+id/LibPostTextRow2"
+                            android:textStyle="bold"
+                            android:id="@+id/TextviewSectionName3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_marginTop="10dp"
-                            android:text="Новые статьи"
-                            android:textSize="17dp"
-                            android:layout_marginLeft="15dp"
-                            android:paddingBottom="5dp"
-                            android:textColor="@color/BlackSviut"
-                            android:fontFamily="@font/montserrat_extrabold"/>
+                            android:layout_marginLeft="5dp"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text=""
+                            android:textColor="@color/SecondGrayText"
+                            android:textSize="16dp"
+                            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+                            app:layout_constraintStart_toStartOf="parent" />
+                        <ImageView
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_width="16dp"
+                            android:src="@drawable/arrow_forward_ios24px"
+                            android:layout_height="16dp"/>
+                    </LinearLayout>
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/RecycleviewSectionArticle3"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="2dp"
 
-                    </FrameLayout>
-
-
-                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="210dp"
-                        android:scrollbars="none">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
 
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/CardLibraryRow2Article1"
-                                android:foreground="?attr/selectableItemBackground"
-                                app:cardPreventCornerOverlap="false"
-                                app:cardBackgroundColor="@color/white"
-                                style="@style/CustomCardViewStyle"
-                                android:clickable="true"
-                                app:cardElevation="6dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_width="192dp"
-                                android:layout_height="180dp"
-                                android:layout_marginLeft="20dp">
-                                <ImageView
-                                    android:id="@+id/ImageCardLibraryRow2Article1"
-                                    android:scaleType="centerCrop"
-                                    android:clickable="false"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="124dp" />
-                                <TextView
-                                    android:id="@+id/TextCardLibraryRow2Article1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="37dp"
-                                    android:layout_gravity="bottom"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:fontFamily="@font/montserrat_medium"
-                                    android:gravity="left"
-                                    android:text=""
-                                    android:ellipsize="end"
-                                    android:maxLines="2"
-                                    android:textColor="@color/BlackSviut"
-                                    android:textSize="13sp" />
-
-
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/CardLibraryRow2Article2"
-                                android:foreground="?attr/selectableItemBackground"
-                                android:clickable="true"
-                                android:layout_marginTop="5dp"
-                                app:cardPreventCornerOverlap="false"
-                                style="@style/CustomCardViewStyle"
-                                app:cardBackgroundColor="@color/white"
-                                app:cardElevation="6dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_width="192dp"
-                                android:layout_height="180dp"
-                                android:layout_marginLeft="20dp">
-                                <ImageView
-                                    android:id="@+id/ImageCardLibraryRow2Article2"
-                                    android:scaleType="centerCrop"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="124dp" />
-                                <TextView
-                                    android:id="@+id/TextCardLibraryRow2Article2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="37dp"
-                                    android:layout_gravity="bottom"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:fontFamily="@font/montserrat_medium"
-                                    android:gravity="left"
-                                    android:text=""
-                                    android:textColor="@color/BlackSviut"
-                                    android:textSize="14sp" />
-
-
-                            </com.google.android.material.card.MaterialCardView>
-
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/CardLibraryRow2Article3"
-                                android:foreground="?attr/selectableItemBackground"
-                                android:clickable="true"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_width="192dp"
-                                app:cardPreventCornerOverlap="false"
-                                android:layout_marginRight="20dp"
-                                app:cardElevation="6dp"
-                                app:cardBackgroundColor="@color/white"
-                                style="@style/CustomCardViewStyle"
-                                android:layout_height="180dp"
-                                android:layout_marginLeft="20dp">
-                                <ImageView
-                                    android:id="@+id/ImageCardLibraryRow2Article3"
-                                    android:scaleType="centerCrop"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="124dp" />
-                                <TextView
-                                    android:id="@+id/TextCardLibraryRow2Article3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="37dp"
-                                    android:layout_gravity="bottom"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:fontFamily="@font/montserrat_medium"
-                                    android:gravity="left"
-                                    android:text=""
-                                    android:textColor="@color/BlackSviut"
-                                    android:textSize="14sp" />
-
-
-                            </com.google.android.material.card.MaterialCardView>
-                        </LinearLayout>
-                    </HorizontalScrollView>
-
-
+                        android:layout_height="wrap_content"/>
 
 
                     <Button

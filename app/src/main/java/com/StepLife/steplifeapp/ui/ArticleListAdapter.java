@@ -17,7 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.StepLife.steplifeapp.R;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,17 +48,16 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         convertView = layoutInflater.inflate(mResource, parent,false);
         TextView HeadText = convertView.findViewById(R.id.ArticleHeadTextItems);
-        TextView Date = convertView.findViewById(R.id.ArticleDateTextItems);
         ImageView PreviewImage = convertView.findViewById(R.id.PreviewPhoto);
         TextView TextviewTag  = convertView.findViewById(R.id.TextviewTag);
         CardView MoreTagsArticle = convertView.findViewById(R.id.MoreTagsArticle);
         TextView TextviewMoreTag = convertView.findViewById(R.id.TextviewMoreTag);
         CardView AddTagsArticleCard = convertView.findViewById(R.id.AddTagsArticleCard);
-        //Загрузка картинок с помощью библиотеки пикассо
+        //Загрузка картинок с помощью библиотеки
         if(article.PreviewPhotoUri!=null) {
             if(PreviewImage.getDrawable()==null) {
                 // Glide.with(mContext).load(article.PreviewPhotoUri).into(PreviewImage);
-                Picasso.get().load(article.PreviewPhotoUri).into(PreviewImage);
+                // Picasso.get().load(article.PreviewPhotoUri).into(PreviewImage);
             }
         }
 
@@ -71,20 +71,20 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
             }
         }
         //Загрузка картинки с помощью Glide
-     //   if(getItem(position).PreviewPhotoUri!=null) {
-      //      if(PreviewImage.getDrawable()==null) {
-      //          Glide
-      //                  .with(this.getContext())
-      //                  .load(getItem(position).PreviewPhotoUri)
-       //                 .centerCrop()
-       //                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-       //                 .into(PreviewImage);
-      //      }
-     //   }
+        if(getItem(position).PreviewPhotoUri!=null) {
+            if(PreviewImage.getDrawable()==null) {
+                Glide
+                        .with(this.getContext())
+                        .load(getItem(position).PreviewPhotoUri)
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(PreviewImage);
+            }
+        }
 
 
         HeadText.setText(Html.fromHtml(article.HeadText).toString().trim());
-        Date.setText(article.Date);
+
 
         return convertView;
     }

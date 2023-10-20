@@ -14,16 +14,20 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.AllArticleViewModel;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
+import com.StepLife.steplifeapp.other.Section;
+import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
 import com.StepLife.steplifeapp.ui.Article;
-import com.StepLife.steplifeapp.ui.ArticleListAdapter;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,22 +40,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-public class HomeArticleRedactActivity extends AppCompatActivity {
+public class HomeArticleRedactActivity extends AppCompatActivity implements SectionArticleViewAdapter.ItemClickListener {
 
 
-    Button SaveTopPostRedactButton;
+    Button SaveTopPostRedactButton,SelectSectionHomeButton,SelectSectionHomeButton2;
     ImageView imagebackEditTopPost;
+    TextView ChooseTextView,TextviewSectionName1,TextviewSectionName2;
+
     private String HomeArticle_Key ="HomeArticle";
     private String Library_Key ="Lib";
+    RecyclerView RecycleviewSectionArticle;
+    SectionArticleViewAdapter sectionArticleViewAdapter;
     private DatabaseReference mDataBase;
     CardView CardHomeArticle1,CardHomeArticle2,CardHomeArticle3,CardHomeArticle4,CardHomeArticle5;
     ProgressBar progressBar;
+    public static final String Section_Article_Key ="AllArticleSection";
+    public static final String Section1_Article_Key ="Section1";
+    public static final String Section2_Article_Key ="Section2";
+    public static final String Section3_Article_Key ="Section3";
     TextView LastEditText;
 
     private AllArticleViewModel mViewModel;
@@ -62,8 +71,10 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
 
     private List<String> listData;
-    int ChooseCard;
-    private ArrayList<Article> listTemp = new ArrayList<Article>();
+    int ChooseSection;
+    private ArrayList<String> listTemp = new ArrayList<>();
+    private ArrayList<Section> SectionlistTemp = new ArrayList<>();
+    private ArrayList<Article> ArticlelistTemp = new ArrayList<>();
     Article DowArticle;
     NetworkChangeListner networkChangeListner;
     TextView TextHomeArticle1,TextHomeArticle2,TextHomeArticle3,TextHomeArticle4,TextHomeArticle5;
@@ -71,22 +82,27 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
     ImageView ImageAddTop1,ImageAddTop2,ImageAddTop3,ImageAddTop4,ImageAddTop5;
     ProgressBar progressBarTopPostEdit;
     Uri DownloadphotoUri;
+    ArrayAdapter<String> SectionAdapter;
     BottomSheetDialog bottomSheetDialog;
     private String Article_Key ="AllArticle";
-
     ImageView imagebackEditArticles;
 
     //Иницилизация компонентов
     private void initilization()
     {
         listData = new ArrayList<>();
-        mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
-        ArticleListAdapter = new ArticleListAdapter(getApplicationContext(), R.layout.listviewarticleitem, listTemp);
-        allArticlelist.setAdapter(ArticleListAdapter);
+        mDataBase = FirebaseDatabase.getInstance().getReference(Section_Article_Key);
+        SectionAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, listTemp);
+        allArticlelist.setAdapter(SectionAdapter);
+
+        //Второй столбец данных
+        sectionArticleViewAdapter = new SectionArticleViewAdapter(HomeArticleRedactActivity.this,ArticlelistTemp);
+        RecycleviewSectionArticle.setAdapter(sectionArticleViewAdapter);
     }
-    //Загрузка уроков из базы
-    private void DownloadArticleFirebaseData()
+    //Загрузка разделов из базы
+    private void DownloadSectionFirebaseData()
     {
+        mDataBase = FirebaseDatabase.getInstance().getReference(Section_Article_Key);
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -94,12 +110,35 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
                 if(listTemp.size()>0) listTemp.clear();
                 for (DataSnapshot ds : snapshot.getChildren())
                 {
+                    Section section = ds.getValue(Section.class);
+                    //Проверка
+                    assert section != null;
+                    listTemp.add(section.SectionName);
+                    SectionlistTemp.add(section);
+                }
+                SectionAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+        mDataBase.addValueEventListener(valueEventListener);
+    }
+    private void DownloadArticleFirebaseData(DatabaseReference mDataBase)
+    {
+        ArticlelistTemp.clear();
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(ArticlelistTemp.size()>0) ArticlelistTemp.clear();
+                for (DataSnapshot ds : snapshot.getChildren())
+                {
                     Article article = ds.getValue(Article.class);
                     //Проверка
                     assert article != null;
-                    listTemp.add(article);
+                    ArticlelistTemp.add(article);
                 }
-                ArticleListAdapter.notifyDataSetChanged();
+                sectionArticleViewAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -137,7 +176,11 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar);
         LastEditText = findViewById(R.id.LastEditText);
-
+        TextviewSectionName1 = findViewById(R.id.TextviewSectionName1);
+        TextviewSectionName2 = findViewById(R.id.TextviewSectionName2);
+        RecycleviewSectionArticle = findViewById(R.id.RecycleviewSectionArticle);
+        LinearLayoutManager layoutManager= new LinearLayoutManager(HomeArticleRedactActivity.this,LinearLayoutManager.HORIZONTAL, false);
+        RecycleviewSectionArticle.setLayoutManager(layoutManager);
 
         //инициализация элементов внутри карточек 1
         TextHomeArticle1 = findViewById(R.id.TextHomeArticle1);
@@ -165,7 +208,7 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
         ImageHomeArticle5 = findViewById(R.id.ImageHomeArticle5);
         ImageAddTop5 = findViewById(R.id.ImageAddTopHome5);
 
-        //Плашка выбора статьи для загрузки
+        //Плашка выбора раздела для загрузки
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialog);
         View bottomSheetView = LayoutInflater.from(this.getApplicationContext())
                 .inflate(
@@ -173,145 +216,52 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
                         (FrameLayout) findViewById(R.id.SheetDialogChooseArticleContainer)
                 );
 
+        ChooseTextView = bottomSheetView.findViewById(R.id.ChooseTextView);
+        ChooseTextView.setText("Выберите раздел для загрузки");
         allArticlelist = bottomSheetView.findViewById(R.id.AllArticleListview);
         //Выбор статьи в списке листа и загрузка в карточку
         allArticlelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                DowArticle = listTemp.get(position);
-                switch (ChooseCard) {
-                    case  (1):
-                        imagebackEditArticles.setVisibility(View.GONE);
-                        progressBar.setVisibility(View.VISIBLE);
-                        ImageAddTop1.setVisibility(View.GONE);
-                        bottomSheetDialog.dismiss();
-                        //отображение в карточке
-                        TextHomeArticle1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                        Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle1);
-                        //Загрузка статьи в базууу
-                        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
-                        mDataBase.child("1").setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                //Загрузка новой даты изменения
-                                DateFormat df = new SimpleDateFormat("d MMM yyyy");
-                                String Simpledate = df.format(Calendar.getInstance().getTime());
-                                mDataBase.child("LastEdit").setValue(Simpledate+" "+cUser.getPhoneNumber().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        progressBar.setVisibility(View.GONE);
-                                        imagebackEditArticles.setVisibility(View.VISIBLE);
-                                    }
-                                });
+                bottomSheetDialog.dismiss();
+                progressBar.setVisibility(View.VISIBLE);
+                imagebackEditArticles.setVisibility(View.GONE);
+                if(ChooseSection==1){
+                    //Загружаем выбранный раздел в бд
+                    mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child(Section1_Article_Key);
+                    mDataBase.setValue(SectionlistTemp.get(position)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                DownloadSection1();
+                                Toast.makeText(HomeArticleRedactActivity.this,"Раздел успешно загружен",Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                                imagebackEditArticles.setVisibility(View.VISIBLE);
+                            }else {
+                                Toast.makeText(HomeArticleRedactActivity.this,"Ошибка загрузки раздела",Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                                imagebackEditArticles.setVisibility(View.VISIBLE);
                             }
-                        });
-                        break;
-                    case (2):
-                        imagebackEditArticles.setVisibility(View.GONE);
-                        progressBar.setVisibility(View.VISIBLE);
-                        ImageAddTop2.setVisibility(View.GONE);
-                        bottomSheetDialog.dismiss();
-                        //отображение в карточке
-                        TextHomeArticle2.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                        Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle2);
-                        //Загрузка статьи в базууу
-                        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
-                        mDataBase.child("2").setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                //Загрузка новой даты изменения
-                                DateFormat df = new SimpleDateFormat("d MMM yyyy");
-                                String Simpledate = df.format(Calendar.getInstance().getTime());
-                                mDataBase.child("LastEdit").setValue(Simpledate+" "+cUser.getPhoneNumber().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        progressBar.setVisibility(View.GONE);
-                                        imagebackEditArticles.setVisibility(View.VISIBLE);
-                                    }
-                                });
+                        }
+                    });
+                } else if (ChooseSection==2) {
+                    //Загружаем выбранный раздел в бд
+                    mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child(Section2_Article_Key);
+                    mDataBase.setValue(SectionlistTemp.get(position)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                DownloadSection2();
+                                Toast.makeText(HomeArticleRedactActivity.this,"Раздел успешно загружен",Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                                imagebackEditArticles.setVisibility(View.VISIBLE);
+                            }else {
+                                Toast.makeText(HomeArticleRedactActivity.this,"Ошибка загрузки раздела",Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                                imagebackEditArticles.setVisibility(View.VISIBLE);
                             }
-                        });
-                        break;
-                    case (3):
-                        imagebackEditArticles.setVisibility(View.GONE);
-                        progressBar.setVisibility(View.VISIBLE);
-                        ImageAddTop3.setVisibility(View.GONE);
-                        bottomSheetDialog.dismiss();
-                        //отображение в карточке
-                        TextHomeArticle3.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                        Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle3);
-                        //Загрузка статьи в базууу
-                        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
-                        mDataBase.child("3").setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                //Загрузка новой даты изменения
-                                DateFormat df = new SimpleDateFormat("d MMM yyyy");
-                                String Simpledate = df.format(Calendar.getInstance().getTime());
-                                mDataBase.child("LastEdit").setValue(Simpledate+" "+cUser.getPhoneNumber().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        progressBar.setVisibility(View.GONE);
-                                        imagebackEditArticles.setVisibility(View.VISIBLE);
-                                    }
-                                });
-                            }
-                        });
-                        break;
-                    case (4):
-                        imagebackEditArticles.setVisibility(View.GONE);
-                        progressBar.setVisibility(View.VISIBLE);
-                        ImageAddTop4.setVisibility(View.GONE);
-                        bottomSheetDialog.dismiss();
-                        //отображение в карточке
-                        TextHomeArticle4.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                        Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle4);
-                        //Загрузка статьи в базууу
-                        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
-                        mDataBase.child("4").setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                //Загрузка новой даты изменения
-                                DateFormat df = new SimpleDateFormat("d MMM yyyy");
-                                String Simpledate = df.format(Calendar.getInstance().getTime());
-                                mDataBase.child("LastEdit").setValue(Simpledate+" "+cUser.getPhoneNumber().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        progressBar.setVisibility(View.GONE);
-                                        imagebackEditArticles.setVisibility(View.VISIBLE);
-                                    }
-                                });
-                            }
-                        });
-                        break;
-                    case (5):
-                        imagebackEditArticles.setVisibility(View.GONE);
-                        progressBar.setVisibility(View.VISIBLE);
-                        ImageAddTop5.setVisibility(View.GONE);
-                        bottomSheetDialog.dismiss();
-                        //отображение в карточке
-                        TextHomeArticle5.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                        Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle5);
-                        //Загрузка статьи в базууу
-                        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
-                        mDataBase.child("5").setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                //Загрузка новой даты изменения
-                                DateFormat df = new SimpleDateFormat("d MMM yyyy");
-                                String Simpledate = df.format(Calendar.getInstance().getTime());
-                                mDataBase.child("LastEdit").setValue(Simpledate+" "+cUser.getPhoneNumber().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        progressBar.setVisibility(View.GONE);
-                                        imagebackEditArticles.setVisibility(View.VISIBLE);
-                                    }
-                                });
-                            }
-                        });
-                        break;
-                    default:
-                        break;
+                        }
+                    });
                 }
             }
         });
@@ -319,12 +269,29 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
 
 
 
+        //Кнопка выбора раздела
+        SelectSectionHomeButton = findViewById(R.id.SelectSectionHomeButton);
+        SelectSectionHomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.show();
+                ChooseSection=1;
+            }
+        });
+        SelectSectionHomeButton2 = findViewById(R.id.SelectSectionHomeButton2);
+        SelectSectionHomeButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.show();
+                ChooseSection=2;
+            }
+        });
         //Выбор первой карточки для загрузки туда статьи
         CardHomeArticle1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.show();
-                ChooseCard = 1;
+
+
             }
         });
 
@@ -332,38 +299,39 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
         CardHomeArticle2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.show();
-                ChooseCard = 2;
+
+
             }
         });
         //Выбор первой карточки для загрузки туда статьи
         CardHomeArticle3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.show();
-                ChooseCard = 3;
+
+
             }
         });
         //Выбор первой карточки для загрузки туда статьи
         CardHomeArticle4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.show();
-                ChooseCard = 4;
+
+
             }
         });
         //Выбор первой карточки для загрузки туда статьи
         CardHomeArticle5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.show();
-                ChooseCard = 5;
+
+
             }
         });
 
 
         initilization();
-        DownloadArticleFirebaseData();
+        DownloadSectionFirebaseData();
+
         //Закрытие окна
         imagebackEditArticles = findViewById(R.id.imagebackEditHome);
         imagebackEditArticles.setOnClickListener(new View.OnClickListener() {
@@ -376,150 +344,171 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-
-
-        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key);
-        //Получение данных из базы
-        mDataBase.child("LastEdit").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+    private void DownloadSection2(){
+        DownloadArticleFirebaseData(FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child(Section2_Article_Key).child("articleList"));
+        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child(Section2_Article_Key);
+        mDataBase.child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
+                if(task.isSuccessful()){
+                    TextviewSectionName2.setText(task.getResult().getValue().toString());
                 }
-                else {
-                    try {
-                        //Данные получены
-                        LastEditText.setText((String)task.getResult().getValue());
-                    }
-                    catch (Exception e){
-
-                    }
-
+            }
+        });
+    }
+    private void DownloadSection1(){
+        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child(Section1_Article_Key);
+        //Получение данных из базы
+        mDataBase.child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    TextviewSectionName1.setText(task.getResult().getValue().toString());
                 }
             }
         });
         //Загрузка данных о 1 карточке
-        mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child("articleList").child("0").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
                     //Ошибка получения данных
                 }
                 else {
-                    try {
-                        //Данные получены
-                        DowArticle =  task.getResult().getValue(Article.class);
-                        if(DowArticle!= null){
-                            ImageAddTop1.setVisibility(View.GONE);
-                            TextHomeArticle1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                            Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle1);
+                    if(task.getResult().getValue()!=null) {
+                        CardHomeArticle2.setVisibility(View.VISIBLE);
+                        try {
+                            //Данные получены
+                            DowArticle = task.getResult().getValue(Article.class);
+                            if (DowArticle != null) {
+                                ImageAddTop1.setVisibility(View.GONE);
+                                TextHomeArticle1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                                Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle1);
+                            }
+                        } catch (Exception e) {
                         }
-                    }
-                    catch (Exception e){
+                    }else {
+                        CardHomeArticle2.setVisibility(View.GONE);
                     }
                 }
             }
         });
 
         //Загрузка данных о 2 карточке
-        mDataBase.child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child("articleList").child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
                     //Ошибка получения данных
                 }
                 else {
-                    try {
-                        //Данные получены
-                        DowArticle =  task.getResult().getValue(Article.class);
-                        if(DowArticle!= null){
-                            ImageAddTop2.setVisibility(View.GONE);
-                            TextHomeArticle2.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                            Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle2);
+                    if(task.getResult().getValue()!=null) {
+                        CardHomeArticle2.setVisibility(View.VISIBLE);
+                        try {
+                            //Данные получены
+                            DowArticle = task.getResult().getValue(Article.class);
+                            if (DowArticle != null) {
+                                ImageAddTop2.setVisibility(View.GONE);
+                                TextHomeArticle2.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                                Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle2);
+                            }
+                        } catch (Exception e) {
                         }
-                    }
-                    catch (Exception e){
+                    }else {
+                        CardHomeArticle2.setVisibility(View.GONE);
                     }
                 }
             }
         });
 
         //Загрузка данных о 3 карточке
-        mDataBase.child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child("articleList").child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
                     //Ошибка получения данных
                 }
                 else {
-                    try {
-                        //Данные получены
-                        DowArticle =  task.getResult().getValue(Article.class);
-                        if(DowArticle!= null){
-                            ImageAddTop3.setVisibility(View.GONE);
-                            TextHomeArticle3.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                            Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle3);
+                    if(task.getResult().getValue()!=null) {
+                        CardHomeArticle3.setVisibility(View.VISIBLE);
+                        try {
+                            //Данные получены
+                            DowArticle = task.getResult().getValue(Article.class);
+                            if (DowArticle != null) {
+                                ImageAddTop3.setVisibility(View.GONE);
+                                TextHomeArticle3.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                                Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle3);
+                            }
+                        } catch (Exception e) {
                         }
-                    }
-                    catch (Exception e){
+                    }else {
+                        CardHomeArticle3.setVisibility(View.GONE);
                     }
                 }
             }
         });
 
         //Загрузка данных о 4 карточке
-        mDataBase.child("4").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child("articleList").child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
                     //Ошибка получения данных
                 }
                 else {
-                    try {
-                        //Данные получены
-                        DowArticle =  task.getResult().getValue(Article.class);
-                        if(DowArticle!= null){
-                            ImageAddTop4.setVisibility(View.GONE);
-                            TextHomeArticle4.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                            Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle4);
+                    if(task.getResult().getValue()!=null) {
+                        CardHomeArticle4.setVisibility(View.VISIBLE);
+                        try {
+                            //Данные получены
+                            DowArticle = task.getResult().getValue(Article.class);
+                            if (DowArticle != null) {
+                                ImageAddTop4.setVisibility(View.GONE);
+                                TextHomeArticle4.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                                Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle4);
+                            }
+                        } catch (Exception e) {
                         }
-                    }
-                    catch (Exception e){
+                    }else {
+                        CardHomeArticle4.setVisibility(View.GONE);
                     }
                 }
             }
         });
 
         //Загрузка данных о 5 карточке
-        mDataBase.child("5").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child("articleList").child("4").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
                     //Ошибка получения данных
                 }
                 else {
-                    try {
-                        //Данные получены
-                        DowArticle =  task.getResult().getValue(Article.class);
-                        if(DowArticle!= null){
-                            ImageAddTop5.setVisibility(View.GONE);
-                            TextHomeArticle5.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                            Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle5);
+                    if(task.getResult().getValue()!=null) {
+                        CardHomeArticle5.setVisibility(View.VISIBLE);
+                        try {
+                            //Данные получены
+                            DowArticle = task.getResult().getValue(Article.class);
+                            if (DowArticle != null) {
+                                ImageAddTop5.setVisibility(View.GONE);
+                                TextHomeArticle5.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
+                                Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle5);
+                            }
+                        } catch (Exception e) {
                         }
-                    }
-                    catch (Exception e){
+                    }else {
+                        CardHomeArticle5.setVisibility(View.GONE);
                     }
                 }
             }
         });
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
-
-
+        DownloadSection1();
+        DownloadSection2();
     }
 
 
@@ -527,6 +516,12 @@ public class HomeArticleRedactActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+
+    }
+
+    //Нажатие по элементу списка recycleview
+    @Override
+    public void onItemClick(View view, int position) {
 
     }
 }

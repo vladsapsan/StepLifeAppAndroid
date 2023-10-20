@@ -25,7 +25,7 @@
                 android:background="@drawable/cornerdefault"
                 android:layout_height="5dp"/>
             <TextView
-                android:textStyle="bold"
+                android:id="@+id/ChooseTextView"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/montserrat_semibold"

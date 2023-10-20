@@ -41,7 +41,6 @@
                 android:visibility="gone"
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyle"
-
                 android:layout_gravity="right"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="10dp"
@@ -63,57 +62,57 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    android:visibility="gone"
                     android:layout_width="70dp"
-                    app:cardCornerRadius="50dp"
-                    android:layout_gravity="center_horizontal"
                     android:layout_height="70dp"
-                    >
-                    <ImageView
-                        android:clickable="true"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="gone"
+                    app:cardCornerRadius="50dp">
 
+                    <ImageView
                         android:layout_width="match_parent"
+
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
+                        android:clickable="true"
                         app:srcCompat="@drawable/user__1_" />
                 </androidx.cardview.widget.CardView>
 
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/ImageProfile"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
 
                     android:layout_width="120dp"
-                    android:layout_gravity="center_horizontal"
                     android:layout_height="120dp"
-                    android:foreground="?attr/selectableItemBackground"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
                     android:clickable="true"
 
-                    android:layout_marginTop="12dp"
+                    android:foreground="?attr/selectableItemBackground"
                     android:src="@drawable/user__1_"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/logoGray"/>
+                    app:civ_border_color="@color/logoGray"
+                    app:civ_border_width="1dp" />
 
 
                 <androidx.cardview.widget.CardView
-                    android:foreground="?attr/selectableItemBackground"
-                    android:clickable="true"
                     android:layout_width="wrap_content"
-                    app:cardCornerRadius="6dp"
-                    android:backgroundTintMode="src_in"
-                    android:backgroundTint="@color/secondBlue"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:layout_height="30dp">
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/secondBlue"
+                    android:backgroundTintMode="src_in"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="6dp">
+
                     <TextView
                         android:id="@+id/ChoosePhotoText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="5dp"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/montserratsemibold"
                         android:gravity="center"
                         android:text="Загрузить фото"
@@ -122,16 +121,16 @@
                 </androidx.cardview.widget.CardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    style="@style/CustomCardViewStyle"
-                    android:backgroundTint="@color/white"
                     android:id="@+id/CardArticleSection"
-                    app:strokeWidth="0dp"
-                    app:cardElevation="9dp"
+                    style="@style/CustomCardViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="15dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/buttonstyle1"
-                    android:layout_height="wrap_content">
+                    android:backgroundTint="@color/white"
+                    app:cardElevation="9dp"
+                    app:strokeWidth="0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -140,17 +139,16 @@
                         android:orientation="vertical">
 
 
-
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:orientation="horizontal"
+                            android:layout_height="match_parent"
 
-                            android:layout_marginTop="10dp"
                             android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
 
 
                             android:layout_marginBottom="10dp"
-                            android:layout_height="match_parent">
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -167,33 +165,34 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
+                                android:layout_marginLeft="5dp"
                                 android:fontFamily="@font/montserratsemibold"
                                 android:gravity="left"
-                                android:layout_marginLeft="5dp"
                                 android:text="+7-999-99 99 99"
                                 android:textColor="@color/MainBlue"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:counterEnabled="true"
                             android:layout_marginTop="16dp"
-                            app:counterMaxLength="35"
-                            app:boxStrokeWidth="2dp"
-                            app:hintTextColor="@color/black"
                             app:boxStrokeColor="@color/MainYellow"
-                            android:layout_width="match_parent">
+                            app:boxStrokeWidth="2dp"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="35"
+                            app:hintTextColor="@color/black">
+
                             <EditText
+                                android:id="@+id/editTextUserName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="14dp"
                                 android:fontFamily="@font/montserrat_semibold"
                                 android:hint="Имя"
-                                android:singleLine="true"
+                                android:inputType="text"
                                 android:maxLength="35"
-                                android:id="@+id/editTextUserName"
-                                android:inputType="text" />
+                                android:singleLine="true"
+                                android:textSize="14dp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -201,32 +200,29 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
-
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/TextViewSaveUserinformation"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:clickable="true"
                     android:layout_width="wrap_content"
-                    app:cardCornerRadius="8dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="100dp"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@color/secondBlue"
-                    android:layout_marginTop="100dp"
-                    android:layout_gravity="center"
-                    android:layout_height="45dp">
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="8dp">
 
                     <TextView
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:gravity="center"
-                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
                         android:fontFamily="@font/montserratsemibold"
+                        android:gravity="center"
+                        android:text="Сохранить"
                         android:textColor="@color/MainBlue"
-                        android:textSize="13dp"
-                        android:text="Сохранить"/>
-
+                        android:textSize="13dp" />
 
 
                 </androidx.cardview.widget.CardView>

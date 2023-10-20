@@ -98,7 +98,7 @@
                     android:backgroundTint="@color/MainBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
-                    android:text="Верхняя предложка учебника"/>
+                    android:text="Школа ходьбы"/>
 
                 <Button
                     android:id="@+id/AddTagsButton"
@@ -130,7 +130,7 @@
                     android:backgroundTint="@color/MainBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
-                    android:text="Добавление курсов"/>
+                    android:text="Добавление разделов"/>
 
 
             </LinearLayout>

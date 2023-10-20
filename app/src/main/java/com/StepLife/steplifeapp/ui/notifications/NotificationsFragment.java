@@ -1,5 +1,11 @@
 package com.StepLife.steplifeapp.ui.notifications;
 
+import static com.StepLife.steplifeapp.StafFunction.HomeArticleRedactActivity.Section1_Article_Key;
+import static com.StepLife.steplifeapp.StafFunction.HomeArticleRedactActivity.Section2_Article_Key;
+import static com.StepLife.steplifeapp.StafFunction.HomeArticleRedactActivity.Section3_Article_Key;
+import static com.StepLife.steplifeapp.ui.home.HomeFragment.Bundle_Section_Tag;
+
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -16,28 +22,32 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.StepLife.steplifeapp.TagSearchArticle;
-import com.bumptech.glide.Glide;
 import com.StepLife.steplifeapp.AllArticleActivity;
+import com.StepLife.steplifeapp.ArticleSection;
 import com.StepLife.steplifeapp.ChooseArticle;
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.StafFunction.TopPostRedactActivity;
+import com.StepLife.steplifeapp.TagSearchArticle;
 import com.StepLife.steplifeapp.ViewPagerArticleAdapter;
 import com.StepLife.steplifeapp.databinding.FragmentNotificationsBinding;
+import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
 import com.StepLife.steplifeapp.ui.Article;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -46,9 +56,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationsFragment extends Fragment {
+public class NotificationsFragment extends Fragment implements SectionArticleViewAdapter.ItemClickListener {
 
     private NotificationsViewModel notificationsViewModel;
     private FragmentNotificationsBinding binding;
@@ -63,8 +74,7 @@ public class NotificationsFragment extends Fragment {
     ImageView SearchButton,NotificationButton;
 
     TextView NameTopPost,SecNameTopPost,LibPostTextRow1,LibPostTextRow2;
-    TextView EditDataTextTopPost1,EditDataTextTopPost2,EditDataTextTopPost3,EditDataTextTopPost4,EditDataTextTopPost5;
-    TextView EditTextTopPost1,EditTextTopPost2,EditTextTopPost3,EditTextTopPost4,EditTextTopPost5;
+
 
     private final static String TopPost_Key ="TopPostArticle";
     private final static String Library_Key ="Lib";
@@ -76,18 +86,9 @@ public class NotificationsFragment extends Fragment {
 
     Chip TagChip1,TagChip2,TagChip3,TagChip4,TagChip5,TagChip6;
 
-    CardView TopPostCard1,TopPostCard2,TopPostCard3,TopPostCard4,TopPostCard5,SeeAllText,SeeAllText2;
-    CardView CardLibraryRow1Article1,CardLibraryRow1Article2,CardLibraryRow1Article3;
-    CardView CardLibraryRow2Article1,CardLibraryRow2Article2,CardLibraryRow2Article3;
-    TextView TextCardLibraryRow1Article1,TextCardLibraryRow1Article2,TextCardLibraryRow1Article3;
-    TextView TextCardLibraryRow2Article1,TextCardLibraryRow2Article2,TextCardLibraryRow2Article3;
 
-    ImageView ImageCardLibraryRow1Article1,ImageCardLibraryRow1Article2,ImageCardLibraryRow1Article3;
-    ImageView ImageCardLibraryRow2Article1,ImageCardLibraryRow2Article2,ImageCardLibraryRow2Article3;
     ProgressBar progressBarTopPost;
-    Article DowArticle,DowArticle1,DowArticle2,DowArticle3,DowArticle4;
-    Article DowRow1Article1,DowRow1Article2,DowRow1Article3,DowRow2Article1,DowRow2Article2,DowRow2Article3;
-    ImageView imagetoppost1,imagetoppost2,imagetoppost3,imagetoppost4,imagetoppost5;
+
 
     FrameLayout TopPostFrame,NotificationAppBar;
     List <Article> TopPostArticle;
@@ -96,6 +97,14 @@ public class NotificationsFragment extends Fragment {
 
     List<String> TopPostList;
     Button SeeAllButton;
+    private ArrayList<Article> ArticlelistTemp1 = new ArrayList<>();
+    private ArrayList<Article> ArticlelistTemp2 = new ArrayList<>();
+    private ArrayList<Article> ArticlelistTemp3 = new ArrayList<>();
+    String SectionID1,SectionID2,SectionID3;
+    SectionArticleViewAdapter sectionArticleViewAdapter1,sectionArticleViewAdapter2,sectionArticleViewAdapter3;
+    RecyclerView RecycleviewSectionArticle1,RecycleviewSectionArticle2,RecycleviewSectionArticle3;
+    TextView TextviewSectionName1,TextviewSectionName2,TextviewSectionName3,ChooseTextView;
+    LinearLayout CardArticleSection1,CardArticleSection2,CardArticleSection3;
     ScrollView TeachBookScroll;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -103,183 +112,84 @@ public class NotificationsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_notifications, container,false);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    //Иницилизация компонентов
+    private void initilization(View view)
+    {
+        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
 
+        //Да это работает так)
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(),LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(view.getContext(),LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(view.getContext(),LinearLayoutManager.HORIZONTAL, false);
 
+        //Инициализация кликов для статей
+        SectionArticleViewAdapter.ItemClickListener clickListener1 = new SectionArticleViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                StartArticle(ArticlelistTemp1,position,getActivity());
+            }
+        };
+        //Инициализация кликов для статей
+        SectionArticleViewAdapter.ItemClickListener clickListener2 = new SectionArticleViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                StartArticle(ArticlelistTemp2,position,getActivity());
+            }
+        };
+        //Инициализация кликов для статей
+        SectionArticleViewAdapter.ItemClickListener clickListener3 = new SectionArticleViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                StartArticle(ArticlelistTemp3,position,getActivity());
+            }
+        };
+
+        //первый раздел столбец данных
+        RecycleviewSectionArticle1 = view.findViewById(R.id.RecycleviewSectionArticle1);
+        RecycleviewSectionArticle1.setLayoutManager(layoutManager);
+        sectionArticleViewAdapter1 = new SectionArticleViewAdapter(view.getContext(),ArticlelistTemp1);
+        RecycleviewSectionArticle1.setAdapter(sectionArticleViewAdapter1);
+        sectionArticleViewAdapter1.setClickListener(clickListener1);
+
+        //второй раздел столбец данных
+        RecycleviewSectionArticle2 = view.findViewById(R.id.RecycleviewSectionArticle2);
+        RecycleviewSectionArticle2.setLayoutManager(layoutManager2);
+        sectionArticleViewAdapter2 = new SectionArticleViewAdapter(view.getContext(),ArticlelistTemp2);
+        RecycleviewSectionArticle2.setAdapter(sectionArticleViewAdapter2);
+        sectionArticleViewAdapter2.setClickListener(clickListener2);
+
+        //второй раздел столбец данных
+        RecycleviewSectionArticle3 = view.findViewById(R.id.RecycleviewSectionArticle3);
+        RecycleviewSectionArticle3.setLayoutManager(layoutManager3);
+        sectionArticleViewAdapter3 = new SectionArticleViewAdapter(view.getContext(),ArticlelistTemp3);
+        RecycleviewSectionArticle3.setAdapter(sectionArticleViewAdapter3);
+        sectionArticleViewAdapter3.setClickListener(clickListener3);
+
+        mDataBase.child(Section1_Article_Key).child("SectionID").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    SectionID1 = task.getResult().getValue().toString();
+                }
+            }
+        });
+        mDataBase.child(Section2_Article_Key).child("SectionID").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    SectionID2 = task.getResult().getValue().toString();
+                }
+            }
+        });
+        mDataBase.child(Section3_Article_Key).child("SectionID").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    SectionID3 = task.getResult().getValue().toString();
+                }
+            }
+        });
         //Запуск анимации
-
-
-        //Первая строка статей
-        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key).child(Library_Row1_Key);
-        //Получение данных из базы
-        mDataBase.child("Name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        LibPostTextRow1.setText((String)task.getResult().getValue());
-                    }
-                    catch (Exception e){
-                        Log.e("Profile",e.toString());
-                    }
-
-                }
-            }
-        });
-        //Загрузка данных
-        mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowRow1Article1 =  task.getResult().getValue(Article.class);
-                        if(DowRow1Article1!= null){
-                            TextCardLibraryRow1Article1.setText(Html.fromHtml(DowRow1Article1.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowRow1Article1.PreviewPhotoUri).into(ImageCardLibraryRow1Article1);
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
-        mDataBase.child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowRow1Article2 =  task.getResult().getValue(Article.class);
-                        if(DowRow1Article2!= null){
-                            TextCardLibraryRow1Article2.setText(Html.fromHtml(DowRow1Article2.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowRow1Article2.PreviewPhotoUri).into(ImageCardLibraryRow1Article2);
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
-        mDataBase.child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowRow1Article3 =  task.getResult().getValue(Article.class);
-                        if(DowRow1Article3!= null){
-                            TextCardLibraryRow1Article3.setText(Html.fromHtml(DowRow1Article3.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowRow1Article3.PreviewPhotoUri).into(ImageCardLibraryRow1Article3);
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
-
-
-
-        //Загрузка статей второй строки
-        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key).child(Library_Row2_Key);
-        //Получение данных из базы
-        mDataBase.child("Name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        LibPostTextRow2.setText((String)task.getResult().getValue());
-                    }
-                    catch (Exception e){
-                        Log.e("Profile",e.toString());
-                    }
-
-                }
-            }
-        });
-        mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowRow2Article1 =  task.getResult().getValue(Article.class);
-                        if(DowRow2Article1!= null){
-                            TextCardLibraryRow2Article1.setText(Html.fromHtml(DowRow2Article1.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowRow2Article1.PreviewPhotoUri).into(ImageCardLibraryRow2Article1);
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
-        mDataBase.child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowRow2Article2 =  task.getResult().getValue(Article.class);
-                        if(DowRow2Article2!= null){
-                            TextCardLibraryRow2Article2.setText(Html.fromHtml(DowRow2Article2.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowRow2Article2.PreviewPhotoUri).into(ImageCardLibraryRow2Article2);
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
-        mDataBase.child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowRow2Article3 =  task.getResult().getValue(Article.class);
-                        if(DowRow2Article3!= null){
-                            TextCardLibraryRow2Article3.setText(Html.fromHtml(DowRow2Article3.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowRow2Article3.PreviewPhotoUri).into(ImageCardLibraryRow2Article3);
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
-
-
-
         mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
         //Получение данных из базы
         mDataBase.child("Name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -300,7 +210,6 @@ public class NotificationsFragment extends Fragment {
                 }
             }
         });
-
         //Получение данных из базы
         mDataBase.child("SecName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -312,6 +221,8 @@ public class NotificationsFragment extends Fragment {
                     try {
                         //Данные получены
                         SecNameTopPost.setText((String)task.getResult().getValue());
+                        FrameArticles.setVisibility(View.VISIBLE);
+                        FrameArticles.setAnimation(animationIN);
                     }
                     catch (Exception e){
                         Log.e("Profile",e.toString());
@@ -320,134 +231,15 @@ public class NotificationsFragment extends Fragment {
                 }
             }
         });
-        //Загрузка данных о 1 карточке
-        mDataBase.child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowArticle =  task.getResult().getValue(Article.class);
-                        if(DowArticle!= null){
-                            EditTextTopPost1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowArticle.PreviewPhotoUri).into(imagetoppost1);
-                            EditDataTextTopPost1.setText(Html.fromHtml(DowArticle.Date).toString().trim());
+        TopPostRedactActivity.DownloadSection(ArticlelistTemp1,Section1_Article_Key,TextviewSectionName1,sectionArticleViewAdapter1,progressBarTopPost,null,mDataBase);
+        TopPostRedactActivity.DownloadSection(ArticlelistTemp2,Section2_Article_Key,TextviewSectionName2,sectionArticleViewAdapter2,progressBarTopPost,null,mDataBase);
+        TopPostRedactActivity.DownloadSection(ArticlelistTemp3,Section3_Article_Key,TextviewSectionName3,sectionArticleViewAdapter3,progressBarTopPost,null,mDataBase);
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
-
-        //Загрузка данных о 2 карточке
-        mDataBase.child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowArticle1 =  task.getResult().getValue(Article.class);
-                        if(DowArticle1!= null){
-                            EditTextTopPost2.setText(Html.fromHtml(DowArticle1.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowArticle1.PreviewPhotoUri).into(imagetoppost2);
-                            EditDataTextTopPost2.setText(Html.fromHtml(DowArticle1.Date).toString().trim());
-
-
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
-
-        //Загрузка данных о 3 карточке
-        mDataBase.child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowArticle2 =  task.getResult().getValue(Article.class);
-                        if(DowArticle2!= null){
-                            EditTextTopPost3.setText(Html.fromHtml(DowArticle2.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowArticle2.PreviewPhotoUri).into(imagetoppost3);
-                            EditDataTextTopPost3.setText(Html.fromHtml(DowArticle2.Date).toString().trim());
-
-
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
-
-        //Загрузка данных о 4 карточке
-        mDataBase.child("4").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowArticle3 =  task.getResult().getValue(Article.class);
-                        if(DowArticle3!= null){
-                            EditTextTopPost4.setText(Html.fromHtml(DowArticle3.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowArticle3.PreviewPhotoUri).into(imagetoppost4);
-                            EditDataTextTopPost4.setText(Html.fromHtml(DowArticle3.Date).toString().trim());
-
-
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
-
-        //Загрузка данных о 5 карточке
-        mDataBase.child("5").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    try {
-                        //Данные получены
-                        DowArticle4 =  task.getResult().getValue(Article.class);
-                        if(DowArticle4!= null){
-                            EditTextTopPost5.setText(Html.fromHtml(DowArticle4.HeadText).toString().trim());
-                            Glide.with(getActivity()).load(DowArticle4.PreviewPhotoUri).into(imagetoppost5);
-                            EditDataTextTopPost5.setText(Html.fromHtml(DowArticle4.Date).toString().trim());
-                            progressBarTopPost.setVisibility(View.GONE);
-                            if(FrameArticles.getVisibility()==View.GONE) {
-                                FrameArticles.setVisibility(View.VISIBLE);
-                                FrameArticles.setAnimation(animationIN);
-                            }
-
-                        }
-                    }
-                    catch (Exception e){
-                    }
-                }
-            }
-        });
     }
 
 
@@ -475,52 +267,13 @@ public class NotificationsFragment extends Fragment {
 
         NameTopPost = view.findViewById(R.id.NameTopPost);
         SecNameTopPost = view.findViewById(R.id.SecNameTopPost);
-        LibPostTextRow1  = view.findViewById(R.id.LibPostTextRow1);
-        LibPostTextRow2  = view.findViewById(R.id.LibPostTextRow2);
+
 
 
         //Инициализация анимации
         animationIN = AnimationUtils.loadAnimation(getContext(),R.anim.expectedanim);
         animationUP = AnimationUtils.loadAnimation(getContext(),R.anim.expected_app_bar);
 
-        //Элементы главной обложки учебника
-        imagetoppost1 = view.findViewById(R.id.imagetoppost1);
-        imagetoppost2 = view.findViewById(R.id.imagetoppost2);
-        imagetoppost3 = view.findViewById(R.id.imagetoppost3);
-        imagetoppost4 = view.findViewById(R.id.imagetoppost4);
-        imagetoppost5 = view.findViewById(R.id.imagetoppost5);
-        EditTextTopPost1 = view.findViewById(R.id.EditTextTopPost1);
-        EditTextTopPost2 = view.findViewById(R.id.EditTextTopPost2);
-        EditTextTopPost3 = view.findViewById(R.id.EditTextTopPost3);
-        EditTextTopPost4 = view.findViewById(R.id.EditTextTopPost4);
-        EditTextTopPost5 = view.findViewById(R.id.EditTextTopPost5);
-
-
-        //Инициализация элементов первой строки статей
-        CardLibraryRow1Article1 = view.findViewById(R.id.CardLibraryRow1Article1);
-        TextCardLibraryRow1Article1 = view.findViewById(R.id.TextCardLibraryRow1Article1);
-        ImageCardLibraryRow1Article1 = view.findViewById(R.id.ImageCardLibraryRow1Article1);
-
-        CardLibraryRow1Article2 = view.findViewById(R.id.CardLibraryRow1Article2);
-        TextCardLibraryRow1Article2 = view.findViewById(R.id.TextCardLibraryRow1Article2);
-        ImageCardLibraryRow1Article2 = view.findViewById(R.id.ImageCardLibraryRow1Article2);
-
-        CardLibraryRow1Article3 = view.findViewById(R.id.CardLibraryRow1Article3);
-        TextCardLibraryRow1Article3 = view.findViewById(R.id.TextCardLibraryRow1Article3);
-        ImageCardLibraryRow1Article3 = view.findViewById(R.id.ImageCardLibraryRow1Article3);
-
-        //Инициализация элементов второй строки статей
-        CardLibraryRow2Article1 = view.findViewById(R.id.CardLibraryRow2Article1);
-        TextCardLibraryRow2Article1 = view.findViewById(R.id.TextCardLibraryRow2Article1);
-        ImageCardLibraryRow2Article1 = view.findViewById(R.id.ImageCardLibraryRow2Article1);
-
-        CardLibraryRow2Article2 = view.findViewById(R.id.CardLibraryRow2Article2);
-        TextCardLibraryRow2Article2 = view.findViewById(R.id.TextCardLibraryRow2Article2);
-        ImageCardLibraryRow2Article2 = view.findViewById(R.id.ImageCardLibraryRow2Article2);
-
-        CardLibraryRow2Article3 = view.findViewById(R.id.CardLibraryRow2Article3);
-        TextCardLibraryRow2Article3 = view.findViewById(R.id.TextCardLibraryRow2Article3);
-        ImageCardLibraryRow2Article3 = view.findViewById(R.id.ImageCardLibraryRow2Article3);
 
 
 
@@ -529,6 +282,10 @@ public class NotificationsFragment extends Fragment {
         FrameArticles.setVisibility(View.GONE);
         TopPostFrame = view.findViewById(R.id.TopPostFrame);
         progressBarTopPost = view.findViewById(R.id.progressBarTopPost);
+        TextviewSectionName1 = view.findViewById(R.id.TextviewSectionName1);
+        TextviewSectionName2 = view.findViewById(R.id.TextviewSectionName2);
+        TextviewSectionName3 = view.findViewById(R.id.TextviewSectionName3);
+
 
         Intent intentAllArticle = new Intent(getActivity(), AllArticleActivity.class);
 
@@ -541,36 +298,59 @@ public class NotificationsFragment extends Fragment {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
 
-
-
-
-        EditDataTextTopPost1 = view.findViewById(R.id.EditDataTextTopPost1);
-        EditDataTextTopPost2 = view.findViewById(R.id.EditDataTextTopPost2);
-        EditDataTextTopPost3 = view.findViewById(R.id.EditDataTextTopPost3);
-        EditDataTextTopPost4 = view.findViewById(R.id.EditDataTextTopPost4);
-        EditDataTextTopPost5 = view.findViewById(R.id.EditDataTextTopPost5);
-
-
-
-        //Переход к статье по карточке
-        TopPostCard1 = view.findViewById(R.id.TopPostCard1);
-        TopPostCard1.setOnClickListener(new View.OnClickListener() {
+        CardArticleSection1 = view.findViewById(R.id.CardArticleSection1);
+        CardArticleSection1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(DowArticle!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowArticle.MainText);
-                    intent.putExtra("Date", DowArticle.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowArticle.HeadText).toString().trim());
-                    if(DowArticle.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowArticle.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
+                if(SectionID1!=null) {
+                    //Переход по навигации в фграмент школа
+                    Bundle InfoBundle = new Bundle();
+                    InfoBundle.putString(Bundle_Section_Tag, SectionID1);
+
+                    ArticleSection articleSection = new ArticleSection();
+                    articleSection.setArguments(InfoBundle);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    //и замена текущего главного фрагмента на фрагмент раздела
+                        fragmentManager.beginTransaction().replace(R.id.TeachArticleFrame, articleSection, "section").addToBackStack(null).commit();
                 }
             }
         });
+        CardArticleSection2 = view.findViewById(R.id.CardArticleSection2);
+        CardArticleSection2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SectionID2!=null) {
+                    //Переход по навигации в фграмент школа
+                    Bundle InfoBundle = new Bundle();
+                    InfoBundle.putString(Bundle_Section_Tag, SectionID2);
+
+                    ArticleSection articleSection = new ArticleSection();
+                    articleSection.setArguments(InfoBundle);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    //и замена текущего главного фрагмента на фрагмент раздела
+                        fragmentManager.beginTransaction().replace(R.id.TeachArticleFrame, articleSection, "section").addToBackStack(null).commit();
+                }
+            }
+        });
+
+        CardArticleSection3 = view.findViewById(R.id.CardArticleSection3);
+        CardArticleSection3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SectionID3!=null) {
+                    //Переход по навигации в фграмент школа
+                    Bundle InfoBundle = new Bundle();
+                    InfoBundle.putString(Bundle_Section_Tag, SectionID3);
+
+                    ArticleSection articleSection = new ArticleSection();
+                    articleSection.setArguments(InfoBundle);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    //и замена текущего главного фрагмента на фрагмент раздела
+                        fragmentManager.beginTransaction().replace(R.id.TeachArticleFrame, articleSection, "section").addToBackStack(null).commit();
+                }
+            }
+        });
+
 
         //Теги с переходами на новое окно
         TagChip1 = view.findViewById(R.id.TagChip1);
@@ -628,193 +408,11 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
-        //Переход к статье по карточке
-        TopPostCard2 = view.findViewById(R.id.TopPostCard2);
-        TopPostCard2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(DowArticle1!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowArticle1.MainText);
-                    intent.putExtra("Date", DowArticle1.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowArticle1.HeadText).toString().trim());
-                    if(DowArticle1.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowArticle1.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
-                }
-            }
-        });
-
-        //Переход к статье по карточке
-        TopPostCard3 = view.findViewById(R.id.TopPostCard3);
-        TopPostCard3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(DowArticle2!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowArticle2.MainText);
-                    intent.putExtra("Date", DowArticle2.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowArticle2.HeadText).toString().trim());
-                    if(DowArticle2.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowArticle2.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
-                }
-            }
-        });
-
-        //Переход к статье по карточке
-        TopPostCard4 = view.findViewById(R.id.TopPostCard4);
-        TopPostCard4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(DowArticle3!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowArticle3.MainText);
-                    intent.putExtra("Date", DowArticle3.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowArticle3.HeadText).toString().trim());
-                    if(DowArticle3.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowArticle3.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
-                }
-            }
-        });
 
 
-        //Переход к статье по карточке
-        TopPostCard5 = view.findViewById(R.id.TopPostCard5);
-        TopPostCard5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(DowArticle4!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowArticle4.MainText);
-                    intent.putExtra("Date", DowArticle4.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowArticle4.HeadText).toString().trim());
-                    if(DowArticle4.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowArticle4.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
-                }
-            }
-        });
-        //Переход к статей первого ряда по карточке
-        //Переход к статье по карточке
-        CardLibraryRow1Article1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(DowRow1Article1!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowRow1Article1.MainText);
-                    intent.putExtra("Date", DowRow1Article1.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowRow1Article1.HeadText).toString().trim());
-                    if(DowRow1Article1.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowRow1Article1.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
-                }
-            }
-        });
-        CardLibraryRow1Article2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(DowRow1Article2!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowRow1Article2.MainText);
-                    intent.putExtra("Date", DowRow1Article2.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowRow1Article2.HeadText).toString().trim());
-                    if(DowRow1Article2.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowRow1Article2.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
-                }
-            }
-        });
-        CardLibraryRow1Article3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(DowRow1Article3!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowRow1Article3.MainText);
-                    intent.putExtra("Date", DowRow1Article3.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowRow1Article3.HeadText).toString().trim());
-                    if(DowRow1Article3.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowRow1Article3.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
-                }
-            }
-        });
+        initilization(view);
 
-        //Переход к статей второго ряда по карточке
-        //Переход к статье по карточке
-        CardLibraryRow2Article1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(DowRow2Article1!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowRow2Article1.MainText);
-                    intent.putExtra("Date", DowRow2Article1.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowRow2Article1.HeadText).toString().trim());
-                    if(DowRow2Article1.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowRow2Article1.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
-                }
-            }
-        });
-        CardLibraryRow2Article2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(DowRow2Article2!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowRow2Article2.MainText);
-                    intent.putExtra("Date", DowRow2Article2.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowRow2Article2.HeadText).toString().trim());
-                    if(DowRow2Article2.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowRow2Article2.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
-                }
-            }
-        });
-        CardLibraryRow2Article3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(DowRow2Article3!=null) {
-                    Intent intent = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intent.putExtra("MainText", DowRow2Article3.MainText);
-                    intent.putExtra("Date", DowRow2Article3.Date);
-                    intent.putExtra("HeaderText", Html.fromHtml(DowRow2Article3.HeadText).toString().trim());
-                    if(DowRow2Article3.TagList!=null){
-                        intent.putStringArrayListExtra("TagList", DowRow2Article3.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intent);
-                }
-            }
-        });
+
 
         SeeAllButton = view.findViewById(R.id.seeallArticleButton);
         //Переход ко всем статьям
@@ -846,5 +444,26 @@ public class NotificationsFragment extends Fragment {
 // notificationId is a unique int for each notification that you must define
 
         }
+    }
+
+    private static void StartArticle(ArrayList<Article> ArticlelistTemp, int position, Activity thisActivity){
+        if(ArticlelistTemp.get(position)!=null) {
+            Intent intentChooseArticle = new Intent(thisActivity, ChooseArticle.class);
+            // передача объекта с ключом "MainText" и значением
+            intentChooseArticle.putExtra("MainText", ArticlelistTemp.get(position).MainText);
+            intentChooseArticle.putExtra("Date", ArticlelistTemp.get(position).Date);
+            intentChooseArticle.putExtra("HeaderText", Html.fromHtml(ArticlelistTemp.get(position).HeadText).toString().trim());
+            if(ArticlelistTemp.get(position).TagList!=null){
+                intentChooseArticle.putStringArrayListExtra("TagList", ArticlelistTemp.get(position).TagList);
+            }
+            // запуск ChooseArticle
+            thisActivity.startActivity(intentChooseArticle);
+        }
+    }
+
+
+    @Override
+    public void onItemClick(View view, int position) {
+
     }
 }

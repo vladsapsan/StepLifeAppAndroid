@@ -7,6 +7,9 @@
     android:background="@color/white"
     tools:context=".StafFunction.EditArticlesActiviti">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,15 +26,16 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/montserrat_semibold"
                 android:gravity="left"
-                android:text="Новый курс"
+                android:text="Новый раздел"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
+
 
             <androidx.cardview.widget.CardView
                 android:foreground="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:id="@+id/imagebackAddTags"
-                android:backgroundTint="@color/MainGray"
+                android:backgroundTint="@color/white"
                 android:layout_width="30dp"
                 app:cardCornerRadius="20dp"
                 android:layout_marginRight="15dp"
@@ -48,7 +52,129 @@
 
         </FrameLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="left"
+            android:text="Заполните все поля, чтобы создать и опубликовать раздел"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:counterMaxLength="40"
+            app:boxStrokeWidth="2dp"
+            app:hintTextColor="@color/black"
+            app:boxStrokeColor="@color/MainYellow"
+            android:layout_width="match_parent">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:hint="Название раздела"
+                android:singleLine="true"
+                android:maxLength="40"
+                android:id="@+id/NameSectionEditText"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:counterMaxLength="80"
+            app:boxStrokeWidth="2dp"
+            app:hintTextColor="@color/black"
+            app:boxStrokeColor="@color/MainYellow"
+            android:layout_width="match_parent">
+            <EditText
+                android:id="@+id/AboutSectionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:textSize="14dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:hint="Описание раздела"
+                android:gravity="left"
+                android:inputType="textMultiLine" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_marginTop="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="left"
+            android:text="Раздел должен включать в себя статьи, добавьте их с помощью кнопки ниже: \nСтатьи раздела будут отображаться для обычного пользоваетля в порядке которым они были загружены"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+
+        <Button
+            android:id="@+id/AddArticleSectionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:icon="@drawable/menu24px"
+            android:layout_marginLeft="16dp"
+            app:iconTint = "@color/white"
+            app:iconGravity = "textStart"
+            android:layout_gravity="left"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/MainBlue"
+            android:textColor="@color/white"
+            android:text="Добавить статьи"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                app:cardCornerRadius="12dp"
+                android:layout_height="match_parent">
+                <ListView
+                    android:id="@+id/allArticlelistSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"></ListView>
+            </androidx.cardview.widget.CardView>
+        </FrameLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="32dp"/>
+
+        <Button
+            android:id="@+id/CreateSectionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            app:icon="@drawable/menu24px"
+            app:iconTint = "@color/BlackSviut"
+            app:iconGravity = "textStart"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/MainYellow"
+            android:textColor="@color/BlackSviut"
+            android:text="Создать раздел"/>
     </LinearLayout>
+    </ScrollView>
 </FrameLayout>
