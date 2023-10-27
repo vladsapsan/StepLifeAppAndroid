@@ -40,6 +40,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.StepLife.steplifeapp.AllArticleActivity;
+import com.StepLife.steplifeapp.AllSectionFragment;
 import com.StepLife.steplifeapp.ArticleSection;
 import com.StepLife.steplifeapp.ChooseArticle;
 import com.StepLife.steplifeapp.R;
@@ -52,6 +53,7 @@ import com.StepLife.steplifeapp.ui.Article;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.transition.MaterialFadeThrough;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -96,7 +98,7 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
     private String Article_Key ="AllArticle";
 
     List<String> TopPostList;
-    Button SeeAllButton;
+    Button SeeAllButton,seeallSectionButton;
     private ArrayList<Article> ArticlelistTemp1 = new ArrayList<>();
     private ArrayList<Article> ArticlelistTemp2 = new ArrayList<>();
     private ArrayList<Article> ArticlelistTemp3 = new ArrayList<>();
@@ -126,21 +128,21 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
         SectionArticleViewAdapter.ItemClickListener clickListener1 = new SectionArticleViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                StartArticle(ArticlelistTemp1,position,getActivity());
+                StartArticle(ArticlelistTemp1.get(position),getActivity());
             }
         };
         //Инициализация кликов для статей
         SectionArticleViewAdapter.ItemClickListener clickListener2 = new SectionArticleViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                StartArticle(ArticlelistTemp2,position,getActivity());
+                StartArticle(ArticlelistTemp2.get(position),getActivity());
             }
         };
         //Инициализация кликов для статей
         SectionArticleViewAdapter.ItemClickListener clickListener3 = new SectionArticleViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                StartArticle(ArticlelistTemp3,position,getActivity());
+                StartArticle(ArticlelistTemp3.get(position),getActivity());
             }
         };
 
@@ -242,6 +244,13 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
 
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //анимация
+        setExitTransition(new MaterialFadeThrough());
+        setEnterTransition(new MaterialFadeThrough());
+    }
 
     public void attachFragment(String tag) {
 
@@ -413,6 +422,13 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
         initilization(view);
 
 
+        seeallSectionButton  = view.findViewById(R.id.seeallSectionButton);
+        seeallSectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StartAllSectionFragment(R.id.TeachArticleFrame,getActivity().getSupportFragmentManager());
+            }
+        });
 
         SeeAllButton = view.findViewById(R.id.seeallArticleButton);
         //Переход ко всем статьям
@@ -446,19 +462,30 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
         }
     }
 
-    private static void StartArticle(ArrayList<Article> ArticlelistTemp, int position, Activity thisActivity){
-        if(ArticlelistTemp.get(position)!=null) {
+    public static void StartArticle(Article article, Activity thisActivity){
+        if(article!=null) {
             Intent intentChooseArticle = new Intent(thisActivity, ChooseArticle.class);
             // передача объекта с ключом "MainText" и значением
-            intentChooseArticle.putExtra("MainText", ArticlelistTemp.get(position).MainText);
-            intentChooseArticle.putExtra("Date", ArticlelistTemp.get(position).Date);
-            intentChooseArticle.putExtra("HeaderText", Html.fromHtml(ArticlelistTemp.get(position).HeadText).toString().trim());
-            if(ArticlelistTemp.get(position).TagList!=null){
-                intentChooseArticle.putStringArrayListExtra("TagList", ArticlelistTemp.get(position).TagList);
+            intentChooseArticle.putExtra("MainText", article.MainText);
+            intentChooseArticle.putExtra("Date", article.Date);
+            intentChooseArticle.putExtra("HeaderText", Html.fromHtml(article.HeadText).toString().trim());
+            if(article.TagList!=null){
+                intentChooseArticle.putStringArrayListExtra("TagList", article.TagList);
             }
             // запуск ChooseArticle
             thisActivity.startActivity(intentChooseArticle);
         }
+    }
+
+    public static void StartAllSectionFragment(int ReplaceFrameID,FragmentManager fragmentManager){
+        AllSectionFragment allSectionFragment;
+        //и замена текущего главного фрагмента на фрагмент раздела
+        if(fragmentManager.findFragmentByTag("allSectionFragment")!=null){
+            allSectionFragment = (AllSectionFragment) fragmentManager.findFragmentByTag("allSectionFragment");
+        }else {
+            allSectionFragment = new AllSectionFragment();
+        }
+        fragmentManager.beginTransaction().replace(ReplaceFrameID, allSectionFragment, "allSectionFragment").addToBackStack(null).commit();
     }
 
 

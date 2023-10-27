@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:id="@+id/AllSectionFragmentContainer"
+    android:background="@color/MainGray"
+    tools:context=".ArticleSection">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="60dp">
+
+
+            <FrameLayout
+                android:background="@color/MainGray"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="right"
+                    app:boxBackgroundColor="@color/MainYellow"
+                    android:baselineAligned="false"
+                    android:outlineProvider="bounds"
+                    app:boxCornerRadiusBottomStart="0dp"
+                    app:boxCornerRadiusTopEnd="0dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    android:layout_marginLeft="45dp"
+                    android:layout_height="50dp"
+                    app:errorEnabled="true">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:hint="Поиск"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:id="@+id/editTextSearchActivity"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/BacktoNotifActivity"
+                    android:rotationY="180"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="40dp"
+                    android:padding="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/arrow_forward_ios24px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Все разделы"
+                    android:textColor="@color/BlackSviut"
+                    android:textSize="20sp" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            app:dividerColor="@color/MainBlue"
+            android:layout_height="2dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:orientation="vertical">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="75dp"
+                    android:layout_height="wrap_content">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/RecycleviewSection"
+                        android:layout_width="match_parent"
+                        tools:listitem="@layout/list_view_item_selection"
+                        android:layout_height="wrap_content"/>
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+    </LinearLayout>
+
+
+
+
+</FrameLayout>

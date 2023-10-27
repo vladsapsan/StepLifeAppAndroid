@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -34,6 +35,7 @@ import com.StepLife.steplifeapp.ArticleSection;
 import com.StepLife.steplifeapp.ChooseArticle;
 import com.StepLife.steplifeapp.MainActivity;
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.TelephoneSign.TelephoneSignUp;
 import com.StepLife.steplifeapp.UserProfile.User_ProfileActiviti;
 import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
 import com.StepLife.steplifeapp.ui.Article;
@@ -44,7 +46,9 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.transition.MaterialFadeThrough;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -95,6 +99,8 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
     Animation animationClick;
     private ArrayAdapter<String> adapter;
     private DatabaseReference mDataBase;
+    CardView ProfileUserButton;
+    ImageView imageviewprofile;
     int CurrnetPositionList ;
     RecyclerView RecycleviewSectionArticle2;
     MediaController MediaController ;
@@ -165,18 +171,25 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
         mDataBase.addValueEventListener(valueEventListener);
     }
 
-    MediaPlayer.OnCompletionListener myVideoViewCompletionListener
-            = new MediaPlayer.OnCompletionListener() {
+    MediaPlayer.OnCompletionListener myVideoViewCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer arg0) {
             VideoStartButton.setVisibility(View.VISIBLE);
         }
     };
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //анимация
+        setExitTransition(new MaterialFadeThrough());
+        setEnterTransition(new MaterialFadeThrough());
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        super.onViewCreated(view,savedInstanceState);
 
 
         //Аунтефикация
@@ -184,6 +197,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
         Intent intentAllArticle = new Intent(getActivity(), AllArticleActivity.class);
         Intent User_ProfileActiviti = new Intent(getActivity(), User_ProfileActiviti.class);
         mainActivity = (MainActivity) getActivity();
+         
 
         HomeArticleScroll = view.findViewById(R.id.HomeArticleScroll);
 
@@ -200,8 +214,6 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
         animationUP = AnimationUtils.loadAnimation(getContext(),R.anim.expected_app_bar);
 
 
-
-
         //Видео плеер окна
         HomeVideoView = view.findViewById(R.id.HomeVideoView);
         HomeVideoView.setOnCompletionListener(myVideoViewCompletionListener);
@@ -216,6 +228,25 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
             }
         });
         VideoStart();
+
+
+        //Кнопка профиля
+        imageviewprofile = view.findViewById(R.id.imageviewprofile);
+        ProfileUserButton = view.findViewById(R.id.ProfileUserButton);
+        ProfileUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseUser cUser = mAuth.getCurrentUser();
+                if(cUser!=null)
+                {
+                    startActivity(User_ProfileActiviti);
+                }
+                else
+                {
+                    startActivity(new Intent(getActivity(), TelephoneSignUp.class));
+                }
+            }
+        });
 
         //Название раздела
         TextviewSectionName1 = view.findViewById(R.id.TextviewSectionName1);
@@ -439,6 +470,9 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
        // FirebaseUser cUser = mAuth.getCurrentUser();
        // if(cUser!=null)
        // {
+
+        MainActivity.LoadImageProfile(mAuth.getCurrentUser(),imageviewprofile,getActivity());
+
         //Запуск анимации при старте
         HomeArticleScroll.setAnimation(animationIN);
         FrameVideo.setAnimation(animationUP);

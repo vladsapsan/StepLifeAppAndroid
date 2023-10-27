@@ -1,5 +1,6 @@
 package com.StepLife.steplifeapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
@@ -14,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.StepLife.steplifeapp.TelephoneSign.TelephoneSignUp;
 import com.StepLife.steplifeapp.databinding.ActivityMainBinding;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.ui.dashboard.DashboardFragment;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity  {
     HomeFragment homeFragment;
     DashboardFragment dashboardFragment;
     FloatingActionButton HelperButton;
-    private FirebaseAuth mAuth;
+    public FirebaseAuth mAuth;
     CardView ProfileUserButton;
     ImageView imageviewprofile;
     NotificationsFragment notificationsFragment;
@@ -75,23 +75,7 @@ public class MainActivity extends AppCompatActivity  {
         });
 
 
-        //Кнопка профиля
-        imageviewprofile = findViewById(R.id.imageviewprofile);
-        ProfileUserButton = findViewById(R.id.ProfileUserButton);
-        ProfileUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseUser cUser = mAuth.getCurrentUser();
-                if(cUser!=null)
-                {
-                    startActivity(User_ProfileActiviti);
-                }
-                else
-                {
-                    startActivity(new Intent(MainActivity.this, TelephoneSignUp.class));
-                }
-            }
-        });
+
 
         //Кнопка получения помощи
         HelperButton = findViewById(R.id.HelperButton);
@@ -174,7 +158,17 @@ public class MainActivity extends AppCompatActivity  {
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkChangeListner,intentFilter);
 
-        FirebaseUser cUser = mAuth.getCurrentUser();
+    }
+
+    public static void LoadSectionFragment(String SectionID,FragmentManager fragmentManager,int ReplaceFragment){
+        Bundle InfoBundle = new Bundle();
+        InfoBundle.putString(HomeFragment.Bundle_Section_Tag, SectionID);
+        ArticleSection articleSection = new ArticleSection();
+        articleSection.setArguments(InfoBundle);
+        //и замена текущего главного фрагмента на фрагмент раздела
+        fragmentManager.beginTransaction().replace(ReplaceFragment, articleSection, "section").addToBackStack(null).commit();
+    }
+    public static void LoadImageProfile(FirebaseUser cUser, ImageView imageviewprofile, Activity activity){
         //Данные аутентификации
         if(cUser!=null)
         {
@@ -182,7 +176,7 @@ public class MainActivity extends AppCompatActivity  {
                 //   Загрузка фото
                 //Picasso.get().load(cUser.getPhotoUrl()).into(ImageProfile);
                 Glide
-                        .with(this)
+                        .with(activity)
                         .load(cUser.getPhotoUrl())
                         .into(imageviewprofile);
             }

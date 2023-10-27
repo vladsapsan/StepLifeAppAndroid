@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.StepLifeApp" parent="Theme.Material3.Light">
+    <style name="Theme.StepLifeApp" parent="Theme.Material3.DayNight">
         <!-- Primary brand color. -->
 
         <!-- Secondary brand color. -->

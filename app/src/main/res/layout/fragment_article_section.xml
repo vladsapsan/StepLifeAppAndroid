@@ -19,7 +19,7 @@
         android:layout_height="150dp"
         android:background="@color/white"
         android:backgroundTint="@color/black"
-        android:alpha="0.7"
+        android:alpha="0.8"
         android:layout_gravity="top"/>
 
         <LinearLayout
@@ -50,30 +50,20 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
-                    <Button
-                        android:layout_marginTop="5dp"
-                        android:id="@+id/PublicationArticleButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="55dp"
-                        android:gravity="center"
-                        app:icon="@drawable/schedule24px"
-                        app:iconTint = "@color/white"
-                        android:textSize="12dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/TranspanetColor"
-                        android:layout_gravity="right"
-                        android:fontFamily="@font/montserratsemibold"
-                        android:text="2 часа"/>
-                    <ProgressBar
-                        android:visibility="gone"
-                        android:id="@+id/progressBar"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_marginLeft="8dp"
-                        android:layout_gravity="left|center_vertical"
-                        android:indeterminateTint="@color/MainBlue"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <ProgressBar
+                            android:visibility="gone"
+                            android:id="@+id/progressBar"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_marginLeft="8dp"
+                            android:layout_gravity="left|center_vertical"
+                            android:indeterminateTint="@color/MainBlue"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+                    </LinearLayout>
                 </FrameLayout>
 
 
@@ -84,48 +74,51 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="left"
                     android:orientation="vertical">
-
                     <TextView
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
                         android:id="@+id/NameTextSection"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="left"
                         android:fontFamily="@font/montserrat_bold"
                         android:text=""
                         android:textColor="@color/white"
                         android:textSize="20sp" />
-
                     <TextView
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
                         android:id="@+id/TextSectionAbout"
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_gravity="left"
+                        android:gravity="left"
                         android:fontFamily="@font/montserrat_medium"
                         android:text=""
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
                         android:layout_gravity="left"
                         android:fontFamily="@font/montserrat_semibold"
                         android:text="Внутри этого раздела:"
                         android:textColor="@color/BlackSviut"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ListView
+                            android:scrollbars="none"
                             android:footerDividersEnabled="false"
                             tools:listitem="@layout/listviewarticleitem"
                             android:divider="@null"

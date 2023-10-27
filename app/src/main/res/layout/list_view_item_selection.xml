@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardPreventCornerOverlap="false"
+    style="@style/CustomCardViewStyle"
+    android:backgroundTint="@color/white"
+    app:strokeWidth="0dp"
+    android:id="@+id/CardHomeArticle1"
+    app:cardElevation="4dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:layout_margin="16dp">
+    <LinearLayout
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/TextSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:gravity="left"
+            android:text="Название раздела"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/BlackSviut"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/TextAboutSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="left"
+            android:text="Описание раздела"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/BlackSviut"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

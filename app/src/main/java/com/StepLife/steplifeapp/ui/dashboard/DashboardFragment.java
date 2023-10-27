@@ -46,6 +46,7 @@ import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.other.ProgressBarAnimation;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.transition.MaterialFadeThrough;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -152,6 +153,9 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        //анимация
+        setExitTransition(new MaterialFadeThrough());
+        setEnterTransition(new MaterialFadeThrough());
 
         return root;
     }

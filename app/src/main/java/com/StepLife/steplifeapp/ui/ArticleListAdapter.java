@@ -17,8 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.StepLife.steplifeapp.R;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,15 +69,16 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
                 TextviewMoreTag.setText("+"+(article.TagList.size()-1));
             }
         }
-        //Загрузка картинки с помощью Glide
+        //Загрузка картинки  Glide
         if(getItem(position).PreviewPhotoUri!=null) {
             if(PreviewImage.getDrawable()==null) {
-                Glide
-                        .with(this.getContext())
-                        .load(getItem(position).PreviewPhotoUri)
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(PreviewImage);
+               // Glide
+                //        .with(this.getContext())
+                 //       .load(getItem(position).PreviewPhotoUri)
+                 //       .centerCrop()
+                 //       .diskCacheStrategy(DiskCacheStrategy.ALL)
+                 //       .into(PreviewImage);
+                Picasso.get().load(article.PreviewPhotoUri).into(PreviewImage);
             }
         }
 

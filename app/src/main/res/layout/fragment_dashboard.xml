@@ -14,10 +14,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+
         android:layout_height="match_parent">
 
 
@@ -147,6 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginLeft="20dp"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
@@ -163,6 +164,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:visibility="gone"
                 android:id="@+id/ProgressBarBatteryCharge"
                 app:indicatorSize="300dp"
                 android:progress="0"
