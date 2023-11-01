@@ -33,6 +33,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
         </LinearLayout>
-
     </FrameLayout>
+
+    <TextView
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="42dp"
+        android:layout_width="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_height="wrap_content"
+        android:text="Дорогу осилит идущий"/>
 </FrameLayout>

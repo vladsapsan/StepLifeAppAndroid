@@ -13,16 +13,57 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressBarTopPost"
-            style="?android:attr/progressBarStyleHorizontal"
+        <FrameLayout
+            android:id="@+id/TopPostFrame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:indeterminateBehavior="repeat"
-            android:indeterminateDuration="200"
-            android:indeterminateOnly="true"
-            android:indeterminateTint="@color/black"
-            android:mirrorForRtl="false" />
+            android:background="@color/MainYellow"
+            android:layout_height="130dp">
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="6dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/NameTopPost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    android:text="Школа ходьбы"
+                    android:textSize="21dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/BlackSviut"
+                    android:fontFamily="@font/normalidad_extended_extreg"/>
+                <TextView
+                    android:id="@+id/SecNameTopPost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginTop="0dp"
+                    android:text="Авторский учебник разработанный нашими сотрудниками для вас!"
+                    android:layout_marginRight="15dp"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="15dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/BlackSviut"
+                    android:fontFamily="@font/montserrat_medium"/>
+            </LinearLayout>
+            <ProgressBar
+                android:layout_marginTop="24dp"
+                android:id="@+id/progressBarTopPost"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminateBehavior="repeat"
+                android:indeterminateDuration="200"
+                android:indeterminateOnly="true"
+                android:indeterminateTint="@color/black"
+                android:mirrorForRtl="false" />
+        </FrameLayout>
         <FrameLayout
             android:id="@+id/FrameArticles"
             android:layout_marginTop="0dp"
@@ -41,46 +82,6 @@
                     android:orientation="vertical"
                     android:layout_height="match_parent">
 
-
-                    <FrameLayout
-                        android:id="@+id/TopPostFrame"
-                        android:layout_width="match_parent"
-                        android:background="@color/MainYellow"
-                        android:layout_height="120dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginBottom="10dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:id="@+id/NameTopPost"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="left"
-                                android:textStyle="bold"
-                                android:layout_marginTop="20dp"
-                                android:text="Школа ходьбы"
-                                android:textSize="21dp"
-                                android:layout_marginLeft="15dp"
-                                android:textColor="@color/BlackSviut"
-                                android:fontFamily="@font/normalidad_extended_extreg"/>
-                            <TextView
-                                android:id="@+id/SecNameTopPost"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="left"
-                                android:layout_marginTop="0dp"
-                                android:text="Авторский учебник разработанный нашими сотрудниками для вас!"
-                                android:layout_marginRight="15dp"
-                                android:textSize="14dp"
-                                android:layout_marginLeft="15dp"
-                                android:paddingBottom="5dp"
-                                android:textColor="@color/BlackSviut"
-                                android:fontFamily="@font/montserrat_medium"/>
-                        </LinearLayout>
-                    </FrameLayout>
 
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroup"
@@ -170,18 +171,20 @@
 
 
 
+                    <androidx.legacy.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"/>
 
                     <LinearLayout
                         android:id="@+id/CardArticleSection1"
                         android:clickable="true"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="10dp"
+
                         android:orientation="horizontal"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="5dp"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:textStyle="bold"
                             android:id="@+id/TextviewSectionName1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -189,19 +192,19 @@
                             android:maxLines="1"
                             android:ellipsize="end"
                             android:layout_gravity="center"
-                            android:fontFamily="@font/montserrat_bold"
+                            android:fontFamily="@font/montserrat_semibold"
                             android:text=""
-                            android:textColor="@color/SecondGrayText"
-                            android:textSize="16dp"
+                            android:textColor="@color/BlackSviut"
+                            android:textSize="18dp"
                             app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                             app:layout_constraintStart_toStartOf="parent" />
                         <ImageView
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:layout_width="16dp"
-                            android:src="@drawable/arrow_forward_ios24px"
-                            android:layout_height="16dp"/>
+                            android:layout_width="18dp"
+                            android:src="@drawable/arrow_circle_right24px"
+                            android:layout_height="18dp"/>
                     </LinearLayout>
 
 
@@ -226,7 +229,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:textStyle="bold"
+
                             android:id="@+id/TextviewSectionName2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -234,19 +237,19 @@
                             android:maxLines="1"
                             android:ellipsize="end"
                             android:layout_gravity="center"
-                            android:fontFamily="@font/montserrat_bold"
+                            android:fontFamily="@font/montserrat_semibold"
                             android:text=""
-                            android:textColor="@color/SecondGrayText"
-                            android:textSize="16dp"
+                            android:textColor="@color/BlackSviut"
+                            android:textSize="18dp"
                             app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                             app:layout_constraintStart_toStartOf="parent" />
                         <ImageView
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:layout_width="16dp"
-                            android:src="@drawable/arrow_forward_ios24px"
-                            android:layout_height="16dp"/>
+                            android:layout_width="18dp"
+                            android:src="@drawable/arrow_circle_right24px"
+                            android:layout_height="18dp"/>
                     </LinearLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/RecycleviewSectionArticle2"
@@ -264,7 +267,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:textStyle="bold"
+
                             android:id="@+id/TextviewSectionName3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -272,19 +275,19 @@
                             android:maxLines="1"
                             android:ellipsize="end"
                             android:layout_gravity="center"
-                            android:fontFamily="@font/montserrat_bold"
+                            android:fontFamily="@font/montserrat_semibold"
                             android:text=""
-                            android:textColor="@color/SecondGrayText"
-                            android:textSize="16dp"
+                            android:textColor="@color/BlackSviut"
+                            android:textSize="18dp"
                             app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                             app:layout_constraintStart_toStartOf="parent" />
                         <ImageView
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:layout_width="16dp"
-                            android:src="@drawable/arrow_forward_ios24px"
-                            android:layout_height="16dp"/>
+                            android:layout_width="18dp"
+                            android:src="@drawable/arrow_circle_right24px"
+                            android:layout_height="18dp"/>
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -296,6 +299,7 @@
 
 
                     <Button
+                        android:visibility="gone"
                         android:id="@+id/seeallArticleButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -322,7 +326,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="20dp"
                         android:textSize="12dp"
-                        app:icon="@drawable/arrow_forward_ios24px"
+                        app:icon="@drawable/menu24px"
                         app:iconTint = "@color/BlackSviut"
                         app:iconGravity = "textStart"
                         android:textColor="@color/BlackSviut"

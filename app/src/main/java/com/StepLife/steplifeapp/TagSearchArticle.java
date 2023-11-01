@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -137,12 +136,7 @@ public class TagSearchArticle extends AppCompatActivity {
         setContentView(R.layout.activity_tag_search_article);
 
 
-        //Дефолт стиль
-        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
-        getSupportActionBar().hide(); //Скрытие actionBar
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
 
         TextviewTagFilter = findViewById(R.id.TextviewTagFilter);
         //Кнопка выхода

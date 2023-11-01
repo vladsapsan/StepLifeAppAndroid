@@ -23,6 +23,9 @@
 
 
 
+        <androidx.legacy.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp"/>
         <com.google.android.material.card.MaterialCardView
             app:cardPreventCornerOverlap="false"
             style="@style/CustomCardViewStyle"

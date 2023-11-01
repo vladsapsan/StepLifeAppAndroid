@@ -37,13 +37,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllArticle extends Fragment {
-
     private AllArticleViewModel mViewModel;
     private ImageView backbutton;
-
     private ArticleListAdapter ArticleListAdapter;
     private ListView allArticlelist;
-
     private List<String> listData;
     private ArrayList <Article> listTemp = new ArrayList<Article>();
     ProgressBar progressBar;
@@ -98,9 +95,10 @@ public class AllArticle extends Fragment {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 int a = 0;
                 progressBar.setMax((int) snapshot.getChildrenCount());
+
+
                 if(listData.size()>0) listData.clear();
                 if(listTemp.size()>0) listTemp.clear();
                 for (DataSnapshot ds : snapshot.getChildren())

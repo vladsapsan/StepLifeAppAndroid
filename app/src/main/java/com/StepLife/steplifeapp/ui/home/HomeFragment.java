@@ -96,6 +96,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
     private ListView allArticlelist;
 
     final static String HomeVideoUri = "/SupportFiles/Steplife P5.mp4";
+
     Animation animationClick;
     private ArrayAdapter<String> adapter;
     private DatabaseReference mDataBase;
@@ -127,7 +128,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
         ArticleListAdapter = new ArticleListAdapter(getContext(),R.layout.listviewhomearticle, listTemp);
       //  HomeArticleListView.setAdapter(ArticleListAdapter);
     }
-    private void VideoStart(){
+    private void FireBaseVideoStart(){
         //Получение ссылки и запуск видео
         VideoStartButton.setVisibility(View.GONE);
         FirebaseStorage.getInstance().getReference().child(HomeVideoUri).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
@@ -135,11 +136,19 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
             @Override
             public void onSuccess(Uri downloadUrl)
             {
-                HomeVideoView.setVideoURI(downloadUrl);
+                HomeVideoView.setVideoURI((downloadUrl));
                 HomeVideoView.start();
             }
         });
     }
+    private void VideoStart(){
+        //Получение ссылки и запуск видео
+        VideoStartButton.setVisibility(View.GONE);
+        String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.steplifevideo;
+               HomeVideoView.setVideoURI(Uri.parse((path)));
+                HomeVideoView.start();
+    }
+
 
 
     //Загрузка раздела из базы
@@ -252,6 +261,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
         TextviewSectionName1 = view.findViewById(R.id.TextviewSectionName1);
         //Карточка раздела 1
         CardArticleSection = view.findViewById(R.id.CardArticleSection);
+        CardArticleSection.setVisibility(View.INVISIBLE);
         CardArticleSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -271,6 +281,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
         });
         //Карточка раздела 1
         CardArticleSection2 = view.findViewById(R.id.CardArticleSection2);
+        CardArticleSection2.setVisibility(View.INVISIBLE);
         CardArticleSection2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -487,6 +498,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
                 else {
                         //Данные получены
                     TextviewSectionName1.setText(task.getResult().getValue().toString());
+                    CardArticleSection.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -622,6 +634,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
                 else {
                     //Данные получены
                     TextviewSectionName2.setText(task.getResult().getValue().toString());
+                    CardArticleSection2.setVisibility(View.VISIBLE);
                 }
             }
         });

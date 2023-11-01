@@ -60,7 +60,6 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
             }
         }
 
-
         if(article.TagList!=null){
             AddTagsArticleCard.setVisibility(View.VISIBLE);
             TextviewTag.setText(article.TagList.get(0));
@@ -98,11 +97,9 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
                 if(constraint == null || constraint.length() == 0){
                     filterResults.count = mOriginalValues.size();
                     filterResults.values = mOriginalValues;
-
                 }else{
                     List<Article> resultsModel = new ArrayList<>();
                     String searchStr = constraint.toString().toLowerCase();
-
                     for(Article article:mOriginalValues){
                         String HeadText = Html.fromHtml(article.HeadText).toString();
                         String Date = Html.fromHtml(article.Date).toString();
@@ -115,7 +112,6 @@ public class ArticleListAdapter extends ArrayAdapter <Article> {
                 }
                 return filterResults;
             }
-
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
                 mDisplayedValues = (ArrayList<Article>) results.values;

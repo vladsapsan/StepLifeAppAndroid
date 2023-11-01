@@ -12,11 +12,11 @@
         android:layout_width="match_parent"
         android:src="@drawable/trainingphoto"
         android:scaleType="centerCrop"
-        android:layout_height="150dp">
+        android:layout_height="166dp">
     </ImageView>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="166dp"
         android:background="@color/white"
         android:backgroundTint="@color/black"
         android:alpha="0.8"
@@ -28,6 +28,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="60dp">
@@ -65,14 +66,11 @@
                             android:layout_height="25dp" />
                     </LinearLayout>
                 </FrameLayout>
-
-
-
             </LinearLayout>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <LinearLayout
 
                     android:layout_width="match_parent"
@@ -122,7 +120,7 @@
                             android:footerDividersEnabled="false"
                             tools:listitem="@layout/listviewarticleitem"
                             android:divider="@null"
-                            android:layout_marginBottom="80dp"
+                            android:layout_marginBottom="85dp"
                             android:paddingTop="5dp"
                             android:animateLayoutChanges="false"
                             android:id="@+id/SectionArticleListView"

@@ -2,7 +2,6 @@ package com.StepLife.steplifeapp.UserProfile;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ImageView;
 
@@ -21,16 +20,7 @@ public class UserAgreement extends AppCompatActivity {
         setContentView(R.layout.activity_user_agreement);
 
 
-        //Дефолт стиль
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        getWindow().setStatusBarColor(getResources().getColor(R.color.MainGray));
-        getSupportActionBar().hide(); //Скрытие actionBar
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
 
         //Пользовательское соглашение
         UserAgreementWebView = findViewById(R.id.UserAgreementWebView);
