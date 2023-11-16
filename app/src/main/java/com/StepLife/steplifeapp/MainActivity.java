@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -16,12 +17,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.StepLife.steplifeapp.databinding.ActivityMainBinding;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
+import com.StepLife.steplifeapp.ui.Article;
 import com.StepLife.steplifeapp.ui.dashboard.DashboardFragment;
 import com.StepLife.steplifeapp.ui.home.HomeFragment;
 import com.StepLife.steplifeapp.ui.notifications.NotificationsFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity  {
     boolean CheckApp;
     HomeFragment homeFragment;
     DashboardFragment dashboardFragment;
-    FloatingActionButton HelperButton;
+    CardView HelperButton;
     public FirebaseAuth mAuth;
     CardView ProfileUserButton;
     ImageView imageviewprofile;
@@ -156,6 +157,26 @@ public class MainActivity extends AppCompatActivity  {
         //и замена текущего главного фрагмента на фрагмент раздела
         fragmentManager.beginTransaction().replace(ReplaceFragment, articleSection, "section").addToBackStack(null).commit();
     }
+
+
+    public static void LoadArticleFragment(Article article, FragmentManager fragmentManager, int ReplaceFragment){
+        Bundle InfoBundle = new Bundle();
+        InfoBundle.putString("MainText", article.MainText);
+        InfoBundle.putString("Date", article.Date);
+        InfoBundle.putString("HeaderText", Html.fromHtml(article.HeadText).toString().trim());
+        if(article.TagList!=null){
+            InfoBundle.putStringArrayList("TagList", article.TagList);
+        }
+        ArticleFragment articleFragment = new ArticleFragment();
+        articleFragment.setArguments(InfoBundle);
+
+        //и замена текущего главного фрагмента на фрагмент раздела
+        fragmentManager.beginTransaction().replace(ReplaceFragment, articleFragment, "section").addToBackStack(null).commit();
+    }
+
+
+
+
     public static void LoadImageProfile(FirebaseUser cUser, ImageView imageviewprofile, Activity activity){
         //Данные аутентификации
         if(cUser!=null)

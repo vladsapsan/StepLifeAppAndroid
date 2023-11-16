@@ -31,8 +31,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.AllArticleActivity;
-import com.StepLife.steplifeapp.ArticleSection;
-import com.StepLife.steplifeapp.ChooseArticle;
 import com.StepLife.steplifeapp.MainActivity;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.TelephoneSign.TelephoneSignUp;
@@ -59,6 +57,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.ArrayList;
 import java.util.List;
 
+import aglibs.loading.skeleton.layout.SkeletonLinearLayout;
+
 
 public class HomeFragment extends Fragment implements SectionArticleViewAdapter.ItemClickListener{
     FrameLayout FrameVideo;
@@ -83,7 +83,8 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
     CardView  ArticleTeach;
     ScrollView HomescrollView;
     RecyclerView HomeArticleListView;
-    LinearLayout ShoolStepButton,CardArticleSection,CardArticleSection2;
+    SkeletonLinearLayout SceletonCardArticleSection,CardArticleSection2;
+    LinearLayout ShoolStepButton;
     HorizontalScrollView HomeArticleScroll;
     //Фрагмент школа Ходьбы
     NotificationsFragment notificationsFragment;
@@ -110,7 +111,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
     SectionArticleViewAdapter sectionArticleViewAdapter;
     private List<String> listData;
     String SectionID,Section1ID,Section2ID;
-    Animation animationIN,animationUP;
+    Animation animationIN;
     private String Article_Key ="AllArticle";
     public final static String Bundle_Section_Tag ="SectionInfo";
     private MainActivity mainActivity;
@@ -218,9 +219,11 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
         RecycleviewSectionArticle2.setAdapter(sectionArticleViewAdapter);
 
 
+
+
+
         //Инициализация анимации
         animationIN = AnimationUtils.loadAnimation(getContext(),R.anim.expected_home_fragment);
-        animationUP = AnimationUtils.loadAnimation(getContext(),R.anim.expected_app_bar);
 
 
         //Видео плеер окна
@@ -236,7 +239,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
                         HomeVideoView.start();
             }
         });
-        VideoStart();
+
 
 
         //Кнопка профиля
@@ -260,41 +263,24 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
         //Название раздела
         TextviewSectionName1 = view.findViewById(R.id.TextviewSectionName1);
         //Карточка раздела 1
-        CardArticleSection = view.findViewById(R.id.CardArticleSection);
-        CardArticleSection.setVisibility(View.INVISIBLE);
-        CardArticleSection.setOnClickListener(new View.OnClickListener() {
+        SceletonCardArticleSection = view.findViewById(R.id.SceletonCardArticleSection);
+        SceletonCardArticleSection.startLoading();
+        SceletonCardArticleSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(Section1ID!=null) {
-                    //Переход по навигации в фграмент школа
-                    Bundle InfoBundle = new Bundle();
-                    InfoBundle.putString(Bundle_Section_Tag, Section1ID);
-
-
-                    ArticleSection articleSection = new ArticleSection();
-                    articleSection.setArguments(InfoBundle);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    //и замена текущего главного фрагмента на фрагмент раздела
-                        fragmentManager.beginTransaction().replace(R.id.HomeFragment, articleSection, "section").addToBackStack(null).commit();
+                    MainActivity.LoadSectionFragment(Section1ID,getActivity().getSupportFragmentManager(),R.id.HomeFragment);
                 }
             }
         });
         //Карточка раздела 1
         CardArticleSection2 = view.findViewById(R.id.CardArticleSection2);
-        CardArticleSection2.setVisibility(View.INVISIBLE);
+        CardArticleSection2.startLoading();
         CardArticleSection2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(Section2ID!=null) {
-                    //Переход по навигации в фграмент школа
-                    Bundle InfoBundle = new Bundle();
-                    InfoBundle.putString(Bundle_Section_Tag, Section2ID);
-
-                    ArticleSection articleSection = new ArticleSection();
-                    articleSection.setArguments(InfoBundle);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    //и замена текущего главного фрагмента на фрагмент раздела
-                        fragmentManager.beginTransaction().replace(R.id.HomeFragment, articleSection, "section").addToBackStack(null).commit();
+                    MainActivity.LoadSectionFragment(Section2ID,getActivity().getSupportFragmentManager(),R.id.HomeFragment);
                 }
             }
         });
@@ -304,16 +290,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
             @Override
             public void onClick(View view) {
                 if(DowArticle1!=null) {
-                    Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intentChooseArticle.putExtra("MainText", DowArticle1.MainText);
-                    intentChooseArticle.putExtra("Date", DowArticle1.Date);
-                    intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle1.HeadText).toString().trim());
-                    if(DowArticle1.TagList!=null){
-                        intentChooseArticle.putStringArrayListExtra("TagList", DowArticle1.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intentChooseArticle);
+                    MainActivity.LoadArticleFragment(DowArticle1 ,getActivity().getSupportFragmentManager(),R.id.HomeFragment);
                 }
             }
         });
@@ -322,16 +299,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
             @Override
             public void onClick(View view) {
                 if(DowArticle2!=null) {
-                    Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intentChooseArticle.putExtra("MainText", DowArticle2.MainText);
-                    intentChooseArticle.putExtra("Date", DowArticle2.Date);
-                    intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle2.HeadText).toString().trim());
-                    if(DowArticle2.TagList!=null){
-                        intentChooseArticle.putStringArrayListExtra("TagList", DowArticle2.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intentChooseArticle);
+                    MainActivity.LoadArticleFragment(DowArticle2 ,getActivity().getSupportFragmentManager(),R.id.HomeFragment);
                 }
             }
         });
@@ -340,16 +308,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
             @Override
             public void onClick(View view) {
                 if(DowArticle3!=null) {
-                    Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intentChooseArticle.putExtra("MainText", DowArticle3.MainText);
-                    intentChooseArticle.putExtra("Date", DowArticle3.Date);
-                    intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle3.HeadText).toString().trim());
-                    if(DowArticle3.TagList!=null){
-                        intentChooseArticle.putStringArrayListExtra("TagList", DowArticle3.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intentChooseArticle);
+                    MainActivity.LoadArticleFragment(DowArticle3 ,getActivity().getSupportFragmentManager(),R.id.HomeFragment);
                 }
             }
         });
@@ -358,16 +317,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
             @Override
             public void onClick(View view) {
                 if(DowArticle4!=null) {
-                    Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intentChooseArticle.putExtra("MainText", DowArticle4.MainText);
-                    intentChooseArticle.putExtra("Date", DowArticle4.Date);
-                    intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle4.HeadText).toString().trim());
-                    if(DowArticle4.TagList!=null){
-                        intentChooseArticle.putStringArrayListExtra("TagList", DowArticle4.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intentChooseArticle);
+                    MainActivity.LoadArticleFragment(DowArticle4 ,getActivity().getSupportFragmentManager(),R.id.HomeFragment);
                 }
             }
         });
@@ -376,16 +326,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
             @Override
             public void onClick(View view) {
                 if(DowArticle5!=null) {
-                    Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
-                    // передача объекта с ключом "MainText" и значением
-                    intentChooseArticle.putExtra("MainText", DowArticle5.MainText);
-                    intentChooseArticle.putExtra("Date", DowArticle5.Date);
-                    intentChooseArticle.putExtra("HeaderText", Html.fromHtml(DowArticle5.HeadText).toString().trim());
-                    if(DowArticle5.TagList!=null){
-                        intentChooseArticle.putStringArrayListExtra("TagList", DowArticle5.TagList);
-                    }
-                    // запуск ChooseArticle
-                    startActivity(intentChooseArticle);
+                    MainActivity.LoadArticleFragment(DowArticle5 ,getActivity().getSupportFragmentManager(),R.id.HomeFragment);
                 }
             }
         });
@@ -465,7 +406,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
 
         //Второй раздел название
         TextviewSectionName2 = view.findViewById(R.id.TextviewSectionName2);
-
+        MainActivity.LoadImageProfile(mAuth.getCurrentUser(),imageviewprofile,getActivity());
         //Картинки статей на главном экране
     //    ArticleState1 =  view.findViewById(R.id.ArticleState1);
     //    ArticleState2 =  view.findViewById(R.id.ArticleState2);
@@ -482,11 +423,11 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
        // if(cUser!=null)
        // {
 
-        MainActivity.LoadImageProfile(mAuth.getCurrentUser(),imageviewprofile,getActivity());
 
+        VideoStart();
         //Запуск анимации при старте
         HomeArticleScroll.setAnimation(animationIN);
-        FrameVideo.setAnimation(animationUP);
+
         mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child("Section1");
         //Загрузка данных о 1 карточке
         mDataBase.child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -498,7 +439,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
                 else {
                         //Данные получены
                     TextviewSectionName1.setText(task.getResult().getValue().toString());
-                    CardArticleSection.setVisibility(View.VISIBLE);
+                    SceletonCardArticleSection.stopLoading();
                 }
             }
         });
@@ -634,7 +575,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
                 else {
                     //Данные получены
                     TextviewSectionName2.setText(task.getResult().getValue().toString());
-                    CardArticleSection2.setVisibility(View.VISIBLE);
+                    CardArticleSection2.stopLoading();
                 }
             }
         });
@@ -660,16 +601,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
     @Override
     public void onItemClick(View view, int position) {
         if(ArticlelistTemp.get(position)!=null) {
-            Intent intentChooseArticle = new Intent(getActivity(), ChooseArticle.class);
-            // передача объекта с ключом "MainText" и значением
-            intentChooseArticle.putExtra("MainText", ArticlelistTemp.get(position).MainText);
-            intentChooseArticle.putExtra("Date", ArticlelistTemp.get(position).Date);
-            intentChooseArticle.putExtra("HeaderText", Html.fromHtml(ArticlelistTemp.get(position).HeadText).toString().trim());
-            if(ArticlelistTemp.get(position).TagList!=null){
-                intentChooseArticle.putStringArrayListExtra("TagList", ArticlelistTemp.get(position).TagList);
-            }
-            // запуск ChooseArticle
-            startActivity(intentChooseArticle);
+            MainActivity.LoadArticleFragment(ArticlelistTemp.get(position) ,getActivity().getSupportFragmentManager(),R.id.HomeFragment);
         }
     }
 }

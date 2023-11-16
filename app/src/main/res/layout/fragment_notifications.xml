@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:layout_marginTop="0dp"
-                    android:text="Авторский учебник разработанный нашими сотрудниками для вас!"
+                    android:text="@string/TeahBook"
                     android:layout_marginRight="15dp"
                     android:textSize="14dp"
                     android:layout_marginLeft="15dp"
@@ -175,40 +175,37 @@
                         android:layout_width="match_parent"
                         android:layout_height="32dp"/>
 
-                    <LinearLayout
+                    <aglibs.loading.skeleton.layout.SkeletonLinearLayout
                         android:id="@+id/CardArticleSection1"
-                        android:clickable="true"
                         android:layout_width="match_parent"
-
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
                         android:orientation="horizontal"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginRight="5dp"
                         android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/TextviewSectionName1"
                             android:layout_width="wrap_content"
+                            android:layout_marginLeft="16dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
                             android:maxLines="1"
+                            android:text="Название"
                             android:ellipsize="end"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text=""
+                            android:fontFamily="@font/montserrat_medium"
                             android:textColor="@color/BlackSviut"
-                            android:textSize="18dp"
-                            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            android:textSize="16dp" />
                         <ImageView
-                            android:layout_gravity="center_vertical"
+                            android:layout_gravity="center"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:layout_width="18dp"
-                            android:src="@drawable/arrow_circle_right24px"
-                            android:layout_height="18dp"/>
-                    </LinearLayout>
+                            android:layout_width="16dp"
+                            android:src="@drawable/arrow_forward_ios24px"
+                            android:layout_height="16dp"/>
+                    </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
 
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:minHeight="160dp"
                         android:id="@+id/RecycleviewSectionArticle1"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="2dp"
@@ -219,78 +216,74 @@
 
 
 
-                    <LinearLayout
+                    <aglibs.loading.skeleton.layout.SkeletonLinearLayout
                         android:id="@+id/CardArticleSection2"
                         android:clickable="true"
                         android:layout_width="match_parent"
                         android:layout_marginTop="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
                         android:orientation="horizontal"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginRight="5dp"
                         android:layout_height="wrap_content">
                         <TextView
-
                             android:id="@+id/TextviewSectionName2"
                             android:layout_width="wrap_content"
+                            android:layout_marginLeft="16dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
                             android:maxLines="1"
+                            android:text="Название"
                             android:ellipsize="end"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text=""
+                            android:fontFamily="@font/montserrat_medium"
                             android:textColor="@color/BlackSviut"
-                            android:textSize="18dp"
-                            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            android:textSize="16dp" />
                         <ImageView
-                            android:layout_gravity="center_vertical"
+                            android:layout_gravity="center"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:layout_width="18dp"
-                            android:src="@drawable/arrow_circle_right24px"
-                            android:layout_height="18dp"/>
-                    </LinearLayout>
+                            android:layout_width="16dp"
+                            android:src="@drawable/arrow_forward_ios24px"
+                            android:layout_height="16dp"/>
+                    </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
                     <androidx.recyclerview.widget.RecyclerView
+                        android:minHeight="160dp"
                         android:id="@+id/RecycleviewSectionArticle2"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <LinearLayout
+                    <aglibs.loading.skeleton.layout.SkeletonLinearLayout
                         android:id="@+id/CardArticleSection3"
                         android:clickable="true"
                         android:layout_width="match_parent"
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal"
-                        android:layout_marginLeft="16dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
                         android:layout_marginRight="5dp"
                         android:layout_height="wrap_content">
                         <TextView
-
                             android:id="@+id/TextviewSectionName3"
                             android:layout_width="wrap_content"
+                            android:layout_marginLeft="16dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
                             android:maxLines="1"
+                            android:text="Название"
                             android:ellipsize="end"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text=""
+                            android:fontFamily="@font/montserrat_medium"
                             android:textColor="@color/BlackSviut"
-                            android:textSize="18dp"
-                            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            android:textSize="16dp" />
                         <ImageView
-                            android:layout_gravity="center_vertical"
+                            android:layout_gravity="center"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:layout_width="18dp"
-                            android:src="@drawable/arrow_circle_right24px"
-                            android:layout_height="18dp"/>
-                    </LinearLayout>
+                            android:layout_width="16dp"
+                            android:src="@drawable/arrow_forward_ios24px"
+                            android:layout_height="16dp"/>
+                    </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:minHeight="160dp"
                         android:id="@+id/RecycleviewSectionArticle3"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="2dp"
@@ -318,6 +311,7 @@
                         android:text="Перейти ко всем урокам"/>
 
                     <Button
+                        android:visibility="gone"
                         android:id="@+id/seeallSectionButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -335,32 +329,29 @@
                         android:fontFamily="@font/montserrat_semibold"
                         android:text="Перейти ко всем разделам"/>
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_marginTop="56dp"
+                        android:layout_marginBottom="126dp"
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="100dp">
-                        <Button
+                        android:layout_height="30dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <FrameLayout
                             android:layout_width="51dp"
-                            android:layout_height="15dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginRight="25dp"
-                            android:background="@drawable/graylogoframe"
-                            android:theme="@style/Theme.ButtonGrayLogo"
+                            android:layout_height="14.5dp"
+                            android:layout_marginTop="7dp"
+                            android:background="@drawable/log_vector_screen_small"
+
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
-                        <Button
+                        <FrameLayout
                             android:layout_width="51dp"
-                            android:layout_height="15dp"
+                            android:layout_height="14.5dp"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginLeft="25dp"
-                            android:background="@drawable/graylogoframe"
-                            android:theme="@style/Theme.ButtonGrayLogo"
+                            android:background="@drawable/log_vector_screen_small"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
-                    </FrameLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
         </FrameLayout>

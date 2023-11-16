@@ -2,6 +2,7 @@ package com.StepLife.steplifeapp;
 
 import static com.StepLife.steplifeapp.AllArticle.getDeviceWidth;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -230,9 +231,25 @@ public class ChooseArticle extends AppCompatActivity implements MyRecyclerViewTa
     }
 
 
+
     @Override
     public void finish() {
         super.finish();
 
+    }
+
+    public static void StartArticle(Article article, Activity thisActivity){
+        if(article!=null) {
+            Intent intentChooseArticle = new Intent(thisActivity, ChooseArticle.class);
+            // передача объекта с ключом "MainText" и значением
+            intentChooseArticle.putExtra("MainText", article.MainText);
+            intentChooseArticle.putExtra("Date", article.Date);
+            intentChooseArticle.putExtra("HeaderText", Html.fromHtml(article.HeadText).toString().trim());
+            if(article.TagList!=null){
+                intentChooseArticle.putStringArrayListExtra("TagList", article.TagList);
+            }
+            // запуск ChooseArticle
+            thisActivity.startActivity(intentChooseArticle);
+        }
     }
 }

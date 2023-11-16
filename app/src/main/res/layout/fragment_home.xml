@@ -81,20 +81,20 @@
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
                         android:fontFamily="@font/normalidad_extended_extreg"
-                        android:text="Коленные модули Steplife"
+                        android:text="@string/HomeTezis"
                         android:textColor="@color/BlackSviut"
                         android:textSize="17dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="16dp"
                         android:fontFamily="@font/montserrat_medium"
                         android:textColor="@color/BlackSviut"
-                        android:layout_marginRight="25dp"
+                        android:layout_marginRight="16dp"
                         android:textSize="13dp"
                         android:text="@string/VideoHelp" />
 
@@ -286,16 +286,18 @@
                 <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp"/>
-            <LinearLayout
-                android:id="@+id/CardArticleSection"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:layout_height="wrap_content">
+                <aglibs.loading.skeleton.layout.SkeletonLinearLayout
+                    android:id="@+id/SceletonCardArticleSection"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    app:clipToText="false">
                 <TextView
+
                     android:id="@+id/TextviewSectionName1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -306,18 +308,17 @@
                     android:fontFamily="@font/montserrat_semibold"
                     android:text="Название"
                     android:textColor="@color/BlackSviut"
-                    android:textSize="18dp"
+                    android:textSize="16dp"
                     app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                     app:layout_constraintStart_toStartOf="parent" />
                 <ImageView
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_width="20dp"
-                    android:src="@drawable/arrow_circle_right24px"
-                    android:layout_height="20dp"/>
-            </LinearLayout>
-
+                    android:layout_width="16dp"
+                    android:src="@drawable/arrow_forward_ios24px"
+                    android:layout_height="16dp"/>
+                </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
 
             <HorizontalScrollView
                 android:layout_marginTop="5dp"
@@ -337,7 +338,7 @@
                         android:backgroundTint="@color/white"
                         app:strokeWidth="0dp"
                         android:id="@+id/CardHomeArticle1"
-                        app:cardElevation="9dp"
+                        app:cardElevation="6dp"
                         android:foreground="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:layout_marginTop="5dp"
@@ -514,9 +515,10 @@
             </HorizontalScrollView>
 
 
-                <LinearLayout
+                <aglibs.loading.skeleton.layout.SkeletonLinearLayout
                     android:id="@+id/CardArticleSection2"
                     android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:layout_width="match_parent"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
@@ -533,21 +535,23 @@
                         android:fontFamily="@font/montserrat_semibold"
                         android:text="Название"
                         android:textColor="@color/BlackSviut"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                         app:layout_constraintStart_toStartOf="parent" />
                     <ImageView
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_width="18dp"
-                        android:src="@drawable/arrow_circle_right24px"
-                        android:layout_height="18dp"/>
-                </LinearLayout>
+                        android:layout_width="16dp"
+                        android:src="@drawable/arrow_forward_ios24px"
+                        android:layout_height="16dp"/>
+                </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
+
 
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/RecycleviewSectionArticle2"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:layout_width="match_parent"
                     tools:listitem="@layout/listviewhomearticle"
                     android:layout_height="wrap_content"/>
@@ -639,37 +643,34 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:fontFamily="@font/montserrat_semibold"
-                android:text="Подключите коленный модуль StepLife для его настройки"
+                android:text="Подключите коленный модуль Steplife для его настройки"
                 android:textColor="@color/BlackSviut"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_marginTop="56dp"
+                android:layout_marginBottom="126dp"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="100dp">
-                <Button
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <FrameLayout
                     android:layout_width="51dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="25dp"
-                    android:background="@drawable/graylogoframe"
-                    android:theme="@style/Theme.ButtonGrayLogo"
+                    android:layout_height="14.5dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/log_vector_screen_small"
+
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
-                <Button
+                <FrameLayout
                     android:layout_width="51dp"
-                    android:layout_height="15dp"
+                    android:layout_height="14.5dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="25dp"
-                    android:background="@drawable/graylogoframe"
-                    android:theme="@style/Theme.ButtonGrayLogo"
+                    android:background="@drawable/log_vector_screen_small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
-            </FrameLayout>
+            </LinearLayout>
 
 
 

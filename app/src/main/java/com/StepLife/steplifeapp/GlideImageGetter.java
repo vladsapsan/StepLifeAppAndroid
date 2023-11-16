@@ -25,7 +25,7 @@ public class GlideImageGetter implements Html.ImageGetter {
     private float density = 1.0f;
 
     public GlideImageGetter(TextView textView) {
-        this(textView, false, false, null);
+        this(textView, true, false, null);
     }
 
     public GlideImageGetter(TextView textView, boolean matchParentWidth, HtmlImagesHandler imagesHandler) {

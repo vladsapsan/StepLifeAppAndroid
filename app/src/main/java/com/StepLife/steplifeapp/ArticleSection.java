@@ -2,15 +2,12 @@ package com.StepLife.steplifeapp;
 
 import static com.StepLife.steplifeapp.ui.home.HomeFragment.Bundle_Section_Tag;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import aglibs.loading.skeleton.layout.SkeletonLinearLayout;
+
 public class ArticleSection extends Fragment {
 
 
@@ -38,9 +37,11 @@ public class ArticleSection extends Fragment {
     String SectionID;
     TextView TextSectionAbout,NameTextSection;
     ListView SectionArticleListView;
+    SkeletonLinearLayout SkeletonLinearTextSection;
+
     ArrayList <Article> listTemp = new ArrayList<>();
     ArticleListAdapter articleListAdapter;
-    ProgressBar progressBar;
+
     DatabaseReference firebaseDatabase;
 
     Section Csection;
@@ -68,7 +69,7 @@ public class ArticleSection extends Fragment {
     }
 
     private void DownloadSection(){
-        progressBar.setVisibility(View.VISIBLE);
+
         firebaseDatabase = FirebaseDatabase.getInstance().getReference(AllSectionDB).child(SectionID);
         firebaseDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -90,7 +91,7 @@ public class ArticleSection extends Fragment {
             listTemp = (ArrayList<Article>) Csection.articleList;
             articleListAdapter = new ArticleListAdapter(getContext(),R.layout.listviewarticleitem, listTemp);
             SectionArticleListView.setAdapter(articleListAdapter);
-            progressBar.setVisibility(View.GONE);
+            SkeletonLinearTextSection.stopLoading();
         }
     }
 
@@ -105,29 +106,18 @@ public class ArticleSection extends Fragment {
         Bundle InfoBundle;
         InfoBundle = getArguments();
         SectionID = InfoBundle.getString(Bundle_Section_Tag);
-
+        SkeletonLinearTextSection = view.findViewById(R.id.SkeletonLinearTextSection);
+        SkeletonLinearTextSection.startLoading();
         NameTextSection = view.findViewById(R.id.NameTextSection);
         TextSectionAbout = view.findViewById(R.id.TextSectionAbout);
         SectionArticleListView = view.findViewById(R.id.SectionArticleListView);
         SectionArticleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                //    Bundle Bundle = new Bundle();
-                Article DowArticle = listTemp.get(position);
-                // создание объекта Intent для запуска ChooseArticle
-                Intent intent = new Intent(getContext(), ChooseArticle.class);
-                // передача объекта с ключом "MainText" и значением
-                intent.putExtra("MainText",DowArticle.MainText);
-                intent.putExtra("Date",DowArticle.Date);
-                intent.putExtra("HeaderText", Html.fromHtml(DowArticle.HeadText).toString().trim());
-                if(DowArticle.TagList!=null){
-                    intent.putStringArrayListExtra("TagList", DowArticle.TagList);
-                }
-                // запуск ChooseArticle
-                startActivity(intent);
+                MainActivity.LoadArticleFragment(listTemp.get(position) ,getActivity().getSupportFragmentManager(),R.id.ArticleSectionFrame);
             }
         });
-        progressBar = view.findViewById(R.id.progressBar);
+
         DownloadSection();
 
 

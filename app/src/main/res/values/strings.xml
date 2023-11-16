@@ -9,8 +9,8 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="VersionApp">0.8.3</string>
-    <string name="BuildDate">Сборка от 01.11.2023</string>
+    <string name="VersionApp">0.8.5</string>
+    <string name="BuildDate">Сборка от 16.11.2023</string>
     <string name="AllRights">Все права защищены</string>
     <string name="Developer">Разработка ‹ООО Группа Компаний ‹Салют Орто›</string>
     <string name="title_location_permission">Устройства поблизости</string>
@@ -23,7 +23,9 @@
     <string name="Protehsisespand">Наш первый курс для новичков, который расскажет вам о том как плавно перейти к протезированию</string>
     <string name="EditMaterial">Изменение материала</string>
     <string name="Accses">Нажимая кнопку, вы даете согласие на обработку персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных»</string>
-    <string name="VideoHelp">Мы производим коленные модули нового поколения для взрослых и детей</string>
+    <string name="HomeTezis">Современные протезы Steplife</string>
+    <string name="TeahBook">Авторский учебник по реабилитации и протезированию</string>
+    <string name="VideoHelp">Российские протезы ног нового поколения для взрослых и детей</string>
     <string name="channel_description">Не какал я</string>
     <string name="ReadThis">
          <u>Читать далее</u>.

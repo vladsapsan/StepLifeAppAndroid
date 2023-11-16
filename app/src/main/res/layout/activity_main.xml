@@ -3,8 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
-    android:fitsSystemWindows="false"
-
     android:theme="@style/Theme.StepLifeApp.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -19,7 +17,7 @@
         app:layout_constraintBottom_toTopOf="@+id/nav_view" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/HelperButton"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -28,15 +26,41 @@
         android:layout_marginBottom="100dp"
         app:srcCompat="@drawable/live_help20px"/>
 
+    <com.google.android.material.card.MaterialCardView
+        app:cardElevation="6dp"
+        android:id="@+id/HelperButton"
+        android:layout_gravity="bottom|end"
+        app:cardCornerRadius="100dp"
+        app:cardBackgroundColor="@color/MainYellow"
+        android:layout_width="56dp"
+        app:strokeWidth="0dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="90dp"
+        android:layout_height="56dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_ask_question"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.card.MaterialCardView>
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_gravity="bottom"
         android:background="@color/white"
         app:itemTextAppearanceInactive="@color/MainGrayText"
         app:itemRippleColor="@color/MainYellowAlpha05"
+        android:foregroundGravity="bottom"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         android:id="@+id/nav_view"
+        app:itemPaddingBottom="0dp"
+        app:itemPaddingTop="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="78dp"
         app:itemIconSize="24dp"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 </FrameLayout>

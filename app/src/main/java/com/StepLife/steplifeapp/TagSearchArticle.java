@@ -1,9 +1,7 @@
 package com.StepLife.steplifeapp;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,7 +32,7 @@ public class TagSearchArticle extends AppCompatActivity {
 
     TextView TextviewTagFilter;
     String TagFilter;
-    CardView BacktoAllActivity;
+    ImageView BacktoAllActivity;
     ListView AllArticleListviewTags;
 
     private ImageView backbutton;
@@ -62,19 +60,7 @@ public class TagSearchArticle extends AppCompatActivity {
         AllArticleListviewTags.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Article article = listTemp.get(position);
-                // создание объекта Intent для запуска ChooseArticle
-                Intent intent = new Intent(TagSearchArticle.this, ChooseArticle.class);
-                // передача объекта с ключом "MainText" и значением
-                intent.putExtra("MainText",article.MainText);
-                intent.putExtra("Date",article.Date);
-                intent.putExtra("HeaderText", Html.fromHtml(article.HeadText).toString().trim());
-                if(article.TagList!=null){
-                    intent.putStringArrayListExtra("TagList", article.TagList);
-                }
-                // запуск ChooseArticle
-                startActivity(intent);
-                finish();
+                MainActivity.LoadArticleFragment(listTemp.get(position) ,getSupportFragmentManager(),R.id.AllArticle);
             }
         });
 
