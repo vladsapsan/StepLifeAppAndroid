@@ -407,27 +407,21 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
         //Второй раздел название
         TextviewSectionName2 = view.findViewById(R.id.TextviewSectionName2);
         MainActivity.LoadImageProfile(mAuth.getCurrentUser(),imageviewprofile,getActivity());
-        //Картинки статей на главном экране
-    //    ArticleState1 =  view.findViewById(R.id.ArticleState1);
-    //    ArticleState2 =  view.findViewById(R.id.ArticleState2);
-     //   ArticleState3 =  view.findViewById(R.id.ArticleState3);
+
+
+        DownloadHomeFragmentData();
 
 
     }
-    //Скрытие Видео по нажатию на текст
+
 
     @Override
     public void onStart() {
         super.onStart();
-       // FirebaseUser cUser = mAuth.getCurrentUser();
-       // if(cUser!=null)
-       // {
-
-
         VideoStart();
-        //Запуск анимации при старте
-        HomeArticleScroll.setAnimation(animationIN);
+    }
 
+    private void DownloadHomeFragmentData(){
         mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child("Section1");
         //Загрузка данных о 1 карточке
         mDataBase.child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -437,7 +431,7 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
                     //Ошибка получения данных
                 }
                 else {
-                        //Данные получены
+                    //Данные получены
                     TextviewSectionName1.setText(task.getResult().getValue().toString());
                     SceletonCardArticleSection.stopLoading();
                 }
@@ -591,10 +585,6 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
                 }
             }
         });
-       //    String phoneNumber = cUser.getPhoneNumber();
-       //     Uri UriPhoto = cUser.getPhotoUrl();
-
-      //  }
     }
 
     //Нажатие на карточку статьи

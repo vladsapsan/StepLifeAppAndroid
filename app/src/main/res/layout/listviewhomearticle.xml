@@ -21,7 +21,7 @@
             android:scaleType="centerCrop"
             android:clickable="false"
             android:id="@+id/ImageArticle"
-            android:layout_width="match_parent"
+            android:layout_width="192dp"
             android:layout_height="124dp" />
         <TextView
             android:id="@+id/TextArticle"

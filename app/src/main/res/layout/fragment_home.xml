@@ -2,12 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_width="match_parent"
-    android:background="@color/MainGray"
     android:clickable="true"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
+    android:layout_height="wrap_content"
     android:id="@+id/HomeFragment"
     tools:context=".ui.home.HomeFragment">
 
@@ -21,7 +18,7 @@
         android:background="@color/MainGray"
         android:elevation="20dp"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="85dp">
 
         <ImageView
             android:layout_marginTop="8dp"
@@ -45,8 +42,8 @@
             <ImageView
                 android:id="@+id/imageviewprofile"
                 android:clickable="false"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 app:srcCompat="@drawable/profile_user_account_people_icon_229121" />
         </androidx.cardview.widget.CardView>
 
@@ -54,8 +51,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:overScrollMode="always"
         android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
@@ -118,7 +113,7 @@
                             android:visibility="invisible"
                             android:id="@+id/VideoStartButton"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="192dp"
                             android:scaleType="centerCrop"
                             app:srcCompat="@drawable/video_presentation" />
                         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -350,7 +345,7 @@
                             android:scaleType="centerCrop"
                             android:clickable="false"
                             android:id="@+id/ImageHomeArticle1"
-                            android:layout_width="match_parent"
+                            android:layout_width="192dp"
                             android:layout_height="124dp" />
                         <TextView
                             android:id="@+id/TextHomeArticle1"
@@ -386,7 +381,7 @@
                         <ImageView
                             android:id="@+id/ImageHomeArticle2"
                             android:scaleType="centerCrop"
-                            android:layout_width="match_parent"
+                            android:layout_width="192dp"
                             android:layout_height="124dp" />
                         <TextView
                             android:id="@+id/TextHomeArticle2"
@@ -422,7 +417,7 @@
                         <ImageView
                             android:id="@+id/ImageHomeArticle3"
                             android:scaleType="centerCrop"
-                            android:layout_width="match_parent"
+                            android:layout_width="192dp"
                             android:layout_height="124dp" />
                         <TextView
                             android:id="@+id/TextHomeArticle3"
@@ -457,7 +452,7 @@
                         <ImageView
                             android:id="@+id/ImageHomeArticle4"
                             android:scaleType="centerCrop"
-                            android:layout_width="match_parent"
+                            android:layout_width="192dp"
                             android:layout_height="124dp" />
                         <TextView
                             android:id="@+id/TextHomeArticle4"
@@ -493,7 +488,7 @@
                         <ImageView
                             android:id="@+id/ImageHomeArticle5"
                             android:scaleType="centerCrop"
-                            android:layout_width="match_parent"
+                            android:layout_width="192dp"
                             android:layout_height="124dp" />
                         <TextView
                             android:id="@+id/TextHomeArticle5"
