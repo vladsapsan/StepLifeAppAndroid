@@ -12,11 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.StepLife.steplifeapp.other.MyRecyclerViewTagsAdapter;
-import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.ui.Article;
 import com.StepLife.steplifeapp.ui.ArticleListAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -34,23 +30,15 @@ public class TagSearchArticle extends AppCompatActivity {
     String TagFilter;
     ImageView BacktoAllActivity;
     ListView AllArticleListviewTags;
-
-    private ImageView backbutton;
-
     private ArticleListAdapter ArticleListAdapter;
-    CardView CardViewAllChooseTags;
-    private NetworkChangeListner networkChangeListner;
-
     private List<String> listData;
-    RecyclerView AllArticleRecycleview,AllChooseArticleRecycleview;
-    MyRecyclerViewTagsAdapter adapterArticleTags,adapterArticleChooseTags;
+
     ValueEventListener valueEventListener;
-    ArrayList<String> mNewArticleTags,mChooseArticleTags;
     private static final String Tags_Key ="AllTags";
     private ArrayList <Article> listTemp = new ArrayList<Article>();
     private ArrayList <Article> listTempTags = new ArrayList<Article>();
     ProgressBar progressBarAllArticleTagsActivity;
-    private static final String Article_Key ="AllArticle";
+    public static final String Article_Key ="AllArticle";
     private DatabaseReference mDataBase,mDataTags;
 
     //Иницилизация компонентов
@@ -60,7 +48,8 @@ public class TagSearchArticle extends AppCompatActivity {
         AllArticleListviewTags.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                MainActivity.LoadArticleFragment(listTemp.get(position) ,getSupportFragmentManager(),R.id.AllArticle);
+                MainActivity.LoadArticleFragmentFromID(listTemp.get(position).id,getSupportFragmentManager(),R.id.AllArticle);
+                // MainActivity.LoadArticleFragment(listTemp.get(position) ,getSupportFragmentManager(),R.id.AllArticle);
             }
         });
 
@@ -143,7 +132,7 @@ public class TagSearchArticle extends AppCompatActivity {
         super.onStart();
         //Получение значений через ключ
         Bundle arguments = getIntent().getExtras();
-        TagFilter = (String) arguments.get("TagFilter");
+        TagFilter =  arguments.getString("TagFilter");
         if(TagFilter!=null) {
             TextviewTagFilter.setText(TagFilter);
             initilization();

@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.R;
-import com.StepLife.steplifeapp.ui.Article;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 
 public class SectionArticleViewAdapter extends RecyclerView.Adapter<SectionArticleViewAdapter.ViewHolderSection> {
 
-    private ArrayList<Article> mListArticle;
+    private ArrayList<LightArticle> mListArticle;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
@@ -46,7 +45,7 @@ public class SectionArticleViewAdapter extends RecyclerView.Adapter<SectionArtic
         }
     }
 
-    public SectionArticleViewAdapter(Context context, ArrayList<Article> mListArticle){
+    public SectionArticleViewAdapter(Context context,ArrayList<LightArticle> mListArticle){
         this.mInflater = LayoutInflater.from(context);
         this.mListArticle = mListArticle;
     }

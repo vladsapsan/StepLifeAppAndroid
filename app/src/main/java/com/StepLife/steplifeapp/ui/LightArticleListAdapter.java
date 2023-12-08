@@ -1,5 +1,6 @@
 package com.StepLife.steplifeapp.ui;
 
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.Html;
@@ -17,19 +18,20 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.other.LightArticle;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArticleListAdapter extends ArrayAdapter <Article>  {
+public class LightArticleListAdapter extends ArrayAdapter <LightArticle>  {
     private Context mContext;
     private int mResource;
-    private ArrayList<Article> mDisplayedValues;
-    private List<Article> mOriginalValues;
+    private ArrayList<LightArticle> mDisplayedValues;
+    private ArrayList<LightArticle> mOriginalValues;
 
 
-    public ArticleListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Article> objects) {
+    public LightArticleListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<LightArticle> objects) {
         super(context, resource, objects);
         this.mContext = context;
         this.mResource = resource;
@@ -42,7 +44,7 @@ public class ArticleListAdapter extends ArrayAdapter <Article>  {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        Article article = getItem(position);
+        LightArticle article = getItem(position);
 
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         convertView = layoutInflater.inflate(mResource, parent,false);
@@ -71,20 +73,10 @@ public class ArticleListAdapter extends ArrayAdapter <Article>  {
         //Загрузка картинки  Glide
         if(getItem(position).PreviewPhotoUri!=null) {
             if(PreviewImage.getDrawable()==null) {
-               // Glide
-                //        .with(this.getContext())
-                 //       .load(getItem(position).PreviewPhotoUri)
-                 //       .centerCrop()
-                 //       .diskCacheStrategy(DiskCacheStrategy.ALL)
-                 //       .into(PreviewImage);
                 Picasso.get().load(article.PreviewPhotoUri).into(PreviewImage);
             }
         }
-
-
         HeadText.setText(Html.fromHtml(article.HeadText).toString().trim());
-
-
         return convertView;
     }
 
@@ -98,12 +90,11 @@ public class ArticleListAdapter extends ArrayAdapter <Article>  {
                     filterResults.count = mOriginalValues.size();
                     filterResults.values = mOriginalValues;
                 }else{
-                    List<Article> resultsModel = new ArrayList<>();
+                    List<LightArticle> resultsModel = new ArrayList<>();
                     String searchStr = constraint.toString().toLowerCase();
-                    for(Article article:mOriginalValues){
+                    for(LightArticle article:mOriginalValues){
                         String HeadText = Html.fromHtml(article.HeadText).toString();
-                        String Date = Html.fromHtml(article.Date).toString();
-                        if(HeadText.contains(searchStr) || Date.contains(searchStr)){
+                        if(HeadText.contains(searchStr)){
                             resultsModel.add(article);
                         }
                         filterResults.count = resultsModel.size();
@@ -115,7 +106,7 @@ public class ArticleListAdapter extends ArrayAdapter <Article>  {
             }
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                mDisplayedValues = (ArrayList<Article>) results.values;
+                mDisplayedValues = (ArrayList<LightArticle>) results.values;
                 notifyDataSetChanged();
                 Log.d("Text", String.valueOf(results.count));
             }
@@ -126,8 +117,5 @@ public class ArticleListAdapter extends ArrayAdapter <Article>  {
 
 
 
-
-
-
-
 }
+

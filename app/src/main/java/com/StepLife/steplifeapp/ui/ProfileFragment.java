@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.TelephoneSign.TelephoneSignUp;
@@ -103,7 +102,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                                 }
                                 else{
 
-                                    Navigation.findNavController(v).navigate(R.id.userProfileFragment);
+                                   // Navigation.findNavController(v).navigate(R.id.userProfileFragment);
                                 }
 
 

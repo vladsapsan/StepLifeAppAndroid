@@ -12,6 +12,9 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
+        <androidx.legacy.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -87,7 +90,7 @@
                     android:layout_gravity="center"
                     android:textSize="13dp"
                     android:textColor="@color/BlackSviut"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Версия: "/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -105,7 +108,7 @@
                     android:layout_gravity="center"
                     android:textSize="12dp"
                     android:textColor="@color/BlackSviut"
-                    android:fontFamily="@font/montserratsemibold"
+                    android:fontFamily="@font/montserrat_medium"
 
                     android:text="@string/Developer"/>
 
@@ -114,8 +117,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="12dp"
-                    android:textColor="@color/MainGrayText"
-                    android:fontFamily="@font/montserratsemibold"
+                    android:textColor="@color/BlackSviut"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/BuildDate"/>
 
                 <TextView
@@ -125,7 +128,7 @@
 android:layout_marginTop="20dp"
                     android:textSize="14dp"
                     android:textColor="@color/MainGrayText"
-                    android:fontFamily="@font/montserratsemibold"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="@string/AllRights"/>
             </LinearLayout>
         </FrameLayout>

@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,11 +28,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.AllArticleViewModel;
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.other.LightArticle;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.other.Section;
 import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
 import com.StepLife.steplifeapp.ui.Article;
-import com.StepLife.steplifeapp.ui.ArticleListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -49,6 +48,8 @@ import com.squareup.picasso.Target;
 import java.util.ArrayList;
 import java.util.List;
 
+import aglibs.loading.skeleton.layout.SkeletonLinearLayout;
+
 public class TopPostRedactActivity extends AppCompatActivity {
 
     Button SaveTopPostRedactButton,SelectSectionHomeButton1,SelectSectionHomeButton2,SelectSectionHomeButton3;
@@ -57,6 +58,7 @@ public class TopPostRedactActivity extends AppCompatActivity {
     ImageView imagebackEditTopPost;
 
     private static final String TopPost_Key ="TopPostArticle";
+    protected static final String AllSection_Key ="AllArticleSection";
     private static final String Library_Key ="Lib";
     private static final String Library_Row1_Key ="Row1";
     private static final String Library_Row2_Key ="Row2";
@@ -76,9 +78,9 @@ public class TopPostRedactActivity extends AppCompatActivity {
     int ChooseCard;
     private ArrayList<String> listTemp = new ArrayList<>();
     private ArrayList<Section> SectionlistTemp = new ArrayList<>();
-    private ArrayList<Article> ArticlelistTemp1 = new ArrayList<>();
-    private ArrayList<Article> ArticlelistTemp2 = new ArrayList<>();
-    private ArrayList<Article> ArticlelistTemp3 = new ArrayList<>();
+    private ArrayList<LightArticle> ArticlelistTemp1 = new ArrayList<>();
+    private ArrayList<LightArticle> ArticlelistTemp2 = new ArrayList<>();
+    private ArrayList<LightArticle> ArticlelistTemp3 = new ArrayList<>();
     Article DowArticle;
     ProgressBar progressBarTopPostEdit;
     Uri DownloadphotoUri;
@@ -97,7 +99,7 @@ public class TopPostRedactActivity extends AppCompatActivity {
     //Иницилизация компонентов
     private void initilization()
     {
-        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
+        mDataBase = FirebaseDatabase.getInstance().getReference();
         SectionAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, listTemp);
         allArticlelist.setAdapter(SectionAdapter);
 
@@ -150,7 +152,7 @@ public class TopPostRedactActivity extends AppCompatActivity {
         mDataBase.addValueEventListener(valueEventListener);
     }
 
-    public static void DownloadArticleFirebaseData(DatabaseReference mDataBase,ArrayList<Article> ListArticle,SectionArticleViewAdapter sectionArticleViewAdapter)
+    public static void DownloadArticleFirebaseData(DatabaseReference mDataBase,ArrayList<LightArticle> ListArticle,SectionArticleViewAdapter sectionArticleViewAdapter,CardView OpenSectionCard)
     {
         ListArticle.clear();
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -160,10 +162,13 @@ public class TopPostRedactActivity extends AppCompatActivity {
                 if(ListArticle.size()>0) ListArticle.clear();
                 for (DataSnapshot ds : snapshot.getChildren())
                 {
-                    if(count>=5){
+                    if(count>=3){
+                        if(OpenSectionCard!=null){
+                            OpenSectionCard.setVisibility(View.VISIBLE);
+                        }
                         break;
                     }
-                    Article article = ds.getValue(Article.class);
+                    LightArticle article = ds.getValue(LightArticle.class);
                     //Проверка
                     assert article != null;
                     ListArticle.add(article);
@@ -218,11 +223,12 @@ public class TopPostRedactActivity extends AppCompatActivity {
                 bottomSheetDialog.dismiss();
                 if(ChooseSection==1){
                     //Загружаем выбранный раздел в бд
-                    mDataBase.child(Section1_Article_Key).setValue(SectionlistTemp.get(position)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    mDataBase.child(Library_Key).child(TopPost_Key).child(Section1_Article_Key).setValue(SectionlistTemp.get(position).SectionID).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                DownloadSection(ArticlelistTemp1,Section1_Article_Key,TextviewSectionName1,sectionArticleViewAdapter1,progressBar,imagebackEditTopPost,mDataBase);
+                                DownloadSection(ArticlelistTemp1,SectionlistTemp.get(position).SectionID,TextviewSectionName1,sectionArticleViewAdapter1,progressBar,imagebackEditTopPost,mDataBase,
+                                        null,null,null);
                                 Toast.makeText(getApplicationContext(),"Раздел успешно загружен",Toast.LENGTH_SHORT).show();
 
                             }else {
@@ -232,11 +238,12 @@ public class TopPostRedactActivity extends AppCompatActivity {
                     });
                 } else if (ChooseSection==2) {
                     //Загружаем выбранный раздел в бд
-                    mDataBase.child(Section2_Article_Key).setValue(SectionlistTemp.get(position)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    mDataBase.child(Library_Key).child(TopPost_Key).child(Section2_Article_Key).setValue(SectionlistTemp.get(position).SectionID).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                DownloadSection(ArticlelistTemp2,Section2_Article_Key,TextviewSectionName2,sectionArticleViewAdapter2,progressBar,imagebackEditTopPost,mDataBase);
+                                DownloadSection(ArticlelistTemp2,SectionlistTemp.get(position).SectionID,TextviewSectionName2,sectionArticleViewAdapter2,progressBar,imagebackEditTopPost,mDataBase,
+                                        null,null,null);
                                 Toast.makeText(getApplicationContext(),"Раздел успешно загружен",Toast.LENGTH_SHORT).show();
 
                             }else {
@@ -246,11 +253,12 @@ public class TopPostRedactActivity extends AppCompatActivity {
                     });
                 } else if (ChooseSection==3) {
                     //Загружаем выбранный раздел в бд
-                    mDataBase.child(Section3_Article_Key).setValue(SectionlistTemp.get(position)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    mDataBase.child(Library_Key).child(TopPost_Key).child(Section3_Article_Key).setValue(SectionlistTemp.get(position).SectionID).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                DownloadSection(ArticlelistTemp3,Section3_Article_Key,TextviewSectionName3,sectionArticleViewAdapter3,progressBar,imagebackEditTopPost,mDataBase);
+                                DownloadSection(ArticlelistTemp3,SectionlistTemp.get(position).SectionID,TextviewSectionName3,sectionArticleViewAdapter3,progressBar,imagebackEditTopPost,mDataBase,
+                                        null,null,null);
                                 Toast.makeText(getApplicationContext(),"Раздел успешно загружен",Toast.LENGTH_SHORT).show();
 
                             }else {
@@ -303,6 +311,8 @@ public class TopPostRedactActivity extends AppCompatActivity {
 
         //закрытие окна
         imagebackEditTopPost = findViewById(R.id.imagebackEditTopPost);
+
+
         imagebackEditTopPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -314,20 +324,26 @@ public class TopPostRedactActivity extends AppCompatActivity {
     }
 
 
-    public static void DownloadSection(ArrayList<Article> List,String SectionNameConst,TextView textView,SectionArticleViewAdapter sectionArticleViewAdapter,ProgressBar DownloadPRogress,ImageView imagebackButton,DatabaseReference mDataBase){
-        DownloadPRogress.setVisibility(View.VISIBLE);
+    public static void DownloadSection(ArrayList<LightArticle> List, String SectionID, TextView textView, SectionArticleViewAdapter sectionArticleViewAdapter, ProgressBar DownloadPRogress, ImageView imagebackButton,
+                                       DatabaseReference mDataBase, SkeletonLinearLayout skeletonName,SkeletonLinearLayout skeletonCard,CardView OpenSectionCard){
         if(imagebackButton!=null) {
             imagebackButton.setVisibility(View.GONE);
         }
-        DownloadArticleFirebaseData(mDataBase.child(SectionNameConst).child("articleList"),List,sectionArticleViewAdapter);
-        mDataBase.child(SectionNameConst).child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        DownloadArticleFirebaseData(mDataBase.child(AllSection_Key).child(SectionID).child("articleList"),List,sectionArticleViewAdapter,OpenSectionCard);
+        mDataBase.child(AllSection_Key).child(SectionID).child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if(task.isSuccessful()){
                     textView.setText(task.getResult().getValue().toString());
-                    DownloadPRogress.setVisibility(View.GONE);
                     if(imagebackButton!=null) {
                         imagebackButton.setVisibility(View.VISIBLE);
+                    }
+                    if(skeletonName!=null){
+                        skeletonName.stopLoading();
+                    }
+                    if(skeletonCard!=null){
+                        skeletonCard.stopLoading();
+                        skeletonCard.setVisibility(View.GONE);
                     }
                 }
             }
@@ -336,9 +352,30 @@ public class TopPostRedactActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        DownloadSection(ArticlelistTemp1,Section1_Article_Key,TextviewSectionName1,sectionArticleViewAdapter1,progressBar,imagebackEditTopPost,mDataBase);
-        DownloadSection(ArticlelistTemp2,Section2_Article_Key,TextviewSectionName2,sectionArticleViewAdapter2,progressBar,imagebackEditTopPost,mDataBase);
-        DownloadSection(ArticlelistTemp3,Section3_Article_Key,TextviewSectionName3,sectionArticleViewAdapter3,progressBar,imagebackEditTopPost,mDataBase);
+        mDataBase.child(Library_Key).child(TopPost_Key).child(Section1_Article_Key).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    DownloadSection(ArticlelistTemp1,task.getResult().getValue().toString(),TextviewSectionName1,sectionArticleViewAdapter1,progressBar,imagebackEditTopPost,mDataBase,null,null,null);
+                }
+            }
+        });
+        mDataBase.child(Library_Key).child(TopPost_Key).child(Section2_Article_Key).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    DownloadSection(ArticlelistTemp2,task.getResult().getValue().toString(),TextviewSectionName2,sectionArticleViewAdapter2,progressBar,imagebackEditTopPost,mDataBase,null,null,null);
+                }
+            }
+        });
+        mDataBase.child(Library_Key).child(TopPost_Key).child(Section3_Article_Key).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    DownloadSection(ArticlelistTemp3,task.getResult().getValue().toString(),TextviewSectionName3,sectionArticleViewAdapter3,progressBar,imagebackEditTopPost,mDataBase,null,null,null);
+                }
+            }
+        });
     }
 
 

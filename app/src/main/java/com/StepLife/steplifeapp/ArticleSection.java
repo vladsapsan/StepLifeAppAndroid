@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,13 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.StepLife.steplifeapp.other.LightArticle;
 import com.StepLife.steplifeapp.other.Section;
-import com.StepLife.steplifeapp.ui.Article;
-import com.StepLife.steplifeapp.ui.ArticleListAdapter;
+import com.StepLife.steplifeapp.ui.LightArticleListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,14 +32,14 @@ public class ArticleSection extends Fragment {
 
 
 
-    FloatingActionButton BacktoButton;
+    LinearLayout BacktoButton;
     String SectionID;
     TextView TextSectionAbout,NameTextSection;
     ListView SectionArticleListView;
     SkeletonLinearLayout SkeletonLinearTextSection;
 
-    ArrayList <Article> listTemp = new ArrayList<>();
-    ArticleListAdapter articleListAdapter;
+    ArrayList <LightArticle> listTemp = new ArrayList<>();
+    LightArticleListAdapter articleListAdapter;
 
     DatabaseReference firebaseDatabase;
 
@@ -55,8 +54,7 @@ public class ArticleSection extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, true));
-        setReturnTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, true));
+
     }
 
     @Override
@@ -88,8 +86,8 @@ public class ArticleSection extends Fragment {
         if(Csection!=null){
             NameTextSection.setText(Csection.SectionName);
             TextSectionAbout.setText(Csection.AboutSection);
-            listTemp = (ArrayList<Article>) Csection.articleList;
-            articleListAdapter = new ArticleListAdapter(getContext(),R.layout.listviewarticleitem, listTemp);
+            listTemp = (ArrayList<LightArticle>) Csection.articleList;
+            articleListAdapter = new LightArticleListAdapter(getContext(),R.layout.listviewarticleitem, listTemp);
             SectionArticleListView.setAdapter(articleListAdapter);
             SkeletonLinearTextSection.stopLoading();
         }
@@ -114,7 +112,7 @@ public class ArticleSection extends Fragment {
         SectionArticleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                MainActivity.LoadArticleFragment(listTemp.get(position) ,getActivity().getSupportFragmentManager(),R.id.ArticleSectionFrame);
+                MainActivity.LoadArticleFragmentFromID(listTemp.get(position).id,getActivity().getSupportFragmentManager(),R.id.ArticleSectionFrame);
             }
         });
 
@@ -126,7 +124,7 @@ public class ArticleSection extends Fragment {
         BacktoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().onBackPressed();
+                getActivity().getSupportFragmentManager().popBackStack();
             }
         });
     }

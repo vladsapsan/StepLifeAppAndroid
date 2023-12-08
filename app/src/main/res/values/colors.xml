@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="MainGrayText">#8E97A6</color>
-    <color name="SecondGrayText">#758092</color>
+    <color name="SecondGrayText">#676C75</color>
     <color name="MainGray">#F4F7FA</color>
     <color name="MainYellow">#FFDF43</color>
     <color name="MainYellowAlpha05">#80FFDF43</color>
@@ -31,4 +31,5 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
     <color name="RedExit">#FF2400</color>
+
 </resources>

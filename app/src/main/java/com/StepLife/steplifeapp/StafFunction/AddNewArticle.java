@@ -63,10 +63,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -483,7 +481,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
                                 uploadArticlePhotoUri = task.getResult();
-                                String idArticle = mDataBase.getKey();
+                                String idArticle = mDataBase.push().getKey();
                                 Article newArticle;
                                 DateFormat df = new SimpleDateFormat("d MMM yyyy");
                                 String Simpledate = df.format(Calendar.getInstance().getTime());
@@ -496,7 +494,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                                 }else {
                                     newArticle = new Article(idArticle, Simpledate, HeadString, (Html.toHtml(Main.getText())), uploadArticlePhotoUri.toString());
                                 }
-                                mDataBase.push().setValue(newArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                mDataBase.child(idArticle).setValue(newArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         progresscheck.setVisibility(View.INVISIBLE);

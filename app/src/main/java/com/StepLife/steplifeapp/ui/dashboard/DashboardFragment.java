@@ -35,13 +35,10 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.StepLife.steplifeapp.Bluetooth.BluetoothController;
 import com.StepLife.steplifeapp.Bluetooth.Bt_module;
-import com.StepLife.steplifeapp.ProthesisModule.ProthesisModuleSettings;
 import com.StepLife.steplifeapp.R;
-import com.StepLife.steplifeapp.databinding.FragmentDashboardBinding;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.other.ProgressBarAnimation;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -59,7 +56,7 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
     Button buttonConnect, CalibationModuleButton;
     BluetoothDevice device;
     BluetoothAdapter bluetoothAdapter;
-    CardView TypeProthesisModuleCardButton;
+    CardView TypeProthesisModuleCardButton,ModuleCalibration;
     TextView CheckOutText;
     BluetoothDevice BondDevice;
     Button buttonConnectBt;
@@ -143,33 +140,22 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
     };
 
 
-    private FragmentDashboardBinding binding;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        //анимация
-        setExitTransition(new MaterialFadeThrough());
-        setEnterTransition(new MaterialFadeThrough());
-
-        return root;
+        return inflater.inflate(R.layout.fragment_dashboard, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Intent intent = new Intent(getActivity(), ProthesisModuleSettings.class);
+        //анимация
+        setExitTransition(new MaterialFadeThrough());
+        setEnterTransition(new MaterialFadeThrough());
+
         intent1 = new Intent(getActivity(), Bt_module.class);
-
-
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
         CalibationModuleButton = view.findViewById(R.id.CalibationModuleButton);
 
         //Количество шагов текст
@@ -180,6 +166,14 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         //Текстовое представление о состоянии аккумулятора
         TextViewBatteryCharge = view.findViewById(R.id.TextViewBatteryCharge);
 
+        //Кнопка калибровки
+        ModuleCalibration = view.findViewById(R.id.ModuleCalibration);
+        ModuleCalibration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(),R.string.NoUseble,Toast.LENGTH_SHORT).show();
+            }
+        });
 
         adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, mItems);
         //  ListViewBtMOdule = view.findViewById(R.id.ListViewBtMOdule);
@@ -212,12 +206,14 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
                         R.layout.bottomsheet_start_moduleconnection,
                         view.findViewById(R.id.SheetDialogStartBluetoothContainer)
                 );
+        //Кнопка начала подключения на данный момент отключена
         bottomSheetStartView.findViewById(R.id.StartButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PermissionCheck(PermissionCheck);
-                BtCheck(BTCheck);
-                CheckoutBt();
+                Toast.makeText(getContext(),R.string.NoUseble,Toast.LENGTH_SHORT).show();
+               // PermissionCheck(PermissionCheck);
+               // BtCheck(BTCheck);
+                // CheckoutBt();
             }
         });
 
@@ -272,11 +268,7 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
 
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {

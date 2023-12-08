@@ -4,7 +4,6 @@ import static com.StepLife.steplifeapp.StafFunction.HomeArticleRedactActivity.Se
 import static com.StepLife.steplifeapp.StafFunction.HomeArticleRedactActivity.Section2_Article_Key;
 import static com.StepLife.steplifeapp.StafFunction.HomeArticleRedactActivity.Section3_Article_Key;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,31 +11,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import com.StepLife.steplifeapp.AllArticleActivity;
 import com.StepLife.steplifeapp.AllSectionFragment;
 import com.StepLife.steplifeapp.MainActivity;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.StafFunction.TopPostRedactActivity;
-import com.StepLife.steplifeapp.TagSearchArticle;
-import com.StepLife.steplifeapp.ViewPagerArticleAdapter;
-import com.StepLife.steplifeapp.databinding.FragmentNotificationsBinding;
+import com.StepLife.steplifeapp.TagSearchArticleFragment;
+import com.StepLife.steplifeapp.other.LightArticle;
 import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
-import com.StepLife.steplifeapp.ui.Article;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
@@ -46,57 +40,31 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import aglibs.loading.skeleton.layout.SkeletonLinearLayout;
 
 public class NotificationsFragment extends Fragment implements SectionArticleViewAdapter.ItemClickListener {
 
-    private NotificationsViewModel notificationsViewModel;
-    private FragmentNotificationsBinding binding;
-    ViewPagerArticleAdapter viewPagerArticleAdapter;
     FrameLayout FrameArticles;
-
-    private int NOTIFICATION_ID = 112;
-
-    private String PRIMARY_CHANNEL_ID = "primary_notification_channel";
-    private String NewHeadTextArticle = "Новый протез за 10 тысяч?";
-    ViewPager viewpager;
-    ImageView SearchButton,NotificationButton;
-
-    TextView NameTopPost,SecNameTopPost,LibPostTextRow1,LibPostTextRow2;
-
-
+    TextView NameTopPost,SecNameTopPost;
     private final static String TopPost_Key ="TopPostArticle";
+    private static final String AllSection_Key ="AllArticleSection";
+    public static final String TagString_Key ="TagString";
     private final static String Library_Key ="Lib";
-
-    private static final String Library_Row1_Key ="Row1";
-    private static final String Library_Row2_Key ="Row2";
-
-    private DatabaseReference mDataBase,bDataBase;
-
+    private DatabaseReference mDataBase;
     Chip TagChip1,TagChip2,TagChip3,TagChip4,TagChip5,TagChip6;
-
-
-    ProgressBar progressBarTopPost;
-
-
-    FrameLayout TopPostFrame,NotificationAppBar;
-    List <Article> TopPostArticle;
-
+    CardView Card1Next,Card2Next,Card3Next;
+    FrameLayout TopPostFrame;
     private String Article_Key ="AllArticle";
-
-    List<String> TopPostList;
     Button SeeAllButton,seeallSectionButton;
-    private ArrayList<Article> ArticlelistTemp1 = new ArrayList<>();
-    private ArrayList<Article> ArticlelistTemp2 = new ArrayList<>();
-    private ArrayList<Article> ArticlelistTemp3 = new ArrayList<>();
+    private ArrayList<LightArticle> ArticlelistTemp1 = new ArrayList<>();
+    private ArrayList<LightArticle> ArticlelistTemp2 = new ArrayList<>();
+    private ArrayList<LightArticle> ArticlelistTemp3 = new ArrayList<>();
     String SectionID1,SectionID2,SectionID3;
     SectionArticleViewAdapter sectionArticleViewAdapter1,sectionArticleViewAdapter2,sectionArticleViewAdapter3;
     RecyclerView RecycleviewSectionArticle1,RecycleviewSectionArticle2,RecycleviewSectionArticle3;
-    TextView TextviewSectionName1,TextviewSectionName2,TextviewSectionName3,ChooseTextView;
-    SkeletonLinearLayout CardArticleSection1,CardArticleSection2,CardArticleSection3;
-    ScrollView TeachBookScroll;
+    TextView TextviewSectionName1,TextviewSectionName2,TextviewSectionName3;
+    SkeletonLinearLayout CardArticleSection1,SkeletonCards1,SkeletonCards2,SkeletonCards3,CardArticleSection2,CardArticleSection3;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -106,7 +74,7 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
     //Иницилизация компонентов
     private void initilization(View view)
     {
-        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(TopPost_Key);
+        mDataBase = FirebaseDatabase.getInstance().getReference();
 
         //Да это работает так)
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(),LinearLayoutManager.HORIZONTAL, false);
@@ -117,7 +85,7 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
         SectionArticleViewAdapter.ItemClickListener clickListener1 = new SectionArticleViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                MainActivity.LoadArticleFragment(ArticlelistTemp1.get(position) ,getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
+                MainActivity.LoadArticleFragmentFromID(ArticlelistTemp1.get(position).id ,getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
             }
         };
         //Инициализация кликов для статей
@@ -125,14 +93,14 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
             @Override
             public void onItemClick(View view, int position) {
 
-                MainActivity.LoadArticleFragment(ArticlelistTemp2.get(position) ,getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
+                MainActivity.LoadArticleFragmentFromID(ArticlelistTemp2.get(position).id ,getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
             }
         };
         //Инициализация кликов для статей
         SectionArticleViewAdapter.ItemClickListener clickListener3 = new SectionArticleViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                MainActivity.LoadArticleFragment(ArticlelistTemp3.get(position) ,getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
+                MainActivity.LoadArticleFragmentFromID(ArticlelistTemp3.get(position).id ,getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
             }
         };
 
@@ -157,38 +125,10 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
         RecycleviewSectionArticle3.setAdapter(sectionArticleViewAdapter3);
         sectionArticleViewAdapter3.setClickListener(clickListener3);
 
-        mDataBase.child(Section1_Article_Key).child("SectionID").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if(task.isSuccessful()){
-                    SectionID1 = task.getResult().getValue().toString();
-                    CardArticleSection1.stopLoading();
 
-                }
-            }
-        });
-        mDataBase.child(Section2_Article_Key).child("SectionID").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if(task.isSuccessful()){
-                    SectionID2 = task.getResult().getValue().toString();
-                    CardArticleSection2.stopLoading();
-                }
-            }
-        });
-        mDataBase.child(Section3_Article_Key).child("SectionID").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if(task.isSuccessful()){
-                    SectionID3 = task.getResult().getValue().toString();
-                    CardArticleSection3.stopLoading();
-                }
-            }
-        });
 
-        TopPostRedactActivity.DownloadSection(ArticlelistTemp1,Section1_Article_Key,TextviewSectionName1,sectionArticleViewAdapter1,progressBarTopPost,null,mDataBase);
-        TopPostRedactActivity.DownloadSection(ArticlelistTemp2,Section2_Article_Key,TextviewSectionName2,sectionArticleViewAdapter2,progressBarTopPost,null,mDataBase);
-        TopPostRedactActivity.DownloadSection(ArticlelistTemp3,Section3_Article_Key,TextviewSectionName3,sectionArticleViewAdapter3,progressBarTopPost,null,mDataBase);
+        DownloadSection();
+
     }
 
     @Override
@@ -197,6 +137,45 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
 
     }
 
+
+    private void DownloadSection(){
+        mDataBase.child(Library_Key).child(TopPost_Key).child(Section1_Article_Key).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    if(task.getResult().getValue().toString()!=null) {
+                        SectionID1 = (String) task.getResult().getValue();
+                        TopPostRedactActivity.DownloadSection(ArticlelistTemp1, (String) task.getResult().getValue(), TextviewSectionName1, sectionArticleViewAdapter1, null, null,
+                                mDataBase,CardArticleSection1,SkeletonCards1,Card1Next);
+                    }
+                }
+            }
+        });
+        mDataBase.child(Library_Key).child(TopPost_Key).child(Section2_Article_Key).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    if(task.getResult().getValue().toString()!=null) {
+                        SectionID2 = (String) task.getResult().getValue();
+                        TopPostRedactActivity.DownloadSection(ArticlelistTemp2, (String) task.getResult().getValue(), TextviewSectionName2, sectionArticleViewAdapter2,
+                                null, null, mDataBase,CardArticleSection2,SkeletonCards2,Card2Next);
+                    }
+                }
+            }
+        });
+        mDataBase.child(Library_Key).child(TopPost_Key).child(Section3_Article_Key).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    if(task.getResult().getValue().toString()!=null) {
+                        SectionID3 = (String) task.getResult().getValue();
+                        TopPostRedactActivity.DownloadSection(ArticlelistTemp3, (String) task.getResult().getValue(), TextviewSectionName3, sectionArticleViewAdapter3, null,
+                                null, mDataBase,CardArticleSection3,SkeletonCards3,Card3Next);
+                    }
+                }
+            }
+        });
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -227,9 +206,8 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
         NameTopPost = view.findViewById(R.id.NameTopPost);
         SecNameTopPost = view.findViewById(R.id.SecNameTopPost);
 
-        FrameArticles = view.findViewById(R.id.FrameArticles);
+
         TopPostFrame = view.findViewById(R.id.TopPostFrame);
-        progressBarTopPost = view.findViewById(R.id.progressBarTopPost);
         TextviewSectionName1 = view.findViewById(R.id.TextviewSectionName1);
         TextviewSectionName2 = view.findViewById(R.id.TextviewSectionName2);
         TextviewSectionName3 = view.findViewById(R.id.TextviewSectionName3);
@@ -237,6 +215,8 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
         Intent intentAllArticle = new Intent(getActivity(), AllArticleActivity.class);
 
         CardArticleSection1 = view.findViewById(R.id.CardArticleSection1);
+        SkeletonCards1 = view.findViewById(R.id.SkeletonCards1);
+        SkeletonCards1.startLoading();
         CardArticleSection1.startLoading();
         CardArticleSection1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,8 +226,19 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
                 }
             }
         });
+        Card1Next = view.findViewById(R.id.Card1Next);
+        Card1Next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SectionID1!=null) {
+                    MainActivity.LoadSectionFragment(SectionID1,getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
+                }
+            }
+        });
         CardArticleSection2 = view.findViewById(R.id.CardArticleSection2);
         CardArticleSection2.startLoading();
+        SkeletonCards2 = view.findViewById(R.id.SkeletonCards2);
+        SkeletonCards2.startLoading();
         CardArticleSection2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -256,10 +247,29 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
                 }
             }
         });
-
+        Card2Next = view.findViewById(R.id.Card2Next);
+        Card2Next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SectionID2!=null) {
+                    MainActivity.LoadSectionFragment(SectionID2,getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
+                }
+            }
+        });
         CardArticleSection3 = view.findViewById(R.id.CardArticleSection3);
         CardArticleSection3.startLoading();
+        SkeletonCards3 = view.findViewById(R.id.SkeletonCards3);
+        SkeletonCards3.startLoading();
         CardArticleSection3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SectionID3!=null) {
+                    MainActivity.LoadSectionFragment(SectionID3,getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
+                }
+            }
+        });
+        Card3Next = view.findViewById(R.id.Card3Next);
+        Card3Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(SectionID3!=null) {
@@ -273,78 +283,47 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
         TagChip1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StartChipActivity(TagChip1.getText().toString(),getActivity());
+                StartChipActivity(TagChip1.getText().toString(),getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
             }
         });
         TagChip2 = view.findViewById(R.id.TagChip2);
         TagChip2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StartChipActivity(TagChip2.getText().toString(),getActivity());
+                StartChipActivity(TagChip2.getText().toString(),getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
             }
         });
         TagChip3 = view.findViewById(R.id.TagChip3);
         TagChip3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StartChipActivity(TagChip3.getText().toString(),getActivity());
+                StartChipActivity(TagChip3.getText().toString(),getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
             }
         });
         TagChip4 = view.findViewById(R.id.TagChip4);
         TagChip4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StartChipActivity(TagChip4.getText().toString(),getActivity());
-            }
-        });
-        TagChip5 = view.findViewById(R.id.TagChip5);
-        TagChip5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                StartChipActivity(TagChip5.getText().toString(),getActivity());
-            }
-        });
-        TagChip6 = view.findViewById(R.id.TagChip6);
-        TagChip6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                StartChipActivity(TagChip6.getText().toString(),getActivity());
+                StartChipActivity(TagChip4.getText().toString(),getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
             }
         });
 
 
 
         initilization(view);
-
-
-        seeallSectionButton  = view.findViewById(R.id.seeallSectionButton);
-        seeallSectionButton.setOnClickListener(new View.OnClickListener() {
-
-
-
-
-            @Override
-            public void onClick(View view) {
-                StartAllSectionFragment(R.id.TeachArticleFrame,getActivity().getSupportFragmentManager());
-            }
-        });
-
-        SeeAllButton = view.findViewById(R.id.seeallArticleButton);
-        //Переход ко всем статьям
-        SeeAllButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intentAllArticle);
-            }
-        });
     }
 
 
 
-    private static void StartChipActivity(String TagText, Activity MainActivity){
-        Intent intent = new Intent(MainActivity, TagSearchArticle.class);
-        intent.putExtra("TagFilter",TagText);
-        MainActivity.startActivity(intent);
+    public static void StartChipActivity(String TagText,FragmentManager fragmentManager,int ReplaceFrameID){
+        TagSearchArticleFragment tagSearchArticleFragment;
+
+        Bundle InfoBundle = new Bundle();
+        InfoBundle.putString(TagString_Key, TagText);
+
+        tagSearchArticleFragment = new TagSearchArticleFragment();
+        tagSearchArticleFragment.setArguments(InfoBundle);
+        fragmentManager.beginTransaction().replace(ReplaceFrameID, tagSearchArticleFragment, "tagSearchArticleFragment").addToBackStack(null).commit();
     }
 
 

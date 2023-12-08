@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
@@ -53,8 +52,6 @@ public class PublicationNewArticles extends AppCompatActivity {
     private ListView AllNonPublicateArticleEditListview;
     private ArrayAdapter<String> adapter;
     int CurrnetPositionList ;
-
-
     private List<String> listData;
     NetworkChangeListner networkChangeListner;
     private ArrayList<Article> listTemp = new ArrayList<Article>();
@@ -203,7 +200,7 @@ public class PublicationNewArticles extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     //Загружаем публикацию в основной пул
                                     mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
-                                    mDataBase.push().setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    mDataBase.child(DowArticle.id).setValue(DowArticle).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(PublicationNewArticles.this,"Статья успешно опубликована",Toast.LENGTH_SHORT);

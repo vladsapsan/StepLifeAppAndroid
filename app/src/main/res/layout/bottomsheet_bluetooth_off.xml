@@ -49,20 +49,32 @@
                 android:layout_height="wrap_content"
                 android:text="Необходимо соединение по Bluetooth" />
 
-            <Button
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_marginTop="40dp"
                 android:id="@+id/BluetoothOnButton"
                 android:layout_width="match_parent"
-                android:layout_marginTop="55dp"
-                android:layout_height="55dp"
-                android:gravity="center"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="10dp"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/MainBlue"
-                android:layout_gravity="bottom"
-                android:fontFamily="@font/montserratsemibold"
-                android:text="Включить Bluetooth"/>
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:strokeWidth="0dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/MainYellow"
+                style="@style/CustomCardViewStyle"
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Включить Bluetooth"/>
+            </com.google.android.material.card.MaterialCardView>
+
 
         </LinearLayout>
 

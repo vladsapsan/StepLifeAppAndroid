@@ -6,48 +6,9 @@
     android:clickable="true"
     android:layout_height="wrap_content"
     android:id="@+id/HomeFragment"
+    android:background="@color/MainGray"
     tools:context=".ui.home.HomeFragment">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <FrameLayout
-        android:background="@color/MainGray"
-        android:elevation="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="85dp">
-
-        <ImageView
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logosteplifebase" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="8dp"
-            android:foreground="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:id="@+id/ProfileUserButton"
-            android:visibility="visible"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_gravity="center|right"
-            android:backgroundTint="@color/MainGray"
-            android:layout_marginRight="20dp"
-            app:cardCornerRadius="50dp">
-            <ImageView
-                android:id="@+id/imageviewprofile"
-                android:clickable="false"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                app:srcCompat="@drawable/profile_user_account_people_icon_229121" />
-        </androidx.cardview.widget.CardView>
-
-    </FrameLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,8 +18,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <FrameLayout
-                android:id="@+id/FrameVideoInstruction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
@@ -66,19 +27,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                     <TextView
-                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/normalidad_extended_extreg"
+                        android:fontFamily="@font/normalidad_text_text_medium"
                         android:text="@string/HomeTezis"
                         android:textColor="@color/BlackSviut"
                         android:textSize="17dp" />
@@ -92,8 +50,6 @@
                         android:layout_marginRight="16dp"
                         android:textSize="13dp"
                         android:text="@string/VideoHelp" />
-
-
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_marginBottom="30dp"
@@ -109,80 +65,90 @@
 
 
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:visibility="invisible"
-                            android:id="@+id/VideoStartButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="192dp"
-                            android:scaleType="centerCrop"
-                            app:srcCompat="@drawable/video_presentation" />
-                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                            android:visibility="gone"
-                            android:id="@+id/playbuttonCircle"
-                            android:layout_width="wrap_content"
-                            style="?attr/floatingActionButtonSmallStyle"
-                            android:layout_gravity="center"
-                            android:layout_height="wrap_content"
-                            app:backgroundTint="@color/white"
-                            app:srcCompat="@drawable/play_circle24px"/>
 
-                        <VideoView
-                            android:id="@+id/HomeVideoView"
+                        <ImageView
+                            android:id="@+id/VideoHolder"
+                            android:layout_width="match_parent"
+                            android:scaleType="centerCrop"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/video_presentation"/>
+                        <com.StepLife.steplifeapp.other.VideoPlayer
                             android:layout_gravity="center"
-                            android:layout_width="500dp"
-                            android:layout_height="200dp" />
+                            android:id="@+id/HomeVideoView"
+                            android:layout_width="600dp"
+                            android:layout_height="200dp"/>
+
+                        <ToggleButton
+                            android:alpha="0.55"
+                            android:id="@+id/VideoSoundButton"
+                            android:layout_width="32dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right|bottom"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/toggle_button_volume"
+                            android:textOff="@null"
+                            android:textOn="@null" />
                     </com.google.android.material.card.MaterialCardView>
-                    <TextView
-                        android:visibility="gone"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:id="@+id/textHideVideoButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="12dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="╳ Больше не показывать"
-                        android:textColor="@color/BlackSviut"
-                        android:textSize="15dp" />
                 </LinearLayout>
             </FrameLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="24dp"
-                    android:src="@drawable/directions_walk24px"
-                    android:layout_height="24dp"/>
-                <TextView
-                    android:textStyle="bold"
-                    android:layout_marginLeft="5dp"
+                <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="Школа ходьбы"
-                    android:textSize="18dp"
-                    android:textColor="@color/BlackSviut"
-                    android:fontFamily="@font/montserrat_bold"/>
+                    android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_width="40dp"
+                        app:cardElevation="3dp"
+                        android:layout_gravity="start"
+                        app:cardCornerRadius="50dp"
+                        app:cardBackgroundColor="@color/white"
+                        android:layout_height="40dp">
+                        <ImageView
+                            android:padding="8dp"
+                            android:layout_gravity="center"
+                            android:layout_width="40dp"
+                            android:src="@drawable/directions_walk24px"
+                            android:layout_height="40dp"/>
+                    </androidx.cardview.widget.CardView>
+                </FrameLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="Школа ходьбы"
+                        android:textSize="18dp"
+                        android:textColor="@color/SecondGrayText"
+                        android:fontFamily="@font/normalidad_text_text_medium"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textColor="@color/BlackSviut"
+                        android:layout_marginRight="46dp"
+                        android:textSize="14dp"
+                        android:text="@string/AboutArticleSchool"
+                        />
+                </LinearLayout>
+
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="46dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:textColor="@color/black"
-                android:layout_marginRight="46dp"
-                android:textSize="14dp"
-                android:text="Собрали для вас самые важные статьи на главной странице"
-                />
+
 
             <TextView
                 android:visibility="gone"
@@ -198,91 +164,14 @@
                 android:layout_marginTop="5dp"/>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
 
-            <com.google.android.material.card.MaterialCardView
-                android:visibility="gone"
-                app:cardPreventCornerOverlap="false"
-                style="@style/CustomCardViewStyle"
-                android:backgroundTint="@color/white"
-                android:id="@+id/CardArticleSection22"
-                app:strokeWidth="0dp"
-                app:cardElevation="9dp"
-                android:foreground="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:src="@drawable/trainingphoto"
-                        android:scaleType="centerCrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="135dp"/>
-                    <TextView
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserrat_semibold"
-                        android:text="Подготовка к протезированию"
-                        android:textColor="@color/black"
-                        android:textSize="16dp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:textColor="@color/BlackSviut"
-                        android:layout_marginRight="20dp"
-                        android:textSize="12dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="@string/Protehsisespand"
-                        />
-                </LinearLayout>
-
-                <androidx.cardview.widget.CardView
-                    android:foreground="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:layout_gravity="top|right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_width="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    android:backgroundTint="@color/MainBlue"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/TextviewTag"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textSize="13dp"
-                        android:text="Для новичков"
-                        />
-                </androidx.cardview.widget.CardView>
-            </com.google.android.material.card.MaterialCardView>
 
                 <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp"/>
                 <aglibs.loading.skeleton.layout.SkeletonLinearLayout
-                    android:id="@+id/SceletonCardArticleSection"
+                    android:id="@+id/CardArticleSection1"
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackground"
                     android:paddingTop="4dp"
@@ -292,223 +181,116 @@
                     android:layout_height="wrap_content"
                     app:clipToText="false">
                 <TextView
-
                     android:id="@+id/TextviewSectionName1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:maxLines="1"
                     android:ellipsize="end"
+                    android:maxWidth="232dp"
+                    android:hint="Название"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/montserrat_semibold"
-                    android:text="Название"
-                    android:textColor="@color/BlackSviut"
-                    android:textSize="16dp"
+                    android:fontFamily="@font/normalidad_text_text_medium"
+                    android:textColor="@color/SecondGrayText"
+                    android:textSize="18dp"
                     app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                     app:layout_constraintStart_toStartOf="parent" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_width="16dp"
-                    android:src="@drawable/arrow_forward_ios24px"
-                    android:layout_height="16dp"/>
+                    <FrameLayout
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_marginRight="16dp"
+                            android:layout_gravity="right|center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/FullSection"
+                            android:textColor="@color/MainBlue"
+                            android:fontFamily="@font/montserrat_medium"/>
+                    </FrameLayout>
                 </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
 
-            <HorizontalScrollView
-                android:layout_marginTop="5dp"
-                android:id="@+id/HomeArticleScroll"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none">
-                <LinearLayout
+                <aglibs.loading.skeleton.layout.SkeletonLinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="205dp"
                     android:orientation="horizontal"
-                    android:paddingRight="20dp">
-
-                    <com.google.android.material.card.MaterialCardView
-                        app:cardPreventCornerOverlap="false"
-                        style="@style/CustomCardViewStyle"
-                        android:backgroundTint="@color/white"
-                        app:strokeWidth="0dp"
-                        android:id="@+id/CardHomeArticle1"
-                        app:cardElevation="6dp"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
+                    android:id="@+id/SkeletonCards1"
+                    android:layout_height="wrap_content">
+                    <ImageView
                         android:layout_width="192dp"
                         android:layout_height="180dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginRight="4dp"
                         android:layout_marginLeft="16dp">
-                        <ImageView
-                            android:scaleType="centerCrop"
-                            android:clickable="false"
-                            android:id="@+id/ImageHomeArticle1"
-                            android:layout_width="192dp"
-                            android:layout_height="124dp" />
-                        <TextView
-                            android:id="@+id/TextHomeArticle1"
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:gravity="left"
-                            android:text=""
-                            android:ellipsize="end"
-                            android:maxLines="2"
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="13sp" />
-                    </com.google.android.material.card.MaterialCardView>
+                    </ImageView>
+                </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
 
-                    <com.google.android.material.card.MaterialCardView
-                        app:cardPreventCornerOverlap="false"
-                        style="@style/CustomCardViewStyle"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        app:cardElevation="9dp"
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                        app:cardBackgroundColor="@color/white"
-                        android:id="@+id/CardHomeArticle2"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="192dp"
-                        android:layout_height="180dp"
-                        android:layout_marginLeft="20dp">
-                        <ImageView
-                            android:id="@+id/ImageHomeArticle2"
-                            android:scaleType="centerCrop"
-                            android:layout_width="192dp"
-                            android:layout_height="124dp" />
-                        <TextView
-                            android:id="@+id/TextHomeArticle2"
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:gravity="left"
-                            android:text=""
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/RecycleviewSectionArticle1"
+                            android:layout_width="wrap_content"
+                            tools:listitem="@layout/listviewhomearticle"
+                            android:layout_marginRight="16dp"
+                            android:layout_height="wrap_content"/>
 
+                        <com.google.android.material.card.MaterialCardView
+                            android:visibility="gone"
+                            android:id="@+id/Card1Next"
+                            style="@style/CustomCardViewStyle"
+                            android:layout_width="178dp"
+                            android:layout_height="178dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="18dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:backgroundTint="@color/white"
+                            android:clickable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            app:cardElevation="6dp"
+                            app:cardPreventCornerOverlap="false"
+                            app:strokeColor="@color/MainBlue"
+                            app:strokeWidth="1dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/arrow_right_alt24px" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/montserrat_medium"
+                                    android:gravity="center"
+                                    android:text="Читать все статьи раздела"
+                                    android:textColor="@color/BlackSviut"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                    </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </RelativeLayout>
+                </HorizontalScrollView>
 
-
-                    <com.google.android.material.card.MaterialCardView
-                        app:cardPreventCornerOverlap="false"
-                        style="@style/CustomCardViewStyle"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardElevation="9dp"
-                        android:id="@+id/CardHomeArticle3"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="192dp"
-                        android:layout_height="180dp"
-                        android:layout_marginLeft="20dp">
-                        <ImageView
-                            android:id="@+id/ImageHomeArticle3"
-                            android:scaleType="centerCrop"
-                            android:layout_width="192dp"
-                            android:layout_height="124dp" />
-                        <TextView
-                            android:id="@+id/TextHomeArticle3"
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:gravity="left"
-                            android:text=""
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="14sp" />
-
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        app:cardPreventCornerOverlap="false"
-                        style="@style/CustomCardViewStyle"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:id="@+id/CardHomeArticle4"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        app:cardElevation="9dp"
-                        app:cardBackgroundColor="@color/white"
-                        android:layout_width="192dp"
-                        android:layout_height="180dp"
-                        android:layout_marginLeft="20dp">
-                        <ImageView
-                            android:id="@+id/ImageHomeArticle4"
-                            android:scaleType="centerCrop"
-                            android:layout_width="192dp"
-                            android:layout_height="124dp" />
-                        <TextView
-                            android:id="@+id/TextHomeArticle4"
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:gravity="left"
-                            android:text=""
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="14sp" />
-
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        app:cardPreventCornerOverlap="false"
-                        style="@style/CustomCardViewStyle"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:id="@+id/CardHomeArticle5"
-                        android:layout_marginTop="5dp"
-                        app:cardElevation="9dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="192dp"
-                        app:cardBackgroundColor="@color/white"
-                        android:layout_height="180dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp">
-                        <ImageView
-                            android:id="@+id/ImageHomeArticle5"
-                            android:scaleType="centerCrop"
-                            android:layout_width="192dp"
-                            android:layout_height="124dp" />
-                        <TextView
-                            android:id="@+id/TextHomeArticle5"
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:gravity="left"
-                            android:text=""
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="14sp" />
-
-
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-            </HorizontalScrollView>
-
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"/>
 
                 <aglibs.loading.skeleton.layout.SkeletonLinearLayout
                     android:id="@+id/CardArticleSection2"
@@ -527,32 +309,107 @@
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:layout_gravity="center"
-                        android:fontFamily="@font/montserrat_semibold"
-                        android:text="Название"
-                        android:textColor="@color/BlackSviut"
-                        android:textSize="16dp"
+                        android:fontFamily="@font/normalidad_text_text_medium"
+                        android:hint="Название"
+                        android:textColor="@color/SecondGrayText"
+                        android:textSize="18dp"
                         app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                         app:layout_constraintStart_toStartOf="parent" />
-                    <ImageView
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_width="16dp"
-                        android:src="@drawable/arrow_forward_ios24px"
-                        android:layout_height="16dp"/>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_marginRight="16dp"
+                            android:layout_gravity="right|center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/FullSection"
+                            android:textColor="@color/MainBlue"
+                            android:fontFamily="@font/montserrat_medium"/>
+                    </FrameLayout>
                 </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
 
+                <aglibs.loading.skeleton.layout.SkeletonLinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/SkeletonCards2"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="192dp"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginLeft="16dp">
+                    </ImageView>
+                </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
 
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:scrollbars="none"
+            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/RecycleviewSectionArticle2"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="16dp"
                     tools:listitem="@layout/listviewhomearticle"
                     android:layout_height="wrap_content"/>
 
-            </LinearLayout>
+            <com.google.android.material.card.MaterialCardView
+                android:visibility="gone"
+                android:id="@+id/Card2Next"
+                style="@style/CustomCardViewStyle"
+                android:layout_width="178dp"
+                android:layout_height="178dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardElevation="6dp"
+                app:cardPreventCornerOverlap="false"
+                app:strokeColor="@color/MainBlue"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/arrow_right_alt24px" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center"
+                        android:text="Читать все статьи раздела"
+                        android:textColor="@color/BlackSviut"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
+        </LinearLayout>
+        </RelativeLayout>
+        </HorizontalScrollView>
 
             <TextView
                 android:visibility="gone"
@@ -583,65 +440,69 @@
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:src="@drawable/directions_walk24px"/>
+                        android:src="@drawable/list_alt24px"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
                         android:layout_gravity="left|center_vertical"
                         android:fontFamily="@font/montserrat_semibold"
-                        android:text="Школа ходьбы"
+                        android:text="Все разделы школы"
                         android:textColor="@color/MainBlue"
-                        android:textSize="14dp"
+                        android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="right|center_vertical"
-                            android:layout_margin="4dp"
-                            android:src="@drawable/arrow_forward_ios24px"/>
+
                     </FrameLayout>
 
                 </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="36dp"/>
 
-            <Button
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/buttonConnect"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="42dp"
-                android:textSize="16dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginRight="16dp"
+                app:strokeWidth="0dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/MainYellow"
+                style="@style/CustomCardViewStyle"
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Подключить модуль"/>
+            </com.google.android.material.card.MaterialCardView>
 
-                android:background="@drawable/buttonstyle2"
-                android:text="Подключить модуль"
-                android:textColor="@color/black"
-                android:theme="@style/Theme.ButtonWhite"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/montserrat_semibold"
-                android:text="Подключите коленный модуль Steplife для его настройки"
+                android:gravity="left"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Подключите свой коленный модуль Steplife или другое устройство для настройки."
                 android:textColor="@color/BlackSviut"
-                android:textSize="14dp"
-                android:textStyle="bold" />
+                android:textSize="14dp" />
 
             <LinearLayout
                 android:layout_marginTop="56dp"
@@ -672,7 +533,6 @@
 
         </LinearLayout>
     </ScrollView>
-    </LinearLayout>
 </FrameLayout>
 
 

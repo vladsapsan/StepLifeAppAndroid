@@ -1,11 +1,11 @@
 package com.StepLife.steplifeapp.StafFunction;
 
+import static com.StepLife.steplifeapp.StafFunction.TopPostRedactActivity.AllSection_Key;
+
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,11 +24,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.AllArticleViewModel;
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.other.LightArticle;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.other.Section;
 import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
 import com.StepLife.steplifeapp.ui.Article;
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -42,6 +42,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import aglibs.loading.skeleton.layout.SkeletonLinearLayout;
 
 public class HomeArticleRedactActivity extends AppCompatActivity implements SectionArticleViewAdapter.ItemClickListener {
 
@@ -74,7 +76,7 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
     int ChooseSection;
     private ArrayList<String> listTemp = new ArrayList<>();
     private ArrayList<Section> SectionlistTemp = new ArrayList<>();
-    private ArrayList<Article> ArticlelistTemp = new ArrayList<>();
+    private ArrayList<LightArticle> ArticlelistTemp = new ArrayList<>();
     Article DowArticle;
     NetworkChangeListner networkChangeListner;
     TextView TextHomeArticle1,TextHomeArticle2,TextHomeArticle3,TextHomeArticle4,TextHomeArticle5;
@@ -124,19 +126,31 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
         };
         mDataBase.addValueEventListener(valueEventListener);
     }
-    private void DownloadArticleFirebaseData(DatabaseReference mDataBase)
+    private static void DownloadArticleFirebaseData(DatabaseReference mDataBase,ArrayList<LightArticle> ArticleListTemp,SectionArticleViewAdapter sectionArticleViewAdapter,SkeletonLinearLayout SkeletonCard,CardView OpenSectionCard)
     {
-        ArticlelistTemp.clear();
+        ArticleListTemp.clear();
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(ArticlelistTemp.size()>0) ArticlelistTemp.clear();
+                int check = 0;
+                if(ArticleListTemp.size()>0) ArticleListTemp.clear();
                 for (DataSnapshot ds : snapshot.getChildren())
                 {
-                    Article article = ds.getValue(Article.class);
+                    LightArticle article = ds.getValue(LightArticle.class);
                     //Проверка
                     assert article != null;
-                    ArticlelistTemp.add(article);
+                    ArticleListTemp.add(article);
+                    check++;
+                    if(check>=3) {
+                        if(SkeletonCard!=null){
+                            SkeletonCard.stopLoading();
+                            SkeletonCard.setVisibility(View.GONE);
+                        }
+                        if(OpenSectionCard!=null){
+                            OpenSectionCard.setVisibility(View.VISIBLE);
+                        }
+                        break;
+                    }
                 }
                 sectionArticleViewAdapter.notifyDataSetChanged();
             }
@@ -177,31 +191,6 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
         LinearLayoutManager layoutManager= new LinearLayoutManager(HomeArticleRedactActivity.this,LinearLayoutManager.HORIZONTAL, false);
         RecycleviewSectionArticle.setLayoutManager(layoutManager);
 
-        //инициализация элементов внутри карточек 1
-        TextHomeArticle1 = findViewById(R.id.TextHomeArticle1);
-        ImageHomeArticle1 = findViewById(R.id.ImageHomeArticle1);
-        ImageAddTop1 = findViewById(R.id.ImageAddTopHome1);
-
-
-        //инициализация элементов внутри карточек 2
-        TextHomeArticle2 = findViewById(R.id.TextHomeArticle2);
-        ImageHomeArticle2 = findViewById(R.id.ImageHomeArticle2);
-        ImageAddTop2 = findViewById(R.id.ImageAddTopHome2);
-
-        //инициализация элементов внутри карточек 3
-        TextHomeArticle3 = findViewById(R.id.TextHomeArticle3);
-        ImageHomeArticle3 = findViewById(R.id.ImageHomeArticle3);
-        ImageAddTop3 = findViewById(R.id.ImageAddTopHome3);
-
-        //инициализация элементов внутри карточек 4
-        TextHomeArticle4 = findViewById(R.id.TextHomeArticle4);
-        ImageHomeArticle4 = findViewById(R.id.ImageHomeArticle4);
-        ImageAddTop4 = findViewById(R.id.ImageAddTopHome4);
-
-        //инициализация элементов внутри карточек 5
-        TextHomeArticle5 = findViewById(R.id.TextHomeArticle5);
-        ImageHomeArticle5 = findViewById(R.id.ImageHomeArticle5);
-        ImageAddTop5 = findViewById(R.id.ImageAddTopHome5);
 
         //Плашка выбора раздела для загрузки
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialog);
@@ -224,11 +213,11 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
                 if(ChooseSection==1){
                     //Загружаем выбранный раздел в бд
                     mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child(Section1_Article_Key);
-                    mDataBase.setValue(SectionlistTemp.get(position)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    mDataBase.setValue(SectionlistTemp.get(position).SectionID).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                DownloadSection1();
+                              //  DownloadSection1();
                                 Toast.makeText(HomeArticleRedactActivity.this,"Раздел успешно загружен",Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
                                 imagebackEditArticles.setVisibility(View.VISIBLE);
@@ -242,11 +231,11 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
                 } else if (ChooseSection==2) {
                     //Загружаем выбранный раздел в бд
                     mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child(Section2_Article_Key);
-                    mDataBase.setValue(SectionlistTemp.get(position)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    mDataBase.setValue(SectionlistTemp.get(position).SectionID).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                DownloadSection2();
+                                DownloadHomeSection(Section2_Article_Key,TextviewSectionName2,ArticlelistTemp,sectionArticleViewAdapter,null,null,null);
                                 Toast.makeText(HomeArticleRedactActivity.this,"Раздел успешно загружен",Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
                                 imagebackEditArticles.setVisibility(View.VISIBLE);
@@ -339,171 +328,38 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
     }
 
 
-    private void DownloadSection2(){
-        DownloadArticleFirebaseData(FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child(Section2_Article_Key).child("articleList"));
-        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child(Section2_Article_Key);
-        mDataBase.child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+    public static void DownloadHomeSection(String SectionDownloadKey, TextView SectionName, ArrayList<LightArticle> articlelistTemp, SectionArticleViewAdapter sectionArticleViewAdapter,
+                                           SkeletonLinearLayout SkeletonName,SkeletonLinearLayout SkeletonCard,CardView OpenSectionCard){
+        FirebaseDatabase.getInstance().getReference("Lib").child("HomeArticle").child(SectionDownloadKey).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if(task.isSuccessful()){
-                    TextviewSectionName2.setText(task.getResult().getValue().toString());
+
+                    FirebaseDatabase.getInstance().getReference(AllSection_Key).child(task.getResult().getValue().toString()).child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if(task.isSuccessful()){
+                                if(SkeletonName!=null){
+                                    SkeletonName.stopLoading();
+                                }
+                                SectionName.setText(task.getResult().getValue().toString());
+                            }
+                        }
+                    });
+                    DownloadArticleFirebaseData(FirebaseDatabase.getInstance().getReference(AllSection_Key).child(task.getResult().getValue().toString()).child("articleList"),articlelistTemp,sectionArticleViewAdapter,SkeletonCard,OpenSectionCard);
                 }
             }
         });
+
     }
-    private void DownloadSection1(){
-        mDataBase = FirebaseDatabase.getInstance().getReference(Library_Key).child(HomeArticle_Key).child(Section1_Article_Key);
-        //Получение данных из базы
-        mDataBase.child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if(task.isSuccessful()){
-                    TextviewSectionName1.setText(task.getResult().getValue().toString());
-                }
-            }
-        });
-        //Загрузка данных о 1 карточке
-        mDataBase.child("articleList").child("0").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    if(task.getResult().getValue()!=null) {
-                        CardHomeArticle2.setVisibility(View.VISIBLE);
-                        try {
-                            //Данные получены
-                            DowArticle = task.getResult().getValue(Article.class);
-                            if (DowArticle != null) {
-                                ImageAddTop1.setVisibility(View.GONE);
-                                TextHomeArticle1.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                                Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle1);
-                            }
-                        } catch (Exception e) {
-                        }
-                    }else {
-                        CardHomeArticle2.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
 
-        //Загрузка данных о 2 карточке
-        mDataBase.child("articleList").child("1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    if(task.getResult().getValue()!=null) {
-                        CardHomeArticle2.setVisibility(View.VISIBLE);
-                        try {
-                            //Данные получены
-                            DowArticle = task.getResult().getValue(Article.class);
-                            if (DowArticle != null) {
-                                ImageAddTop2.setVisibility(View.GONE);
-                                TextHomeArticle2.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                                Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle2);
-                            }
-                        } catch (Exception e) {
-                        }
-                    }else {
-                        CardHomeArticle2.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
 
-        //Загрузка данных о 3 карточке
-        mDataBase.child("articleList").child("2").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    if(task.getResult().getValue()!=null) {
-                        CardHomeArticle3.setVisibility(View.VISIBLE);
-                        try {
-                            //Данные получены
-                            DowArticle = task.getResult().getValue(Article.class);
-                            if (DowArticle != null) {
-                                ImageAddTop3.setVisibility(View.GONE);
-                                TextHomeArticle3.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                                Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle3);
-                            }
-                        } catch (Exception e) {
-                        }
-                    }else {
-                        CardHomeArticle3.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
-
-        //Загрузка данных о 4 карточке
-        mDataBase.child("articleList").child("3").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    if(task.getResult().getValue()!=null) {
-                        CardHomeArticle4.setVisibility(View.VISIBLE);
-                        try {
-                            //Данные получены
-                            DowArticle = task.getResult().getValue(Article.class);
-                            if (DowArticle != null) {
-                                ImageAddTop4.setVisibility(View.GONE);
-                                TextHomeArticle4.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                                Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle4);
-                            }
-                        } catch (Exception e) {
-                        }
-                    }else {
-                        CardHomeArticle4.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
-
-        //Загрузка данных о 5 карточке
-        mDataBase.child("articleList").child("4").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Ошибка получения данных
-                }
-                else {
-                    if(task.getResult().getValue()!=null) {
-                        CardHomeArticle5.setVisibility(View.VISIBLE);
-                        try {
-                            //Данные получены
-                            DowArticle = task.getResult().getValue(Article.class);
-                            if (DowArticle != null) {
-                                ImageAddTop5.setVisibility(View.GONE);
-                                TextHomeArticle5.setText(Html.fromHtml(DowArticle.HeadText).toString().trim());
-                                Glide.with(getApplicationContext()).load(DowArticle.PreviewPhotoUri).into(ImageHomeArticle5);
-                            }
-                        } catch (Exception e) {
-                        }
-                    }else {
-                        CardHomeArticle5.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
-    }
 
     @Override
     public void onStart() {
         super.onStart();
-
-        DownloadSection1();
-        DownloadSection2();
+        DownloadHomeSection(Section2_Article_Key,TextviewSectionName2,ArticlelistTemp,sectionArticleViewAdapter,null,null,null);
     }
 
 

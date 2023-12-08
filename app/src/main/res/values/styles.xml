@@ -37,8 +37,9 @@
 
 
 
-    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/MainYellow</item>
+    <style name="CustomNavigationMenu" parent="Widget.Design.BottomNavigationView">
+
+
     </style>
 
     <style name="Widget.Theme.StepLifeApp.ButtonBar.Fullscreen" parent="">

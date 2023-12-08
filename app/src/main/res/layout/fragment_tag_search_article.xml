@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AllArticle"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:layout_height="match_parent"
+    android:background="@color/MainGray"
+    tools:context=".AllArticleActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:background="@color/MainYellow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="24dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/BlackSviut"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="16sp"
+                    android:text="Школа ходьбы"
+                    />
+                <TextView
+                    android:id="@+id/TextviewTagFilter"
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/BlackSviut"
+                    android:fontFamily="@font/normalidad_text_text_medium"
+                    android:textSize="22sp"
+                    android:text="Текущий тег"
+                    />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp"/>
+        <LinearLayout
+            android:id="@+id/CloseArticleButton"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="24dp"
+                android:rotationY="180"
+                android:scaleType="centerCrop"
+                android:layout_height="24dp"
+                android:src="@drawable/arrow_right_alt24px"/>
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="8dp"/>
+            <TextView
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:text="Вернуться обратно"
+                android:textColor="@color/MainBlue"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:visibility="gone"
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/progressBarAllArticleTagsActivity"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:progressTint="@color/MainBlue"
+                            android:progressBackgroundTint="@color/MainBlue"
+                            android:layout_height="1.8dp" />
+                    </LinearLayout>
+
+                </FrameLayout>
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:dividerColor="@color/SecondGray"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/MainGray"
+                    android:layout_height="wrap_content">
+                    <ListView
+                        android:background="@color/MainGray"
+                        android:footerDividersEnabled="false"
+                        android:divider="@null"
+                        android:animateLayoutChanges="false"
+                        android:id="@+id/AllArticleListviewTags"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

@@ -3,7 +3,6 @@ package com.StepLife.steplifeapp.StafFunction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,9 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.other.LightArticle;
 import com.StepLife.steplifeapp.other.Section;
 import com.StepLife.steplifeapp.ui.Article;
 import com.StepLife.steplifeapp.ui.ArticleListAdapter;
+import com.StepLife.steplifeapp.ui.LightArticleListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -38,10 +39,10 @@ public class AddNewSection extends AppCompatActivity {
     ListView allArticlelist,allArticlelistSection;
     private List<String> listData;
     private List<String> ListSelectChips;
-    private ArticleListAdapter ArticleListAdapter,ChooseArticleListAdapter;
+    private LightArticleListAdapter ArticleListAdapter,ChooseArticleListAdapter;
     ValueEventListener valueEventListener;
-    private ArrayList <Article> listTemp = new ArrayList<Article>();
-    private ArrayList <Article> listChoose = new ArrayList<Article>();
+    private ArrayList <LightArticle> listTemp = new ArrayList<>();
+    private ArrayList <LightArticle> listChoose = new ArrayList<>();
     private DatabaseReference mDataBase;
     private static final String Article_Key ="AllArticle";
     private static final String Section_Article_Key ="AllArticleSection";
@@ -49,13 +50,12 @@ public class AddNewSection extends AppCompatActivity {
     //Инициализация компонентов базы данных
     void initialization(){
         mDataBase = FirebaseDatabase.getInstance().getReference(Article_Key);
-        listData = new ArrayList<>();
         //Лист всех статей
-        ArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listTemp);
+        ArticleListAdapter = new LightArticleListAdapter(this,R.layout.listviewarticleitem, listTemp);
         allArticlelist.setAdapter(ArticleListAdapter);
         //Листа выбранных статей
         allArticlelistSection = findViewById(R.id.allArticlelistSection);
-        ChooseArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listChoose);
+        ChooseArticleListAdapter = new LightArticleListAdapter(this,R.layout.listviewarticleitem, listChoose);
         allArticlelistSection.setAdapter(ChooseArticleListAdapter);
     }
 
@@ -65,12 +65,10 @@ public class AddNewSection extends AppCompatActivity {
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                if(listData.size()>0) listData.clear();
                 if(listTemp.size()>0) listTemp.clear();
                 for (DataSnapshot ds : snapshot.getChildren())
                 {
-                    Article article = ds.getValue(Article.class);
+                    LightArticle article = ds.getValue(LightArticle.class);
                     assert article != null;
                     listTemp.add(article);
                 }

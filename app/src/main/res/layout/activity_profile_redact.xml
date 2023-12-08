@@ -11,6 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <androidx.legacy.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp"/>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -182,7 +185,6 @@
                             app:counterEnabled="true"
                             app:counterMaxLength="35"
                             app:hintTextColor="@color/black">
-
                             <EditText
                                 android:id="@+id/editTextUserName"
                                 android:layout_width="match_parent"

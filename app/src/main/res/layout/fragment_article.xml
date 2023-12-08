@@ -3,48 +3,52 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
+    android:background="@color/MainGray"
     android:clickable="true"
+    android:id="@+id/ArticleFragment"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <androidx.legacy.widget.Space
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="24dp"/>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <ProgressBar
-                android:visibility="gone"
-                android:id="@+id/progressBarArticle"
-                style="?android:attr/progressBarStyle"
-                android:layout_gravity="center_vertical"
-
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="2dp"
-                android:indeterminateTint="@color/MainBlue"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
-
-            <ImageView
-                android:clickable="true"
+            android:orientation="horizontal"
+            android:layout_height="46dp">
+            <LinearLayout
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="8dp"
                 android:id="@+id/CloseArticleButton"
-                android:layout_width="40dp"
-                android:layout_gravity="right|center_vertical"
-
-                android:padding="6dp"
-                android:layout_marginRight="10dp"
-
-                android:layout_height="40dp"
-                android:src="@drawable/close24px"/>
-        </FrameLayout>
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="16dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="24dp"
+                    android:rotationY="180"
+                    android:scaleType="centerCrop"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrow_right_alt24px"/>
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:text="Вернуться обратно"
+                    android:textColor="@color/MainBlue"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:dividerColor="@color/SecondGray"/>
         <ScrollView
             android:id="@+id/DownloadArticleScrollView"
             android:layout_width="match_parent"
@@ -53,51 +57,74 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <aglibs.loading.skeleton.layout.SkeletonLinearLayout
+                    android:id="@+id/SkeletonLoader"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_height="100dp"/>
+                    <ImageView
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_height="350dp"/>
+                </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
-                    <TextView
-                        android:id="@+id/DownloadHeadText"
-                        android:clickable="false"
-                        android:paddingTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
+                    <FrameLayout
+                        android:background="@color/MainGray"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:breakStrategy="high_quality"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textColor="@color/black"
-                        android:background="@null"
-                        android:textSize="25dp"/>
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/DownloadHeadText"
+                                android:clickable="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:breakStrategy="high_quality"
+                                android:fontFamily="@font/normalidad_text_text_medium"
+                                android:textColor="@color/black"
+                                android:background="@null"
+                                android:textSize="24dp"/>
+                        </LinearLayout>
+                    </FrameLayout>
 
-                    <TextView
-                        android:visibility="gone"
-                        android:contextClickable="false"
-                        android:layout_marginTop="5dp"
-                        android:id="@+id/TextDateDownloadArticle"
-                        android:paddingLeft="20dp"
-                        android:clickable="false"
-                        android:paddingRight="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:fontFamily="@font/montserratregular"
-                        android:textColor="@color/MainGrayText"
-                        android:background="@null"
-                        android:textSize="12dp" />
+
 
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/RecycleviewTagsArticle"
                         android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginBottom="2dp"
                         android:layout_width="match_parent"
                         tools:listitem="@layout/recycleview_tag_item"
                         android:layout_height="wrap_content"/>
-
 
                     <TextView
                         android:contextClickable="true"
@@ -114,7 +141,7 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:textColor="@color/black"
                         android:background="@null"
-                        android:textSize="17dp" />
+                        android:textSize="15dp" />
                 </LinearLayout>
 
 

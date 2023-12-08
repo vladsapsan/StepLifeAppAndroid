@@ -14,79 +14,68 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/TopPostFrame"
-            android:layout_width="match_parent"
-            android:background="@color/MainYellow"
-            android:layout_height="130dp">
-
-            <LinearLayout
-                android:layout_marginTop="8dp"
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="6dp"
-                android:layout_gravity="center_vertical"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/NameTopPost"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
-                    android:text="Школа ходьбы"
-                    android:textSize="21dp"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@color/BlackSviut"
-                    android:fontFamily="@font/normalidad_extended_extreg"/>
-                <TextView
-                    android:id="@+id/SecNameTopPost"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:layout_marginTop="0dp"
-                    android:text="@string/TeahBook"
-                    android:layout_marginRight="15dp"
-                    android:textSize="14dp"
-                    android:layout_marginLeft="15dp"
-                    android:paddingBottom="5dp"
-                    android:textColor="@color/BlackSviut"
-                    android:fontFamily="@font/montserrat_medium"/>
-            </LinearLayout>
-            <ProgressBar
-                android:layout_marginTop="24dp"
-                android:id="@+id/progressBarTopPost"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:indeterminateBehavior="repeat"
-                android:indeterminateDuration="200"
-                android:indeterminateOnly="true"
-                android:indeterminateTint="@color/black"
-                android:mirrorForRtl="false" />
-        </FrameLayout>
-        <FrameLayout
-            android:id="@+id/FrameArticles"
             android:layout_marginTop="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
             <ScrollView
-                android:id="@+id/TeachBookScroll"
                 android:scrollbars="none"
                 android:layout_width="match_parent"
-
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
+                    <FrameLayout
+                        android:id="@+id/TopPostFrame"
+                        android:layout_width="match_parent"
+                        android:background="@color/MainYellow"
+                        android:layout_height="wrap_content">
 
+                        <LinearLayout
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="24dp"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/NameTopPost"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:textStyle="bold"
+                                android:text="Школа ходьбы"
+                                android:textSize="22dp"
+                                android:textColor="@color/BlackSviut"
+                                android:fontFamily="@font/normalidad_text_text_medium"/>
+                            <TextView
+                                android:id="@+id/SecNameTopPost"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="@string/TeahBook"
+                                android:textSize="14dp"
+                                android:textColor="@color/BlackSviut"
+                                android:fontFamily="@font/montserrat_medium"/>
+                        </LinearLayout>
+                    </FrameLayout>
 
+                    <androidx.legacy.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"/>
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:scrollbars="none"
+                        android:layout_height="wrap_content">
                     <com.google.android.material.chip.ChipGroup
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        app:singleLine="true"
                         android:id="@+id/chipGroup"
-                       android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
                         android:layout_marginTop="8dp"
                         app:chipSpacingVertical="0dp"
                         android:layout_width="match_parent"
@@ -94,7 +83,8 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/TagChip1"
-                            app:chipBackgroundColor="@color/white"
+                            android:fontFamily="@font/montserrat_medium"
+                            app:chipBackgroundColor="@color/MainGray"
                             app:chipStrokeColor="@color/MainBlue"
 
                             android:layout_width="wrap_content"
@@ -102,11 +92,10 @@
                             app:chipCornerRadius="20dp"
                             app:checkedIconTint="@color/MainBlue"
                             app:chipSurfaceColor="@color/MainGray"
-
                             android:text="Полезное"/>
                         <com.google.android.material.chip.Chip
                             android:id="@+id/TagChip2"
-                            app:chipBackgroundColor="@color/white"
+                            app:chipBackgroundColor="@color/MainGray"
                             app:chipStrokeColor="@color/MainBlue"
 
                             android:layout_width="wrap_content"
@@ -115,7 +104,7 @@
                             app:checkedIconTint="@color/MainBlue"
                             app:chipSurfaceColor="@color/MainGray"
 
-                            android:text="Акция"/>
+                            android:text="Протез"/>
                         <com.google.android.material.chip.Chip
                             android:id="@+id/TagChip3"
                             app:chipBackgroundColor="@color/white"
@@ -127,10 +116,10 @@
                             app:checkedIconTint="@color/MainBlue"
                             app:chipSurfaceColor="@color/MainGray"
 
-                            android:text="Наши истории"/>
+                            android:text="Реабилитация"/>
                         <com.google.android.material.chip.Chip
                             android:id="@+id/TagChip4"
-                            app:chipBackgroundColor="@color/white"
+                            app:chipBackgroundColor="@color/MainGray"
                             app:chipStrokeColor="@color/MainBlue"
 
                             android:layout_width="wrap_content"
@@ -141,39 +130,19 @@
 
                             android:text="Бесплатно"/>
 
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/TagChip5"
-                            app:chipBackgroundColor="@color/white"
-                            app:chipStrokeColor="@color/MainBlue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:chipCornerRadius="20dp"
-                            app:checkedIconTint="@color/MainBlue"
-                            app:chipSurfaceColor="@color/MainGray"
 
-                            android:text="Протез руки"/>
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/TagChip6"
-                            app:chipBackgroundColor="@color/white"
-                            app:chipStrokeColor="@color/MainBlue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:chipCornerRadius="20dp"
-                            app:checkedIconTint="@color/MainBlue"
-                            app:chipSurfaceColor="@color/MainGray"
-                            android:text="Реабилитация"/>
 
                         <!-- Chips can be declared here, or added dynamically. -->
 
                     </com.google.android.material.chip.ChipGroup>
-
+                    </HorizontalScrollView>
 
 
 
 
                     <androidx.legacy.widget.Space
                         android:layout_width="match_parent"
-                        android:layout_height="32dp"/>
+                        android:layout_height="16dp"/>
 
                     <aglibs.loading.skeleton.layout.SkeletonLinearLayout
                         android:id="@+id/CardArticleSection1"
@@ -191,29 +160,101 @@
                             android:maxLines="1"
                             android:text="Название"
                             android:ellipsize="end"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="16dp" />
-                        <ImageView
+                            android:fontFamily="@font/normalidad_text_text_medium"
+                            android:textColor="@color/SecondGrayText"
+                            android:textSize="18dp" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_width="16dp"
-                            android:src="@drawable/arrow_forward_ios24px"
-                            android:layout_height="16dp"/>
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_marginRight="8dp"
+                                android:layout_gravity="right|center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/FullSection"
+                                android:textColor="@color/MainBlue"
+                                android:fontFamily="@font/montserrat_medium"/>
+                        </FrameLayout>
                     </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
 
 
+                        <aglibs.loading.skeleton.layout.SkeletonLinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:id="@+id/SkeletonCards1"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="192dp"
+                                android:layout_height="180dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="16dp"
+                                android:layout_marginRight="4dp"
+                                android:layout_marginLeft="16dp">
+                            </ImageView>
+                        </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
+
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
-                        android:minHeight="160dp"
                         android:id="@+id/RecycleviewSectionArticle1"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_marginRight="16dp"
                         android:layout_height="wrap_content"/>
 
-
-
+                    <com.google.android.material.card.MaterialCardView
+                        android:visibility="gone"
+                        android:id="@+id/Card1Next"
+                        style="@style/CustomCardViewStyle"
+                        android:layout_width="178dp"
+                        android:layout_height="178dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/white"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardElevation="6dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:strokeColor="@color/MainBlue"
+                        app:strokeWidth="1dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/arrow_right_alt24px" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:gravity="center"
+                                android:text="Читать все статьи раздела"
+                                android:textColor="@color/BlackSviut"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+                </RelativeLayout>
+                </HorizontalScrollView>
 
 
                     <aglibs.loading.skeleton.layout.SkeletonLinearLayout
@@ -234,24 +275,96 @@
                             android:maxLines="1"
                             android:text="Название"
                             android:ellipsize="end"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="16dp" />
-                        <ImageView
+                            android:fontFamily="@font/normalidad_text_text_medium"
+                            android:textColor="@color/SecondGrayText"
+                            android:textSize="18dp" />
+                        <FrameLayout
                             android:layout_gravity="center"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_width="16dp"
-                            android:src="@drawable/arrow_forward_ios24px"
-                            android:layout_height="16dp"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_marginRight="8dp"
+                                android:layout_gravity="right|center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/FullSection"
+                                android:textColor="@color/MainBlue"
+                                android:fontFamily="@font/montserrat_medium"/>
+                        </FrameLayout>
                     </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:minHeight="160dp"
-                        android:id="@+id/RecycleviewSectionArticle2"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="2dp"
+                    <aglibs.loading.skeleton.layout.SkeletonLinearLayout
                         android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:id="@+id/SkeletonCards2"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="192dp"
+                            android:layout_height="180dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginLeft="16dp">
+                        </ImageView>
+                    </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/RecycleviewSectionArticle2"
+                        android:layout_width="wrap_content"
+                        android:layout_marginRight="16dp"
                         android:layout_height="wrap_content"/>
+                    <com.google.android.material.card.MaterialCardView
+                        android:visibility="gone"
+                        android:id="@+id/Card2Next"
+                        style="@style/CustomCardViewStyle"
+                        android:layout_width="178dp"
+                        android:layout_height="178dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/white"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardElevation="6dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:strokeColor="@color/MainBlue"
+                        app:strokeWidth="1dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/arrow_right_alt24px" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:gravity="center"
+                                android:text="Читать все статьи раздела"
+                                android:textColor="@color/BlackSviut"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+                </RelativeLayout>
+                </HorizontalScrollView>
                     <aglibs.loading.skeleton.layout.SkeletonLinearLayout
                         android:id="@+id/CardArticleSection3"
                         android:clickable="true"
@@ -270,30 +383,102 @@
                             android:maxLines="1"
                             android:text="Название"
                             android:ellipsize="end"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:textColor="@color/BlackSviut"
-                            android:textSize="16dp" />
-                        <ImageView
+                            android:fontFamily="@font/normalidad_text_text_medium"
+                            android:textColor="@color/SecondGrayText"
+                            android:textSize="18dp" />
+                        <FrameLayout
                             android:layout_gravity="center"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_width="16dp"
-                            android:src="@drawable/arrow_forward_ios24px"
-                            android:layout_height="16dp"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_marginRight="8dp"
+                                android:layout_gravity="right|center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/FullSection"
+
+
+                                android:textColor="@color/MainBlue"
+                                android:fontFamily="@font/montserrat_medium"/>
+                        </FrameLayout>
                     </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:minHeight="160dp"
-                        android:id="@+id/RecycleviewSectionArticle3"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="2dp"
+                    <aglibs.loading.skeleton.layout.SkeletonLinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:orientation="horizontal"
+                        android:id="@+id/SkeletonCards3"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="192dp"
+                            android:layout_height="180dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginLeft="16dp">
+                        </ImageView>
+                    </aglibs.loading.skeleton.layout.SkeletonLinearLayout>
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/RecycleviewSectionArticle3"
+                        android:layout_width="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_height="wrap_content"/>
+                    <com.google.android.material.card.MaterialCardView
+                        android:visibility="gone"
+                        android:id="@+id/Card3Next"
+                        style="@style/CustomCardViewStyle"
+                        android:layout_width="178dp"
+                        android:layout_height="178dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/white"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardElevation="6dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:strokeColor="@color/MainBlue"
+                        app:strokeWidth="1dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/arrow_right_alt24px" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:gravity="center"
+                                android:text="Читать все статьи раздела"
+                                android:textColor="@color/BlackSviut"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+                </RelativeLayout>
+                </HorizontalScrollView>
 
                     <Button
                         android:visibility="gone"
-                        android:id="@+id/seeallArticleButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -312,7 +497,6 @@
 
                     <Button
                         android:visibility="gone"
-                        android:id="@+id/seeallSectionButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -359,5 +543,4 @@
 
 
     </LinearLayout>
-
 </FrameLayout>

@@ -5,12 +5,13 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_start_activiti">StartActiviti</string>
     <!-- Strings used for fragments for navigation -->
+
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="VersionApp">0.8.5</string>
-    <string name="BuildDate">Сборка от 16.11.2023</string>
+    <string name="VersionApp">1.0.1</string>
+    <string name="BuildDate">Сборка от 08.12.2023</string>
     <string name="AllRights">Все права защищены</string>
     <string name="Developer">Разработка ‹ООО Группа Компаний ‹Салют Орто›</string>
     <string name="title_location_permission">Устройства поблизости</string>
@@ -20,8 +21,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="channel_name">Покакал</string>
+    <string name="AboutArticleSchool">Начните обучение с избранных статей школы</string>
     <string name="Protehsisespand">Наш первый курс для новичков, который расскажет вам о том как плавно перейти к протезированию</string>
     <string name="EditMaterial">Изменение материала</string>
+    <string name="FullSection">Весь раздел</string>
     <string name="Accses">Нажимая кнопку, вы даете согласие на обработку персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных»</string>
     <string name="HomeTezis">Современные протезы Steplife</string>
     <string name="TeahBook">Авторский учебник по реабилитации и протезированию</string>
@@ -30,6 +33,7 @@
     <string name="ReadThis">
          <u>Читать далее</u>.
     </string>
+    <string name="NoUseble">Не доступно на данный момент</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="Auth">Аутентификация</string>
