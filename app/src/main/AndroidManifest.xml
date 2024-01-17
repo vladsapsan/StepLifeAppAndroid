@@ -19,9 +19,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:allowBackup="true"
@@ -31,9 +29,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StepLifeApp">
         <activity
-            android:name=".StafFunction.AddNewSection"
-            android:screenOrientation="portrait"
+            android:name=".StafFunction.EditArticleSection"
             android:exported="false" />
+        <activity
+            android:name=".StafFunction.EditSection"
+            android:exported="false" />
+        <activity
+            android:name=".StafFunction.AddNewSection"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Helper"
             android:exported="false"
@@ -46,14 +50,15 @@
             android:theme="@style/Theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".StafFunction.PublicationNewArticles"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".TagSearchArticle"
             android:exported="false"
@@ -61,13 +66,13 @@
         <activity
             android:name=".StafFunction.AddNewArticle"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".StafFunction.AddTagsArticle"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".ProthesisModule.ProthesisModuleSettings"
             android:exported="false"
@@ -79,18 +84,18 @@
         <activity
             android:name=".StafFunction.HomeArticleRedactActivity"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".StafFunction.TopPostRedactActivity"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".StafFunction.ArticleOnTopSettingsActivity"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".UserProfile.ProfileRedactActivity"
             android:exported="false"
@@ -110,8 +115,8 @@
         <activity
             android:name=".UserProfile.UserAgreement"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".DeveloperAcsessActiviti"
             android:exported="true"
@@ -119,8 +124,8 @@
         <activity
             android:name=".StafFunction.EditArticlesActiviti"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".DownloadProcessActiviti"
             android:exported="false"
@@ -136,20 +141,18 @@
         <activity
             android:name=".TelephoneSign.OtpPinTelephone"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".TelephoneSign.TelephoneSignUp"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".TelephoneSign.OtpTelephoneCheckActiviti"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-
-            
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".BasedScreen"
             android:exported="true"
@@ -170,9 +173,9 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.StepLifeApp.NoActionBar" />
     </application>
 

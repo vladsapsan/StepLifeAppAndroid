@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
@@ -47,7 +46,7 @@ public class EditArticlesActiviti extends AppCompatActivity {
     private ArticleListAdapter ArticleListAdapter;
     private ListView allArticlelist;
     private ArrayAdapter<String> adapter;
-    int CurrnetPositionList ;
+    int CurrnetPositionList;
     private List<String> listData;
     NetworkChangeListner networkChangeListner;
     private ArrayList <Article> listTemp = new ArrayList<Article>();
@@ -103,12 +102,7 @@ public class EditArticlesActiviti extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_articles_activiti);
 
-
-
-
        // initilization();
-
-
 
         //Плашка удаления статьи
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialog);
@@ -117,6 +111,7 @@ public class EditArticlesActiviti extends AppCompatActivity {
                         R.layout.sheetdowndeletearticle,
                         (FrameLayout) findViewById(R.id.SheetDialogDeleteArticleContainer)
                 );
+        //Редактирование статьи
         //Удаление статьи
         bottomSheetView.findViewById(R.id.DeleteArticleButton).setOnClickListener(new View.OnClickListener() {
             @Override

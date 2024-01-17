@@ -49,6 +49,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,7 +83,9 @@ public class AddArticleFragment extends Fragment {
     private ScrollView addArticleScrollView;
     private HorizontalScrollView ImageAddArticleScrolView;
     private DatabaseReference mDataBase;
-    ImageView ExitBtn,NextBtn;
+    ImageView ExitBtn;
+    //Кнопка продолженичя загрузки
+    CardView NextBtn;
     ContentResolver cr;
     InputStream is;
     private ImageView LoadPicture;

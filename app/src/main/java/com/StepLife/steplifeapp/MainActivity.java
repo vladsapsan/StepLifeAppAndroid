@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -14,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
+import com.StepLife.steplifeapp.TelephoneSign.TelephoneSignUp;
+import com.StepLife.steplifeapp.UserProfile.User_ProfileActiviti;
 import com.StepLife.steplifeapp.databinding.ActivityMainBinding;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.ui.Article;
@@ -56,16 +57,15 @@ public class MainActivity extends AppCompatActivity {
         ProfileUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this,R.string.NoUseble,Toast.LENGTH_SHORT).show();
-            //    FirebaseUser cUser = mAuth.getCurrentUser();
-            //    if(cUser!=null)
-            //    {
-             //       startActivity(new Intent(MainActivity.this, User_ProfileActiviti.class));
-             //   }
-             //   else
-             //   {
-             //       startActivity(new Intent(MainActivity.this, TelephoneSignUp.class));
-             //   }
+                FirebaseUser cUser = mAuth.getCurrentUser();
+               if(cUser!=null)
+                {
+                    startActivity(new Intent(MainActivity.this, User_ProfileActiviti.class));
+                }
+                else
+                {
+                    startActivity(new Intent(MainActivity.this, TelephoneSignUp.class));
+                }
             }
         });
 

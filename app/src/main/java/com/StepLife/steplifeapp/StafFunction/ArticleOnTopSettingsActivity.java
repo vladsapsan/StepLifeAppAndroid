@@ -17,7 +17,7 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
     ImageView imagebackEditArticles;
     NetworkChangeListner networkChangeListner;
 
-    Button TopPostRedactButton,HomeArticleRedactButton,AddTagsButton,PublicationArticleButton,AddSectionButton;
+    Button TopPostRedactButton,HomeArticleRedactButton,AddTagsButton,PublicationArticleButton,AddSectionButton,DeleteSectionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +68,7 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
             }
         });
 
-        //Переход к редактированию и добавлению курсов
+        //Переход к  добавлению курсов
         AddSectionButton = findViewById(R.id.AddSectionButton);
         AddSectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +76,14 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
                 startActivity(AddNewSectionintent);
             }
         });
-
+        //Окно редиктирования и удоления курсов
+        DeleteSectionButton  = findViewById(R.id.DeleteSectionButton);
+        DeleteSectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ArticleOnTopSettingsActivity.this,EditSection.class));
+            }
+        });
         imagebackEditArticles = findViewById(R.id.imagebackEditArticles);
         imagebackEditArticles.setOnClickListener(new View.OnClickListener() {
             @Override

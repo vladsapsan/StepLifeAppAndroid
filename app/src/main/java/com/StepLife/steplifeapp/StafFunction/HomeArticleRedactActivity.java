@@ -57,6 +57,7 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
     RecyclerView RecycleviewSectionArticle;
     SectionArticleViewAdapter sectionArticleViewAdapter;
     private DatabaseReference mDataBase;
+
     CardView CardHomeArticle1,CardHomeArticle2,CardHomeArticle3,CardHomeArticle4,CardHomeArticle5;
     ProgressBar progressBar;
     public static final String Section_Article_Key ="AllArticleSection";
@@ -323,19 +324,18 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
             public void onClick(View view) {
                 finish();
             }
-
         });
     }
 
 
 
+    //Загрузка раздела home fragment
     public static void DownloadHomeSection(String SectionDownloadKey, TextView SectionName, ArrayList<LightArticle> articlelistTemp, SectionArticleViewAdapter sectionArticleViewAdapter,
                                            SkeletonLinearLayout SkeletonName,SkeletonLinearLayout SkeletonCard,CardView OpenSectionCard){
         FirebaseDatabase.getInstance().getReference("Lib").child("HomeArticle").child(SectionDownloadKey).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if(task.isSuccessful()){
-
                     FirebaseDatabase.getInstance().getReference(AllSection_Key).child(task.getResult().getValue().toString()).child("SectionName").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -351,7 +351,6 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
                 }
             }
         });
-
     }
 
 

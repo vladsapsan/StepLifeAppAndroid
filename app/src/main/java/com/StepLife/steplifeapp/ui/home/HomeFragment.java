@@ -201,8 +201,6 @@ public class HomeFragment extends Fragment implements SectionArticleViewAdapter.
 
         //Инициализация анимации
 
-
-
         //Видео плеер окна
         HomeVideoView = view.findViewById(R.id.HomeVideoView);
         VideoHolder = view.findViewById(R.id.VideoHolder);

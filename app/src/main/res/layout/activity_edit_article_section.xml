@@ -9,26 +9,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".ui.AddArticleFragment">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-
         <FrameLayout
             android:background="@color/MainGray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/montserrat_semibold"
-                android:text="Новый урок"
+                android:text="Редактирование"
                 android:textColor="@color/BlackSviut"
                 android:textSize="18sp" />
-
             <ImageView
                 android:clickable="true"
                 android:id="@+id/imagebackAddArticle"
@@ -39,8 +35,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_height="40dp"
                 android:src="@drawable/close24px"/>
-
             <androidx.cardview.widget.CardView
+                android:id="@+id/GoToFinalViewButton"
                 android:layout_width="30dp"
                 android:backgroundTint="@color/MainBlue"
                 android:layout_marginTop="18dp"
@@ -49,7 +45,6 @@
                 android:layout_marginRight="10dp"
                 android:layout_height="30dp">
                 <ImageView
-                    android:id="@+id/GoToFinalViewButton"
                     android:layout_width="20dp"
                     android:layout_gravity="center"
                     android:layout_height="20dp"
@@ -80,21 +75,21 @@
                 android:orientation="vertical">
 
 
-                    <Button
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/AddTagsArticle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        style="@style/Widget.Material3.Button.Icon"
-                        app:icon="@drawable/add_circle24px"
-                        android:textSize="10dp"
-                        android:textColor="@color/white"
-                        android:layout_marginRight="5dp"
-                        android:backgroundTint="@color/MainBlue"
-                        android:layout_gravity="left"
-                        android:fontFamily="@font/montserrat_semibold"
-                        android:text="Добавить тег"/>
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/AddTagsArticle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    style="@style/Widget.Material3.Button.Icon"
+                    app:icon="@drawable/add_circle24px"
+                    android:textSize="10dp"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="5dp"
+                    android:backgroundTint="@color/MainBlue"
+                    android:layout_gravity="left"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Добавить тег"/>
 
                 <FrameLayout
                     android:layout_marginTop="3dp"
@@ -103,19 +98,20 @@
                     android:layout_marginBottom="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:scrollbars="horizontal"
-                            android:scrollbarSize="1.5dp"
-                            android:scrollbarAlwaysDrawHorizontalTrack="true"
-                            android:layout_gravity="center"
-                            tools:listitem="@layout/recycleview_tag_item"
-                            android:foregroundGravity="center"
-                            android:id="@+id/RecycleviewTags"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:scrollbars="horizontal"
+                        android:scrollbarSize="1.5dp"
+                        android:scrollbarAlwaysDrawHorizontalTrack="true"
+                        android:layout_gravity="center"
+                        tools:listitem="@layout/recycleview_tag_item"
 
-                        </androidx.recyclerview.widget.RecyclerView>
+                        android:foregroundGravity="center"
+                        android:id="@+id/RecycleviewTags"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
             </LinearLayout>
 

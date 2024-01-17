@@ -107,7 +107,7 @@
                             android:text="Протез"/>
                         <com.google.android.material.chip.Chip
                             android:id="@+id/TagChip3"
-                            app:chipBackgroundColor="@color/white"
+                            app:chipBackgroundColor="@color/MainGray"
                             app:chipStrokeColor="@color/MainBlue"
 
                             android:layout_width="wrap_content"

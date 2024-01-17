@@ -85,6 +85,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
     private AddArticleViewModel mViewModel;
     RecyclerView RecycleviewTags ;
             BottomSheetDialog bottomSheetWaitDialog;
+
     private WebView WebRedactor;
     MyRecyclerViewTagsAdapter adapterArticleTags;
     ArticleListAdapter ArticleListAdapter;
@@ -157,7 +158,6 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
-
                 if (bottomsheetstart) {
                     if (selectedImageUri != null) {
                         ImageView Image = new ImageView(AddNewArticle.this);
@@ -173,16 +173,12 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                     ImageView Image = new ImageView(AddNewArticle.this);
                     Image.setImageURI(selectedImageUri);
 
-
                     displayMetrics = new DisplayMetrics();
                     Main.append("\n");
                     Main.append("|");
                     SpannableString MainSpannabletext = new SpannableString(Main.getText());
 
-
                     getWindowManager().getDefaultDisplay().getRealMetrics(displayMetrics);
-
-
                     try {
                         if (selectedImageUri != null) {
                             is = AddNewArticle.this.getContentResolver().openInputStream(selectedImageUri.normalizeScheme());
@@ -236,7 +232,6 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                                 photo.setBounds(0, 0, getDeviceWidth(AddNewArticle.this), (int) DownloadPhotoHeight);
                                 ImageSpan span = new ImageSpan(photo, String.valueOf(uploadArticlePhotoUri), ImageSpan.ALIGN_BASELINE);
 
-
                                 MainSpannabletext.setSpan(span, MainSpannabletext.length() - 1, MainSpannabletext.length(), 0);
 
                                 Main.setText(MainSpannabletext);
@@ -286,10 +281,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
         adapterArticleTags = new MyRecyclerViewTagsAdapter(AddNewArticle.this,mNewArticleTags);
         adapterArticleTags.setClickListener(AddNewArticle.this);
         RecycleviewTags.setAdapter(adapterArticleTags);
-
-
-
-
+        
 
         //Диалог Загрузки обложки
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(AddNewArticle.this, R.style.BottomSheetDialog);

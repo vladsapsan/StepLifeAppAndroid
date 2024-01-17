@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    >
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_dashboard"
         android:enabled="true"
@@ -12,16 +10,10 @@
         android:enabled="true"
         android:icon="@drawable/icon_buttom_home_navigation_selector"
         android:title="Главная" />
-
     <item
         android:id="@+id/navigation_notifications"
         android:enabled="true"
         android:icon="@drawable/directions_walk24px"
         android:title="Школа" />
-
-
-
-
-
 
 </menu>
