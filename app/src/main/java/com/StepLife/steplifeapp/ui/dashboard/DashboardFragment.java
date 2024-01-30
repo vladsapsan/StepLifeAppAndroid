@@ -171,7 +171,7 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         ModuleCalibration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),R.string.NoUseble,Toast.LENGTH_SHORT).show();
+                bottomSheetWaitDialog.show();
             }
         });
 

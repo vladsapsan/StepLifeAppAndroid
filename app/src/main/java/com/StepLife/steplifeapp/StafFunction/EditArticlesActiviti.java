@@ -38,7 +38,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditArticlesActiviti extends AppCompatActivity {
-
     ImageView imagebackEditArticles;
     private AllArticleViewModel mViewModel;
     private ImageView backbutton;
@@ -47,14 +46,13 @@ public class EditArticlesActiviti extends AppCompatActivity {
     private ListView allArticlelist;
     private ArrayAdapter<String> adapter;
     int CurrnetPositionList;
-    private List<String> listData;
+    private List<String> listData; 
     NetworkChangeListner networkChangeListner;
     private ArrayList <Article> listTemp = new ArrayList<Article>();
     ProgressBar progressBar;
     Article DowArticle;
     Uri DownloadphotoUri;
     BottomSheetDialog bottomSheetDialog;
-
     private Target mTarget;
     private String Article_Key ="AllArticle";
     private DatabaseReference mDataBase;
@@ -101,8 +99,6 @@ public class EditArticlesActiviti extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_articles_activiti);
-
-       // initilization();
 
         //Плашка удаления статьи
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialog);

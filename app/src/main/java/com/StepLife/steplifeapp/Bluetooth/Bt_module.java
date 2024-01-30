@@ -114,9 +114,8 @@ public class Bt_module extends AppCompatActivity {
                             }
                         })
                         .create()
-                        .show();
-
-
+                        .show();    
+                    
             } else {
                 //запрашиваем пермишен, уже не показывая диалогов с пояснениями
                 ActivityCompat.requestPermissions(this,
