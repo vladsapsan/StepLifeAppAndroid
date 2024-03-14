@@ -28,14 +28,11 @@ public class ConnectThread extends Thread{
             if(mSocket!=null) {
                 Log.d("BTConnect", "Connected...");
                 //Запуск канал передачи данных
-            mSocket.connect();
+                mSocket.connect();
                 listner.onReceive(BluetoothController.BLUETOOTH_CONNECTED);
-                SendMessage(String.valueOf("9"));
+                SendMessage(String.valueOf("Okay"));
                 ReadMessage();
-
             }
-
-            
         }catch (SecurityException e){
             Log.d("BTConnect", e.toString());
         } catch (IOException e) {

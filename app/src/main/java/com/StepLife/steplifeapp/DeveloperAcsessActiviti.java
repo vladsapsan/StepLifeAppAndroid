@@ -21,19 +21,13 @@ public class DeveloperAcsessActiviti extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_developer_acsess_activiti);
-
         if(verifyInstallerId(getApplicationContext()))
         {
             Intent intent = new Intent(DeveloperAcsessActiviti.this,MainActivity.class);
             startActivity(intent);
             finish();
         }
-
-
-
         final PinView pinView = findViewById(R.id.DeveloperPinView);
-
-
         //Проверка кода разработчика
         Button CheckBtn = findViewById(R.id.DeveloperPinButton);
         CheckBtn.setOnClickListener(new View.OnClickListener() {

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,17 +10,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".ui.AddArticleFragment">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-
         <FrameLayout
             android:background="@color/MainGray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,7 +26,6 @@
                 android:text="Новый урок"
                 android:textColor="@color/BlackSviut"
                 android:textSize="18sp" />
-
             <ImageView
                 android:clickable="true"
                 android:id="@+id/imagebackAddArticle"
@@ -39,7 +36,6 @@
                 android:layout_marginBottom="10dp"
                 android:layout_height="40dp"
                 android:src="@drawable/close24px"/>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="30dp"
                 android:backgroundTint="@color/MainBlue"
@@ -65,7 +61,6 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp" />
             </androidx.cardview.widget.CardView>
-
         </FrameLayout>
 
         <FrameLayout
@@ -78,8 +73,6 @@
                 android:gravity="left"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-
                     <Button
                         android:layout_marginLeft="10dp"
                         android:id="@+id/AddTagsArticle"
@@ -95,7 +88,6 @@
                         android:layout_gravity="left"
                         android:fontFamily="@font/montserrat_semibold"
                         android:text="Добавить тег"/>
-
                 <FrameLayout
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="5dp"
@@ -114,19 +106,15 @@
                             android:id="@+id/RecycleviewTags"
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
-
                         </androidx.recyclerview.widget.RecyclerView>
                 </FrameLayout>
             </LinearLayout>
-
         </FrameLayout>
-
 
         <FrameLayout
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <ScrollView
                 android:id="@+id/addArticleScrollView"
                 android:layout_width="match_parent"

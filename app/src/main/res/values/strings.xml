@@ -10,8 +10,8 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="VersionApp">1.0.1</string>
-    <string name="BuildDate">Сборка от 08.12.2023</string>
+    <string name="VersionApp">1.0.2</string>
+    <string name="BuildDate">Сборка от 14.03.2024</string>
     <string name="AllRights">Все права защищены</string>
     <string name="Developer">Разработка ‹ООО Группа Компаний ‹Салют Орто›</string>
     <string name="title_location_permission">Устройства поблизости</string>

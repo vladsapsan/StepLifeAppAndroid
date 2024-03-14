@@ -97,8 +97,6 @@ public class AllArticle extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int a = 0;
                 progressBar.setMax((int) snapshot.getChildrenCount());
-
-
                 if(listData.size()>0) listData.clear();
                 if(listTemp.size()>0) listTemp.clear();
                 for (DataSnapshot ds : snapshot.getChildren())
@@ -106,9 +104,6 @@ public class AllArticle extends Fragment {
                     Article article = ds.getValue(Article.class);
                     //Проверка
                     assert article != null;
-                    //Spanned Head = Html.fromHtml(article.HeadText);
-                   // String key = ds.getKey();
-                    //listData.add(String.valueOf(Head));
                     listTemp.add(article);
                     a++;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

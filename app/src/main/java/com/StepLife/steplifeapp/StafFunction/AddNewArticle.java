@@ -84,8 +84,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
     private static final int SELECT_PICTURE = 1;
     private AddArticleViewModel mViewModel;
     RecyclerView RecycleviewTags ;
-            BottomSheetDialog bottomSheetWaitDialog;
-
+    BottomSheetDialog bottomSheetWaitDialog;
     private WebView WebRedactor;
     MyRecyclerViewTagsAdapter adapterArticleTags;
     ArticleListAdapter ArticleListAdapter;
@@ -139,6 +138,7 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
         return heightPixels;
     }
 
+
     private void GetImage()
     {
         Intent intent = new Intent();
@@ -157,17 +157,19 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
+                //
                 Uri selectedImageUri = data.getData();
                 if (bottomsheetstart) {
                     if (selectedImageUri != null) {
                         ImageView Image = new ImageView(AddNewArticle.this);
                         Image.setImageURI(selectedImageUri);
                         Downloadpreviewimage.setImageURI(selectedImageUri);
-
                     }
                 } else {
+
                     progresscheck.setVisibility(View.VISIBLE);
                     NextBtn.setVisibility(View.GONE);
+
                     alertDialog.show();
 
                     ImageView Image = new ImageView(AddNewArticle.this);

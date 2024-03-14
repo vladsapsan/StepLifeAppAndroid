@@ -24,15 +24,12 @@ public class SectionViewAdapter extends RecyclerView.Adapter<SectionViewAdapter.
         this.mInflater = LayoutInflater.from(context);
         this.mListArticle = mListArticle;
     }
-
     @NonNull
     @Override
     public ViewHolderSection onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.list_view_item_selection, parent, false);
         return new ViewHolderSection(view);
     }
-
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolderSection holder, int position) {
         holder.NameSection.setText(Html.fromHtml(mListArticle.get(position).SectionName).toString());
@@ -50,11 +47,10 @@ public class SectionViewAdapter extends RecyclerView.Adapter<SectionViewAdapter.
             AboutSection = itemView.findViewById(R.id.TextAboutSection);
             itemView.setOnClickListener(this);
         }
-
-
         @Override
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+
         }
     }
 
@@ -62,11 +58,8 @@ public class SectionViewAdapter extends RecyclerView.Adapter<SectionViewAdapter.
     public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
-
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
-
-
 }

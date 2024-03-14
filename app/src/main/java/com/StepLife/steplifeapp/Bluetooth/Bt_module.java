@@ -41,6 +41,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class Bt_module extends AppCompatActivity {
@@ -51,26 +52,19 @@ public class Bt_module extends AppCompatActivity {
     int REQUEST_ENABLE_BT = 1;
     private int BTCheck = 0;
     boolean PermissionCheck;
-    NetworkChangeListner networkChangeListner;
-
     BluetoothAdapter mBluetoothAdapter;
     ArrayAdapter<String> adapter;
-
     BluetoothManager bluetoothManager;
-    BluetoothController bluetoothController;
     int REQUEST_CODE_PERMISSION_BLUETOOTH_CONNECT;
-    int REQUEST_CODE_PERMISSION_BLUETOOTH_SCAN;
-    int REQUEST_CODE_PERMISSION_FINE_LOCATION;
     BottomSheetDialog bottomSheetWaitDialog;
     BluetoothAdapter bluetoothAdapter;
     ListView ListViewBtMOdule;
-
     List<BluetoothDevice> ListSetDevice = new ArrayList<>();
     ArrayList<String> mEditItems = new ArrayList<>();
     Set<String> mItemsSet = new HashSet<String>();
     ArrayList<String> mItems = new ArrayList<>(mItemsSet);
 
-
+    //Считываем все операции по bluetooth модулю detect новых устройств и их запись в список
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @SuppressLint("MissingPermission")
         @Override
@@ -79,9 +73,11 @@ public class Bt_module extends AppCompatActivity {
             BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
             try {
                 if (device.getName() != null && !mEditItems.equals(device.getName())) {
-                    mItems.add(device.getName());
-                    adapter.notifyDataSetChanged();
-                    ListSetDevice.add(device);
+                    if (Objects.equals(device.getName(), "HC-06")) {
+                        mItems.add(device.getName());
+                        adapter.notifyDataSetChanged();
+                        ListSetDevice.add(device);
+                    }
                 }
             } catch (Exception e) {
                 Log.d("Device", String.valueOf(e));
@@ -90,47 +86,12 @@ public class Bt_module extends AppCompatActivity {
         }
     };
 
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 777;
-    CardView CardDevice;
 
-
-    public boolean checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                //показываем диалог
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.title_location_permission)
-                        .setMessage(R.string.text_location_permission)
-                        .setPositiveButton("Предоставить", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Юзер одобрил
-                                ActivityCompat.requestPermissions(Bt_module.this,
-                                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION);
-                            }
-                        })
-                        .create()
-                        .show();    
-                    
-            } else {
-                //запрашиваем пермишен, уже не показывая диалогов с пояснениями
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -156,7 +117,6 @@ public class Bt_module extends AppCompatActivity {
                 );
         bottomSheetWaitDialog.setContentView(bottomSheetWaitView);
 
-
         //Получениче Bluetooth адаптера
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             bluetoothManager = getSystemService(BluetoothManager.class);
@@ -171,6 +131,7 @@ public class Bt_module extends AppCompatActivity {
 
 
 
+        //Лист с возможными устройствами
         ListViewBtMOdule.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @SuppressLint("MissingPermission")
             @Override
@@ -211,16 +172,15 @@ public class Bt_module extends AppCompatActivity {
             }
         });
 
-
         PermissionCheck(PermissionCheck);
         BtCheck(BTCheck);
         CheckoutBt();
 
-
     }
 
 
-    private void GetDevice() {
+    //Получение списка несопряженных устройств
+    private void GetNewDevice() {
         IntentFilter DeviceFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(broadcastReceiver, DeviceFilter);
     }
@@ -243,7 +203,6 @@ public class Bt_module extends AppCompatActivity {
     }
 
     private boolean PermissionCheck(boolean Check) {
-
         boolean BLUETOOTH_CONNECT = false, BLUETOOTH_SCAN = false, ACCESS_FINE_LOCATION = false;
         int permissionStatus1 = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT);
         int permissionStatus2 = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN);
@@ -275,13 +234,6 @@ public class Bt_module extends AppCompatActivity {
     public void finish() {
         super.finish();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         bluetoothAdapter.cancelDiscovery();
@@ -313,35 +265,26 @@ public class Bt_module extends AppCompatActivity {
             CheckOutText.setText("Bluetooth выключен");
             buttonConnectBt.setVisibility(View.VISIBLE);
         } else {
-            CheckOutText.setText("Выберите модуль из списка...");
+            CheckOutText.setText("Занимаемся подключением...");
+            //Если найдены споряженные усройства степлайф поблизости то подклюаемся в первую очередь к ним
 
-            try {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-                    return;
+                try {
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    bluetoothAdapter.startDiscovery();
+                } catch (Exception e) {
                 }
-                bluetoothAdapter.startDiscovery();
-            }catch (Exception e){}
-            GetDevice();
+
+                GetNewDevice();
+
         }
     }
 
 
-
-    private BroadcastReceiver myReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Message msg = Message.obtain();
-            String action = intent.getAction();
-            if(BluetoothDevice.ACTION_FOUND.equals(action)){
-                //Found, add to a device list
-            }
-        }
-    };
-
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
 

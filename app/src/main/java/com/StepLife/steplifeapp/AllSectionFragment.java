@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -24,13 +25,9 @@ import java.util.ArrayList;
 
 
 public class AllSectionFragment extends Fragment {
-
-
-
     SectionViewAdapter sectionViewAdapter;
     ValueEventListener valueEventListener;
     private ArrayList<Section> listTemp = new ArrayList<Section>();
-
     private DatabaseReference mDataBase;
     private static final String Article_Key ="AllArticle";
     private static final String Section_Article_Key ="AllArticleSection";
@@ -68,20 +65,20 @@ public class AllSectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_all_section, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         SectionViewAdapter.ItemClickListener clickListener1 = new SectionViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                MainActivity.LoadSectionFragment(listTemp.get(position).SectionID,getActivity().getSupportFragmentManager(),R.id.AllSectionFragmentContainer);
+
             }
         };
-
         mDataBase = FirebaseDatabase.getInstance().getReference(Section_Article_Key);
         //Лист всех статей
         RecycleviewSection = view.findViewById(R.id.RecycleviewSection);

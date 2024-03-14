@@ -119,10 +119,6 @@ public class MainActivity extends AppCompatActivity {
         if (fm.findFragmentByTag(tag)!=null) {
             if (fragment == active) {
                 fm.popBackStackImmediate(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            }else if(active ==dashboardFragment){
-                fm.beginTransaction().detach(active).show(fragment).commit();
-            } else if (fragment == dashboardFragment) {
-                fm.beginTransaction().attach(fragment).show(fragment).commit();
             } else {
                 fm.beginTransaction().hide(active).show(fragment).commit();
             }

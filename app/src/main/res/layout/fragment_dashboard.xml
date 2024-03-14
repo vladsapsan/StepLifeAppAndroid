@@ -210,119 +210,33 @@
                 android:text="Калибровать модуль"/>
         </com.google.android.material.card.MaterialCardView>
 
-
-        <FrameLayout
+        <com.google.android.material.card.MaterialCardView
+            android:visibility="gone"
+            android:id="@+id/DisconnectModuleButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:visibility="gone"
-                android:id="@+id/ProgressBarBatteryCharge"
-                app:indicatorSize="300dp"
-                android:progress="0"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            app:strokeWidth="0dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/RedExit"
+            style="@style/CustomCardViewStyle"
+            android:layout_marginLeft="16dp"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:layout_gravity="center"
-                app:trackCornerRadius="15dp"
-                app:trackThickness="22dp"
-                android:rotation="360"
-                app:trackColor="@color/white"
-                app:indicatorColor="@color/MainBlue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </FrameLayout>
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Отключиться от модуля"/>
+        </com.google.android.material.card.MaterialCardView>
 
 
-        <androidx.cardview.widget.CardView
-            android:visibility="gone"
-            android:foreground="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:id="@+id/TypeProthesisModuleCardButton"
-            android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_height="60dp"
-            app:cardCornerRadius="12dp">
-            <TextView
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                android:layout_gravity="left|center_vertical"
-                android:fontFamily="@font/montserratregular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Режим"
-                android:textColor="@color/MainGrayText"
-                android:textSize="14dp"/>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="15dp"
-                android:backgroundTint="@color/white"
-                app:cardCornerRadius="100dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:padding="10dp"
-                    android:src="@drawable/free_icon_gear_1160356" />
-            </androidx.cardview.widget.CardView>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:visibility="gone"
-            android:foreground="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_height="60dp"
-            app:cardCornerRadius="12dp">
-            <TextView
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                android:layout_gravity="left|center_vertical"
-                android:fontFamily="@font/montserratregular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Темп ходьбы"
-                android:textColor="@color/MainGrayText"
-                android:textSize="14dp"/>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="15dp"
-                android:backgroundTint="@color/MainGray"
-                app:cardCornerRadius="100dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/MainGray"
-                    android:padding="10dp"
-                    android:src="@drawable/free_icon_gear_1160356" />
-            </androidx.cardview.widget.CardView>
-        </androidx.cardview.widget.CardView>
-
-        <Button
-            android:visibility="gone"
-            android:id="@+id/CalibationModuleButton"
-            android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="10dp"
-            android:textColor="@color/MainBlue"
-            android:backgroundTint="@color/secondBlue"
-            android:layout_gravity="bottom"
-            android:fontFamily="@font/montserratsemibold"
-            android:text="Калибровать коленный модуль"/>
 
 
     </LinearLayout>

@@ -14,7 +14,7 @@ android {
         //noinspection EditedTargetSdkVersion
         targetSdk 34
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.2"
     }
 
     buildTypes {
@@ -54,17 +54,16 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.4.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-
     implementation 'com.google.android.material:material:1.10.0'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
-
     implementation 'net.steamcrafted:materialiconlib:1.1.5'
 
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-
     implementation 'androidx.navigation:navigation-fragment:2.7.5'
     implementation 'androidx.navigation:navigation-ui:2.7.5'
+
+
 
 
     //SceletonLoader
@@ -77,11 +76,15 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.firebase:firebase-database:20.3.0'
-    implementation 'com.google.firebase:firebase-auth:22.3.0'
-    implementation 'com.google.firebase:firebase-firestore:24.10.0'
+    implementation 'com.google.firebase:firebase-database:20.3.1'
+
+    implementation 'com.google.firebase:firebase-auth:22.3.1'
+
+    implementation 'com.google.firebase:firebase-firestore:24.10.3'
+
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.9.9'
+
     implementation 'com.google.firebase:firebase-storage:20.3.0'
     implementation 'com.google.android.gms:play-services-cast-framework:21.4.0'
 

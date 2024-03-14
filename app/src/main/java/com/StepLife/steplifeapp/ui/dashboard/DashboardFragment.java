@@ -51,87 +51,66 @@ import java.util.List;
 import java.util.Set;
 
 public class DashboardFragment extends Fragment implements BluetoothController.Listner {
-
-    private DashboardViewModel dashboardViewModel;
-    Button buttonConnect, CalibationModuleButton;
-    BluetoothDevice device;
     BluetoothAdapter bluetoothAdapter;
-    CardView TypeProthesisModuleCardButton,ModuleCalibration;
-    TextView CheckOutText;
+    //Кнопки управления колленым модулем
+    CardView ModuleCalibration,DisconnectModuleButton;
     BluetoothDevice BondDevice;
-    Button buttonConnectBt;
     int REQUEST_ENABLE_BT = 1;
     private int BTCheck = 0;
     boolean PermissionCheck;
-    NetworkChangeListner networkChangeListner;
-
     BluetoothAdapter mBluetoothAdapter;
     ArrayAdapter<String> adapter;
-
-    BluetoothManager bluetoothManager;
     BluetoothController bluetoothController;
     int REQUEST_CODE_PERMISSION_BLUETOOTH_CONNECT;
-    int REQUEST_CODE_PERMISSION_BLUETOOTH_SCAN;
-    int REQUEST_CODE_PERMISSION_FINE_LOCATION;
-
     BottomSheetDialog bottomSheetWaitDialog;
     ListView ListViewBtMOdule;
-
     List<BluetoothDevice> ListSetDevice = new ArrayList<>();
     ArrayList<String> mEditItems = new ArrayList<>();
     Set<String> mItemsSet = new HashSet<String>();
     View bottomSheetWaitView,bottomSheetStartView;
     ArrayList<String> mItems = new ArrayList<>(mItemsSet);
     TextView DeviceText,TextViewFoot;
-    CircularProgressIndicator ProgressBarBatteryCharge;
-    TextView TextViewBatteryCharge, TextBattery;
+    TextView TextViewBatteryCharge;
     Intent intent1;
     Boolean DeviceCheck = false;
     View bottomSheetDeviceList;
-
-    CardView SettingModuleButton;
 
     // Нахождение устройств вокруг
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @SuppressLint("MissingPermission")
         @Override
         public void onReceive(Context context, Intent intent) {
-
-
             final int check = 0;
 
                 //Получение устройств найденных поблизости
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 try {
                     if (device.getName() != null && !mEditItems.equals(device.getName())) {
-                        mItems.add(device.getName());
-                        adapter.notifyDataSetChanged();
-                        ListSetDevice.add(device);
+                        if (device.getName().equals("HC-06")) {
+                            mItems.add(device.getName());
+                            adapter.notifyDataSetChanged();
+                            ListSetDevice.add(device);
+                        }
+
                     }
                 } catch (Exception e) {
                     Log.d("Device", String.valueOf(e));
                 }
-
-
-
             //Проверка на соединение
                 final int bondState = intent.getIntExtra(EXTRA_BOND_STATE, check);
                 switch (bondState) {
                     case BOND_BONDING:
-                        // Bonding started
-
+                        // Старт
                         break;
                     case BOND_BONDED:
-                        // Bonding succeeded
-                        bluetoothController.Connect(BondDevice.getAddress(),DashboardFragment.this);
-                        TextViewFoot.setText("671");
-                        DeviceCheck = true;
+                        //Сопряжение успешно
+                        // пытаемся соедениться с устройством в потоке
+                        ConnectPairedModule(BondDevice);
+                        ModuleIsConnected();
                         bottomSheetWaitDialog.dismiss();
                         break;
                     case BOND_NONE:
-                        // Oh oh
-
-
+                        // Не удалось сопряжение
                         break;
                 }
             }
@@ -156,12 +135,18 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
 
         intent1 = new Intent(getActivity(), Bt_module.class);
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        CalibationModuleButton = view.findViewById(R.id.CalibationModuleButton);
 
-        //Количество шагов текст
+        //Количество шагов текстовое представление
         TextViewFoot = view.findViewById(R.id.TextViewFoot);
-        //Прогрессбар о состоянии аккумулятора
-        ProgressBarBatteryCharge = view.findViewById(R.id.ProgressBarBatteryCharge);
+
+        //Кнопка отключения коленного модуля
+        DisconnectModuleButton = view.findViewById(R.id.DisconnectModuleButton);
+        DisconnectModuleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DisconnectModuleButton.setVisibility(View.GONE);
+            }
+        });
 
         //Текстовое представление о состоянии аккумулятора
         TextViewBatteryCharge = view.findViewById(R.id.TextViewBatteryCharge);
@@ -171,15 +156,11 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         ModuleCalibration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetWaitDialog.show();
+
             }
         });
 
         adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, mItems);
-        //  ListViewBtMOdule = view.findViewById(R.id.ListViewBtMOdule);
-        // ListViewBtMOdule.setAdapter(adapter);
-
-
         bottomSheetWaitDialog = new BottomSheetDialog(getContext(), R.style.BottomSheetDialog);
         bottomSheetWaitDialog.setCanceledOnTouchOutside(false);
         bottomSheetWaitDialog.setDismissWithAnimation(true);
@@ -210,10 +191,9 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         bottomSheetStartView.findViewById(R.id.StartButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),R.string.NoUseble,Toast.LENGTH_SHORT).show();
-               // PermissionCheck(PermissionCheck);
-               // BtCheck(BTCheck);
-                // CheckoutBt();
+                PermissionCheck(PermissionCheck);
+                BtCheck(BTCheck);
+                CheckoutBt();
             }
         });
 
@@ -253,19 +233,6 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
 
         //Включение начального диалоговое окно
         bottomSheetWaitDialog.setContentView(bottomSheetStartView);
-
-
-
-
-        TypeProthesisModuleCardButton = view.findViewById(R.id.TypeProthesisModuleCardButton);
-        TypeProthesisModuleCardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bluetoothController.SendMessage("VLadsapsan");
-            }
-        });
-
-
     }
 
 
@@ -277,6 +244,24 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
 
         }
     }
+
+    //Получение списка сопряженных устройств коленных модулей steplife (Фильтрация по модулям не известна)
+    @SuppressLint("MissingPermission")
+    protected BluetoothDevice getPairedDevice(){
+        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+        BluetoothDevice BluetoothDevice = null;
+
+        //Проверяем среди сопряженных устройств, коленные модули steplife и выводим их отдельным списком
+        for (BluetoothDevice device : pairedDevices) {
+            if (device.getName() != null && !mEditItems.equals(device.getName())) {
+                if (device.getName().equals("HC-06")) {
+                    return device;
+                }
+            }
+        }
+        return BluetoothDevice;
+    }
+
 
     @Override
     public void onStart() {
@@ -299,13 +284,6 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
     public void onStop() {
         super.onStop();
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
 
@@ -385,30 +363,63 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         return BTCheck;
     }
 
-    void CheckoutBt() {
+
+    protected void ConnectPairedModule(BluetoothDevice device){
+        //Создание потока соединения с уже сопряженным устройством
+        bluetoothController = new BluetoothController(mBluetoothAdapter);
+        bluetoothController.Connect(device.getAddress(),DashboardFragment.this);
+    }
+    protected void ModuleIsConnected(){
+        DeviceCheck = true;
+        DisconnectModuleButton.setVisibility(View.VISIBLE);
+    }
+
+    protected boolean ModuleisConnectedCheck(){
+        if(DeviceCheck==true){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    protected void ModuleisDisconnected(){
+        DeviceCheck = false;
+        DisconnectModuleButton.setVisibility(View.GONE);
+    }
+
+    //Проверка текущего состояния блютуз системы
+    protected void CheckoutBt() {
         if (BTCheck == 0) {
           //  CheckOutText.setText("Что-то пошло не-так");
         } else if (BTCheck == 1) {
          //   CheckOutText.setText("Ваше устройство не поддерживает Bluetooth");
         } else if (BTCheck == 2) {
          //   CheckOutText.setText("Bluetooth выключен");
-         //   buttonConnectBt.setVisibility(View.VISIBLE);
             bottomSheetWaitDialog.setContentView(bottomSheetWaitView);
             bottomSheetWaitDialog.show();
         } else {
           //  CheckOutText.setText("Выберите модуль из списка...");
-            bottomSheetWaitDialog.setContentView(bottomSheetDeviceList);
-            bottomSheetWaitDialog.show();
-            try {
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                bluetoothAdapter.startDiscovery();
-            }catch (Exception e){}
-            GetDevice();
+            //Пытамся соедениться с уже сопряженным устройством если оно есть
+            if(getPairedDevice()!=null){
+                ConnectPairedModule(getPairedDevice());
+                ModuleIsConnected();
+                bottomSheetWaitDialog.dismiss();
+            } else {
+                //Если с сопряженными устройством не удалось соедениться, пробуем найти устройства в округе
+                bottomSheetWaitDialog.setContentView(bottomSheetDeviceList);
+                bottomSheetWaitDialog.show();
+                try {
+                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    bluetoothAdapter.startDiscovery();
+                }catch (Exception e){}
+                GetDevice();
+            }
+
         }
 
     }
+    //Важное примечание при получении данных с ардуино Данных которые вводятся через сериалпорт в строке имеют за собой продолжение в виде пробелов от которого нужно очистить строку для дальнешего преобразования
     @Override
     public void onReceive(String message) {
         getActivity().runOnUiThread(new Runnable() {
@@ -416,23 +427,22 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
             public void run() {
                 //Получили данные что блютуз подключен
                 if(message == BluetoothController.BLUETOOTH_CONNECTED){
-                    CalibationModuleButton.setVisibility(View.VISIBLE);
+
                     Log.d("BTConnect", message);
                 }
-                //Прием данных из модуля
-                    try {
-                     //   ProgressBarBatteryCharge.setProgress(Integer.parseInt(message));
-                        ProgressBarAnimation anim = new ProgressBarAnimation(ProgressBarBatteryCharge, ProgressBarBatteryCharge.getProgress(),Integer.parseInt(message));
-                        anim.setDuration(500);
-                        ProgressBarBatteryCharge.startAnimation(anim);
-                        TextViewBatteryCharge.setText(Integer.parseInt(message)+"%");
-                        Log.d("BTConnect", message);
-                    }catch (Exception e){}
+
+                //Получение данных не связанных с информацией о самом модуле блютуз
+                if(message.replaceAll("\\s","").matches(".*\\d.*")){
+                    TextViewBatteryCharge.setText(Integer.parseInt(message.replaceAll("\\s",""))+"%");
+                }
+
+
 
                 //Ошибка подключения или что то еще
                 if(message == BluetoothController.BLUETOOTH_NO_CONNECTED){
 
                 }
+                Log.d("BTConnect", message);
             }
         });
     }
