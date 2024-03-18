@@ -19,6 +19,7 @@
         android:orientation="vertical"
         android:layout_height="match_parent">
 
+
         <com.google.android.material.card.MaterialCardView
             app:cardPreventCornerOverlap="false"
             style="@style/CustomCardViewStyle"
@@ -136,6 +137,18 @@
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/ModuleIsActiveText"
+            android:layout_width="wrap_content"
+            android:textColor="@color/MainBlue"
+            android:textSize="14dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_height="wrap_content"
+            android:text="Устройство подключено"/>
 
         <Space
             android:layout_width="match_parent"

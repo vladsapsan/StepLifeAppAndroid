@@ -46,6 +46,7 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.transition.MaterialFadeThrough;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -70,7 +71,7 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
     View bottomSheetWaitView,bottomSheetStartView;
     ArrayList<String> mItems = new ArrayList<>(mItemsSet);
     TextView DeviceText,TextViewFoot;
-    TextView TextViewBatteryCharge;
+    TextView TextViewBatteryCharge,ModuleIsActiveText;
     Intent intent1;
     Boolean DeviceCheck = false;
     View bottomSheetDeviceList;
@@ -144,9 +145,12 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         DisconnectModuleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DisconnectModuleButton.setVisibility(View.GONE);
+                CloseConnectPairedModule();
             }
         });
+
+        //Текст о подключении модуля
+        ModuleIsActiveText  = view.findViewById(R.id.ModuleIsActiveText);
 
         //Текстовое представление о состоянии аккумулятора
         TextViewBatteryCharge = view.findViewById(R.id.TextViewBatteryCharge);
@@ -369,9 +373,21 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
         bluetoothController = new BluetoothController(mBluetoothAdapter);
         bluetoothController.Connect(device.getAddress(),DashboardFragment.this);
     }
+    //Отключение текущего модуля
+    protected void CloseConnectPairedModule(){
+        //Создание потока соединения с уже сопряженным устройством
+        if(bluetoothController!=null) {
+            bluetoothController.CloseConnection();
+            DeviceCheck = false;
+            ModuleIsActiveText.setVisibility(View.GONE);
+            DisconnectModuleButton.setVisibility(View.GONE);
+        }
+    }
     protected void ModuleIsConnected(){
         DeviceCheck = true;
+        ModuleIsActiveText.setVisibility(View.VISIBLE);
         DisconnectModuleButton.setVisibility(View.VISIBLE);
+        //   bluetoothController.SendStartingCheckMessege();
     }
 
     protected boolean ModuleisConnectedCheck(){
@@ -421,26 +437,14 @@ public class DashboardFragment extends Fragment implements BluetoothController.L
     }
     //Важное примечание при получении данных с ардуино Данных которые вводятся через сериалпорт в строке имеют за собой продолжение в виде пробелов от которого нужно очистить строку для дальнешего преобразования
     @Override
-    public void onReceive(String message) {
+    public void onReceive(byte[] Bytemessage) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                //Получили данные что блютуз подключен
-                if(message == BluetoothController.BLUETOOTH_CONNECTED){
-
-                    Log.d("BTConnect", message);
-                }
-
+                String message = Arrays.toString(Bytemessage);
                 //Получение данных не связанных с информацией о самом модуле блютуз
-                if(message.replaceAll("\\s","").matches(".*\\d.*")){
+                if(message.toString().replaceAll("\\s","").matches(".*\\d.*")){
                     TextViewBatteryCharge.setText(Integer.parseInt(message.replaceAll("\\s",""))+"%");
-                }
-
-
-
-                //Ошибка подключения или что то еще
-                if(message == BluetoothController.BLUETOOTH_NO_CONNECTED){
-
                 }
                 Log.d("BTConnect", message);
             }

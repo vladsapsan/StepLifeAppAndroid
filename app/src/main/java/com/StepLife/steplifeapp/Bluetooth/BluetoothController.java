@@ -2,6 +2,8 @@ package com.StepLife.steplifeapp.Bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.core.content.pm.PermissionInfoCompat;
 
@@ -22,14 +24,15 @@ public class BluetoothController {
         }
     }
 
-    public void SendMessage(String message){
-        connectThread.SendMessage(message);
+
+    public void SendCommand(byte[] message){
+        connectThread.SendCommand(message);
     }
     public void CloseConnection(){
         connectThread.CloseConnect();
     }
 
     public interface Listner{
-        void onReceive(String message);
+        void onReceive(byte[] message);
     }
 }
