@@ -17,17 +17,19 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.Model.Article;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleListAdapter extends ArrayAdapter <Article>  {
+
+
     private Context mContext;
     private int mResource;
     private ArrayList<Article> mDisplayedValues;
     private List<Article> mOriginalValues;
-
 
     public ArticleListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Article> objects) {
         super(context, resource, objects);
@@ -36,14 +38,11 @@ public class ArticleListAdapter extends ArrayAdapter <Article>  {
         mDisplayedValues = objects;
         mOriginalValues = objects;
     }
-
     @SuppressLint("SuspiciousIndentation")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
         Article article = getItem(position);
-
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         convertView = layoutInflater.inflate(mResource, parent,false);
         TextView HeadText = convertView.findViewById(R.id.ArticleHeadTextItems);
@@ -52,26 +51,19 @@ public class ArticleListAdapter extends ArrayAdapter <Article>  {
         CardView MoreTagsArticle = convertView.findViewById(R.id.MoreTagsArticle);
         TextView TextviewMoreTag = convertView.findViewById(R.id.TextviewMoreTag);
         CardView AddTagsArticleCard = convertView.findViewById(R.id.AddTagsArticleCard);
-        //Загрузка картинок с помощью библиотеки
-        if(article.PreviewPhotoUri!=null) {
-            if(PreviewImage.getDrawable()==null) {
-                // Glide.with(mContext).load(article.PreviewPhotoUri).into(PreviewImage);
-                // Picasso.get().load(article.PreviewPhotoUri).into(PreviewImage);
-            }
-        }
-
         if(article.TagList!=null){
             AddTagsArticleCard.setVisibility(View.VISIBLE);
             TextviewTag.setText(article.TagList.get(0));
             if(article.TagList.size()>1){
                 MoreTagsArticle.setVisibility(View.VISIBLE);
                 TextviewMoreTag.setText("+"+(article.TagList.size()-1));
+                //
             }
         }
         //Загрузка картинки  Glide
         if(getItem(position).PreviewPhotoUri!=null) {
             if(PreviewImage.getDrawable()==null) {
-               // Glide
+                // Glide
                 //        .with(this.getContext())
                  //       .load(getItem(position).PreviewPhotoUri)
                  //       .centerCrop()
@@ -80,11 +72,7 @@ public class ArticleListAdapter extends ArrayAdapter <Article>  {
                 Picasso.get().load(article.PreviewPhotoUri).into(PreviewImage);
             }
         }
-
-
         HeadText.setText(Html.fromHtml(article.HeadText).toString().trim());
-
-
         return convertView;
     }
 
@@ -108,7 +96,6 @@ public class ArticleListAdapter extends ArrayAdapter <Article>  {
                         }
                         filterResults.count = resultsModel.size();
                         filterResults.values = resultsModel;
-
                     }
                 }
                 return filterResults;

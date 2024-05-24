@@ -17,7 +17,8 @@ import android.widget.ImageView;
 
 import com.StepLife.steplifeapp.R;
 
-public class DoneSingUp extends Fragment {
+public class
+DoneSingUp extends Fragment {
 
     private DoneSingUpViewModel mViewModel;
     ImageView BackBtn;

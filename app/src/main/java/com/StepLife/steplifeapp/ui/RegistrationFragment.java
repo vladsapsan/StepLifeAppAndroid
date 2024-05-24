@@ -158,12 +158,14 @@ public class RegistrationFragment extends Fragment {
                                                     bottomNavigationView.setVisibility(View.VISIBLE);
 
                                                 }
+
                                             }
                                         });
 
                             } else {
                                 Toast.makeText(getActivity(), "ошибка регистрации", Toast.LENGTH_SHORT).show();
                             }
+
                         }
                     });
 

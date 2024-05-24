@@ -129,6 +129,7 @@ public class OtpTelephoneCheckActiviti extends AppCompatActivity {
                             finish();
 
                         }
+
                     }
                 });
     }

@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/montserrat_semibold"
-                android:text="Новый урок"
+                android:text="@string/NewLesson"
                 android:textColor="@color/BlackSviut"
                 android:textSize="18sp" />
             <ImageView
@@ -123,7 +123,7 @@
                     android:focusable="true"
                     android:layout_width="match_parent"
                     android:orientation="vertical"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
                     <EditText
                         android:id="@+id/TextEditHeader"
                         android:maxLength="60"
@@ -131,7 +131,7 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:maxLines="2"
-                        android:hint="Заголовок"
+                        android:hint="@string/HeadName"
                         android:singleLine="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -140,8 +140,7 @@
                         android:fontFamily="@font/montserrat_semibold"
                         android:textColor="@color/black"
                         android:background="@null"
-                        android:textSize="28dp"
-                        />
+                        android:textSize="28dp"/>
 
                     <FrameLayout
                         android:focusable="true"
@@ -151,7 +150,7 @@
                         <EditText
                             android:clickable="true"
                             android:lineHeight="24dp"
-                            android:hint="Основной текст статьи...."
+                            android:hint="@string/SecondName"
                             android:textCursorDrawable = "@drawable/color_cursor"
                             android:id="@+id/TextEditMainText"
                             android:paddingLeft="10dp"
@@ -190,17 +189,11 @@
                             </LinearLayout>
                         </HorizontalScrollView>
                     </FrameLayout>
-
-
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="80dp"/>
                 </LinearLayout>
-
-
             </ScrollView>
-
-
         </FrameLayout>
     </LinearLayout>
 
@@ -271,7 +264,7 @@
                 android:id="@+id/CleanFocus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Готово"
+                android:text="@string/Done"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/montserratregular"
                 android:textColor="@color/MainGrayText"/>

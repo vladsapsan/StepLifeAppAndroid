@@ -213,6 +213,7 @@ public class ProfileRedactActivity extends AppCompatActivity {
                                         if (task.isSuccessful()) {
 
                                         }
+
                                     }
                                 });
 
@@ -223,6 +224,7 @@ public class ProfileRedactActivity extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             progressBar.setVisibility(View.GONE);
                                         }
+
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -230,6 +232,7 @@ public class ProfileRedactActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), e.toString(),Toast.LENGTH_SHORT).show();
                                     }
                                 });
+
                     }
                 });
             }
@@ -242,6 +245,7 @@ public class ProfileRedactActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Данные успешно обновлены",Toast.LENGTH_SHORT).show();
                                     progressBar.setVisibility(View.GONE);
                                 }
+
                             }
                         });
             }

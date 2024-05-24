@@ -55,6 +55,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.Model.Article;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -246,6 +247,7 @@ public class AddArticleFragment extends Fragment {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+
                         }
                     });
 

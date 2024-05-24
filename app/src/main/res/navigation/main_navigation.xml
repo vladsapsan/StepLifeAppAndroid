@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/home">
+
+    <navigation android:id="@+id/ToHomeNavigation"
+        app:startDestination="@id/home">
+        <fragment
+            android:id="@+id/home"
+            android:name="com.StepLife.steplifeapp.ui.home.HomeFragment"
+            android:label="@string/title_home"
+            tools:layout="@layout/fragment_home" >
+            <action
+                android:id="@+id/action_home_to_articleSection2"
+                app:destination="@id/articleSection2" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/articleSection2"
+            android:name="com.StepLife.steplifeapp.MainEnterenceActivity.ArticleSection"
+            android:label="fragment_article_section"
+            tools:layout="@layout/fragment_article_section" />
+
+        <fragment
+            android:id="@+id/articleFragment2"
+            tools:layout="@layout/activity_choose_article"
+            android:name="com.StepLife.steplifeapp.MainEnterenceActivity.ArticleFragment"
+            android:label="ArticleFragment" />
+        <action android:id="@+id/action_global_articleFragment22" app:destination="@id/articleFragment2" />
+    </navigation>
+
+
+    <navigation android:id="@+id/ToLibraryNavigation"
+        app:startDestination="@id/notificationsFragment2">
+        <fragment
+            android:id="@+id/notificationsFragment2"
+            android:name="com.StepLife.steplifeapp.ui.notifications.NotificationsFragment"
+            android:label="fragment_notifications"
+            tools:layout="@layout/fragment_notifications">
+            <action
+                android:id="@+id/action_notificationsFragment2_to_articleSection3"
+                app:destination="@id/articleSection3"/>
+            <action
+                android:id="@+id/action_notificationsFragment2_to_tagSearchArticleFragment2"
+                app:destination="@id/tagSearchArticleFragment2"/>
+        </fragment>
+
+        <fragment
+            android:id="@+id/tagSearchArticleFragment2"
+            tools:layout="@layout/fragment_tag_search_article"
+            android:name="com.StepLife.steplifeapp.MainEnterenceActivity.TagSearchArticleFragment"
+            android:label="TagSearchArticleFragment" />
+
+        <fragment
+            android:id="@+id/articleFragment2"
+            tools:layout="@layout/activity_choose_article"
+            android:name="com.StepLife.steplifeapp.MainEnterenceActivity.ArticleFragment"
+            android:label="ArticleFragment" >
+            <action
+                android:id="@+id/action_articleFragment2_to_tagSearchArticleFragment2"
+                app:destination="@id/tagSearchArticleFragment2" />
+        </fragment>
+        <fragment
+            android:id="@+id/articleSection3"
+            android:name="com.StepLife.steplifeapp.MainEnterenceActivity.ArticleSection"
+            android:label="fragment_article_section"
+            tools:layout="@layout/fragment_article_section" />
+        <action android:id="@+id/action_global_articleFragment2" app:destination="@id/articleFragment2" />
+
+    </navigation>
+    <navigation android:id="@+id/ToModuleConnectionNavigation"
+        app:startDestination="@id/dashboardFragment2">
+        <fragment
+            android:id="@+id/dashboardFragment2"
+            android:name="com.StepLife.steplifeapp.ui.dashboard.DashboardFragment"
+            android:label="fragment_dashboard"
+            tools:layout="@layout/fragment_dashboard" />
+    </navigation>
+
+
+</navigation>

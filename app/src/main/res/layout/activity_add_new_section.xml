@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".StafFunction.EditArticlesActiviti">
+    tools:context=".StafFunction.Edit.EditArticlesActiviti">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/montserrat_semibold"
                 android:gravity="left"
-                android:text="Новый раздел"
+                android:text="@string/NewSection"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -61,7 +61,7 @@
             android:layout_marginRight="16dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="left"
-            android:text="Заполните все поля, чтобы создать и опубликовать раздел"
+            android:text="@string/FillAllFieldSection"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:fontFamily="@font/montserrat_semibold"
-                android:hint="Название раздела"
+                android:hint="@string/NameofSection"
                 android:singleLine="true"
                 android:maxLength="40"
                 android:id="@+id/NameSectionEditText"
@@ -106,7 +106,7 @@
                 android:layout_height="150dp"
                 android:textSize="14dp"
                 android:fontFamily="@font/montserrat_semibold"
-                android:hint="Описание раздела"
+                android:hint="@string/AboutSection"
                 android:gravity="left"
                 android:inputType="textMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -121,7 +121,7 @@
             android:layout_marginRight="16dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="left"
-            android:text="Раздел должен включать в себя статьи, добавьте их с помощью кнопки ниже: \nСтатьи раздела будут отображаться для обычного пользоваетля в порядке которым они были загружены"
+            android:text="@string/TextAboutRulesOfSection"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -139,7 +139,7 @@
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/MainBlue"
             android:textColor="@color/white"
-            android:text="Добавить статьи"/>
+            android:text="@string/AddArticleSection"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -175,7 +175,7 @@
             android:layout_gravity="center"
             android:backgroundTint="@color/MainYellow"
             android:textColor="@color/BlackSviut"
-            android:text="Создать раздел"/>
+            android:text="@string/CreateSection"/>
     </LinearLayout>
     </ScrollView>
 </FrameLayout>

@@ -9,6 +9,12 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.StafFunction.Add.AddNewSection;
+import com.StepLife.steplifeapp.StafFunction.Add.AddTagsArticle;
+import com.StepLife.steplifeapp.StafFunction.Add.PublicationNewArticles;
+import com.StepLife.steplifeapp.StafFunction.Edit.EditSection;
+import com.StepLife.steplifeapp.StafFunction.Edit.HomeArticleRedactActivity;
+import com.StepLife.steplifeapp.StafFunction.Edit.TopPostRedactActivity;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 
 public class ArticleOnTopSettingsActivity extends AppCompatActivity {
@@ -81,7 +87,7 @@ public class ArticleOnTopSettingsActivity extends AppCompatActivity {
         DeleteSectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ArticleOnTopSettingsActivity.this,EditSection.class));
+                startActivity(new Intent(ArticleOnTopSettingsActivity.this, EditSection.class));
             }
         });
         imagebackEditArticles = findViewById(R.id.imagebackEditArticles);

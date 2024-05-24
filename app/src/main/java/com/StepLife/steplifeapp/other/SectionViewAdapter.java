@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.R;
+import com.StepLife.steplifeapp.Model.Section;
 
 import java.util.ArrayList;
 

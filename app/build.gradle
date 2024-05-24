@@ -4,10 +4,8 @@ plugins {
     id 'com.google.gms.google-services'
 
 }
-
 android {
     compileSdk 34
-
     defaultConfig {
         applicationId "com.StepLife.steplifeapp"
         minSdk 27
@@ -16,7 +14,6 @@ android {
         versionCode 1
         versionName "1.0.2"
     }
-
     buildTypes {
         release {
             minifyEnabled true
@@ -28,7 +25,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     buildFeatures {
+        dataBinding true
         viewBinding true
+    }
+    dataBinding {
+        enabled = true
     }
     namespace 'com.StepLife.steplifeapp'
 }
@@ -49,6 +50,7 @@ dependencies {
 
     implementation 'com.github.dhaval2404:imagepicker:2.1'
     implementation 'com.squareup.picasso:picasso:2.8'
+
 
 
     implementation platform('com.google.firebase:firebase-bom:31.4.0')

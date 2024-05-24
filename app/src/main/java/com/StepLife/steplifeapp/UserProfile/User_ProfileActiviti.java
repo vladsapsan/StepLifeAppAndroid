@@ -15,11 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.StepLife.steplifeapp.Helper;
+import com.StepLife.steplifeapp.MainEnterenceActivity.Helper;
 import com.StepLife.steplifeapp.R;
-import com.StepLife.steplifeapp.StafFunction.AddNewArticle;
+import com.StepLife.steplifeapp.StafFunction.Add.AddNewArticle;
 import com.StepLife.steplifeapp.StafFunction.ArticleOnTopSettingsActivity;
-import com.StepLife.steplifeapp.StafFunction.EditArticlesActiviti;
+import com.StepLife.steplifeapp.StafFunction.Edit.EditArticlesActiviti;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.ui.AddArticleFragment;
 import com.StepLife.steplifeapp.ui.SettingsFragment;

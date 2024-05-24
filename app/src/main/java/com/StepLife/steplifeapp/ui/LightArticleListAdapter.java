@@ -18,7 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.StepLife.steplifeapp.R;
-import com.StepLife.steplifeapp.other.LightArticle;
+import com.StepLife.steplifeapp.Model.LightArticle;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".StafFunction.EditArticlesActiviti">
+    tools:context=".StafFunction.Edit.EditArticlesActiviti">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                     android:backgroundTint="@color/MainBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
-                    android:text="Публикация материала"/>
+                    android:text="@string/Publishmaterial"/>
 
                 <Button
                     android:id="@+id/HomeArticleRedactButton"
@@ -82,7 +82,7 @@
                     android:backgroundTint="@color/MainBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
-                    android:text="Статьи домашней страницы"/>
+                    android:text="@string/ArticleHomePage"/>
 
                 <Button
                     android:id="@+id/TopPostRedactButton"
@@ -98,7 +98,7 @@
                     android:backgroundTint="@color/MainBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
-                    android:text="Школа ходьбы"/>
+                    android:text="@string/WalkSchool"/>
 
                 <Button
                     android:id="@+id/AddTagsButton"
@@ -114,7 +114,7 @@
                     android:backgroundTint="@color/MainBlue"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/montserratsemibold"
-                    android:text="Добавление, удаление тегов"/>
+                    android:text="@string/Tags"/>
 
                 <Button
                     android:id="@+id/AddSectionButton"

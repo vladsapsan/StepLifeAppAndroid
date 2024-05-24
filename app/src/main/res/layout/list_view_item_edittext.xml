@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:clickable="true"
+        android:lineHeight="24dp"
+        android:hint="@string/SecondName"
+        android:textCursorDrawable = "@drawable/color_cursor"
+        android:id="@+id/TextEditMainText"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:minHeight="50dp"
+        android:textColor="@color/black"
+        android:background="@null"
+        android:textSize="16dp"
+        />
+</FrameLayout>

@@ -10,7 +10,7 @@ import androidx.core.content.pm.PermissionInfoCompat;
 public class BluetoothController {
     BluetoothAdapter adapter;
     BluetoothDevice device;
-    ConnectThread connectThread = null;
+    public ConnectThread connectThread = null;
     public BluetoothController(BluetoothAdapter adapter){
         this.adapter = adapter;
     }

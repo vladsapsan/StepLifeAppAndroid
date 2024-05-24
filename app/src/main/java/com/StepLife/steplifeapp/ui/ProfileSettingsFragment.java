@@ -24,7 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.StepLife.steplifeapp.MainActivity;
+import com.StepLife.steplifeapp.MainEnterenceActivity.MainActivity;
 import com.StepLife.steplifeapp.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -210,6 +210,7 @@ public class ProfileSettingsFragment extends Fragment {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(getActivity(), "Данные успешно обновлены",Toast.LENGTH_SHORT).show();
                                         }
+
                                     }
                                 });
 
@@ -223,6 +224,7 @@ public class ProfileSettingsFragment extends Fragment {
                                             startActivity(intent);
 
                                         }
+
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override

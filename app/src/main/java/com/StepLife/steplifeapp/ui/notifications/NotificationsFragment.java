@@ -1,8 +1,8 @@
 package com.StepLife.steplifeapp.ui.notifications;
 
-import static com.StepLife.steplifeapp.StafFunction.HomeArticleRedactActivity.Section1_Article_Key;
-import static com.StepLife.steplifeapp.StafFunction.HomeArticleRedactActivity.Section2_Article_Key;
-import static com.StepLife.steplifeapp.StafFunction.HomeArticleRedactActivity.Section3_Article_Key;
+import static com.StepLife.steplifeapp.StafFunction.Edit.HomeArticleRedactActivity.Section1_Article_Key;
+import static com.StepLife.steplifeapp.StafFunction.Edit.HomeArticleRedactActivity.Section2_Article_Key;
+import static com.StepLife.steplifeapp.StafFunction.Edit.HomeArticleRedactActivity.Section3_Article_Key;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,13 +23,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.StepLife.steplifeapp.AllArticleActivity;
-import com.StepLife.steplifeapp.AllSectionFragment;
-import com.StepLife.steplifeapp.MainActivity;
+import com.StepLife.steplifeapp.Model.Article;
+import com.StepLife.steplifeapp.garbage.AllArticleActivity;
+import com.StepLife.steplifeapp.MainEnterenceActivity.AllSectionFragment;
+import com.StepLife.steplifeapp.MainEnterenceActivity.MainActivity;
 import com.StepLife.steplifeapp.R;
-import com.StepLife.steplifeapp.StafFunction.TopPostRedactActivity;
-import com.StepLife.steplifeapp.TagSearchArticleFragment;
-import com.StepLife.steplifeapp.other.LightArticle;
+import com.StepLife.steplifeapp.StafFunction.Edit.TopPostRedactActivity;
+import com.StepLife.steplifeapp.MainEnterenceActivity.TagSearchArticleFragment;
+import com.StepLife.steplifeapp.Model.LightArticle;
 import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -65,22 +66,18 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
     RecyclerView RecycleviewSectionArticle1,RecycleviewSectionArticle2,RecycleviewSectionArticle3;
     TextView TextviewSectionName1,TextviewSectionName2,TextviewSectionName3;
     SkeletonLinearLayout CardArticleSection1,SkeletonCards1,SkeletonCards2,SkeletonCards3,CardArticleSection2,CardArticleSection3;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_notifications, container,false);
     }
-
     //Иницилизация компонентов
     private void initilization(View view)
     {
         mDataBase = FirebaseDatabase.getInstance().getReference();
-
         //Да это работает так)
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(),LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(view.getContext(),LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutManager3 = new LinearLayoutManager(view.getContext(),LinearLayoutManager.HORIZONTAL, false);
-
         //Инициализация кликов для статей
         SectionArticleViewAdapter.ItemClickListener clickListener1 = new SectionArticleViewAdapter.ItemClickListener() {
             @Override
@@ -92,7 +89,6 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
         SectionArticleViewAdapter.ItemClickListener clickListener2 = new SectionArticleViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
                 MainActivity.LoadArticleFragmentFromID(ArticlelistTemp2.get(position).id ,getActivity().getSupportFragmentManager(),R.id.TeachArticleFrame);
             }
         };
@@ -149,6 +145,7 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
                                 mDataBase,CardArticleSection1,SkeletonCards1,Card1Next);
                     }
                 }
+
             }
         });
         mDataBase.child(Library_Key).child(TopPost_Key).child(Section2_Article_Key).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -161,6 +158,7 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
                                 null, null, mDataBase,CardArticleSection2,SkeletonCards2,Card2Next);
                     }
                 }
+
             }
         });
         mDataBase.child(Library_Key).child(TopPost_Key).child(Section3_Article_Key).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -173,6 +171,7 @@ public class NotificationsFragment extends Fragment implements SectionArticleVie
                                 null, mDataBase,CardArticleSection3,SkeletonCards3,Card3Next);
                     }
                 }
+
             }
         });
     }

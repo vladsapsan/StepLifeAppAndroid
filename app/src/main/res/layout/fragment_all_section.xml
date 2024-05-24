@@ -7,7 +7,7 @@
     android:clickable="true"
     android:id="@+id/AllSectionFragmentContainer"
     android:background="@color/MainGray"
-    tools:context=".ArticleSection">
+    tools:context=".MainEnterenceActivity.ArticleSection">
 
 
     <LinearLayout

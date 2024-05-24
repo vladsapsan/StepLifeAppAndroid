@@ -7,7 +7,7 @@
     android:clickable="true"
     android:layout_height="match_parent"
     android:background="@color/MainGray"
-    tools:context=".AllArticleActivity">
+    tools:context=".garbage.AllArticleActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"

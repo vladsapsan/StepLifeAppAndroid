@@ -222,14 +222,11 @@ public class Bt_module extends AppCompatActivity {
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_PERMISSION_BLUETOOTH_CONNECT);
         }
-
-
         if (ACCESS_FINE_LOCATION == true && BLUETOOTH_SCAN == true && BLUETOOTH_CONNECT == true) {
             Check = true;
         }
         return Check;
     }
-
     @Override
     public void finish() {
         super.finish();
@@ -239,7 +236,6 @@ public class Bt_module extends AppCompatActivity {
         bluetoothAdapter.cancelDiscovery();
         unregisterReceiver(broadcastReceiver);
     }
-
     @SuppressLint("MissingPermission")
     int BtCheck(int BT) {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -255,7 +251,6 @@ public class Bt_module extends AppCompatActivity {
         }
         return BTCheck;
     }
-
     void CheckoutBt() {
         if (BTCheck == 0) {
             CheckOutText.setText("Что-то пошло не-так");
@@ -275,9 +270,7 @@ public class Bt_module extends AppCompatActivity {
                     bluetoothAdapter.startDiscovery();
                 } catch (Exception e) {
                 }
-
                 GetNewDevice();
-
         }
     }
 

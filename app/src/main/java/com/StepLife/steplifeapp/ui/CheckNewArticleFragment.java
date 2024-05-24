@@ -45,11 +45,7 @@ public class CheckNewArticleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-
-
         return inflater.inflate(R.layout.fragment_check_new_article, container, false);
-
     }
 
     @Override
@@ -70,7 +66,6 @@ public class CheckNewArticleFragment extends Fragment {
         imagebackAddArticle = view.findViewById(R.id.imagebackAddArticle);
         DateText = view.findViewById(R.id.TextViewDate);
 
-
         //Запись урока в базу данных,публикация
         imageAddArticlePublic = view.findViewById(R.id.imageAddArticlePublic);
         imageAddArticlePublic.setOnClickListener(new View.OnClickListener() {
@@ -78,21 +73,14 @@ public class CheckNewArticleFragment extends Fragment {
             public void onClick(View v) {
                 String idArticle = mDataBase.getKey();
 
-
                 //Текст с сохраненным форматированием
                 Spanned HeadSpanned =   Html.fromHtml( HeaderView.getText().toString());
                 Editable HeadViewText = (Editable) HeadSpanned;
                 String HeadString = Html.toHtml(HeadViewText);
 
-
                 Spanned MainSpanned = Html.fromHtml( MainView.getText().toString());
                 Editable MainViewText = (Editable) MainSpanned;
                 String MainString = Html.toHtml(MainViewText);
-
-
-              // Article newArticle = new Article(idArticle,(String) DateText.getText(),HeadString,MainString);
-
-                //mDataBase.push().setValue(newArticle);
 
                 getActivity().getSupportFragmentManager().popBackStackImmediate("AddArticle",POP_BACK_STACK_INCLUSIVE);
                 BottomNavigationView bottomNavigationView= getActivity().findViewById(R.id.nav_view);
@@ -102,9 +90,6 @@ public class CheckNewArticleFragment extends Fragment {
             }
         });
 
-
-
-
          //Возвращение обратно
         imagebackAddArticle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,13 +98,8 @@ public class CheckNewArticleFragment extends Fragment {
             }
         });
 
-
-
-
         DateFormat df = new SimpleDateFormat("d MMM yyyy");
         String Simpledate = df.format(Calendar.getInstance().getTime());
-
-
 
         DateText.setText(Simpledate.toString());
 

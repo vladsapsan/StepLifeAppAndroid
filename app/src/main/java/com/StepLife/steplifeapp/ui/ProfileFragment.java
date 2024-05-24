@@ -112,6 +112,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                                 Toast.makeText(getActivity(), "Неверны данные или ошибка входа",Toast.LENGTH_SHORT).show();
                             }
 
+
                         }
                     });
 

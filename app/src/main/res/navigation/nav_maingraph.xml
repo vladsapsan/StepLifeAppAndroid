@@ -51,15 +51,15 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.StepLife.steplifeapp.ArticleFragment"
+        android:name="com.StepLife.steplifeapp.MainEnterenceActivity.ArticleFragment"
         android:label="ArticleFragment" />
     <fragment
         android:id="@+id/tagSearchArticleFragment"
-        android:name="com.StepLife.steplifeapp.TagSearchArticleFragment"
+        android:name="com.StepLife.steplifeapp.MainEnterenceActivity.TagSearchArticleFragment"
         android:label="TagSearchArticleFragment" />
     <fragment
         android:id="@+id/articleSection"
-        android:name="com.StepLife.steplifeapp.ArticleSection"
+        android:name="com.StepLife.steplifeapp.MainEnterenceActivity.ArticleSection"
         android:label="fragment_article_section"
         tools:layout="@layout/fragment_article_section" >
         <action

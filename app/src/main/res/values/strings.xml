@@ -10,10 +10,13 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    //Информация по проекту
     <string name="VersionApp">1.0.2</string>
-    <string name="BuildDate">Сборка от 14.03.2024</string>
+    <string name="BuildDate">Сборка от 17.04.2024</string>
     <string name="AllRights">Все права защищены</string>
     <string name="Developer">Разработка ‹ООО Группа Компаний ‹Салют Орто›</string>
+
+    //Управление кленным модулем
     <string name="title_location_permission">Устройства поблизости</string>
     <string name="text_location_permission">Предоставьте доступ для подключения коленного модуля Steplife</string>
     <string name="hello_first_fragment">Hello first fragment</string>
@@ -23,19 +26,41 @@
     <string name="channel_name">Покакал</string>
     <string name="AboutArticleSchool">Начните обучение с избранных статей школы</string>
     <string name="Protehsisespand">Наш первый курс для новичков, который расскажет вам о том как плавно перейти к протезированию</string>
-    <string name="EditMaterial">Изменение материала</string>
     <string name="FullSection">Весь раздел</string>
     <string name="Accses">Нажимая кнопку, вы даете согласие на обработку персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных»</string>
     <string name="HomeTezis">Современные протезы Steplife</string>
     <string name="TeahBook">Авторский учебник по реабилитации и протезированию</string>
     <string name="VideoHelp">Российские протезы ног нового поколения для взрослых и детей</string>
-    <string name="channel_description">Не какал я</string>
     <string name="ReadThis">
          <u>Читать далее</u>.
     </string>
     <string name="NoUseble">Не доступно на данный момент</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
     <string name="Auth">Аутентификация</string>
-    <string name="title_activity_test">TestActivity</string>
+
+
+    //Фрагмент добавления урока
+    <string name="NewLesson">Новый урок</string>
+    <string name="HeadName">Заголовок</string>
+    <string name="SecondName">Основной текст статьи....</string>
+    <string name="Done">Готово</string>
+
+    //Фрагмент добавления раздела
+    <string name="NewSection">Новый раздел</string>
+    <string name="FillAllFieldSection">Заполните все поля, чтобы создать и опубликовать раздел</string>
+    <string name="NameofSection">Название раздела</string>
+    <string name="AboutSection">Описание раздела</string>
+    <string name="TextAboutRulesOfSection">Раздел должен включать в себя статьи, добавьте их с помощью кнопки ниже: \nСтатьи раздела будут отображаться для обычного пользоваетля в порядке которым они были загружены</string>
+    <string name="AddArticleSection">Добавить статьи</string>
+    <string name="CreateSection">Создать раздел</string>
+
+    //Фрагмент тегов
+    <string name="Tags">Теги</string>
+    <string name="AddTag">Добавить тег</string>
+
+    //Фрагмент изменение и редактирования материала
+    <string name="EditMaterial">Изменение материала</string>
+    <string name="Publishmaterial">Публикация материала</string>
+    <string name="ArticleHomePage">Статьи домашней страницы</string>
+    <string name="WalkSchool">Школа ходьбы</string>
 </resources>

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.R;
-import com.StepLife.steplifeapp.ui.Article;
+import com.StepLife.steplifeapp.Model.Article;
 
 import java.util.List;
 

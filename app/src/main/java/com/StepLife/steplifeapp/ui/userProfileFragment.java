@@ -42,10 +42,7 @@ public class userProfileFragment extends Fragment {
     private UserProfileViewModel mViewModel;
     private FirebaseAuth mAuth;
     private TextView Email,ChoosePhoto;
-
     Button StartEditorFragmentBtn;
-
-
     private ImageView ImageProfile;
 
     public static userProfileFragment newInstance() {
@@ -104,10 +101,6 @@ public class userProfileFragment extends Fragment {
 
         ImageProfile = view.findViewById(R.id.ImageProfile);
 
-
-
-
-
         //Плашка с sheetDialog
         ImageView UserSettingsSheet = view.findViewById(R.id.ButtonSettingProfile);
         UserSettingsSheet.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +122,6 @@ public class userProfileFragment extends Fragment {
                         getActivity().getSupportFragmentManager().popBackStack();
                     }
                 });
-
                 //кнопка создания новой статьи в учебнике
                 bottomSheetView.findViewById(R.id.AddArticleFrameButton).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -139,7 +131,6 @@ public class userProfileFragment extends Fragment {
                         FragmentTransaction ft = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
                         ft.setCustomAnimations(R.anim.slide_down, R.anim.slide_up,R.anim.slide_down, R.anim.slide_up);
                         ft.addToBackStack("AddArticle");
-
                         ft.add(R.id.UserProfileFrame,fragment,"AddArticle").commit();
                         BottomNavigationView bottomNavigationView= getActivity().findViewById(R.id.nav_view);
                         bottomNavigationView.setVisibility(View.INVISIBLE);
@@ -150,6 +141,8 @@ public class userProfileFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         bottomSheetDialog.dismiss();
+
+
                         Fragment fragment = new SettingsFragment();
                         FragmentTransaction ft = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
                         ft.setCustomAnimations(R.anim.slide_left, R.anim.slide_right,R.anim.slide_left, R.anim.slide_right);
