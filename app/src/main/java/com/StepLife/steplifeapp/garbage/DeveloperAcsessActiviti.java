@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.StepLife.steplifeapp.MainEnterenceActivity.MainActivity;
+import com.StepLife.steplifeapp.MainActivity.MainActivity;
 import com.StepLife.steplifeapp.R;
 import com.chaos.view.PinView;
 

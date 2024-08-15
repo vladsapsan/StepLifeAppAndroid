@@ -22,12 +22,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.StepLife.steplifeapp.MainEnterenceActivity.AllArticleViewModel;
+import com.StepLife.steplifeapp.EnterenceActivity.AllArticleViewModel;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.Model.LightArticle;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.Model.Section;
-import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
+import com.StepLife.steplifeapp.Adapters.SectionArticleViewAdapter;
 import com.StepLife.steplifeapp.Model.Article;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -51,7 +51,6 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
     Button SaveTopPostRedactButton,SelectSectionHomeButton,SelectSectionHomeButton2;
     ImageView imagebackEditTopPost;
     TextView ChooseTextView,TextviewSectionName1,TextviewSectionName2;
-
     private String HomeArticle_Key ="HomeArticle";
     private String Library_Key ="Lib";
     RecyclerView RecycleviewSectionArticle;
@@ -69,7 +68,7 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
     private AllArticleViewModel mViewModel;
     private ImageView backbutton;
     private CardView articlecard;
-    private com.StepLife.steplifeapp.ui.ArticleListAdapter ArticleListAdapter;
+    private com.StepLife.steplifeapp.Adapters.ArticleListAdapter ArticleListAdapter;
     private ListView allArticlelist;
     private ArrayAdapter<String> adapter;
 
@@ -326,20 +325,11 @@ public class HomeArticleRedactActivity extends AppCompatActivity implements Sect
             }
         });
     }
-
-
-
-
-
-
-
     @Override
     public void onStart() {
         super.onStart();
         DownloadHomeSection(Section2_Article_Key,TextviewSectionName2,ArticlelistTemp,sectionArticleViewAdapter,null,null,null);
     }
-
-
     //Загрузка раздела home fragment
     public static void DownloadHomeSection(String SectionDownloadKey, TextView SectionName, ArrayList<LightArticle> articlelistTemp, SectionArticleViewAdapter sectionArticleViewAdapter,
                                            SkeletonLinearLayout SkeletonName,SkeletonLinearLayout SkeletonCard,CardView OpenSectionCard){

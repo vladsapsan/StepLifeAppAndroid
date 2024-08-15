@@ -52,10 +52,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.R;
-import com.StepLife.steplifeapp.other.MyRecyclerViewTagsAdapter;
+import com.StepLife.steplifeapp.Adapters.MyRecyclerViewTagsAdapter;
 import com.StepLife.steplifeapp.ui.AddArticleViewModel;
 import com.StepLife.steplifeapp.Model.Article;
-import com.StepLife.steplifeapp.ui.ArticleListAdapter;
+import com.StepLife.steplifeapp.Adapters.ArticleListAdapter;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -362,8 +362,6 @@ public class AddNewArticle extends AppCompatActivity implements MyRecyclerViewTa
                 }
             }
         });
-
-
 
         EditTextRG = findViewById(R.id.RadioGroupTextEdit);
 

@@ -45,8 +45,6 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Bt_module extends AppCompatActivity {
-
-
     TextView CheckOutText;
     Button buttonConnectBt;
     int REQUEST_ENABLE_BT = 1;
@@ -82,11 +80,8 @@ public class Bt_module extends AppCompatActivity {
             } catch (Exception e) {
                 Log.d("Device", String.valueOf(e));
             }
-
         }
     };
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

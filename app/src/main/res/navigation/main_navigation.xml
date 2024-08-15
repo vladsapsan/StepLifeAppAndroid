@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/home">
+    app:startDestination="@id/ToHomeNavigation">
 
     <navigation android:id="@+id/ToHomeNavigation"
         app:startDestination="@id/home">
@@ -19,14 +19,14 @@
 
         <fragment
             android:id="@+id/articleSection2"
-            android:name="com.StepLife.steplifeapp.MainEnterenceActivity.ArticleSection"
+            android:name="com.StepLife.steplifeapp.EnterenceActivity.ArticleSection"
             android:label="fragment_article_section"
             tools:layout="@layout/fragment_article_section" />
 
         <fragment
             android:id="@+id/articleFragment2"
             tools:layout="@layout/activity_choose_article"
-            android:name="com.StepLife.steplifeapp.MainEnterenceActivity.ArticleFragment"
+            android:name="com.StepLife.steplifeapp.EnterenceActivity.ArticleFragment"
             android:label="ArticleFragment" />
         <action android:id="@+id/action_global_articleFragment22" app:destination="@id/articleFragment2" />
     </navigation>
@@ -50,13 +50,13 @@
         <fragment
             android:id="@+id/tagSearchArticleFragment2"
             tools:layout="@layout/fragment_tag_search_article"
-            android:name="com.StepLife.steplifeapp.MainEnterenceActivity.TagSearchArticleFragment"
+            android:name="com.StepLife.steplifeapp.EnterenceActivity.TagSearchArticleFragment"
             android:label="TagSearchArticleFragment" />
 
         <fragment
             android:id="@+id/articleFragment2"
             tools:layout="@layout/activity_choose_article"
-            android:name="com.StepLife.steplifeapp.MainEnterenceActivity.ArticleFragment"
+            android:name="com.StepLife.steplifeapp.EnterenceActivity.ArticleFragment"
             android:label="ArticleFragment" >
             <action
                 android:id="@+id/action_articleFragment2_to_tagSearchArticleFragment2"
@@ -64,7 +64,7 @@
         </fragment>
         <fragment
             android:id="@+id/articleSection3"
-            android:name="com.StepLife.steplifeapp.MainEnterenceActivity.ArticleSection"
+            android:name="com.StepLife.steplifeapp.EnterenceActivity.ArticleSection"
             android:label="fragment_article_section"
             tools:layout="@layout/fragment_article_section" />
         <action android:id="@+id/action_global_articleFragment2" app:destination="@id/articleFragment2" />
@@ -74,7 +74,7 @@
         app:startDestination="@id/dashboardFragment2">
         <fragment
             android:id="@+id/dashboardFragment2"
-            android:name="com.StepLife.steplifeapp.ui.dashboard.DashboardFragment"
+            android:name="com.StepLife.steplifeapp.Bluetooth.Fragment.BluetoothModelFragment"
             android:label="fragment_dashboard"
             tools:layout="@layout/fragment_dashboard" />
     </navigation>

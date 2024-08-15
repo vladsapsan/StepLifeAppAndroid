@@ -1,5 +1,6 @@
 package com.StepLife.steplifeapp.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -8,11 +9,11 @@ public class Section {
     public String SectionName;
     public String AboutSection;
     public String SectionID;
-    public List<LightArticle> articleList;
+    public ArrayList<LightArticle> articleList;
     public Section()
     {}
 
-    public Section(String Name, String About,String SectionID, List<LightArticle> articleList){
+    public Section(String Name, String About,String SectionID, ArrayList<LightArticle> articleList){
         this.SectionName = Name;
         this.AboutSection = About;
         this.SectionID = SectionID;

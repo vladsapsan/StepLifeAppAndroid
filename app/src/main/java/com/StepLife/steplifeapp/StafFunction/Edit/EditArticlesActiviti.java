@@ -16,11 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.StepLife.steplifeapp.MainEnterenceActivity.AllArticleViewModel;
+import com.StepLife.steplifeapp.EnterenceActivity.AllArticleViewModel;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.Model.Article;
-import com.StepLife.steplifeapp.ui.ArticleListAdapter;
+import com.StepLife.steplifeapp.Adapters.ArticleListAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.StepLife.steplifeapp.MainEnterenceActivity.MainActivity;
+import com.StepLife.steplifeapp.MainActivity.MainActivity;
 import com.StepLife.steplifeapp.R;
 
 public class StartScreen extends AppCompatActivity {

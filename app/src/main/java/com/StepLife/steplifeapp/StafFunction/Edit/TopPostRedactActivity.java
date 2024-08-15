@@ -26,12 +26,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.StepLife.steplifeapp.MainEnterenceActivity.AllArticleViewModel;
+import com.StepLife.steplifeapp.EnterenceActivity.AllArticleViewModel;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.Model.LightArticle;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.Model.Section;
-import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
+import com.StepLife.steplifeapp.Adapters.SectionArticleViewAdapter;
 import com.StepLife.steplifeapp.Model.Article;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -70,7 +70,7 @@ public class TopPostRedactActivity extends AppCompatActivity {
     private AllArticleViewModel mViewModel;
     private ImageView backbutton;
     private CardView articlecard;
-    private com.StepLife.steplifeapp.ui.ArticleListAdapter ArticleListAdapter;
+    private com.StepLife.steplifeapp.Adapters.ArticleListAdapter ArticleListAdapter;
     private ListView allArticlelist;
     private ArrayAdapter<String> adapter;
 

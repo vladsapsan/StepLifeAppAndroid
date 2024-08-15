@@ -35,9 +35,7 @@
          <u>Читать далее</u>.
     </string>
     <string name="NoUseble">Не доступно на данный момент</string>
-
     <string name="Auth">Аутентификация</string>
-
 
     //Фрагмент добавления урока
     <string name="NewLesson">Новый урок</string>
@@ -63,4 +61,7 @@
     <string name="Publishmaterial">Публикация материала</string>
     <string name="ArticleHomePage">Статьи домашней страницы</string>
     <string name="WalkSchool">Школа ходьбы</string>
+    <string name="walk_mode">Режим ходьбы</string>
+    <string name="lock_mode">Режим фиксации</string>
+    <string name="sport_mode">Режим спорта</string>
 </resources>

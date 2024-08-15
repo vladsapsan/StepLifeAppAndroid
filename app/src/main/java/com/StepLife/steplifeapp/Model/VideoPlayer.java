@@ -10,7 +10,6 @@ import android.widget.VideoView;
 public class VideoPlayer extends VideoView implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener {
     private MediaPlayer mediaPlayer;
 
-
     public VideoPlayer(Context context, AttributeSet attributes) {
         super(context,attributes);
         this.setOnPreparedListener(this);

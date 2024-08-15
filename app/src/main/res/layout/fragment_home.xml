@@ -8,6 +8,7 @@
     android:id="@+id/HomeFragment"
     android:background="@color/MainGray"
     tools:context=".ui.home.HomeFragment">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -68,7 +69,7 @@
                         <com.StepLife.steplifeapp.Model.VideoPlayer
                             android:layout_gravity="center"
                             android:id="@+id/HomeVideoView"
-                            android:layout_width="match_parent"
+                            android:layout_width="600dp"
                             android:layout_height="200dp"/>
                         <ToggleButton
                             android:alpha="0.55"
@@ -126,6 +127,7 @@
                         android:text="Школа ходьбы"
                         android:textSize="18dp"
                         android:textColor="@color/SecondGrayText"
+                        android:textColorHint="@color/MainYellow"
                         android:fontFamily="@font/normalidad_text_text_medium"/>
                     <TextView
                         android:layout_width="match_parent"
@@ -157,6 +159,17 @@
 
 
 
+
+
+            <androidx.legacy.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecycleviewTest"
+                android:layout_width="match_parent"
+                tools:listitem="@layout/home_item"
+                android:layout_height="wrap_content"/>
 
                 <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
@@ -274,7 +287,6 @@
                                     android:textSize="14sp" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
-
                     </LinearLayout>
                 </RelativeLayout>
                 </HorizontalScrollView>
@@ -444,11 +456,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
 
-                    </FrameLayout>
 
                 </LinearLayout>
 

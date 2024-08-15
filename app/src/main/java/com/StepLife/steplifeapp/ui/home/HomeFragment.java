@@ -3,7 +3,6 @@ package com.StepLife.steplifeapp.ui.home;
 import static com.StepLife.steplifeapp.StafFunction.Edit.HomeArticleRedactActivity.Section1_Article_Key;
 import static com.StepLife.steplifeapp.StafFunction.Edit.HomeArticleRedactActivity.Section2_Article_Key;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -22,14 +20,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.StepLife.steplifeapp.MainEnterenceActivity.MainActivity;
+import com.StepLife.steplifeapp.MainActivity.MainActivity;
 import com.StepLife.steplifeapp.R;
-import com.StepLife.steplifeapp.StafFunction.Edit.HomeArticleRedactActivity;
 import com.StepLife.steplifeapp.Model.LightArticle;
-import com.StepLife.steplifeapp.other.SectionArticleViewAdapter;
 import com.StepLife.steplifeapp.Model.VideoPlayer;
-import com.StepLife.steplifeapp.ui.Animation.FragmentAnimation;
+import com.StepLife.steplifeapp.Animation.FragmentAnimation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -41,12 +38,13 @@ import aglibs.loading.skeleton.layout.SkeletonLinearLayout;
 
 
 public class HomeFragment extends Fragment implements  FragmentAnimation {
-
     TextView TextviewSectionName1,TextviewSectionName2;
     ImageView VideoHolder;
     CardView buttonConnect;
     SkeletonLinearLayout CardArticleSection1,CardArticleSection2,SkeletonCards1,SkeletonCards2;
     LinearLayout ShoolStepButton;
+
+    RecyclerView RecycleviewTest;
     private DatabaseReference mDataBase;
     CardView Card1Next,Card2Next;
     ToggleButton VideoSoundButton;
@@ -84,13 +82,14 @@ public class HomeFragment extends Fragment implements  FragmentAnimation {
                 if(b==true){
                     HomeVideoView.unmute();
                 }else {
-                        HomeVideoView.mute();
+                    HomeVideoView.mute();
                 }
             }
         });
         VideoStart();
     }
     private void InitSection(@NonNull View view){
+
         //Название раздела
         TextviewSectionName1 = view.findViewById(R.id.TextviewSectionName1);
         //Карточка раздела 1
@@ -140,6 +139,8 @@ public class HomeFragment extends Fragment implements  FragmentAnimation {
 
         InitVideoPlayer(view);
         InitSection(view);
+
+
 
 
         //Кнопка перехода к подключению модуля

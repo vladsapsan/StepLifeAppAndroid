@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:id="@+id/SheetDialogWaitBluetoothContainer"
+    android:background="@drawable/bottomsheetprofilesettingbackground"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="55dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/cornerdefault"
+                android:layout_height="5dp"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/montserrat_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Выбор режима"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:textSize="15dp"
+                android:gravity="center"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:fontFamily="@font/montserratregular"
+                android:textColor="@color/MainGrayText"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Выберите нужный режим под ваши нужды" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/StateCard1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:strokeWidth="1.5dp"
+                android:clickable="true"
+                app:cardElevation="0dp"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/MainYellow"
+                style="@style/CustomCardViewStyle"
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/walk_mode"/>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginLeft="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/directions_walk24px"/>
+                    </FrameLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/StateCard2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:strokeWidth="1.5dp"
+                android:clickable="true"
+                app:cardElevation="0dp"
+                android:foreground="?attr/selectableItemBackground"
+
+                style="@style/CustomCardViewStyle"
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/lock_mode"/>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginLeft="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/lock_24px"/>
+                    </FrameLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/StateCard3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:strokeWidth="1.5dp"
+                android:clickable="true"
+                app:cardElevation="0dp"
+                android:foreground="?attr/selectableItemBackground"
+                style="@style/CustomCardViewStyle"
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/sport_mode"/>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginLeft="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/sports_martial_arts_24px"/>
+                    </FrameLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </FrameLayout>
+
+</FrameLayout>

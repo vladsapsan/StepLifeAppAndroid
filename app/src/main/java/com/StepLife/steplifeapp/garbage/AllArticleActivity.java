@@ -1,5 +1,6 @@
 package com.StepLife.steplifeapp.garbage;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,12 +26,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.StepLife.steplifeapp.MainEnterenceActivity.ChooseArticle;
+import com.StepLife.steplifeapp.EnterenceActivity.ChooseArticle;
 import com.StepLife.steplifeapp.R;
-import com.StepLife.steplifeapp.other.MyRecyclerViewTagsAdapter;
+import com.StepLife.steplifeapp.Adapters.MyRecyclerViewTagsAdapter;
 import com.StepLife.steplifeapp.other.NetworkChangeListner;
 import com.StepLife.steplifeapp.Model.Article;
-import com.StepLife.steplifeapp.ui.ArticleListAdapter;
+import com.StepLife.steplifeapp.Adapters.ArticleListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
@@ -47,11 +48,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class AllArticleActivity extends AppCompatActivity implements MyRecyclerViewTagsAdapter.ItemClickListener {
-
-
     private ImageView backbutton;
     FloatingActionButton floating_action_button_AllArticle;
-
     private ArticleListAdapter ArticleListAdapter;
     private ListView allArticlelist;
     CardView CardViewAllChooseTags;
@@ -59,7 +57,6 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
     Button AddSortBytagButton;
     private NetworkChangeListner networkChangeListner;
     private RadioGroup EditTextRG;
-
     private List<String> listData;
     private List<String> ListSelectChips;
     RecyclerView AllArticleRecycleview,AllChooseArticleRecycleview;
@@ -74,7 +71,6 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
     TextView SortTextView;
     private static final String Article_Key ="AllArticle";
     private DatabaseReference mDataBase,mDataTags;
-
     //Иницилизация компонентов
     private void initilization()
     {
@@ -82,7 +78,6 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
         allArticlelist.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
-
             }
             @Override
             public void onScroll(AbsListView absListView, int i, int i1, int i2) {
@@ -104,14 +99,12 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
         ArticleListAdapter = new ArticleListAdapter(getApplicationContext(),R.layout.listviewarticleitem, listTemp);
         allArticlelist.setAdapter(ArticleListAdapter);
     }
-
     //Загрузка уроков из базы
     private void DownloadArticleFirebaseData()
     {
          valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int a = 0;
                 progressBar.setMax((int) snapshot.getChildrenCount());
                 if(listData.size()>0) listData.clear();
                 if(listTemp.size()>0) listTemp.clear();
@@ -121,14 +114,6 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
                     assert article != null;
                     listTemp.add(article);
                     listTempTags.add(article);
-                    a++;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        progressBar.setProgress(a, true);
-                    }
-                    if(progressBar.getProgress()==(int) snapshot.getChildrenCount())
-                    {
-
-                    }
                 }
                 ArticleListAdapter.notifyDataSetChanged();
             }
@@ -139,27 +124,24 @@ public class AllArticleActivity extends AppCompatActivity implements MyRecyclerV
         mDataBase.addValueEventListener(valueEventListener);
     }
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_article);
 
-
-
-
         progressBar = findViewById(R.id.progressBarAllArticleActivity);
-        //Отображение тегов в списке новой статьи
+
         AllArticleRecycleview = findViewById(R.id.AllArticleRecycleview);
         LinearLayoutManager layoutManager= new LinearLayoutManager(AllArticleActivity.this,LinearLayoutManager.HORIZONTAL, false);
+
         AllArticleRecycleview.setLayoutManager(layoutManager);
         mNewArticleTags = new ArrayList<>();
+
         adapterArticleTags = new MyRecyclerViewTagsAdapter(AllArticleActivity.this,mNewArticleTags);
         adapterArticleTags.setClickListener(AllArticleActivity.this);
         AllArticleRecycleview.setAdapter(adapterArticleTags);
         adapterArticleTags.notifyDataSetChanged();
-
-
-
 
         //группа тегов) и текст
         chipGroup = findViewById(R.id.chipGroup);

@@ -7,7 +7,7 @@
     android:clickable="true"
     android:id="@+id/ArticleSectionFrame"
     android:background="@color/MainGray"
-    tools:context=".MainEnterenceActivity.ArticleSection">
+    tools:context=".EnterenceActivity.ArticleSection">
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"

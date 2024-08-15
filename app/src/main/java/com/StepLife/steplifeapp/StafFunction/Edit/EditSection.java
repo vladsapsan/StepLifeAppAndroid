@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.Model.Section;
-import com.StepLife.steplifeapp.other.SectionViewAdapter;
+import com.StepLife.steplifeapp.Adapters.SectionViewAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

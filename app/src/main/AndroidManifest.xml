@@ -39,12 +39,12 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainEnterenceActivity.Helper"
+            android:name=".EnterenceActivity.Helper"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity
-            android:name=".MainEnterenceActivity.Splash_Screen"
+            android:name=".EnterenceActivity.Splash_Screen"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme">
@@ -131,7 +131,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainEnterenceActivity.ChooseArticle"
+            android:name=".EnterenceActivity.ChooseArticle"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -172,7 +172,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainEnterenceActivity.MainActivity"
+            android:name=".MainActivity.MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait"

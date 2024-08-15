@@ -13,10 +13,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.StepLife.steplifeapp.MainEnterenceActivity.MainActivity;
+import com.StepLife.steplifeapp.MainActivity.MainActivity;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.Model.Article;
-import com.StepLife.steplifeapp.ui.ArticleListAdapter;
+import com.StepLife.steplifeapp.Adapters.ArticleListAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -92,10 +92,6 @@ public class TagSearchArticle extends AppCompatActivity {
                     a++;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         progressBarAllArticleTagsActivity.setProgress(a, true);
-                    }
-                    if(progressBarAllArticleTagsActivity.getProgress()==(int) snapshot.getChildrenCount())
-                    {
-
                     }
                 }
                 ArticleListAdapter.notifyDataSetChanged();

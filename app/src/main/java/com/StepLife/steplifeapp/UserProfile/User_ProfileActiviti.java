@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.StepLife.steplifeapp.MainEnterenceActivity.Helper;
+import com.StepLife.steplifeapp.EnterenceActivity.Helper;
 import com.StepLife.steplifeapp.R;
 import com.StepLife.steplifeapp.StafFunction.Add.AddNewArticle;
 import com.StepLife.steplifeapp.StafFunction.ArticleOnTopSettingsActivity;

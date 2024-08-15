@@ -24,7 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.StepLife.steplifeapp.MainEnterenceActivity.MainActivity;
+import com.StepLife.steplifeapp.MainActivity.MainActivity;
 import com.StepLife.steplifeapp.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
